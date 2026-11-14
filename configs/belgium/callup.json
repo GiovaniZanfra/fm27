@@ -1,0 +1,107 @@
+{
+    "formation": [
+        {
+            "position": "GK",
+            "role": "Sweeper_Keeper"
+        },
+        {
+            "position": "GK",
+            "role": "GoalKeeper"
+        },
+        {
+            "position": "GK",
+            "role": "GoalKeeper"
+        },
+        {
+            "position": "DR",
+            "role": "Wing_Back"
+        },
+        {
+            "position": "DR",
+            "role": "Full_Back"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Central_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DL",
+            "role": "Wing_Back"
+        },
+        {
+            "position": "DL",
+            "role": "Full_Back"
+        },
+        {
+            "position": "DM",
+            "role": "Segundo_Volante"
+        },
+        {
+            "position": "DM",
+            "role": "Defensive_Midfielder"
+        },
+        {
+            "position": "DM",
+            "role": "Defensive_Midfielder"
+        },
+        {
+            "position": "MC",
+            "role": "Central_Midfielder"
+        },
+        {
+            "position": "AMR",
+            "role": "Winger"
+        },
+        {
+            "position": "AMR",
+            "role": "Winger"
+        },
+        {
+            "position": "AMC",
+            "role": "Shadow_Striker"
+        },
+        {
+            "position": "AML",
+            "role": "Winger"
+        },
+        {
+            "position": "AML",
+            "role": "Winger"
+        },
+        {
+            "position": "ST",
+            "role": "Advanced_Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Target_Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Advanced_Forward"
+        }
+    ],
+    "age_penalty": 0.2,
+    "age_threshold": 29,
+    "multipliers": {
+        "Transfer Value": 0.2,
+        "Last 5 Games": 0.0,
+        "Av Rat": 0.4,
+        "Trn Rating": 0.0,
+        "Positioning": 0.1,
+        "Heading": 0.2,
+        "Strength": 0.2
+    }
+}

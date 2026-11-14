@@ -1,0 +1,22 @@
+{
+    "manager": "Giovani",
+    "clubs": [
+        "sporting"
+    ],
+    "identity": "estruturado, adaptativo, orientado a sistema. Controle posicional, pressão organizada, funções claras. Estrutura acima de improviso, caos mínimo.",
+    "valued_attributes": [
+        "Positioning",
+        "Decisions",
+        "Team Work",
+        "Concentration"
+    ],
+    "hard_gates": {
+        "Decisions": 12,
+        "Team Work": 12,
+        "Concentration": 12,
+        "Determination": 10,
+        "Flair_max": 13
+    },
+    "age_rule": "sem corte agressivo - Positioning/Decisions/Concentration não decaem tão rápido quanto Pace/Dribbling (diferente do Duarte). age_penalty 0.2 a partir dos 29 - soft, não hard cut.",
+    "targets": {}
+}

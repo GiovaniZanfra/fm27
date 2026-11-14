@@ -1,0 +1,58 @@
+Name,Team,Age,Position,Pac,Wor,Sta,Agg,Det,Bra,Ant,Group,Pos,Clube,Fisico,Mental,Penalty,Overall,Fails,Tier
+Rafael Santos Borré,Main,27,"AM (C), ST (C)",13,19,16,18,18,17,13,ST,ST,Internacional,15.85,17.05,1.0,16.21,,S
+Alexandro Bernabéi,Main,22,D/WB (L),14,16,13,16,15,14,11,WB,DL,Internacional,14.45,14.55,1.0,14.479999999999999,,A
+Alan Patrick,Main,32,M/AM (C),15,15,13,12,13,14,12,AMC,AMC,Internacional,14.5,12.7,1.0,13.959999999999997,,A
+Alan Benítez,Main,29,D/WB/M (R),15,14,12,12,13,13,9,WB,DR,Internacional,13.899999999999999,12.049999999999999,1.0,13.344999999999999,,A
+Thiago Maia,Main,26,"DM, M (C)",12,14,15,13,12,14,12,DM,DM,Internacional,13.45,12.75,1.0,13.239999999999998,,A
+Juninho,Main,28,D (C),11,15,15,14,13,12,11,DC,DC,Internacional,13.4,12.85,1.0,13.235,,A
+Vitão,Main,23,D (C),13,13,15,9,15,13,13,DC,DC,Internacional,13.5,12.2,1.0,13.11,,A
+Bruno Gomes,Main,22,"DM, M (C)",12,13,14,12,15,14,13,DM,DM,Internacional,12.850000000000001,13.45,1.0,13.030000000000001,,A
+Bruno Henrique,Main,33,"DM, M (C)",11,14,14,13,13,13,13,DM,DM,Internacional,12.8,12.999999999999998,1.0,12.86,,B
+Oscar Romero,Main,31,"M (LC), AM (C)",13,12,12,12,12,13,12,AMC,AMC,Internacional,12.399999999999999,12.2,1.0,12.339999999999998,,B
+Bruno Tabata,Main,26,AM (RLC),13,11,14,11,12,9,10,AMC,AMC,Internacional,12.55,10.75,1.0,12.01,,B
+Sergio Rochet,Main,30,GK,13,13,12,5,13,13,12,GK,GK,Internacional,12.75,10.05,1.0,11.94,,B
+Ronaldo,Main,26,"DM, M (C)",12,12,12,10,14,11,11,DM,DM,Internacional,12.0,11.55,1.0,11.864999999999998,,B
+Gabriel Mercado,Main,36,D (RC),10,16,12,16,16,17,15,DC,DC,Internacional,12.6,16.049999999999997,0.85,11.589749999999999,Pace&lt;11,B
+Ivan,Main,26,GK,10,11,12,9,13,12,11,GK,GK,Internacional,10.85,11.1,1.0,10.924999999999999,,C
+Johan Carbonero,Main,24,M/AM (RL),16,8,13,13,15,10,13,W,AMRL,Internacional,12.45,13.0,0.85,10.722749999999998,Work Rate&lt;11,C
+Richard,Main,29,"DM, M (C)",13,14,13,12,7,10,11,DM,DM,Internacional,13.35,9.95,0.85,10.480499999999997,Determinação&lt;10,C
+Braian Aguirre,Main,23,"D (RL), M (R)",13,14,15,8,4,14,13,WB,DRL,Internacional,13.85,8.75,0.85,10.471999999999998,Determinação&lt;10,C
+Alan Rodríguez,Main,23,"DM, M/AM (RC)",10,13,13,14,13,12,12,DM,DM,Internacional,11.8,13.0,0.85,10.336,Pace&lt;11,C
+Clayton,Main,23,D (C),12,12,11,14,6,13,13,DC,DC,Internacional,11.75,11.249999999999998,0.85,9.86,Determinação&lt;10,C
+Vitinho,Main,24,"AM (RLC), ST (C)",13,12,12,10,3,12,11,ST,ST,Internacional,12.399999999999999,8.450000000000001,0.85,9.532749999999998,Determinação&lt;10,C
+Luis Otávio,Main,18,"DM, M (C)",13,12,7,12,12,9,10,DM,DM,Internacional,11.149999999999999,11.1,0.85,9.464749999999999,Stamina&lt;11,C
+João Dalla Corte,Main,17,"D (LC), DM",11,12,10,6,14,11,11,DM,DM,Internacional,11.1,10.15,0.85,9.19275,Stamina&lt;11,C
+Evertow,Main,17,D (C),11,12,10,7,12,12,7,DC,DC,Internacional,11.1,9.5,0.85,9.027,Stamina&lt;11,C
+Dionathan,Main,17,D/WB (R),12,14,7,14,16,11,11,WB,DR,Internacional,11.45,13.549999999999999,0.7,8.455999999999998,"Pace&lt;13, Stamina&lt;11",D
+Yan,Main,17,D/WB (R),12,11,12,14,9,11,12,WB,DR,Internacional,11.65,11.600000000000001,0.7,8.144499999999999,"Pace&lt;13, Determinação&lt;10",D
+Pedro Kauã,Main,19,D (C),13,9,8,9,19,10,13,DC,DC,Internacional,10.35,12.799999999999999,0.7,7.759499999999999,"Work Rate&lt;11, Stamina&lt;11",D
+Diego Coser,Main,17,"AM (RL), ST (C)",12,8,13,15,11,8,9,ST,ST,Internacional,10.850000000000001,11.5,0.7,7.7315,"Work Rate&lt;11, Bravura&lt;9",D
+Yago Noal,Main,18,"M (C), AM (RC)",12,13,10,6,5,9,10,AMC,AMC,Internacional,11.850000000000001,6.8999999999999995,0.7,7.2555,"Stamina&lt;11, Determinação&lt;10",D
+Crysthyan Lucas,Main,18,ST (C),10,10,12,9,10,10,12,ST,ST,Internacional,10.5,9.95,0.7,7.234499999999999,"Pace&lt;12, Work Rate&lt;11",D
+Bernardo Jacob,Main,17,"DM, M (C)",11,10,6,10,14,10,10,DM,DM,Internacional,9.4,11.2,0.7,6.957999999999999,"Work Rate&lt;11, Stamina&lt;11",E
+Anthoni,Main,21,GK,10,10,9,5,13,14,11,GK,GK,Internacional,9.75,10.100000000000001,0.7,6.8985,"Work Rate&lt;11, Stamina&lt;11",E
+Marcelo,Main,18,D (C),11,8,5,11,14,9,10,DC,DC,Internacional,8.45,11.350000000000001,0.7,6.524,"Work Rate&lt;11, Stamina&lt;11",E
+Diego Esser,Main,20,GK,12,5,1,14,16,11,8,GK,GK,Internacional,6.800000000000001,13.099999999999998,0.7,6.082999999999999,"Work Rate&lt;11, Stamina&lt;11",E
+Wendel,Main,18,AM (RL),12,11,7,11,13,7,11,W,AMRL,Internacional,10.4,10.8,0.5499999999999999,5.785999999999999,"Pace&lt;13, Stamina&lt;11, Bravura&lt;9",E
+Gabriel Palma,Main,18,DM,10,11,7,10,14,7,12,DM,DM,Internacional,9.6,10.899999999999999,0.5499999999999999,5.494499999999999,"Pace&lt;11, Stamina&lt;11, Bravura&lt;9",E
+Victor Gabriel,Main,19,"D (LC), WB (L)",12,7,8,12,12,10,11,WB,DL,Internacional,9.25,11.45,0.5499999999999999,5.450499999999999,"Pace&lt;13, Work Rate&lt;11, Stamina&lt;11",E
+João Gadu,Main,18,D (C),10,8,5,14,17,9,11,DC,DC,Internacional,8.05,13.450000000000001,0.5499999999999999,5.318499999999999,"Pace&lt;11, Work Rate&lt;11, Stamina&lt;11",E
+Pablo,Main,19,D (L),12,8,6,9,15,9,9,WB,DL,Internacional,9.100000000000001,10.8,0.5499999999999999,5.2855,"Pace&lt;13, Work Rate&lt;11, Stamina&lt;11",E
+Ricardo Mathias,Main,17,ST (C),11,7,11,7,12,8,10,ST,ST,Internacional,9.6,9.149999999999999,0.5499999999999999,5.205749999999999,"Pace&lt;12, Work Rate&lt;11, Bravura&lt;9",E
+Pedrinho,Main,18,ST (C),13,6,5,9,18,8,7,ST,ST,Internacional,8.55,11.2,0.5499999999999999,5.139749999999999,"Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E
+Lucca,Main,19,ST (C),10,8,13,5,7,9,11,ST,ST,Internacional,10.05,7.300000000000001,0.5499999999999999,5.0737499999999995,"Pace&lt;12, Work Rate&lt;11, Determinação&lt;10",E
+Leandro Kauã,Main,20,ST (C),13,6,6,5,15,7,8,ST,ST,Internacional,8.8,8.85,0.5499999999999999,4.848249999999999,"Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E
+João Severiano,Main,20,GK,10,4,1,5,11,13,5,GK,GK,Internacional,5.65,8.4,0.7,4.5325,"Work Rate&lt;11, Stamina&lt;11",E
+Kauan,Main,20,GK,9,9,5,12,1,11,11,GK,GK,Internacional,8.0,8.35,0.5499999999999999,4.45775,"Work Rate&lt;11, Stamina&lt;11, Determinação&lt;10",E
+Matheus Santos,Main,18,D (C),6,7,12,7,12,5,10,DC,DC,Internacional,7.85,8.549999999999999,0.5499999999999999,4.432999999999999,"Pace&lt;11, Work Rate&lt;11, Bravura&lt;9",E
+Gustavo Padro,Main,18,M/AM (C),11,8,10,14,8,8,8,AMC,AMC,Internacional,9.7,10.099999999999998,0.4,3.9279999999999995,"Pace&lt;12, Work Rate&lt;11, Stamina&lt;11, Determinação&lt;10, Bravura&lt;9",E
+Alec,Main,20,AM (RL),12,12,7,11,4,1,7,W,AMRL,Internacional,10.75,6.3,0.4,3.766,"Pace&lt;13, Stamina&lt;11, Determinação&lt;10, Bravura&lt;9",E
+Luiz Felipe,Main,19,D (L),12,8,7,13,8,8,5,WB,DL,Internacional,9.350000000000001,9.299999999999999,0.4,3.7340000000000004,"Pace&lt;13, Work Rate&lt;11, Stamina&lt;11, Determinação&lt;10, Bravura&lt;9",E
+Allex,Main,17,M/AM (C),11,11,6,6,7,8,11,AMC,AMC,Internacional,9.75,7.449999999999999,0.4,3.6239999999999997,"Pace&lt;12, Stamina&lt;11, Determinação&lt;10, Bravura&lt;9",E
+Denis Marfo,Main,19,"D (C), DM",11,7,10,10,4,7,11,DM,DM,Internacional,9.35,7.75,0.4,3.548,"Work Rate&lt;11, Stamina&lt;11, Determinação&lt;10, Bravura&lt;9",E
+Marlon Yan,Main,18,"WB/M (L), AM (RL)",10,9,10,6,12,2,6,WB,DRL,Internacional,9.65,7.0,0.4,3.5420000000000003,"Pace&lt;13, Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E
+Jackson,Main,18,ST (C),10,7,7,7,12,7,5,ST,ST,Internacional,8.2,8.2,0.4,3.28,"Pace&lt;12, Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E
+Hugo Cordeiro,Main,18,ST (C),11,5,7,5,17,6,4,ST,ST,Internacional,7.9,8.65,0.4,3.25,"Pace&lt;12, Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E
+Gabriel Felipe,Main,18,D (C),14,7,4,5,5,8,7,DC,DC,Internacional,9.05,5.8999999999999995,0.4,3.2420000000000004,"Work Rate&lt;11, Stamina&lt;11, Determinação&lt;10, Bravura&lt;9",E
+Benjamin,U20,19,DM,8,7,6,9,11,8,13,DM,DM,Internacional U20,7.15,9.999999999999998,0.4,3.202,"Pace&lt;11, Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E
+Lorenzo,Main,18,"D (C), DM",7,8,4,11,10,4,10,DM,DM,Internacional,6.6,9.149999999999999,0.4,2.9459999999999997,"Pace&lt;11, Work Rate&lt;11, Stamina&lt;11, Bravura&lt;9",E

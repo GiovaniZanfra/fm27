@@ -1,0 +1,58 @@
+{
+    "formation": [
+        {
+            "position": "GK",
+            "role": "Sweeper_Keeper"
+        },
+        {
+            "position": "DR",
+            "role": "Full_Back"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DL",
+            "role": "Full_Back"
+        },
+        {
+            "position": "DM",
+            "role": "Ball_Winning_Midfielder"
+        },
+        {
+            "position": "MC",
+            "role": "Segundo_Volante"
+        },
+        {
+            "position": "AML",
+            "role": "Shadow_Striker"
+        },
+        {
+            "position": "AMC",
+            "role": "Attacking_Midfielder"
+        },
+        {
+            "position": "ST",
+            "role": "Pressing Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Advanced_Forward"
+        }
+    ],
+    "age_penalty": 0.1,
+    "age_threshold": 29,
+    "arabic_penalty": 0.0,
+    "multipliers": {
+        "Transfer Value": 0.2,
+        "Av Rat": 0.1,
+        "Last 5 Games": 0.3,
+        "Trn Rat": 0.1,
+        "Positioning": 0.1
+    }
+}

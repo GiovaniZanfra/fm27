@@ -1,0 +1,81 @@
+Name,UID,Age,Nationality,Height_cm,Weight_kg,PreferredFoot,Salary,TransferValue,MediaHandling
+Kristoffer Ajer,53110135,30,NOR,196,,Weak,4146000.0,58000000,Evasive
+Alexsander,2000084501,24,BRA,178,,Very Strong,2189000.0,25500000,Media-friendly
+Caelan Avenall,2000140968,23,ENG,180,,Reasonable,18250.0,1500,Media-friendly
+Ellery Balcombe,29174476,28,ENG,190,,Weak,958000.0,1250000,Level-headed
+Danny Barnett,2002124607,17,ENG,175,,Fairly Strong,14250.0,115000,Media-friendly
+Luka Bentt,2002088907,20,USA,175,,Reasonable,6500.0,0,Media-friendly
+Domeiro Bobb-Semple,2002088905,20,ENG,180,,Fairly Strong,6500.0,0,Media-friendly
+Kelvin Bruno,2002185581,15,ENG,170,,Reasonable,,0,Level-headed
+Fábio Carvalho,28122195,25,POR,170,,Reasonable,2738000.0,42000000,Media-friendly
+Marek Čepelák,2002124764,16,CZE,183,,Reasonable,14250.0,9250000,Outspoken
+Miguel Chaiwa,2000146429,23,ZAM,178,,Weak,1216000.0,14000000,Reserved
+Stavros Christodoulou,2002124503,17,CYP,175,,Very Strong,14250.0,7750,Media-friendly
+Moustapha Cissé,2000168273,24,GUI,183,,Reasonable,1007000.0,4500000,Unflappable
+Alex Clark,2002185590,15,ENG,170,,Fairly Strong,,0,Media-friendly
+Aidan Collins,2002185584,16,ENG,185,,Weak,,0,Level-headed
+Sam Cossington,2002124524,17,ENG,168,,Reasonable,14250.0,127000,Unflappable
+Matthew Cox,29235125,25,ENG,183,,Reasonable,455000.0,775000,Reserved
+Mikkel Damsgaard,27128917,27,DEN,180,,Strong,2599000.0,45000000,Level-headed
+Mike Davies,2002185580,15,WAL,178,,Reasonable,5750.0,907000,Media-friendly
+David Dempsey,2002185578,16,IRL,188,,Fairly Strong,,0,Reserved
+Axel Disasi,48037291,30,FRA,190,,Reasonable,2680000.0,42000000,Level-headed
+Romelle Donovan,2000300033,21,ENG,170,,Very Strong,158000.0,6900000,Media-friendly
+George Dyer,2002185577,16,WAL,175,,Very Strong,14250.0,232500,Level-headed
+Emanuel Emegha,37088234,25,NED,196,,Fairly Strong,1495000.0,6600000,Level-headed
+Micheál Fitzpatrick,2002124548,17,IRL,193,,Reasonable,14250.0,138000,Reserved
+John Fortune,2002124469,17,IRL,183,,Very Strong,14250.0,38000,Media-friendly
+Benjamin Fredrick,2000231612,22,NGA,185,,Very Strong,107000.0,49500,Level-headed
+Gabriel Barbosa,30035404,31,BRA,178,,Very Strong,3983000.0,32000000,Outspoken
+Jordan Gilhespy,2002185586,15,ENG,180,,Very Strong,,0,Media-friendly
+Josué Grelaud,2000254626,21,BEL,178,,Very Strong,63500.0,1025000,Media-friendly
+Kenville Griffith,2002124771,16,BRB,173,,Reasonable,14250.0,44000,Media-friendly
+Gustavo Nunes,2000256293,22,BRA,170,,Weak,107000.0,240000,Level-headed
+Jordan Henderson,28005568,37,ENG,183,,Weak,3567000.0,4099999,Unflappable
+Rico Henry,29129073,30,ENG,170,,Very Strong,5491000.0,58500000,Level-headed
+Isaac Holland,2000198121,22,ENG,178,,Weak,97500.0,55000,Media-friendly
+Otis Honor,2002088904,20,ENG,183,,Reasonable,6500.0,0,Media-friendly
+John Huntley,2002124420,17,ENG,178,,Very Strong,14250.0,104000,Media-friendly
+Ígor,2002090570,21,ENG,188,,Very Strong,95000.0,570000,Media-friendly
+Christos Ioannidis,2002185587,16,ENG,188,,Very Strong,,0,Media-friendly
+Vitaly Janelt,91143519,29,GER,183,,Very Strong,2780000.0,49500000,Media-friendly
+John Jarman,2002185575,16,WAL,183,,Reasonable,14250.0,550000,"Volatile, Media-friendly, Confrontational"
+João Gabriel,2000302961,21,BRA,180,,Reasonable,263000.0,337500,Level-headed
+Harvey Johnson,2002185583,16,WAL,190,,Reasonable,5750.0,52500,Level-headed
+Robert Johnston,2002185585,16,ENG,185,,Very Strong,5750.0,12250000,"Volatile, Media-friendly"
+Gerard Kavanagh,2002185588,15,IRL,170,,Strong,,0,Unflappable
+Michael Kayode,2000023588,23,ITA,178,,Reasonable,4628000.0,75500000,"Evasive, Reserved"
+Caoimhin Kelleher,28104130,29,IRL,188,,Weak,4501000.0,49000000,Unflappable
+Kim Ji-Soo,2000205527,23,KOR,193,,Very Strong,599000.0,8800000,Media-friendly
+Viktor Kovács,2002185576,16,HUN,170,,Reasonable,14250.0,1020000,Level-headed
+Ethan Laidlaw,2000126248,23,SCO,175,,Reasonable,244000.0,390000,Media-friendly
+Keane Lewis-Potter,28113414,27,ENG,170,,Weak,3582000.0,69500000,Reserved
+Drew McCabe,2002124440,17,IRL,173,,Reasonable,14250.0,10500,Level-headed
+Blaine McClure,2000251028,21,NIR,180,,Reasonable,57000.0,242500,Media-friendly
+Christian McFarlane,2000165742,21,JAM,183,,Very Strong,476000.0,16000000,Media-friendly
+Michael McSorley,2002088908,21,ENG,185,,Weak,19500.0,0,Media-friendly
+Jayden Meghoma,2000190480,21,ENG,175,,Very Strong,388000.0,6800000,Level-headed
+Tyrell Meyers,2002185582,16,ENG,173,,Very Strong,,0,Media-friendly
+Dwayne Miggins,2002124494,17,ENG,170,,Fairly Strong,14250.0,10500,Media-friendly
+Antoni Milambo,2000054475,23,NED,178,,Weak,704000.0,22500000,Level-headed
+Ilario Monterisi,43393176,26,ITA,190,,Weak,2277000.0,33000000,Reserved
+Iwan Morgan,2000105710,22,WAL,183,,Reasonable,286000.0,350000,Media-friendly
+Idris Musa,2002124553,17,ENG,178,,Reasonable,14250.0,82500,Level-headed
+Yohan Ngatcheu,2002087886,19,GER,173,,Reasonable,257000.0,1087500,Media-friendly
+Jake O'Connell,2002124758,17,TRI,178,,Reasonable,14250.0,100750,Level-headed
+Michael Olakigbe,2000042503,24,ENG,175,,Fairly Strong,1199000.0,2850000,Media-friendly
+Dango Ouattara,12091814,26,BFA,178,,Very Strong,2098000.0,35000000,Level-headed
+Riley Owen,2000123645,22,ENG,173,,Very Strong,111000.0,26000,Media-friendly
+Nedved Owusu,2002088906,19,ITA,178,,Fairly Strong,6500.0,0,Media-friendly
+Ethan Pinnock,89040516,34,JAM,193,,Very Strong,1949000.0,0,"Plays Mind Games, Reserved"
+Zisis Ragousis,2002185589,16,ENG,175,,Very Strong,,0,Unflappable
+Alan Rogerson,2002124610,17,ENG,190,,Fairly Strong,14250.0,330000,Level-headed
+Kevin Schade,91208050,26,GER,183,,Fairly Strong,8119000.0,93500000,Media-friendly
+Curtis Straker,2002124763,17,BRB,175,,Reasonable,14250.0,88000,Reserved
+Mehdi Taremi,23127918,35,IRN,188,,Fairly Strong,3085000.0,4400000,Evasive
+Marlon Torpey,2002185579,15,ENG,183,,Very Strong,,0,Outspoken
+Archie Trimboli,2002088903,19,AUS,185,,Weak,6500.0,0,Media-friendly
+Ethan Walsh,2002124523,16,ENG,178,,Very Strong,14250.0,540000,"Outspoken, Volatile"
+Connor Wolfheimer,2000273275,18,ENG,178,,Reasonable,113000.0,19250,Media-friendly
+Yehor Yarmoliuk,71110357,24,UKR,180,,Fairly Strong,325000.0,8400000,"Media-friendly, Reserved"
+Yunus Emre Konak,2000284118,22,TUR,180,,Reasonable,650000.0,1125000,Reserved

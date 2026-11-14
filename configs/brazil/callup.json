@@ -1,0 +1,107 @@
+{
+    "formation": [
+        {
+            "position": "GK",
+            "role": "Sweeper_Keeper"
+        },
+        {
+            "position": "GK",
+            "role": "Sweeper_Keeper"
+        },
+        {
+            "position": "GK",
+            "role": "Sweeper_Keeper"
+        },
+        {
+            "position": "DR",
+            "role": "Wing_Back"
+        },
+        {
+            "position": "DR",
+            "role": "Full_Back"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DL",
+            "role": "Wing_Back"
+        },
+        {
+            "position": "DL",
+            "role": "Full_Back"
+        },
+        {
+            "position": "DM",
+            "role": "Defensive_Midfielder"
+        },
+        {
+            "position": "DM",
+            "role": "Ball_Winning_Midfielder"
+        },
+        {
+            "position": "DM",
+            "role": "Carrilero"
+        },
+        {
+            "position": "MC",
+            "role": "Box_To_Box_Midfielder"
+        },
+        {
+            "position": "AMC",
+            "role": "Advanced_Playmaker"
+        },
+        {
+            "position": "AMC",
+            "role": "Advanced_Playmaker"
+        },
+        {
+            "position": "AMC",
+            "role": "Shadow_Striker"
+        },
+        {
+            "position": "AMC",
+            "role": "Shadow_Striker"
+        },
+        {
+            "position": "ST",
+            "role": "Target_Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Advanced_Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Advanced_Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Pressing_Forward"
+        }
+    ],
+    "age_penalty": 0.3,
+    "age_threshold": 27,
+    "arabic_penalty": 1.0,
+    "multipliers": {
+        "Transfer Value": 0.3,
+        "Av Rat": 0.7,
+        "Last 5 Games": 0,
+        "Positioning": 0.3,
+        "Decisions": 0.3,
+        "Team Work": 0.3
+    }
+}

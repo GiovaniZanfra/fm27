@@ -1,0 +1,55 @@
+{
+    "formation": [
+        {
+            "position": "GK",
+            "role": "GoalKeeper"
+        },
+        {
+            "position": "DR",
+            "role": "Wing_Back"
+        },
+        {
+            "position": "DC",
+            "role": "Central_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DL",
+            "role": "Wing_Back"
+        },
+        {
+            "position": "MC",
+            "role": "Mezzala"
+        },
+        {
+            "position": "MC",
+            "role": "Box_To_Box_Midfielder"
+        },
+        {
+            "position": "MC",
+            "role": "Deep_Lying_Playmaker"
+        },
+        {
+            "position": "AMC",
+            "role": "Advanced_Playmaker"
+        },
+        {
+            "position": "ST",
+            "role": "Pressing_Forward"
+        },
+        {
+            "position": "ST",
+            "role": "Target_Forward"
+        }
+    ],
+    "age_penalty": 0.4,
+    "age_threshold": 30,
+    "multipliers": {
+        "Transfer Value": 0.0,
+        "Last 5 Games": 0.0,
+        "Trn Rating": 0.3
+    }
+}

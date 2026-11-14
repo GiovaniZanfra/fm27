@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tier List — Cara do Luiz Casca (Watford)</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #0b0e14;
+    --bg-panel: #131722;
+    --border: #232838;
+    --text: #e7e9ee;
+    --text-dim: #9aa1b1;
+    --accent: #f4a63a;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f5f6f8;
+      --bg-panel: #ffffff;
+      --border: #e2e4ea;
+      --text: #14161c;
+      --text-dim: #666c7c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 32px 20px 80px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  header h1 {
+    font-size: 1.6rem;
+    margin: 0 0 6px;
+  }
+  header p.sub {
+    color: var(--text-dim);
+    margin: 0 0 20px;
+    font-size: 0.95rem;
+    max-width: 720px;
+  }
+  .profile-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .profile-card h2 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .profile-card p {
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .weights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .weight-chip {
+    background: rgba(244, 166, 58, 0.12);
+    border: 1px solid rgba(244, 166, 58, 0.35);
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .tier {
+    margin-bottom: 22px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg-panel);
+    overflow: hidden;
+  }
+  .tier-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: color-mix(in srgb, var(--tier-color) 14%, var(--bg-panel));
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-letter {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--tier-color);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .tier-label {
+    font-weight: 700;
+    font-size: 0.98rem;
+  }
+  .tier-count {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  thead th {
+    text-align: left;
+    padding: 8px 14px;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.name { font-weight: 600; }
+  td.pos { color: var(--text-dim); font-size: 0.82rem; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.score { font-weight: 700; color: var(--tier-color, var(--accent)); }
+  .tier td.score { color: var(--accent); }
+  footer {
+    margin-top: 32px;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Tier List — Cara do Luiz Casca</h1>
+      <p class="sub">Elenco do Watford (dado de agosto/2023) ranqueado por o quanto o perfil de cada jogador combina com a identidade de Luiz "Casca" Ferreira: pragmatismo, disciplina, força aérea e solidez defensiva acima de talento individual.</p>
+    </header>
+
+    <div class="profile-card">
+      <h2>Metodologia</h2>
+      <p>Casca valoriza, acima de tudo, força aérea (Cabeceio/Impulsão), trabalho de equipe e concentração — disciplina tática e domínio aéreo acima de flair individual. O score combina atributos físicos (peso 0.50) e mentais/técnicos ligados à disciplina posicional (peso 0.50), numa média ponderada na escala 1–20. Não considera posição, forma recente ou valor de mercado — é puramente "o quanto o jogador é a cara do sistema".</p>
+      <div class="weights">
+        <span class="weight-chip">Heading × 0.20</span>
+        <span class="weight-chip">Jumping Reach × 0.20</span>
+        <span class="weight-chip">Strength × 0.10</span>
+        <span class="weight-chip">Team Work × 0.20</span>
+        <span class="weight-chip">Concentration × 0.15</span>
+        <span class="weight-chip">Positioning × 0.15</span>
+      </div>
+    </div>
+    
+    <section class="tier" style="--tier-color:#dc2626">
+      <div class="tier-head">
+        <span class="tier-letter">S</span>
+        <span class="tier-label">Cara do Técnico</span>
+        <span class="tier-count">2 jogadores</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>Idade</th><th>Posição</th>
+              <th>Heading</th><th>Jump. Reach</th><th>Strength</th><th>Team Work</th><th>Concentr.</th><th>Position.</th><th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      <td class="name">Mattie Pollock</td>
+      <td>21</td>
+      <td class="pos">DC</td>
+      <td class="num">15</td>
+      <td class="num">15</td>
+      <td class="num">15</td>
+      <td class="num">13</td>
+      <td class="num">13</td>
+      <td class="num">12</td>
+      <td class="num score">13.85</td>
+    </tr>
+<tr>
+      <td class="name">Moussa Sissoko</td>
+      <td>33</td>
+      <td class="pos">MR, MC, AMR, AMC</td>
+      <td class="num">13</td>
+      <td class="num">13</td>
+      <td class="num">14</td>
+      <td class="num">13</td>
+      <td class="num">14</td>
+      <td class="num">12</td>
+      <td class="num score">13.10</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+
+    <section class="tier" style="--tier-color:#ea580c">
+      <div class="tier-head">
+        <span class="tier-letter">A</span>
+        <span class="tier-label">Perfil Forte</span>
+        <span class="tier-count">9 jogadores</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>Idade</th><th>Posição</th>
+              <th>Heading</th><th>Jump. Reach</th><th>Strength</th><th>Team Work</th><th>Concentr.</th><th>Position.</th><th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      <td class="name">Hector Kyprianou</td>
+      <td>22</td>
+      <td class="pos">DM, MC</td>
+      <td class="num">12</td>
+      <td class="num">13</td>
+      <td class="num">14</td>
+      <td class="num">15</td>
+      <td class="num">10</td>
+      <td class="num">12</td>
+      <td class="num score">12.70</td>
+    </tr>
+<tr>
+      <td class="name">Formose Mendy</td>
+      <td>22</td>
+      <td class="pos">DR, DC</td>
+      <td class="num">13</td>
+      <td class="num">15</td>
+      <td class="num">12</td>
+      <td class="num">11</td>
+      <td class="num">11</td>
+      <td class="num">11</td>
+      <td class="num score">12.30</td>
+    </tr>
+<tr>
+      <td class="name">Edo Kayembe</td>
+      <td>25</td>
+      <td class="pos">DM, MC</td>
+      <td class="num">10</td>
+      <td class="num">11</td>
+      <td class="num">17</td>
+      <td class="num">13</td>
+      <td class="num">12</td>
+      <td class="num">10</td>
+      <td class="num score">11.80</td>
+    </tr>
+<tr>
+      <td class="name">Kévin Keben</td>
+      <td>19</td>
+      <td class="pos">DC</td>
+      <td class="num">12</td>
+      <td class="num">12</td>
+      <td class="num">13</td>
+      <td class="num">11</td>
+      <td class="num">12</td>
+      <td class="num">11</td>
+      <td class="num score">11.75</td>
+    </tr>
+<tr>
+      <td class="name">Egil Selvik</td>
+      <td>26</td>
+      <td class="pos">GK</td>
+      <td class="num">9</td>
+      <td class="num">14</td>
+      <td class="num">12</td>
+      <td class="num">10</td>
+      <td class="num">11</td>
+      <td class="num">14</td>
+      <td class="num score">11.55</td>
+    </tr>
+<tr>
+      <td class="name">James Abankwah</td>
+      <td>19</td>
+      <td class="pos">DR, DC</td>
+      <td class="num">11</td>
+      <td class="num">12</td>
+      <td class="num">11</td>
+      <td class="num">12</td>
+      <td class="num">11</td>
+      <td class="num">10</td>
+      <td class="num score">11.25</td>
+    </tr>
+<tr>
+      <td class="name">James Morris</td>
+      <td>21</td>
+      <td class="pos">DL, WBL</td>
+      <td class="num">12</td>
+      <td class="num">10</td>
+      <td class="num">10</td>
+      <td class="num">10</td>
+      <td class="num">13</td>
+      <td class="num">12</td>
+      <td class="num score">11.15</td>
+    </tr>
+<tr>
+      <td class="name">Nampalys Mendy</td>
+      <td>31</td>
+      <td class="pos">DM, MC</td>
+      <td class="num">8</td>
+      <td class="num">5</td>
+      <td class="num">12</td>
+      <td class="num">16</td>
+      <td class="num">13</td>
+      <td class="num">14</td>
+      <td class="num score">11.05</td>
+    </tr>
+<tr>
+      <td class="name">Jérémy Petris</td>
+      <td>25</td>
+      <td class="pos">DR, WBR, MR</td>
+      <td class="num">9</td>
+      <td class="num">11</td>
+      <td class="num">9</td>
+      <td class="num">14</td>
+      <td class="num">11</td>
+      <td class="num">11</td>
+      <td class="num score">11.00</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+
+    <section class="tier" style="--tier-color:#ca8a04">
+      <div class="tier-head">
+        <span class="tier-letter">B</span>
+        <span class="tier-label">Perfil Compatível</span>
+        <span class="tier-count">13 jogadores</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>Idade</th><th>Posição</th>
+              <th>Heading</th><th>Jump. Reach</th><th>Strength</th><th>Team Work</th><th>Concentr.</th><th>Position.</th><th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      <td class="name">Marc Bola</td>
+      <td>25</td>
+      <td class="pos">DC, DL, WBL, ML</td>
+      <td class="num">9</td>
+      <td class="num">12</td>
+      <td class="num">10</td>
+      <td class="num">13</td>
+      <td class="num">11</td>
+      <td class="num">10</td>
+      <td class="num score">10.95</td>
+    </tr>
+<tr>
+      <td class="name">Luca Kjerrumgaard</td>
+      <td>20</td>
+      <td class="pos">ST</td>
+      <td class="num">11</td>
+      <td class="num">15</td>
+      <td class="num">11</td>
+      <td class="num">11</td>
+      <td class="num">10</td>
+      <td class="num">6</td>
+      <td class="num score">10.90</td>
+    </tr>
+<tr>
+      <td class="name">Vivaldo Semedo</td>
+      <td>18</td>
+      <td class="pos">ST</td>
+      <td class="num">10</td>
+      <td class="num">15</td>
+      <td class="num">13</td>
+      <td class="num">12</td>
+      <td class="num">9</td>
+      <td class="num">5</td>
+      <td class="num score">10.80</td>
+    </tr>
+<tr>
+      <td class="name">Imrân Louza</td>
+      <td>24</td>
+      <td class="pos">DM, MC, AMC</td>
+      <td class="num">8</td>
+      <td class="num">8</td>
+      <td class="num">11</td>
+      <td class="num">13</td>
+      <td class="num">12</td>
+      <td class="num">13</td>
+      <td class="num score">10.65</td>
+    </tr>
+<tr>
+      <td class="name">Jeremy Ngakia</td>
+      <td>22</td>
+      <td class="pos">DR, WBR</td>
+      <td class="num">8</td>
+      <td class="num">11</td>
+      <td class="num">12</td>
+      <td class="num">13</td>
+      <td class="num">9</td>
+      <td class="num">10</td>
+      <td class="num score">10.45</td>
+    </tr>
+<tr>
+      <td class="name">Thomas Ince</td>
+      <td>31</td>
+      <td class="pos">MR, AMR, AMC, AML</td>
+      <td class="num">6</td>
+      <td class="num">10</td>
+      <td class="num">9</td>
+      <td class="num">16</td>
+      <td class="num">12</td>
+      <td class="num">8</td>
+      <td class="num score">10.30</td>
+    </tr>
+<tr>
+      <td class="name">Tobi Adeyemo</td>
+      <td>18</td>
+      <td class="pos">ST</td>
+      <td class="num">13</td>
+      <td class="num">13</td>
+      <td class="num">13</td>
+      <td class="num">7</td>
+      <td class="num">9</td>
+      <td class="num">6</td>
+      <td class="num score">10.15</td>
+    </tr>
+<tr>
+      <td class="name">Caleb Wiley</td>
+      <td>18</td>
+      <td class="pos">DL, WBL, ML, AML</td>
+      <td class="num">8</td>
+      <td class="num">11</td>
+      <td class="num">9</td>
+      <td class="num">11</td>
+      <td class="num">11</td>
+      <td class="num">10</td>
+      <td class="num score">10.05</td>
+    </tr>
+<tr>
+      <td class="name">Giorgi Chakvetadze</td>
+      <td>23</td>
+      <td class="pos">MC, AMC, AML</td>
+      <td class="num">8</td>
+      <td class="num">10</td>
+      <td class="num">10</td>
+      <td class="num">12</td>
+      <td class="num">13</td>
+      <td class="num">7</td>
+      <td class="num score">10.00</td>
+    </tr>
+<tr>
+      <td class="name">Max Alleyne</td>
+      <td>18</td>
+      <td class="pos">DC</td>
+      <td class="num">10</td>
+      <td class="num">11</td>
+      <td class="num">10</td>
+      <td class="num">8</td>
+      <td class="num">7</td>
+      <td class="num">14</td>
+      <td class="num score">9.95</td>
+    </tr>
+<tr>
+      <td class="name">Mamadou Doumbia</td>
+      <td>17</td>
+      <td class="pos">ST</td>
+      <td class="num">14</td>
+      <td class="num">14</td>
+      <td class="num">8</td>
+      <td class="num">8</td>
+      <td class="num">8</td>
+      <td class="num">4</td>
+      <td class="num score">9.80</td>
+    </tr>
+<tr>
+      <td class="name">Pierre Dwomoh</td>
+      <td>19</td>
+      <td class="pos">MC, AMC</td>
+      <td class="num">10</td>
+      <td class="num">13</td>
+      <td class="num">9</td>
+      <td class="num">8</td>
+      <td class="num">11</td>
+      <td class="num">5</td>
+      <td class="num score">9.50</td>
+    </tr>
+<tr>
+      <td class="name">Nathan Baxter</td>
+      <td>24</td>
+      <td class="pos">GK</td>
+      <td class="num">1</td>
+      <td class="num">13</td>
+      <td class="num">11</td>
+      <td class="num">8</td>
+      <td class="num">13</td>
+      <td class="num">12</td>
+      <td class="num score">9.25</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+
+    <section class="tier" style="--tier-color:#0891b2">
+      <div class="tier-head">
+        <span class="tier-letter">C</span>
+        <span class="tier-label">Perfil Neutro</span>
+        <span class="tier-count">9 jogadores</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>Idade</th><th>Posição</th>
+              <th>Heading</th><th>Jump. Reach</th><th>Strength</th><th>Team Work</th><th>Concentr.</th><th>Position.</th><th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      <td class="name">Kwadwo Baah</td>
+      <td>20</td>
+      <td class="pos">MR, ML, AMR, AML</td>
+      <td class="num">7</td>
+      <td class="num">9</td>
+      <td class="num">10</td>
+      <td class="num">9</td>
+      <td class="num">8</td>
+      <td class="num">7</td>
+      <td class="num score">8.25</td>
+    </tr>
+<tr>
+      <td class="name">Gabriel Ortelli</td>
+      <td>17</td>
+      <td class="pos">GK</td>
+      <td class="num">1</td>
+      <td class="num">16</td>
+      <td class="num">8</td>
+      <td class="num">6</td>
+      <td class="num">11</td>
+      <td class="num">8</td>
+      <td class="num score">8.25</td>
+    </tr>
+<tr>
+      <td class="name">Sebastián Cortés</td>
+      <td>17</td>
+      <td class="pos">DM, MC</td>
+      <td class="num">7</td>
+      <td class="num">7</td>
+      <td class="num">10</td>
+      <td class="num">8</td>
+      <td class="num">10</td>
+      <td class="num">9</td>
+      <td class="num score">8.25</td>
+    </tr>
+<tr>
+      <td class="name">Victor Wachowicz</td>
+      <td>18</td>
+      <td class="pos">DR, DC, DM, MR, MC, AMR, AMC</td>
+      <td class="num">8</td>
+      <td class="num">8</td>
+      <td class="num">7</td>
+      <td class="num">7</td>
+      <td class="num">6</td>
+      <td class="num">10</td>
+      <td class="num score">7.70</td>
+    </tr>
+<tr>
+      <td class="name">Josh Mullins</td>
+      <td>17</td>
+      <td class="pos">DC</td>
+      <td class="num">8</td>
+      <td class="num">9</td>
+      <td class="num">6</td>
+      <td class="num">4</td>
+      <td class="num">6</td>
+      <td class="num">12</td>
+      <td class="num score">7.50</td>
+    </tr>
+<tr>
+      <td class="name">Marats Galajevs</td>
+      <td>17</td>
+      <td class="pos">MC, AMC</td>
+      <td class="num">7</td>
+      <td class="num">9</td>
+      <td class="num">4</td>
+      <td class="num">8</td>
+      <td class="num">7</td>
+      <td class="num">8</td>
+      <td class="num score">7.45</td>
+    </tr>
+<tr>
+      <td class="name">Albert Eames</td>
+      <td>17</td>
+      <td class="pos">DR</td>
+      <td class="num">6</td>
+      <td class="num">11</td>
+      <td class="num">5</td>
+      <td class="num">6</td>
+      <td class="num">5</td>
+      <td class="num">10</td>
+      <td class="num score">7.35</td>
+    </tr>
+<tr>
+      <td class="name">Rocco Vata</td>
+      <td>18</td>
+      <td class="pos">MR, AMR, AML, ST</td>
+      <td class="num">4</td>
+      <td class="num">6</td>
+      <td class="num">8</td>
+      <td class="num">10</td>
+      <td class="num">8</td>
+      <td class="num">9</td>
+      <td class="num score">7.35</td>
+    </tr>
+<tr>
+      <td class="name">Raul Vancea</td>
+      <td>17</td>
+      <td class="pos">DL</td>
+      <td class="num">7</td>
+      <td class="num">7</td>
+      <td class="num">5</td>
+      <td class="num">8</td>
+      <td class="num">7</td>
+      <td class="num">7</td>
+      <td class="num score">7.00</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+
+    <section class="tier" style="--tier-color:#64748b">
+      <div class="tier-head">
+        <span class="tier-letter">D</span>
+        <span class="tier-label">Fora do Perfil</span>
+        <span class="tier-count">8 jogadores</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>Idade</th><th>Posição</th>
+              <th>Heading</th><th>Jump. Reach</th><th>Strength</th><th>Team Work</th><th>Concentr.</th><th>Position.</th><th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      <td class="name">Jack Grieves</td>
+      <td>18</td>
+      <td class="pos">ST</td>
+      <td class="num">11</td>
+      <td class="num">5</td>
+      <td class="num">5</td>
+      <td class="num">6</td>
+      <td class="num">7</td>
+      <td class="num">6</td>
+      <td class="num score">6.85</td>
+    </tr>
+<tr>
+      <td class="name">Nestory Irankunda</td>
+      <td>17</td>
+      <td class="pos">AMR, AML</td>
+      <td class="num">7</td>
+      <td class="num">7</td>
+      <td class="num">6</td>
+      <td class="num">7</td>
+      <td class="num">7</td>
+      <td class="num">5</td>
+      <td class="num score">6.60</td>
+    </tr>
+<tr>
+      <td class="name">Alfie Marriott</td>
+      <td>19</td>
+      <td class="pos">GK</td>
+      <td class="num">1</td>
+      <td class="num">8</td>
+      <td class="num">4</td>
+      <td class="num">6</td>
+      <td class="num">12</td>
+      <td class="num">9</td>
+      <td class="num score">6.55</td>
+    </tr>
+<tr>
+      <td class="name">Remiero Moulton</td>
+      <td>17</td>
+      <td class="pos">MC, AMC</td>
+      <td class="num">7</td>
+      <td class="num">1</td>
+      <td class="num">10</td>
+      <td class="num">7</td>
+      <td class="num">8</td>
+      <td class="num">5</td>
+      <td class="num score">5.95</td>
+    </tr>
+<tr>
+      <td class="name">Othmane Maamma</td>
+      <td>17</td>
+      <td class="pos">AMR</td>
+      <td class="num">4</td>
+      <td class="num">5</td>
+      <td class="num">5</td>
+      <td class="num">9</td>
+      <td class="num">8</td>
+      <td class="num">4</td>
+      <td class="num score">5.90</td>
+    </tr>
+<tr>
+      <td class="name">Ober Almanza</td>
+      <td>20</td>
+      <td class="pos">MC, AMC</td>
+      <td class="num">6</td>
+      <td class="num">4</td>
+      <td class="num">5</td>
+      <td class="num">7</td>
+      <td class="num">5</td>
+      <td class="num">7</td>
+      <td class="num score">5.70</td>
+    </tr>
+<tr>
+      <td class="name">Jonathan Lawson</td>
+      <td>17</td>
+      <td class="pos">ST</td>
+      <td class="num">9</td>
+      <td class="num">5</td>
+      <td class="num">5</td>
+      <td class="num">4</td>
+      <td class="num">5</td>
+      <td class="num">5</td>
+      <td class="num score">5.60</td>
+    </tr>
+<tr>
+      <td class="name">Jonathan Macaulay</td>
+      <td>18</td>
+      <td class="pos">GK</td>
+      <td class="num">1</td>
+      <td class="num">6</td>
+      <td class="num">5</td>
+      <td class="num">6</td>
+      <td class="num">7</td>
+      <td class="num">8</td>
+      <td class="num score">5.35</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+
+    <footer>
+      Fonte: data/watford/raw/aug2023.html · Goleiros incluídos apenas para referência (perfil físico de goleiro não reflete estilo de jogo de linha) · Gerado a partir dos atributos brutos do elenco, sem passar pelo otimizador de escalação. Posicionamento entra como atributo (não como posição em campo) por ainda estar como "inferido/pendente de formalização" no manual dos técnicos.
+    </footer>
+  </div>
+</body>
+</html>

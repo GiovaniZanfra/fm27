@@ -1,0 +1,61 @@
+Name,UID,GK,DR,DC,DL,WBR,DM,WBL,MR,MC,ML,AMR,AMC,AML,ST
+Thiago Acosta,2000245307,False,False,False,False,False,True,False,False,True,False,False,True,False,False
+Marcos Acuña,14044037,False,False,False,True,False,False,True,False,False,True,False,False,False,False
+Tobías Argañaráz,2000137819,False,False,False,False,False,True,False,False,True,False,False,False,False,False
+Franco Armani,14006220,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+Lisandro Bajú,2000136731,False,False,False,True,False,False,True,False,False,False,False,False,False,False
+Santiago Beltrán,2000240661,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+Miguel Borja,76033093,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+Sebastián Boselli,2000090212,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+Fabricio Bustos,14077012,False,True,False,False,True,False,False,False,False,False,False,False,False,False
+Milton Casco,14021863,False,True,False,True,True,False,True,False,False,False,False,False,False,False
+Kevin Castaño,76069073,False,False,False,False,False,True,False,False,True,False,False,False,False,False
+Tomás Castro Ponce,14217411,False,False,False,False,False,False,False,True,True,False,True,True,False,False
+Facundo Colidio,14180905,False,False,False,False,False,False,False,False,False,False,True,True,True,True
+Giorgio Costantini,2002044225,False,False,False,False,False,False,False,False,True,False,False,True,False,False
+Brian de Freitas,2000167350,False,False,True,True,False,False,False,False,False,False,False,False,False,False
+Agustín De la Cuesta,2002044335,False,False,False,False,False,True,False,False,True,False,False,False,False,False
+Paulo Díaz,75032761,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+Sebastián Driussi,14043242,False,False,False,False,False,False,False,False,False,False,False,True,True,True
+Felipe Esquivel,2002045030,False,False,False,False,False,False,False,False,False,False,False,True,True,False
+Ignacio Fernández,14031117,False,False,False,False,False,False,False,False,True,False,False,True,False,False
+Joaquín Flores,2000246449,False,False,False,False,False,False,False,False,False,True,False,False,True,True
+Jano Franco,2000096758,False,False,False,False,False,False,False,False,False,False,False,True,False,True
+Matías Galarza,79035283,False,False,False,False,False,True,False,False,True,False,False,False,True,False
+Giuliano Galoppo,14219440,False,False,False,False,False,False,False,False,True,False,False,True,False,True
+Federico Gattoni,14150772,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Ulises Giménez,2000175926,False,True,True,False,False,False,False,False,False,False,False,False,False,False
+Facundo González,2000176729,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Brian Gutiérrez,2002092101,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Cristian Jaime,2002044336,False,False,False,False,False,False,False,False,False,True,False,False,True,False
+Tomás Jung,2000096396,False,False,False,False,False,True,False,False,True,False,False,False,False,False
+Jeremías Ledesma,14063109,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+Santiago Lencina,2000096571,False,False,False,False,False,False,False,True,False,True,True,False,True,False
+Jeremías Martinet,2000278048,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+Lucas Martínez Quarta,14110832,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Dylan Martínez,2002073100,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+Gonzalo Martínez,14026771,False,False,False,False,False,False,False,False,False,False,True,True,True,False
+Juan Cruz Meza,2002045029,False,False,False,False,False,False,False,False,True,False,False,True,False,False
+Maximiliano Meza,14061320,False,False,False,False,False,False,False,False,True,False,True,True,False,False
+Juan Miretti,2002091414,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Gonzalo Montiel,14136122,False,True,False,False,True,False,False,False,False,False,False,False,False,False
+Álvaro Navoni,2000278108,False,False,False,False,False,True,False,False,True,False,False,False,False,False
+Agustín Obregón,2000183230,False,True,False,False,True,False,False,True,False,False,False,False,False,False
+Leandro Peña Biafore,14226980,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Enzo Pérez,958414,False,False,False,False,False,True,False,False,True,False,False,False,False,False
+Germán Pezzella,14023371,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Juan Carlos Portillo,14227704,False,True,True,True,False,True,False,False,False,False,False,False,False,False
+Juan Fernando Quintero,76015366,False,False,False,False,False,False,False,True,True,False,True,True,False,False
+Joaquín Rivero,2000034871,False,False,False,False,False,False,False,False,False,False,True,False,False,True
+Lautaro Rivero,2000096570,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Agustín Ruberto,2000173400,False,False,False,False,False,False,False,False,False,False,True,False,False,True
+Maximiliano Salas,14137031,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+Sebastián Sime,2002076538,False,False,False,False,False,False,False,False,False,False,True,True,True,False
+Maximiliano Soria,2002092100,False,False,False,False,False,False,False,False,False,False,False,True,False,False
+Jonathan Spiff,2002045274,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+Ángel Susano,2002092080,False,False,True,False,False,False,False,False,False,False,False,False,False,False
+Lisandro Tejada,2000277430,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+Matías Unyicio,2002092068,False,True,False,False,False,False,False,False,False,False,False,False,False,False
+Oswaldo Valencia,14254434,False,False,False,False,False,False,False,False,False,False,True,False,True,True
+Agustín Wierna,2000094965,False,False,False,False,False,False,False,False,True,False,False,True,False,False
+Alex Woiski,2002044627,False,False,False,False,False,False,False,False,False,False,True,False,True,True

@@ -1,0 +1,58 @@
+{
+    "formation": [
+        {
+            "position": "GK",
+            "role": "Sweeper_Keeper"
+        },
+        {
+            "position": "DR",
+            "role": "Complete_Wing_Back"
+        },
+        {
+            "position": "DC",
+            "role": "Central_Defender"
+        },
+        {
+            "position": "DC",
+            "role": "Ball_Playing_Defender"
+        },
+        {
+            "position": "DL",
+            "role": "Complete_Wing_Back"
+        },
+        {
+            "position": "DM",
+            "role": "Deep_Lying_Playmaker"
+        },
+        {
+            "position": "MC",
+            "role": "Box_To_Box_Midfielder"
+        },
+        {
+            "position": "AMC",
+            "role": "Attacking_Midfielder"
+        },
+        {
+            "position": "AMC",
+            "role": "Shadow_Striker"
+        },
+        {
+            "position": "AMC",
+            "role": "Attacking_Midfielder"
+        },
+        {
+            "position": "ST",
+            "role": "False_Nine"
+        }
+    ],
+    "age_penalty": 0.1,
+    "age_threshold": 32,
+    "multipliers": {
+        "Transfer Value": 0.2,
+        "Av Rat": 0.1,
+        "Last 5 Games": 0.7,
+        "Technique": 0.2,
+        "Vision": 0.2,
+        "Acceleration": 0.2
+    }
+}
