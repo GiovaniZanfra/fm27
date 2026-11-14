@@ -11,9 +11,9 @@ from openpyxl.utils import get_column_letter
 REPO = Path(__file__).resolve().parent
 os.chdir(REPO)  # optimize_teams uses relative paths
 
-from fm26.team_optimizer import optimize_teams
+from fm27.team_optimizer import optimize_teams
 
-TEAM = "chelsea"
+TEAM = "sporting"
 BASE_CONFIG = REPO / "configs" / TEAM / "4222.json"
 TEMP_CONFIG = REPO / "configs" / TEAM / "_grid_temp.json"
 OUTPUT_XLSX = REPO / "data" / TEAM / "grid_search_results.xlsx"
