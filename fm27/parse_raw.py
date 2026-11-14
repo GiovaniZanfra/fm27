@@ -271,12 +271,51 @@ def get_attribute_mapping():
         'Thr': 'Throwing',
         'TRO': 'Rushing Out',  # Goalkeeper specific
         'Vis': 'Vision',
-        'Wor': 'Work Rate'
+        'Wor': 'Work Rate',
+        'Ecc': 'Eccentricity',  # Goalkeeper specific
+        'Pun': 'Punching',  # Goalkeeper specific
+        'Com': 'Communication',  # Goalkeeper specific
     }
 
-def get_attribute_columns():
-    """Get list of attribute columns to extract from raw data."""
-    return ['Name'] + list(get_attribute_mapping().keys()) + ['UID']
+
+# FM27 exports full attribute names; a few differ from the names the roles use.
+ATTRIBUTE_ALIASES = {
+    'Rushing Out (Tendency)': 'Rushing Out',
+}
+
+# Attributes every role may reference. A missing one only prints a warning.
+CORE_ATTRIBUTES = sorted(set(get_attribute_mapping().values()))
+
+
+def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Bring an FM26 (abbreviated) or FM27 (full-name) export to one schema.
+
+    - 'Player' becomes 'Name'
+    - abbreviations ('Acc') and aliases ('Rushing Out (Tendency)') become full names
+    - a missing UID column is filled with the row's name, so merges on Name+UID still work
+    """
+    df = df.copy()
+    df.columns = df.columns.str.strip()
+    rename = {}
+    if 'Name' not in df.columns and 'Player' in df.columns:
+        rename['Player'] = 'Name'
+    abbrev = get_attribute_mapping()
+    for col in df.columns:
+        if col in abbrev and abbrev[col] not in df.columns:
+            rename[col] = abbrev[col]
+        elif col in ATTRIBUTE_ALIASES:
+            rename[col] = ATTRIBUTE_ALIASES[col]
+    df = df.rename(columns=rename)
+    if 'UID' not in df.columns:
+        df['UID'] = df['Name']
+    return df
+
+def get_attribute_columns(df: pd.DataFrame):
+    """Attribute columns to extract from a normalized export (missing ones are warned about)."""
+    missing = [a for a in CORE_ATTRIBUTES if a not in df.columns]
+    if missing:
+        print(f"Warning: export has no column for {missing}; roles using them score without them.")
+    return ['Name'] + [a for a in CORE_ATTRIBUTES if a in df.columns] + ['UID']
 
 
 def _find_column(cols, keywords):
@@ -289,13 +328,16 @@ def _find_column(cols, keywords):
         for c, l in zip(cols, lower):
             if l == k:
                 return c
+    # Short keywords ('m', 'ht', 'kg') only match exactly: as prefixes or
+    # substrings they hit unrelated columns ('Mor', 'Height' inside 'Weight').
+    long_kws = [k for k in kws if len(k) > 3]
     # startswith match
-    for k in kws:
+    for k in long_kws:
         for c, l in zip(cols, lower):
             if l.startswith(k):
                 return c
     # substring match
-    for k in kws:
+    for k in long_kws:
         for c, l in zip(cols, lower):
             if k in l:
                 return c
@@ -384,7 +426,7 @@ def _normalize_col(series: pd.Series) -> 'np.ndarray':
 def _save_performance_data(merged_df, interim_dir, value_col=None, attr_df=None):
     cols = merged_df.columns.tolist()
     training_col, last5_col = _find_performance_columns(cols)
-    av_rat_col = _find_column(cols, ['av rat', 'average rating', 'av rating', 'avg rating', 'av. rat'])
+    av_rat_col = _find_column(cols, ['av rat', 'average rating', 'av rating', 'avg rating', 'av. rat', 'avg.'])
 
     # Detect "Not for Sale" before _parse_money loses the string
     not_for_sale_mask = (
@@ -677,18 +719,11 @@ def parse_raw_data(team_name: str, date: str = None):
 
     df_agg = pd.read_html(str(html_file), encoding="utf-8")
     merged_df = pd.concat(df_agg, axis=0, ignore_index=True)
-    merged_df.columns = merged_df.columns.str.strip()
+    merged_df = normalize_columns(merged_df)
     merged_df = _append_uid_to_duplicate_names(merged_df)
-    
-    # Extract attributes and rename to full names
-    attr = merged_df[get_attribute_columns()]
-    
-    # Create mapping dictionary including Name and UID
-    mapping = {'Name': 'Name', 'UID': 'UID'}
-    mapping.update(get_attribute_mapping())
-    
-    # Rename columns and save
-    attr_mapped = attr.rename(columns=mapping)
+
+    # Extract attributes (already full names after normalize_columns)
+    attr_mapped = merged_df[get_attribute_columns(merged_df)].copy()
     attr_file = team_interim_dir / "attributes.csv"
     attr_mapped.to_csv(attr_file, index=False)
     
@@ -717,7 +752,10 @@ def parse_raw_data(team_name: str, date: str = None):
     pos_file = team_interim_dir / "positions.csv"
     pos.to_csv(pos_file, index=False)
     # Extract demographics (age, salary, transfer value, media handling, nationality, height, weight)
-    cols = merged_df.columns.tolist()
+    # Attribute columns are full names in FM27 ('Determination', 'Team Work'), so keep
+    # them out of the fuzzy search for demographic columns.
+    attr_names = set(attr_mapped.columns)
+    cols = [c for c in merged_df.columns if c not in attr_names]
     age_col = _find_column(cols, ['age', 'dob', 'date of birth', 'years'])
 
     # Salary (prefer 'wage' or 'salary' exact/startswith), consider weekly/annual tokens later
@@ -752,12 +790,12 @@ def parse_raw_data(team_name: str, date: str = None):
     nat_fallback = False
     weight_fallback = False
     if nat_col is None:
-        detected = _detect_nationality_column(merged_df)
+        detected = _detect_nationality_column(merged_df[cols])
         if detected:
             nat_col = detected
             nat_fallback = True
     if weight_col is None:
-        detected_w = _detect_weight_column(merged_df)
+        detected_w = _detect_weight_column(merged_df[cols])
         if detected_w:
             weight_col = detected_w
             weight_fallback = True
@@ -784,7 +822,7 @@ def parse_raw_data(team_name: str, date: str = None):
     if value_mask.any():
         scaled_values = StandardScaler().fit_transform(dem.loc[value_mask, ['TransferValue']].astype(float))
         dem.loc[value_mask, 'TransferValue_Normalized'] = scaled_values.flatten()
-    dem['TransferValue_Normalized'].fillna(0.0, inplace=True)
+    dem['TransferValue_Normalized'] = dem['TransferValue_Normalized'].fillna(0.0)
     dem['Club'] = merged_df[club_col] if (club_col and club_col in merged_df.columns) else pd.NA
     dem['MediaHandling'] = merged_df[media_col] if (media_col and media_col in merged_df.columns) else pd.NA
 
