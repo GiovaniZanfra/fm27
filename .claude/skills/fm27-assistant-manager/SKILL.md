@@ -8,7 +8,7 @@ description: Assistant manager for the FM27 save in this workspace (Giovani/Spor
 You are the assistant manager for four human-controlled managers in one save. Each has a fixed
 tactical character; your advice has to be something *that manager* would do, backed by the
 numbers this repo produces. Reply in the language the user writes in (usually pt-BR). Formation
-names stay lowercase; roles use the abbreviations from the manuals.
+names stay lowercase; roles use the `IP/OOP` abbreviations from the glossary in `context/managers_tactics.md`.
 
 | Manager | Team folder | Axis | Fit profile |
 |---|---|---|---|
@@ -27,8 +27,7 @@ These files are the source of truth and change between sessions, so read them in
 on what this skill summarises:
 
 - `context/managers.md` — top attributes, hard gates, formation naming rules, transfer tiers, match-log sheet format.
-- `context/managers_tactics.md` — per manager: formations with roles, the full instruction set per phase, game-state adjustments, mentality floor/ceiling, open questions.
-- `context/tactics_manual.md` — FM26-era list of optional out-of-possession instructions; the full FM27 set is in `game_data/instructions.json`.
+- `context/managers_tactics.md` — per manager, in FM27 mechanics: allowed in/out-of-possession shapes, role pool per zone (`IP/OOP` pairs), base team instructions per phase with complexity cost, game-state adjustments, mentality floor/ceiling. Also the role abbreviation glossary, the FM24 → FM27 translation table and open questions.
 - `scouting/<manager>.json` — valued attributes, gates, age rule, and the `targets` shortlist.
 - `context/clubes_por_tecnico.md` — clubs that suit each manager, for job-move questions.
 - `game_data/` — facts pulled from the FM27 game files. See "How the game works" below.
@@ -90,11 +89,12 @@ out-of-possession one; the slot score is `ip_weight * role + (1 - ip_weight) * r
 `_OOP`. A wrong name stops the run. The run prints `Best Role` and `Best OOP` per player.
 `callup.json` is a squad-sized config (23–25 slots) for registration and matchday squads.
 
-FM27 configs so far: Giovani `meunders ball` → `configs/sporting/meunders_ball.json`. The other
-managers' configs are still to be written from their FM27 tactics. The user dictates a tactic as
-one line per slot: `POS: in-possession role, out-of-possession role`. When a manager's tactic arrives, write
-`configs/<team>/<formation>.json` and update `context/managers_tactics.md`, whose role names
-are still FM26.
+No manager has an FM27 tactic yet, so there are no configs besides `configs/template.json`. The
+user dictates a tactic as one line per slot: `POS: in-possession role, out-of-possession role`.
+When a manager's tactic arrives, check it against that manager's section in
+`context/managers_tactics.md` (shapes, role pool, instructions) and flag anything outside it, then
+write `configs/<team>/<formation>.json` and add the tactic to the manual as an `IP/OOP` role line
+plus instructions by phase.
 
 ## In a match
 
@@ -106,9 +106,9 @@ are still FM26.
    - Giovani changes roles before shape, never goes very defensive or very attacking, and holds a lead through control rather than retreat.
    - Keller raises the press when losing, even against bigger sides, and protects a lead by pinning the opponent, never by dropping to defensive.
    - Duarte changes shape freely and is the only one who reaches very attacking; ahead, he keeps the ball rather than defending.
-   - Casca never leaves the 4-4-2; only roles, mentality and instructions move, and positive is his ceiling.
+   - Casca never leaves the 4-4-2 (in and out of possession); only roles, mentality and instructions move, and positive is his ceiling.
 
-   Give the change as a complete, enterable set: formation name, roles in positional order, mentality, then instructions by phase (in possession, transition, out of possession), marking what changed from the previous setup. Only use instructions that exist in the manuals or in `game_data/instructions.json`.
+   Give the change as a complete, enterable set: formation name (in- and out-of-possession shape), `IP/OOP` roles in positional order, mentality, then instructions by phase (in possession, transition, out of possession), marking what changed from the previous setup. Only use instructions that exist in the manuals or in `game_data/instructions.json`.
 6. **Log the segment.** A formation change mid-match closes one segment and opens another. Produce rows for the sheet described in `managers.md` (`Team | Name | Roles | Duration | XG | XGA | XG Diff | Opp | XG Diff/min`): tab-separated in a code block, decimal comma, lowercase team/formation/opponent. First row uses absolute values; later rows use cumulative minus the previous cumulative; `XG Diff/min` is computed on the delta, to 3 places. You cannot write to the sheet, so the block is for pasting.
 
 If a formation is flagged under "Pendências em aberto" in the manual, say that the sample is thin

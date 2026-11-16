@@ -60,9 +60,8 @@ Escolhas feitas na tela de criação do técnico (Head Coach Creation) e a hist�
 **Scoring:** a função do Giovani pesa os atributos top, penaliza Flair > 13 e usa OtB no lugar de Pos pros atacantes. A do Duarte pesa forte Technique, Vision, Dribbling, Flair, Acceleration.
 
 **Regras de formação:**
-- Nomes de formação sempre em minúsculo; variantes de role relevantes ganham versão (ex: `diamond control v2`).
-- Giovani: "diamond" / "diamond control" / "4312 control" = `diamond control v2` → `SK, WB, BPD, BPD, WB, DM, CAR, MEZ, AP, DLF, AF`. A v1 (com BWM e PF/TF) está aposentada.
-- Giovani: BWM aposentado dos sistemas principais.
+- Nomes de formação sempre em minúsculo; variantes de role relevantes ganham versão (ex: `<nome> v2`).
+- Nenhum técnico tem formação FM27 definida ainda. As táticas da era FM24/FM26 foram descartadas; formas, roles e instruções permitidas para cada um estão em `managers_tactics.md`.
 
 **Tiers de transferência:** Tier 1 = Evito vender · Tier 2 = Negocio · Tier 3 = Vejo ofertas · Tier 4 = Procuro vender.
 
@@ -72,7 +71,7 @@ Planilha no Google Drive, ID `1EcM-yiCCyVDM0f_wkq-m3jHKIohZKelsxr7ELKSm0IY`. Col
 
 - **Team** — time em minúsculo (sporting, internacional, river_plate, watford)
 - **Name** — formação em minúsculo
-- **Roles** — roles separados por vírgula e espaço, em ordem posicional (ex: SK, FB, BPD, BPD, FB, DM, BWM, AP, SS, TF, PF)
+- **Roles** — um par `IP/OOP` por slot (role com bola / role sem bola, siglas do glossário em `managers_tactics.md`), separados por vírgula e espaço, em ordem posicional (ex: BPGK/GK, FB/HFB, BPCB/CB, CB/CCB, IFB/FB, DM/SDM, CM/SCM, AP/AM, IW/TW, W/TW, CF/CF)
 - **Duration** — minutos do segmento; troca de formação no jogo = nova linha
 - **XG / XGA / XG Diff** — do segmento
 - **Opp** — adversário em minúsculo
@@ -85,6 +84,9 @@ Planilha no Google Drive, ID `1EcM-yiCCyVDM0f_wkq-m3jHKIohZKelsxr7ELKSm0IY`. Col
 Ao sugerir roles ou mudança de formação, ler o perfil do técnico (abaixo) e `managers_tactics.md`.
 
 ## Perfis
+
+*Textos de personagem escritos na era FM24: os nomes de role citados aqui (BallWinningMidfielder, ShadowStriker, PressingForward…) são do FM24. A tradução para roles FM27 está em `managers_tactics.md`, seção 7.*
+
 Giovani (Sporting)
  
 Giovani is a structured, adaptive, and system-driven manager. He builds his teams around balance: controlled possession, organized pressing, and clear roles. Typically using shapes like 4-2-2-2 or 4-3-1-2, he ensures there’s always defensive protection (e.g., DefensiveMidfielder + BallWinningMidfielder) and attacking coordination (AdvancedPlaymaker + ShadowStriker + a balanced striker duo like TargetForward + PressingForward).
