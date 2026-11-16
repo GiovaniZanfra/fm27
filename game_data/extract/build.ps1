@@ -205,7 +205,7 @@ Save 'instructions.json' ([ordered]@{
     source = $source
     notes = @(
         'Every option is the game enum name; its number is the tactical complexity it adds (from generated_tactical_complexity_constants).',
-        'Each group allows one option or none. phase is our annotation of where the group sits on the tactics screen.',
+        'Groups here follow the game data, not the tactics screen: some UI groups share one group here (Passing Strategy = Pass Reception + Build-up Strategy). See instructions_ui.json for the screen grouping. phase is our annotation.',
         'Team complexity is clamped to limits.team_min..team_max; a player carries role + instructions up to limits.max_complexity_per_player.'
     )
     limits = [ordered]@{

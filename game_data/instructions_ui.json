@@ -1,0 +1,176 @@
+{
+  "source": {
+    "game": "Football Manager 27",
+    "from": "Written by hand from the in-game tactics screen (team instructions), not extracted from game files."
+  },
+  "notes": [
+    "This is how the tactics screen groups the team instructions. Each UI group takes exactly one option; the neutral one (standard / balanced / mixed) is the game default and costs 0.",
+    "enum is the option name in instructions.json, and cost its tactical complexity. Where the UI and instructions.json group things differently, the UI wins: e.g. Pass Reception and Build-up Strategy are two UI groups but share the 'Passing Strategy' group in instructions.json, so both can be set.",
+    "enum null: the option has no enum in instructions.json (it is the default, or we could not match it). cost null: unknown."
+  ],
+  "in_possession": {
+    "Passing Directness": {
+      "Much Shorter": {"enum": "Passing Style.MUCH_SHORTER", "cost": 3},
+      "Shorter": {"enum": "Passing Style.SHORTER", "cost": 2},
+      "Standard": {"enum": null, "cost": 0},
+      "More Direct": {"enum": "Passing Style.MORE_DIRECT", "cost": 1},
+      "Much More Direct": {"enum": "Passing Style.MUCH_MORE_DIRECT", "cost": 1}
+    },
+    "Tempo": {
+      "Much Lower": {"enum": "Tempo.MUCH_LOWER", "cost": 2},
+      "Lower": {"enum": "Tempo.LOWER", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Higher": {"enum": "Tempo.HIGHER", "cost": 1},
+      "Much Higher": {"enum": "Tempo.MUCH_HIGHER", "cost": 2}
+    },
+    "Attacking Width": {
+      "Much Narrower": {"enum": "Width.MUCH_NARROWER", "cost": 2},
+      "Narrower": {"enum": "Width.NARROWER", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Wider": {"enum": "Width.WIDER", "cost": 1},
+      "Much Wider": {"enum": "Width.MUCH_WIDER", "cost": 2}
+    },
+    "Attacking Transition": {
+      "Hold Shape": {"enum": "Transition.HOLD_SHAPE", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Counter-Attack": {"enum": "Transition.COUNTER", "cost": 2}
+    },
+    "Creative Freedom": {
+      "More Disciplined": {"enum": "Creative Freedom.BE_MORE_DISCIPLINED", "cost": 3},
+      "Balanced": {"enum": null, "cost": 0},
+      "More Expressive": {"enum": "Creative Freedom.BE_MORE_EXPRESSIVE", "cost": 2}
+    },
+    "Time Wasting": {
+      "Less Often": {"enum": null, "cost": null},
+      "Standard": {"enum": null, "cost": 0},
+      "More Often": {"enum": null, "cost": null},
+      "_note": "instructions.json has Waste Time NORMAL (1) and EXTREME (2); which UI option each one is has not been confirmed."
+    },
+    "Set Pieces": {
+      "Keep Ball in Play": {"enum": null, "cost": 0},
+      "Play for Set Pieces": {"enum": "Build up Play.PLAY_FOR_SET_PIECES", "cost": 1}
+    },
+    "Patience": {
+      "Hit Early Crosses": {"enum": "Crossing.HIT_EARLY_CROSSES", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Work Ball Into Box": {"enum": "Build up Play.WORK_BALL_INTO_BOX", "cost": 2}
+    },
+    "Shots From Distance": {
+      "Discourage": {"enum": "Shooting.DISCOURAGE_LONG_SHOTS", "cost": 1},
+      "Balanced": {"enum": null, "cost": 0},
+      "Encourage": {"enum": "Shooting.SHOOT_ON_SIGHT", "cost": 1}
+    },
+    "Crossing Style": {
+      "Balanced": {"enum": null, "cost": 0},
+      "Floated Crosses": {"enum": "Crossing.FLOAT_CROSSES", "cost": 1},
+      "Whipped Crosses": {"enum": "Crossing.WHIPPED_CROSSES", "cost": 1},
+      "Low Crosses": {"enum": "Crossing.LOW_CROSSES", "cost": 1}
+    },
+    "Dribbling": {
+      "Discourage": {"enum": "Dribbling.DRIBBLE_LESS", "cost": 1},
+      "Balanced": {"enum": null, "cost": 0},
+      "Encourage": {"enum": "Dribbling.RUN_AT_DEFENCE", "cost": 2}
+    },
+    "Supporting Runs": {
+      "Balanced": {"enum": null, "cost": 0},
+      "Left Overlap": {"enum": "Look For.OVERLAP_LEFT", "cost": 1},
+      "Right Overlap": {"enum": "Look For.OVERLAP_RIGHT", "cost": 1},
+      "Overlap Both Flanks": {"enum": "Look For.OVERLAP", "cost": 1},
+      "Left Underlap": {"enum": "Look For.UNDERLAP_LEFT", "cost": 1},
+      "Right Underlap": {"enum": "Look For.UNDERLAP_RIGHT", "cost": 1},
+      "Underlap Both Flanks": {"enum": "Look For.UNDERLAP", "cost": 1}
+    },
+    "Progress Through": {
+      "Balanced": {"enum": null, "cost": 0},
+      "Left": {"enum": "Focus Play.DOWN_THE_LEFT_FLANK", "cost": 2},
+      "Middle": {"enum": "Focus Play.DOWN_THE_MIDDLE", "cost": 3},
+      "Right": {"enum": "Focus Play.DOWN_THE_RIGHT_FLANK", "cost": 2},
+      "Both Flanks": {"enum": "Focus Play.DOWN_BOTH_FLANKS", "cost": 1}
+    },
+    "Pass Reception": {
+      "Pass to Feet": {"enum": "Passing Strategy.INTO_FEET", "cost": 1},
+      "Balanced": {"enum": null, "cost": 0},
+      "Pass Into Space": {"enum": "Passing Strategy.INTO_SPACE", "cost": 1}
+    },
+    "Build-up Strategy": {
+      "Play Through Press": {"enum": "Passing Strategy.PLAY_THROUGH_THE_PRESS", "cost": 3},
+      "Balanced": {"enum": null, "cost": 0},
+      "Bypass Press": {"enum": "Passing Strategy.BYPASS_THE_PRESS", "cost": 0}
+    },
+    "Goal Kicks": {
+      "Short": {"enum": "GK Distribution.Goal kick.SHORT", "cost": 1},
+      "Mixed": {"enum": null, "cost": 0},
+      "Long": {"enum": "GK Distribution.Goal kick.LONG", "cost": 1}
+    },
+    "GK Distribution Speed": {
+      "Slow Pace Down": {"enum": "GK Distribution.Pace.SLOW", "cost": 1},
+      "Balanced": {"enum": null, "cost": 0},
+      "Distribute Quickly": {"enum": "GK Distribution.Pace.QUICK", "cost": 2}
+    },
+    "GK Distribution Target": {
+      "Balanced": {"enum": null, "cost": 0},
+      "Over Opposition Defence": {"enum": "GK Distribution.Target.CLEAR_OPPOSITION_DEFENCE", "cost": 1},
+      "Target Forward": {"enum": "GK Distribution.Target.TARGET_MAN", "cost": 1},
+      "Flanks": {"enum": "GK Distribution.Target.FLANKS", "cost": 1},
+      "Playmaker": {"enum": "GK Distribution.Target.PLAYMAKER", "cost": 1},
+      "Full-Backs": {"enum": "GK Distribution.Target.FULL_BACKS", "cost": 1},
+      "Centre-Backs": {"enum": "GK Distribution.Target.CENTRE_BACKS", "cost": 1}
+    }
+  },
+  "out_of_possession": {
+    "Line of Engagement": {
+      "Low Block": {"enum": "Line of Engagement.DEEPER", "cost": 0},
+      "Mid Block": {"enum": "Line of Engagement.STANDARD", "cost": 1},
+      "High Press": {"enum": "Line of Engagement.HIGHER", "cost": 2},
+      "_note": "No neutral option: every tactic picks one."
+    },
+    "Defensive Line": {
+      "Much Lower": {"enum": "Defensive Line.MUCH_DEEPER", "cost": 1},
+      "Lower": {"enum": "Defensive Line.DEEPER", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Higher": {"enum": "Defensive Line.HIGHER", "cost": 2},
+      "Much Higher": {"enum": "Defensive Line.MUCH_HIGHER", "cost": 3}
+    },
+    "Defensive Line Behaviour": {
+      "Step Up More": {"enum": "Line.HOLD_LINE", "cost": 2},
+      "Balanced": {"enum": null, "cost": 0},
+      "Drop Off More": {"enum": "Line.DROP_OFF", "cost": 1}
+    },
+    "Trigger Press": {
+      "Much Less Often": {"enum": "Pressing Intensity.MUCH_LOWER", "cost": 2},
+      "Less Often": {"enum": "Pressing Intensity.LOWER", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "More Often": {"enum": "Pressing Intensity.HIGHER", "cost": 2},
+      "Much More Often": {"enum": "Pressing Intensity.MUCH_HIGHER", "cost": 3}
+    },
+    "Defensive Transition": {
+      "Regroup": {"enum": "Defence Transition.REGROUP", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Counter-Press": {"enum": "Defence Transition.COUNTER_PRESS", "cost": 3}
+    },
+    "Tackling": {
+      "Stay on Feet": {"enum": "Tackling.STAY_ON_FEET", "cost": 1},
+      "Standard": {"enum": null, "cost": 0},
+      "Get Stuck In": {"enum": "Tackling.GET_STUCK_IN", "cost": 1}
+    },
+    "Prevent Short GK Distribution": {
+      "No": {"enum": null, "cost": 0},
+      "Yes": {"enum": "PREVENT_SHORT_GOALKEEPER_DISTRIBUTION", "cost": 1}
+    },
+    "Pressing Trap": {
+      "Trap Inside": {"enum": "Pressing Trap.IN", "cost": 0},
+      "Balanced": {"enum": null, "cost": 0},
+      "Trap Outside": {"enum": "Pressing Trap.OUT", "cost": 0}
+    },
+    "Cross Engagement": {
+      "Stop Crosses": {"enum": "Defending Crosses.STOP", "cost": 1},
+      "Balanced": {"enum": null, "cost": 0},
+      "Invite Crosses": {"enum": "Defending Crosses.INVITE", "cost": 1}
+    }
+  },
+  "not_on_screen": [
+    "GK Distribution.Method (KICK_LONG, KICK_SHORT, ROLL_OUT, THROW_LONG): exists in the game data at cost 0 but is not a team instruction on the screen.",
+    "GK Distribution.Target.SPECIFIC_TEAMMATE: not in the team target list.",
+    "GOALKEEPER_UP_FOR_ATTACKING_SET_PIECES: not on the team instructions screen (probably under set pieces)."
+  ]
+}

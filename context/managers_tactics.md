@@ -1,10 +1,10 @@
 # Manual dos Quatro Técnicos — FM27
 
-Como cada técnico joga, escrito nas mecânicas do FM27: forma com bola e forma sem bola separadas, uma role com bola e uma sem bola por slot, as instruções que o jogo tem hoje e o custo de complexidade de cada escolha.
+Como cada técnico joga, escrito nas mecânicas do FM27: forma com bola e forma sem bola separadas, uma role com bola e uma sem bola por slot, as instruções que a tela de tática tem hoje e o custo de complexidade de cada escolha.
 
 **Ainda não há tática pré-setada para nenhum técnico.** Este manual define a identidade de cada um: quais formas, roles e instruções ele usa, quais nunca usa e como reage ao placar. Quando uma tática for ditada, ela entra na seção do técnico (com config em `configs/<time>/<formação>.json`) e tem que caber dentro destas regras. Se não couber, a regra muda aqui primeiro.
 
-**Fonte das mecânicas:** `game_data/` (ver `game_data/README.md`). Roles e posições em `roles.json`, instruções e custos em `instructions.json`, formas sugeridas pelo jogo em `tactic_presets.json`. Nada aqui usa role ou instrução que não esteja lá.
+**Fonte das mecânicas:** `game_data/` (ver `game_data/README.md`). Roles e posições em `roles.json`; instruções como aparecem na tela, com opção neutra e custo, em `instructions_ui.json`; custos brutos em `instructions.json`; formas sugeridas pelo jogo em `tactic_presets.json`. Nada aqui usa role ou instrução que não esteja lá.
 
 ---
 
@@ -16,23 +16,32 @@ Como cada técnico joga, escrito nas mecânicas do FM27: forma com bola e forma 
 |---|---|---|
 | Formação | Uma forma | **Duas formas**: com bola e sem bola (ex.: `4-2-3-1 DM AM Wide` com bola, `4-4-2 2DM` sem bola) |
 | Roles | Role + duty (Support/Attack…) | **Sem duty.** Cada slot tem uma role com bola e uma sem bola. A role sem bola vale para o slot na forma **sem bola** |
-| Pressão | Linha de engajamento junto com "high press / mid block / low block" | Grupos separados: **Line of Engagement** (onde começa a pressão), **Defensive Line** (altura da linha), **Pressing Intensity** (quanto pressiona) e **Line** (segura a linha ou recua) |
-| Saída de bola | "Play out of defence" | **Passing Strategy** (Play Through the Press / Into Feet / Into Space / Bypass the Press) + **Goal kick** curto/longo |
+| Instruções de time | Quase todas iguais | Mesma lógica do FM24, com nomes novos em alguns grupos: **Pass Reception** (to feet / into space), **Build-up Strategy** (play through / bypass press), **Patience** (hit early crosses / work ball into box), **Progress Through**, **Supporting Runs**, **Set Pieces** (keep ball in play / play for set pieces). Método de reposição do goleiro (rolar, lançar com a mão) não é mais instrução de time |
 | Atacantes que pressionam | Pressing Forward | **Não existe role de pressão para atacante.** Atacante pressiona com a instrução de jogador **Pressing Intensity: Higher** |
 | Ball-Winning Midfielder | Role com bola | Some. Ganhar bola agora é role **sem bola**: Pressing DM / Pressing CM |
 | Complexidade | Não existia | Toda role e toda instrução custa complexidade (time 0–49; jogador até 4 com role + instruções). Mais complexidade = tática demora mais para ser aprendida |
-| Mentality | Very Defensive → Very Attacking | **Igual** (7 níveis). Não aparece em `instructions.json` porque não soma complexidade |
+| Mentality | Very Defensive → Very Attacking | **Igual** (7 níveis). Não soma complexidade |
 
 ### 0.2 Convenções
 
 - **Roles escritas como `IP/OOP`**: role com bola / role sem bola, em sigla (glossário na seção 6). Ex.: `BPCB/CCB` = Ball-Playing Centre-Back com bola, Covering Centre-Back sem bola.
 - **Linha de roles** (manual e coluna `Roles` da planilha): os 11 slots em ordem posicional (GK → laterais/zaga → meio → ataque), separados por vírgula e espaço. Ex.: `BPGK/GK, FB/HFB, BPCB/CB, CB/CCB, IFB/FB, DM/SDM, …`
 - **Nome de formação** sempre em minúsculo.
-- **Instruções** escritas como `Grupo: Opção`, com o nome derivado do enum do jogo (`PLAY_THROUGH_THE_PRESS` → Play Through the Press). O número entre parênteses é o custo de complexidade.
-- **"—"** numa instrução = nenhuma opção escolhida (padrão do jogo, custo 0).
+- **Instruções** escritas como `Grupo: Opção`, com os nomes da tela do jogo (`instructions_ui.json`). O número entre parênteses é o custo de complexidade.
+- **Instrução não listada** = opção neutra do grupo (Standard / Balanced / Mixed / No / Keep Ball in Play), custo 0. A única exceção é **Line of Engagement**, que não tem neutra: toda tática escolhe Low Block (0), Mid Block (1) ou High Press (2).
 - **Posições**: uma role só entra em slots listados em `roles.json → positions`. Para roles sem bola, vale o slot na forma sem bola. Ex.: com 4 atrás sem bola, o lateral só pode ter `FB`, `HFB` ou `PRFB` sem bola; `WB/HWB/PRWB` sem bola só existem se a forma sem bola tiver WBL/WBR.
 
-### 0.3 Orçamento de complexidade
+### 0.3 Grupos que convivem (e os que não)
+
+Cada grupo da tela aceita **uma** opção. Os pares abaixo confundem e valem conferir:
+
+- **Pass Reception** e **Build-up Strategy** são grupos diferentes: dá pra ter *Pass to Feet* + *Play Through Press*.
+- **Patience** junta *Hit Early Crosses* e *Work Ball Into Box*: é um **ou** outro.
+- **Crossing Style** (floated / whipped / low) é separado de Patience: dá pra ter *Low Crosses* + *Hit Early Crosses*.
+- **Set Pieces** (*Play for Set Pieces*) é separado de Patience.
+- **Attacking Transition** fica na tela com bola; **Defensive Transition**, na tela sem bola.
+
+### 0.4 Orçamento de complexidade
 
 - Time: 0–49. Pesos no entendimento tático: complexidade do time 0,6, do jogador 0,3, instruções de adversário 0,1.
 - Jogador: até 4 com role e instruções individuais. Uma role de custo 3 (ex.: `F9`, `FR`, `PWB`, `ACB`, `BBP`, `DDM`) deixa espaço para no máximo uma instrução barata.
@@ -78,13 +87,13 @@ Pares coerentes: `DLF` + `CF` ou `TF` + `CHF` na dupla do diamante (um vem, outr
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| **Com bola** | Passing Style: Shorter (2) · Passing Strategy: Into Feet (1) · Tempo: — · Width: — · Build up Play: Work Ball Into Box (2) · Creative Freedom: Be More Disciplined (3) · Waste Time: Normal (1) · Crossing: — · Dribbling: — · Shooting: — | 9 |
-| **Transição** | Defence Transition: Regroup (1) · Transition: Counter (2) · GK: Goal kick Short (1), Method Roll Out (0), Target Centre Backs (1) | 5 |
-| **Sem bola** | Line of Engagement: Standard (1) · Defensive Line: — · Line: — · Pressing Intensity: — · Pressing Trap: — · Tackling: Stay on Feet (1) · Defending Crosses: — | 2 |
-| **Total** | | **≈16** |
+| **Com bola** | Passing Directness: Shorter (2) · Pass Reception: Pass to Feet (1) · Patience: Work Ball Into Box (2) · Creative Freedom: More Disciplined (3) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Short (1) · GK Distribution Target: Centre-Backs (1) | 12 |
+| **Sem bola** | Line of Engagement: Mid Block (1) · Defensive Transition: Regroup (1) · Tackling: Stay on Feet (1) | 3 |
+| **Total** | | **15** |
 
-- **Pressing Trap: In (0)** com o diamante sem bola (fecha o meio, empurra pra fora não faz sentido sem pontas).
-- **Play Through the Press (3)** no lugar de Into Feet quando o adversário pressiona alto e a zaga tem passe: é o "play out of defence" dele, mas caro.
+- **Build-up Strategy: Play Through Press (3)** quando o adversário pressiona alto e a zaga tem passe. É o "play out of defence" dele, caro, então só quando o jogo pede.
+- **Pressing Trap: Trap Inside (0)** com o diamante sem bola: fecha o meio, onde o losango tem gente sobrando.
+- Tempo, Width e Time Wasting ficam em Standard: controle vem do passe curto e da disciplina, não de acelerar ou esticar.
 
 **Instruções de jogador típicas:** AP com Risks: Take More (3) só se a role custar ≤1, senão nada · DM com Positioning: Hold Position (1) · laterais com Cross From: Deep (1) ou nada.
 
@@ -94,11 +103,11 @@ Ordem fixa: **roles → instruções → mentality → forma**.
 
 - **Segurando vitória** — *controla, não recua*.
   - Roles: 2º MC `CM/SCM`; AMC `AP/TAM`; laterais `FB/HFB`.
-  - Instruções: Passing Style: Much Shorter (3), Tempo: Lower (1), Waste Time: Extreme (2), Transition: Hold Shape (1). A linha **não** desce (Defensive Line fica —).
+  - Instruções: Passing Directness: Much Shorter (3), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1). A linha **não** desce (Defensive Line fica Standard).
   - Mentality: **cautious**.
 - **Empate travado / perdendo** — *aumenta a intensidade sem perder a estrutura*.
   - Roles primeiro: AMC `AP` → `SS`; um lateral `IFB` → `WB`; 2º MC sem bola `SCM` → `PRCM`; ST sem bola `CF` + Pressing Intensity: Higher (2) como instrução de jogador.
-  - Instruções: Line of Engagement: Higher (2), Pressing Intensity: Higher (2), Defence Transition: Counter Press (3), Tempo: Higher (1).
+  - Instruções: Line of Engagement: High Press (2), Trigger Press: More Often (2), Defensive Transition: Counter-Press (3), Tempo: Higher (1).
   - Mentality: positive → **attacking** (teto).
   - Forma: só no fim e só dentro das preferidas (diamante → `4-2-3-1 DM AM Wide`).
 
@@ -142,10 +151,9 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| **Com bola** | Passing Style: More Direct (1) · Passing Strategy: Into Space (1) · Tempo: Higher (1) · Width: Wider (1) · Dribbling: Run at Defence (2) · Crossing: Low Crosses (1) · Look For: Overlap (1) · Waste Time: — · Creative Freedom: — | 8 |
-| **Transição** | Defence Transition: Counter Press (3) · Transition: Counter (2) · GK: Pace Quick (2), Method Throw Long (0), Target Flanks (1) | 8 |
-| **Sem bola** | Line of Engagement: Higher (2) · Defensive Line: Higher (2) · Line: Hold Line (2) · Pressing Intensity: Much Higher (3) · Pressing Trap: Out (0) · Tackling: Get Stuck In (1) · Prevent Short GK Distribution (1) | 11 |
-| **Total** | | **≈27** |
+| **Com bola** | Passing Directness: More Direct (1) · Pass Reception: Pass Into Space (1) · Build-up Strategy: Bypass Press (0) · Tempo: Higher (1) · Attacking Width: Wider (1) · Dribbling: Encourage (2) · Patience: Hit Early Crosses (1) · Crossing Style: Low Crosses (1) · Supporting Runs: Overlap Both Flanks (1) · Attacking Transition: Counter-Attack (2) · GK Distribution Speed: Distribute Quickly (2) · GK Distribution Target: Flanks (1) | 14 |
+| **Sem bola** | Line of Engagement: High Press (2) · Defensive Line: Higher (2) · Defensive Line Behaviour: Step Up More (2) · Trigger Press: Much More Often (3) · Defensive Transition: Counter-Press (3) · Pressing Trap: Trap Outside (0) · Tackling: Get Stuck In (1) · Prevent Short GK Distribution: Yes (1) | 14 |
+| **Total** | | **28** |
 
 É a tática mais cara dos quatro. Pressão alta custa, e é o preço da identidade dele: espere a tática demorar mais pra ser aprendida e cuide do treino tático na pré-temporada.
 
@@ -153,14 +161,14 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 - **Perdendo** — *sobe a pressão, mesmo contra time grande*.
   - Forma com bola: `4-2-4 DM Wide` (sem bola continua `4-4-2 2DM`).
-  - Instruções: Defensive Line: Much Higher (3), Tempo: Much Higher (2), Shooting: Shoot on Sight (1), Crossing: Hit Early Crosses (1).
+  - Instruções: Defensive Line: Much Higher (3), Tempo: Much Higher (2), Shots From Distance: Encourage (1).
   - Mentality: fica **attacking** (é o teto).
 - **Segurando vitória** — *prende, não senta*.
-  - Mantém Line of Engagement: Higher e a linha alta.
-  - Pressing Intensity: Much Higher → **Higher** (2) (poupa perna); Tempo: Higher → —; Waste Time: Normal (1); Dribbling: Run at Defence → —.
+  - Mantém High Press e a linha alta.
+  - Trigger Press: Much More Often → **More Often** (2) (poupa perna); Tempo: Higher → Standard; Dribbling: Encourage → Balanced.
   - Mentality: **positive** (piso). Nunca defensive.
 - **Contra time grande (emboscada)** — começa um degrau abaixo, não muda de identidade.
-  - Mentality **positive**; Line of Engagement: Standard (1); Defensive Line: —; Pressing Intensity: Higher (2); Pressing Trap: Out mantido.
+  - Mentality **positive**; Line of Engagement: Mid Block (1); Defensive Line: Standard; Defensive Line Behaviour: Balanced; Trigger Press: More Often (2); Trap Outside mantido.
   - Pivô `DM/SDM` no lugar de `BBM/PRDM`.
 - **Rotação:** sprints e distância vêm de Work Rate + Stamina. Jogador com condição baixa rende menos exatamente nos números que a tática dele cobra. Trocas cedo (60') são parte do plano, não sinal de crise.
 
@@ -204,23 +212,22 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| **Com bola** | Creative Freedom: Be More Expressive (2) · Passing Style: Shorter (2) · Passing Strategy: Into Space (1) · Tempo: Higher (1) · Width: Wider (1) · Build up Play: Work Ball Into Box (2) · Waste Time: — · Crossing: — | 9 |
-| **Transição** | Defence Transition: Regroup (1) · Transition: Counter (2) · GK: Goal kick Short (1), Method Roll Out (0), Target Playmaker (1) | 5 |
-| **Sem bola** | Line of Engagement: Standard (1) · resto — (ele não engessa a fase defensiva) | 1 |
-| **Total** | | **≈15** |
+| **Com bola** | Creative Freedom: More Expressive (2) · Passing Directness: Shorter (2) · Pass Reception: Pass Into Space (1) · Tempo: Higher (1) · Attacking Width: Wider (1) · Patience: Work Ball Into Box (2) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Short (1) · GK Distribution Target: Playmaker (1) | 13 |
+| **Sem bola** | Line of Engagement: Mid Block (1) · Defensive Transition: Regroup (1) · resto neutro (ele não engessa a fase defensiva) | 2 |
+| **Total** | | **15** |
 
 ### 3.4 Ajuste por estado de jogo
 
 - **Vencendo** — *ele não defende, ele guarda a bola*.
   - Forma com bola `4-3-3 DM Wide`, sem bola `4-1-4-1 DM`.
-  - Instruções: Passing Style: Much Shorter (3), Tempo: Lower (1), Waste Time: Extreme (2), Transition: Hold Shape (1), Creative Freedom: Be More Expressive → —.
+  - Instruções: Passing Directness: Much Shorter (3), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1), Creative Freedom: More Expressive → Balanced.
   - Pontas sem bola `TW`.
   - Mentality: **balanced** ou **cautious** (piso).
-- **Empate / perdendo cedo** — fica na base e sobe pra **attacking**. Defence Transition: Counter Press (3).
+- **Empate / perdendo cedo** — fica na base e sobe pra **attacking**. Defensive Transition: Counter-Press (3).
 - **Perdendo tarde (estouro)** — *sabe que pode se estourar*.
   - Forma com bola `4-2-4 DM Wide`.
   - Roles: ST2 `PO/CF`; pontas `IF/WOW`; DM `BBP`.
-  - Instruções: Dribbling: Run at Defence (2), Shooting: Shoot on Sight (1), Crossing: Hit Early Crosses (1), Look For: Overlap (1), Defence Transition: Counter Press (3), Line of Engagement: Higher (2), Defensive Line: Much Higher (3), Pressing Intensity: Much Higher (3), Tackling: Get Stuck In (1).
+  - Instruções: Patience: Work Ball Into Box → **Hit Early Crosses** (1), Dribbling: Encourage (2), Shots From Distance: Encourage (1), Supporting Runs: Overlap Both Flanks (1), Defensive Transition: Counter-Press (3), Line of Engagement: High Press (2), Defensive Line: Much Higher (3), Trigger Press: Much More Often (3), Tackling: Get Stuck In (1).
   - Mentality: **very attacking**.
 
 ---
@@ -263,10 +270,9 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| **Com bola** | Passing Style: More Direct (1) · Passing Strategy: Bypass the Press (0) · Width: Wider (1) · Focus Play: Down Both Flanks (1) · Crossing: Float Crosses (1) · Build up Play: Play for Set Pieces (1) · Creative Freedom: Be More Disciplined (3) · Waste Time: Normal (1) · Tempo: — | 9 |
-| **Transição** | Defence Transition: Regroup (1) · Transition: Counter (2) · GK: Goal kick Long (1), Method Kick Long (0), Target Target Man (1) | 5 |
-| **Sem bola** | Line of Engagement: Standard (1) · Defensive Line: — · Pressing Intensity: Lower (1) · Tackling: Stay on Feet (1) · Defending Crosses: Stop (1) | 4 |
-| **Total** | | **≈18** |
+| **Com bola** | Passing Directness: More Direct (1) · Build-up Strategy: Bypass Press (0) · Attacking Width: Wider (1) · Progress Through: Both Flanks (1) · Crossing Style: Floated Crosses (1) · Set Pieces: Play for Set Pieces (1) · Creative Freedom: More Disciplined (3) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Long (1) · GK Distribution Target: Target Forward (1) | 12 |
+| **Sem bola** | Line of Engagement: Mid Block (1) · Trigger Press: Less Often (1) · Defensive Transition: Regroup (1) · Tackling: Stay on Feet (1) · Cross Engagement: Stop Crosses (1) | 5 |
+| **Total** | | **17** |
 
 **Instruções de jogador típicas:** meias abertos com Cross To: Target Man (2) e Cross From: Deep (1) quando o lateral não passa · `TF` com Dribbling: Hold Up Ball (1).
 
@@ -276,18 +282,18 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
 
 - **Um dos MC sem bola vira `SCM`** (Screening Central Midfielder: segura posição pra bloquear passe pelo meio). No 2DM, `SDM`. Na mesma dupla, **nunca** dois `PRCM`/`PRDM`: quem salta abre o buraco.
 - **Defensive Line: Higher (2)**: o espaço morre por **compressão**, não por recuo. Baixar a linha piora tudo.
-- **Pressing Trap: Out (0)**: funila pros lados, longe do miolo, pro cruzamento que ele defende bem (Defending Crosses: Stop).
+- **Pressing Trap: Trap Outside (0)**: funila pros lados, longe do miolo, pro cruzamento que ele defende bem (Cross Engagement: Stop Crosses).
 - Se persistir, ST2 sem bola vira `TCF` (Tracking Centre Forward: volta acompanhando o volante adversário) e fecha a primeira linha do meio. Continua 4-4-2.
 
 ### 4.5 Ajuste por estado de jogo
 
 - **Perseguindo placar (rolo compressor)**
   - Roles: laterais `WB/FB`; um meia aberto `W/WOWM`; ST2 `CHF` → `PO`.
-  - Instruções: Width: Much Wider (2), Tempo: Higher (1), Crossing: Hit Early Crosses (1), Look For: Overlap (1), Shooting: Shoot on Sight (1), Waste Time: —, Defensive Line: Higher (2), Pressing Intensity: — , Defence Transition: Counter Press (3).
+  - Instruções: Attacking Width: Much Wider (2), Tempo: Higher (1), Patience: Hit Early Crosses (1), Supporting Runs: Overlap Both Flanks (1), Shots From Distance: Encourage (1), Defensive Line: Higher (2), Trigger Press: Less Often → Standard, Defensive Transition: Counter-Press (3).
   - Mentality: **positive** (teto).
 - **Segurando vantagem (ferrolho)**
   - Roles: ST2 `DLF/TCF`; meias `WM/TWM`; os dois MC sem bola `SCM`.
-  - Instruções: Width: Narrower (1), Tempo: Lower (1), Waste Time: Extreme (2), Transition: Hold Shape (1), GK Pace: Slow (1), Defensive Line: Deeper (1), Line: Drop Off (1), Pressing Intensity: Lower mantido.
+  - Instruções: Attacking Width: Narrower (1), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1), GK Distribution Speed: Slow Pace Down (1), Defensive Line: Lower (1), Defensive Line Behaviour: Drop Off More (1), Trigger Press: Less Often mantido.
   - Mentality: **cautious**; **defensive** nos últimos 10.
 - **Sofrendo entre as linhas:** aplicar a seção 4.4 antes de mexer em mentality.
 
@@ -305,12 +311,13 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
 | **Piso** | cautious | positive | cautious | defensive |
 | **Forma com bola** | 4-2-3-1 / diamante | 4-3-3 / 4-2-3-1 | 4-2-3-1 / 4-3-3 | 4-4-2 |
 | **Forma sem bola** | 4-4-2 2DM / 4-4-1-1 | 4-4-2 2DM / 4-3-3 | 4-4-1-1 / 4-1-4-1 | 4-4-2 |
-| **Line of Engagement** | Standard | Higher | Standard | Standard |
-| **Pressing Intensity** | — | Much Higher | — | Lower |
-| **Passing** | Shorter + Into Feet | More Direct + Into Space | Shorter + Into Space | More Direct + Bypass |
-| **Creative Freedom** | Disciplined | — | Expressive | Disciplined |
-| **Defence Transition** | Regroup | Counter Press | Regroup | Regroup |
-| **Complexidade das instruções de time** | ≈16 | ≈27 | ≈15 | ≈18 |
+| **Line of Engagement** | Mid Block | High Press | Mid Block | Mid Block |
+| **Trigger Press** | Standard | Much More Often | Standard | Less Often |
+| **Passe** | Shorter + Pass to Feet | More Direct + Into Space + Bypass | Shorter + Into Space | More Direct + Bypass |
+| **Patience** | Work Ball Into Box | Hit Early Crosses | Work Ball Into Box | Standard (+ Play for Set Pieces) |
+| **Creative Freedom** | More Disciplined | Balanced | More Expressive | More Disciplined |
+| **Defensive Transition** | Regroup | Counter-Press | Regroup | Regroup |
+| **Complexidade das instruções de time** | 15 | 28 | 15 | 17 |
 | **Troca forma?** | Roles antes da forma | Só com bola, perdendo | **Livremente** | **Nunca** |
 
 ---
@@ -451,43 +458,32 @@ Para ler anotações antigas e traduzir a ideia, não a tática. Nenhuma tática
 
 ### 7.2 Instruções
 
-| FM24 | FM27 |
+Só o que mudou de nome ou de lugar. O resto (Tempo, Width, Creative Freedom, Crossing Style, Dribbling, Tackling, Line of Engagement, Defensive Line, Trigger Press, Pressing Trap, Cross Engagement, transições) continua igual ao FM24.
+
+| FM24 | FM27 (tela) |
 |---|---|
-| Mentality | Igual (7 níveis) |
-| Largura fairly wide / wide / fairly narrow | Width: Wider / Much Wider / Narrower |
-| Passe shorter / much shorter / direct | Passing Style: Shorter / Much Shorter / More Direct (ou Much More Direct) |
-| Play out of defence | Passing Strategy: Play Through the Press + Goal kick Short |
-| Pass into space | Passing Strategy: Into Space |
-| Tempo slightly higher / higher | Tempo: Higher / Much Higher |
-| Time wasting never / sometimes / always | Waste Time: — / Normal / Extreme |
-| Low / floated / whipped / mixed crosses | Crossing: Low / Float / Whipped / — |
-| Hit early crosses | Crossing: Hit Early Crosses (mesmo grupo do tipo de cruzamento: é um ou outro) |
-| Focus play | Focus Play (agora com Down Both Flanks) |
-| Overlap / underlap | Look For: Overlap / Underlap (geral, esquerda ou direita) |
-| Run at defence / dribble less | Dribbling: Run at Defence / Dribble Less |
-| Be more expressive / disciplined | Creative Freedom |
-| Work ball into box | Build up Play: Work Ball Into Box (ou Play for Set Pieces) |
-| Counter / hold shape | Transition: Counter / Hold Shape |
-| Counter press / regroup | Defence Transition: Counter Press / Regroup |
-| Distribute quickly / slow pace down | GK Pace: Quick / Slow |
-| Roll out / throw long / long kicks / short kicks | GK Method: Roll Out / Throw Long / Kick Long / Kick Short · Goal kick: Long / Short |
-| Distribute to CBs / FBs / playmaker / target forward | GK Target: Centre Backs / Full Backs / Playmaker / Target Man (também Flanks, Clear Opposition Defence, Specific Teammate) |
-| High press / mid block / low block | Line of Engagement: Higher / Standard / Deeper |
-| Linha much higher / higher / lower | Defensive Line: Much Higher / Higher / Deeper (Much Deeper) |
-| Trigger more / much more / less often | Pressing Intensity: Higher / Much Higher / Lower (Much Lower) |
-| Step up more / drop off more | Line: Hold Line / Drop Off |
-| Trap inside / outside | Pressing Trap: In / Out |
-| Stay on feet / get stuck in | Tackling |
-| Stop / invite crosses | Defending Crosses: Stop / Invite |
-| Prevent short GK distribution | Toggle, custo 1 |
+| Play out of defence | Build-up Strategy: Play Through Press |
+| Pass into space | Pass Reception: Pass Into Space (também tem Pass to Feet) |
+| Focus play | Progress Through (Left / Middle / Right / Both Flanks) |
+| Overlap / underlap | Supporting Runs |
+| Shoot on sight / work ball into box (tiros) | Shots From Distance: Encourage / Discourage |
+| Run at defence / dribble less | Dribbling: Encourage / Discourage |
+| Hit early crosses / work ball into box | Patience (um **ou** outro) |
+| Play for set pieces | Set Pieces (separado de Patience) |
+| Time wasting never / sometimes / always | Time Wasting: Less Often / Standard / More Often |
+| Step up more / drop off more | Defensive Line Behaviour |
+| Distribute to … | GK Distribution Target (Centre-Backs, Full-Backs, Playmaker, Flanks, Target Forward, Over Opposition Defence) |
+| Roll it out / throw it long / take short kicks | Não é mais instrução de time. Sobrou só **Goal Kicks** (Short / Mixed / Long) |
+| Distribute quickly / slow pace down | GK Distribution Speed |
+| Prevent short GK distribution | Prevent Short GK Distribution: Yes (1) |
 
 ---
 
 ## 8. Pendências em aberto
 
 - **Nenhuma tática definida.** Os quatro técnicos estão sem formação FM27. Quando uma for ditada: config em `configs/<time>/<formação>.json`, linha de roles `IP/OOP` e instruções na seção do técnico, e conferir contra as regras de cima.
-- **Nomes das instruções**: derivados dos enums do jogo. O texto exato na tela pode ser um pouco diferente; corrigir aqui quando aparecer.
+- **Time Wasting**: os dados do jogo têm duas opções (NORMAL 1, EXTREME 2), mas não sabemos qual é Less Often e qual é More Often. Por isso o custo de Time Wasting fica fora das contas.
+- **Crossing Style**: anotado como "width crosses" na lista da tela. Tratado como Whipped Crosses (é o enum que sobra). Confirmar.
 - **Limite de 4 por jogador**: não está confirmado se soma a role com bola **e** a sem bola, ou só uma delas. Até confirmar, tratar como role com bola + instruções.
-- **Line of Engagement: Standard** custa 1 e Deeper custa 0. Pode ser que o padrão do jogo seja Standard (e "—" seja Standard). Confirmar na tela.
 - **Posições das roles** em `roles.json` foram escritas à mão a partir da tela (`extract/role_notes.json`). Algumas surpreendem (`BBM` e `DLP` só no DM, `CHM` também no AMC). Se o jogo deixar usar em outro slot, corrigir lá.
-- **Custos das tabelas de instruções-base** são ordem de grandeza: não contam instruções de jogador nem as roles.
+- **Custos das tabelas de instruções-base** não contam instruções de jogador nem as roles.

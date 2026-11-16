@@ -44,7 +44,7 @@ session do.
 |---|---|
 | Does this role exist? In or out of possession? Which positions? | `game_data/roles.json` (`id`, `phase`, `positions`, `harness`, `score_column`) |
 | How "heavy" is a role or instruction to learn? | `complexity` in `roles.json` and `instructions.json` (role 0–3; a player holds up to 4 with his instructions; team total 0–49) |
-| Which instruction options exist, and in which phase? | `game_data/instructions.json` (`team` and `player`; one option per group or none) |
+| Which team instructions exist, with which options? | `game_data/instructions_ui.json`: the tactics screen as the user sees it, one option per group, neutral option costs 0. Player instructions are only in `game_data/instructions.json` (`player`) |
 | Which attributes make a player rack up a stat (interceptions, key passes, pressures, sprints…)? | `game_data/stat_attributes.json` |
 | What does a training session train, and its cost in fatigue, injury risk and sharpness? | `game_data/training.json` |
 | Which formation pairs does the game suggest for a style (gegenpress, tiki-taka…)? | `game_data/tactic_presets.json` |
@@ -108,7 +108,7 @@ plus instructions by phase.
    - Duarte changes shape freely and is the only one who reaches very attacking; ahead, he keeps the ball rather than defending.
    - Casca never leaves the 4-4-2 (in and out of possession); only roles, mentality and instructions move, and positive is his ceiling.
 
-   Give the change as a complete, enterable set: formation name (in- and out-of-possession shape), `IP/OOP` roles in positional order, mentality, then instructions by phase (in possession, transition, out of possession), marking what changed from the previous setup. Only use instructions that exist in the manuals or in `game_data/instructions.json`.
+   Give the change as a complete, enterable set: formation name (in- and out-of-possession shape), `IP/OOP` roles in positional order, mentality, then instructions by phase (in possession, transition, out of possession), marking what changed from the previous setup. Only use instructions that exist in `game_data/instructions_ui.json` (team) or `game_data/instructions.json` (player), with the screen names.
 6. **Log the segment.** A formation change mid-match closes one segment and opens another. Produce rows for the sheet described in `managers.md` (`Team | Name | Roles | Duration | XG | XGA | XG Diff | Opp | XG Diff/min`): tab-separated in a code block, decimal comma, lowercase team/formation/opponent. First row uses absolute values; later rows use cumulative minus the previous cumulative; `XG Diff/min` is computed on the delta, to 3 places. You cannot write to the sheet, so the block is for pasting.
 
 If a formation is flagged under "Pendências em aberto" in the manual, say that the sample is thin
