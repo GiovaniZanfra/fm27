@@ -3,7 +3,7 @@
     "game": "Football Manager 27",
     "version": "27.0.1.2503222"
   },
-  "notes": ["id and complexity come from the game (simatch.fmf, generated_tactical_complexity_constants).", "name, harness, positions and summary are hand-written in extract/role_notes.json.", "complexity: tactical complexity cost of the role (0-3); the game caps a player at 4 including his instructions.", "in_roles_py: false means fm27/roles.py has no attribute tiers for this role yet."],
+  "notes": ["id and complexity come from the game (simatch.fmf, generated_tactical_complexity_constants).", "name, harness, positions and summary are hand-written in extract/role_notes.json.", "complexity: tactical complexity cost of the role (0-3); the game caps a player at 4 including his instructions."],
   "counts": {
     "in_possession": 40,
     "out_of_possession": 39
@@ -15,7 +15,6 @@
       "name": "Advanced Centre-Back",
       "harness": "Advanced Centre Back",
       "score_column": "Advanced_Centre_Back_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 3,
       "summary": "Steps out of the back line into midfield when the team has the ball."
@@ -26,7 +25,6 @@
       "name": "Advanced Playmaker",
       "harness": "Advanced Playmaker",
       "score_column": "Advanced_Playmaker_Score",
-      "in_roles_py": true,
       "positions": ["MC", "AMC"],
       "complexity": 2,
       "summary": "Finds pockets between the lines to create chances."
@@ -37,7 +35,6 @@
       "name": "Advanced Wing-Back",
       "harness": "Advanced Wing Back",
       "score_column": "Advanced_Wing_Back_Score",
-      "in_roles_py": true,
       "positions": ["WBL", "WBR"],
       "complexity": 1,
       "summary": "Plays as high and wide as possible, almost a winger."
@@ -48,7 +45,6 @@
       "name": "Attacking Midfielder",
       "harness": "Attacking Midfielder",
       "score_column": "Attacking_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["MC", "AMC"],
       "complexity": 0,
       "summary": "Links midfield and attack, arriving to shoot or set up chances."
@@ -59,7 +55,6 @@
       "name": "Ball-Playing Centre-Back",
       "harness": "Ball Playing Centre Back",
       "score_column": "Ball_Playing_Centre_Back_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 2,
       "summary": "Central defender who looks for progressive passes from the back."
@@ -70,7 +65,6 @@
       "name": "Ball-Playing Goalkeeper",
       "harness": "Ball Playing Goalkeeper",
       "score_column": "Ball_Playing_Goalkeeper_Score",
-      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 2,
       "summary": "Joins the build-up, coming off the line to receive and pass."
@@ -81,7 +75,6 @@
       "name": "Box-To-Box Midfielder",
       "harness": "Box To Box Midfielder",
       "score_column": "Box_To_Box_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 1,
       "summary": "Covers ground between both boxes, helping in attack and defence."
@@ -92,7 +85,6 @@
       "name": "Box-To-Box Playmaker",
       "harness": "Box To Box Playmaker",
       "score_column": "Box_To_Box_Playmaker_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 3,
       "summary": "Box-to-box runner who is also a main passing hub."
@@ -103,7 +95,6 @@
       "name": "Central Midfielder",
       "harness": "Central Midfielder",
       "score_column": "Central_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 0,
       "summary": "Balanced central midfielder."
@@ -114,7 +105,6 @@
       "name": "Centre-Back",
       "harness": "Centre Back",
       "score_column": "Centre_Back_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 1,
       "summary": "Balanced central defender."
@@ -125,7 +115,6 @@
       "name": "Centre Forward",
       "harness": "Centre Forward",
       "score_column": "Centre_Forward_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 0,
       "summary": "All-round striker."
@@ -136,7 +125,6 @@
       "name": "Channel Forward",
       "harness": "Channel Forward",
       "score_column": "Channel_Forward_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 1,
       "summary": "High-energy striker who keeps running into the channels."
@@ -147,7 +135,6 @@
       "name": "Channel Midfielder",
       "harness": "Channel Midfielder",
       "score_column": "Channel_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["MC", "AMC"],
       "complexity": 1,
       "summary": "Runs into the channels and wide areas to link with the wide attackers."
@@ -158,7 +145,6 @@
       "name": "Deep-Lying Forward",
       "harness": "Deep Lying Forward",
       "score_column": "Deep_Lying_Forward_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 2,
       "summary": "Drops off the line to link play and bring others in."
@@ -169,7 +155,6 @@
       "name": "Deep-Lying Playmaker",
       "harness": "Deep Lying Playmaker",
       "score_column": "Deep_Lying_Playmaker_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 1,
       "summary": "Dictates play from in front of the defence with progressive passes."
@@ -180,7 +165,6 @@
       "name": "Defensive Midfielder",
       "harness": "Defensive Midfielder",
       "score_column": "Defensive_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 0,
       "summary": "Shields the defence and recycles possession."
@@ -191,7 +175,6 @@
       "name": "False Nine",
       "harness": "False Nine",
       "score_column": "False_Nine_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 3,
       "summary": "Drops between the lines like a playmaker, emptying the centre."
@@ -202,7 +185,6 @@
       "name": "Free Role",
       "harness": "Free Role",
       "score_column": "Free_Role_Score",
-      "in_roles_py": true,
       "positions": ["AMC"],
       "complexity": 3,
       "summary": "Roams wherever space appears to create."
@@ -213,7 +195,6 @@
       "name": "Full-Back",
       "harness": "Full Back",
       "score_column": "Full_Back_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR"],
       "complexity": 0,
       "summary": "Defends the flank first and supports attacks with overlaps."
@@ -224,7 +205,6 @@
       "name": "Goalkeeper",
       "harness": "Goalkeeper",
       "score_column": "Goalkeeper_Score",
-      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 1,
       "summary": "Standard keeper: stays in goal and distributes safely."
@@ -235,7 +215,6 @@
       "name": "Half Back",
       "harness": "Half Back",
       "score_column": "Half_Back_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 2,
       "summary": "Drops between the centre-backs during build-up as an extra defender."
@@ -246,7 +225,6 @@
       "name": "Inside Forward",
       "harness": "Inside Forward",
       "score_column": "Inside_Forward_Score",
-      "in_roles_py": true,
       "positions": ["AML", "AMR"],
       "complexity": 2,
       "summary": "Cuts inside from the flank to shoot or combine centrally."
@@ -257,7 +235,6 @@
       "name": "Inside Full-Back",
       "harness": "Inside Full Back",
       "score_column": "Inside_Full_Back_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR"],
       "complexity": 1,
       "summary": "Tucks in beside the centre-backs to form a back three in possession."
@@ -268,7 +245,6 @@
       "name": "Inside Wing-Back",
       "harness": "Inside Wing Back",
       "score_column": "Inside_Wing_Back_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR", "WBL", "WBR"],
       "complexity": 2,
       "summary": "Moves into central midfield in build-up, adding a passing option and cover against counters."
@@ -279,7 +255,6 @@
       "name": "Inside Winger",
       "harness": "Inside Winger",
       "score_column": "Inside_Winger_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR", "AML", "AMR"],
       "complexity": 1,
       "summary": "Drifts into the half-space to free the flank for overlaps."
@@ -290,7 +265,6 @@
       "name": "Midfield Playmaker",
       "harness": "Midfield Playmaker",
       "score_column": "Midfield_Playmaker_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 2,
       "summary": "Creative link between defence and attack."
@@ -301,7 +275,6 @@
       "name": "No-Nonsense Centre-Back",
       "harness": "No Nonsense Centre Back",
       "score_column": "No_Nonsense_Centre_Back_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 0,
       "summary": "Stays ready to defend and keeps it simple on the ball."
@@ -312,7 +285,6 @@
       "name": "No-Nonsense Goalkeeper",
       "harness": "No Nonsense Goalkeeper",
       "score_column": "No_Nonsense_Goalkeeper_Score",
-      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 0,
       "summary": "Shot-stopper who gets rid of the ball with minimal risk."
@@ -323,7 +295,6 @@
       "name": "Overlapping Centre-Back",
       "harness": "Overlapping Centre Back",
       "score_column": "Overlapping_Centre_Back_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 3,
       "summary": "Outside centre-back of a back three who overlaps the wide player."
@@ -334,7 +305,6 @@
       "name": "Playmaking Wing-Back",
       "harness": "Playmaking Wing Back",
       "score_column": "Playmaking_Wing_Back_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR", "WBL", "WBR"],
       "complexity": 3,
       "summary": "Wide defender who gets on the ball to create; needs high technique."
@@ -345,7 +315,6 @@
       "name": "Playmaking Winger",
       "harness": "Playmaking Winger",
       "score_column": "Playmaking_Winger_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR", "AML", "AMR"],
       "complexity": 2,
       "summary": "Starts wide, then drifts inside as the team's main creator."
@@ -356,7 +325,6 @@
       "name": "Poacher",
       "harness": "Poacher",
       "score_column": "Poacher_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 1,
       "summary": "Lives on the last defender's shoulder to run in behind and finish."
@@ -367,7 +335,6 @@
       "name": "Second Striker",
       "harness": "Second Striker",
       "score_column": "Second_Striker_Score",
-      "in_roles_py": true,
       "positions": ["AMC"],
       "complexity": 1,
       "summary": "Attacking midfielder who plays as one of the main goal threats."
@@ -378,7 +345,6 @@
       "name": "Target Forward",
       "harness": "Target Forward",
       "score_column": "Target_Forward_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 1,
       "summary": "Physical focal point for long balls and crosses."
@@ -389,7 +355,6 @@
       "name": "Wide Central Midfielder",
       "harness": "Wide Central Midfielder",
       "score_column": "Wide_Central_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 1,
       "summary": "Side midfielder of a pair or three who drifts wide to support."
@@ -400,7 +365,6 @@
       "name": "Wide Centre-Back",
       "harness": "Wide Centre Back",
       "score_column": "Wide_Centre_Back_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 1,
       "summary": "Outside centre-back of a back three; carries the ball and supports down the flank."
@@ -411,7 +375,6 @@
       "name": "Wide Forward",
       "harness": "Wide Forward",
       "score_column": "Wide_Forward_Score",
-      "in_roles_py": true,
       "positions": ["AML", "AMR"],
       "complexity": 1,
       "summary": "Wide attacker who stretches the back line and attacks the box."
@@ -422,7 +385,6 @@
       "name": "Wide Midfielder",
       "harness": "Wide Midfielder",
       "score_column": "Wide_Midfielder_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR"],
       "complexity": 0,
       "summary": "Balanced wide player: protects the flank and supports counters."
@@ -433,7 +395,6 @@
       "name": "Wing-Back",
       "harness": "Wing Back",
       "score_column": "Wing_Back_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR", "WBL", "WBR"],
       "complexity": 0,
       "summary": "Covers the whole flank and gives width in attack."
@@ -444,7 +405,6 @@
       "name": "Winger",
       "harness": "Winger",
       "score_column": "Winger_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR", "AML", "AMR"],
       "complexity": 0,
       "summary": "Stays wide to stretch the defence and deliver crosses."
@@ -455,7 +415,6 @@
       "name": "Attacking Midfielder",
       "harness": "Attacking Midfielder OOP",
       "score_column": "Attacking_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AMC"],
       "complexity": 0,
       "summary": "Default: screens the opposition's midfield pivot."
@@ -466,7 +425,6 @@
       "name": "Central Midfielder",
       "harness": "Central Midfielder OOP",
       "score_column": "Central_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 0,
       "summary": "Default central midfield defending."
@@ -477,7 +435,6 @@
       "name": "Central Outlet Attacking Midfielder",
       "harness": "Central Outlet Attacking Midfielder OOP",
       "score_column": "Central_Outlet_Attacking_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AMC"],
       "complexity": 1,
       "summary": "Stays central and high as a counter-attack outlet."
@@ -488,7 +445,6 @@
       "name": "Central Outlet Centre Forward",
       "harness": "Central Outlet Centre Forward OOP",
       "score_column": "Central_Outlet_Centre_Forward_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 1,
       "summary": "Stays central and high as a counter-attack outlet."
@@ -499,7 +455,6 @@
       "name": "Centre-Back",
       "harness": "Centre Back OOP",
       "score_column": "Centre_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 0,
       "summary": "Default central defending, between stepping out and covering."
@@ -510,7 +465,6 @@
       "name": "Centre Forward",
       "harness": "Centre Forward OOP",
       "score_column": "Centre_Forward_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 0,
       "summary": "Default striker defending."
@@ -521,7 +475,6 @@
       "name": "Covering Centre-Back",
       "harness": "Covering Centre Back OOP",
       "score_column": "Covering_Centre_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 1,
       "summary": "Drops off to cover the space behind the line."
@@ -532,7 +485,6 @@
       "name": "Covering Wide Centre-Back",
       "harness": "Covering Wide Centre Back OOP",
       "score_column": "Covering_Wide_Centre_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 1,
       "summary": "Outside centre-back who covers space in the channel."
@@ -543,7 +495,6 @@
       "name": "Defensive Midfielder",
       "harness": "Defensive Midfielder OOP",
       "score_column": "Defensive_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 0,
       "summary": "Default holding midfielder defending."
@@ -554,7 +505,6 @@
       "name": "Dropping Defensive Midfielder",
       "harness": "Dropping Defensive Midfielder OOP",
       "score_column": "Dropping_Defensive_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 3,
       "summary": "Drops into the back line as an extra defender."
@@ -565,7 +515,6 @@
       "name": "Full-Back",
       "harness": "Full Back OOP",
       "score_column": "Full_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR"],
       "complexity": 0,
       "summary": "Default full-back defending."
@@ -576,7 +525,6 @@
       "name": "Goalkeeper",
       "harness": "Goalkeeper OOP",
       "score_column": "Goalkeeper_OOP_Score",
-      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 1,
       "summary": "Default keeper positioning without the ball."
@@ -587,7 +535,6 @@
       "name": "Holding Full-Back",
       "harness": "Holding Full Back OOP",
       "score_column": "Holding_Full_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR"],
       "complexity": 1,
       "summary": "Stays with the back line instead of jumping out."
@@ -598,7 +545,6 @@
       "name": "Holding Wing-Back",
       "harness": "Holding Wing Back OOP",
       "score_column": "Holding_Wing_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["WBL", "WBR"],
       "complexity": 1,
       "summary": "Drops into the back line to defend."
@@ -609,7 +555,6 @@
       "name": "Inside Outlet Winger",
       "harness": "Inside Outlet Winger OOP",
       "score_column": "Inside_Outlet_Winger_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AML", "AMR"],
       "complexity": 2,
       "summary": "Holds a high position in the half-space for the counter."
@@ -620,7 +565,6 @@
       "name": "Line-Holding Goalkeeper",
       "harness": "Line Holding Goalkeeper OOP",
       "score_column": "Line_Holding_Goalkeeper_OOP_Score",
-      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 0,
       "summary": "Stays on the goal line."
@@ -631,7 +575,6 @@
       "name": "Pressing Central Midfielder",
       "harness": "Pressing Central Midfielder OOP",
       "score_column": "Pressing_Central_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 2,
       "summary": "Jumps out to press opposition midfielders."
@@ -642,7 +585,6 @@
       "name": "Pressing Defensive Midfielder",
       "harness": "Pressing Defensive Midfielder OOP",
       "score_column": "Pressing_Defensive_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 2,
       "summary": "Steps out to press the ball."
@@ -653,7 +595,6 @@
       "name": "Pressing Full-Back",
       "harness": "Pressing Full Back OOP",
       "score_column": "Pressing_Full_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DL", "DR"],
       "complexity": 2,
       "summary": "Pushes up to press the opposition wide player."
@@ -664,7 +605,6 @@
       "name": "Pressing Wing-Back",
       "harness": "Pressing Wing Back OOP",
       "score_column": "Pressing_Wing_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["WBL", "WBR"],
       "complexity": 2,
       "summary": "Pushes up to press the opposition wide player."
@@ -675,7 +615,6 @@
       "name": "Screening Central Midfielder",
       "harness": "Screening Central Midfielder OOP",
       "score_column": "Screening_Central_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 1,
       "summary": "Holds position to block passes through the middle."
@@ -686,7 +625,6 @@
       "name": "Screening Defensive Midfielder",
       "harness": "Screening Defensive Midfielder OOP",
       "score_column": "Screening_Defensive_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 1,
       "summary": "Holds in front of the defence to block passing lanes."
@@ -697,7 +635,6 @@
       "name": "Splitting Outlet Attacking Midfielder",
       "harness": "Splitting Outlet Attacking Midfielder OOP",
       "score_column": "Splitting_Outlet_Attacking_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AMC"],
       "complexity": 2,
       "summary": "Waits between centre-back and full-back to break on the counter."
@@ -708,7 +645,6 @@
       "name": "Splitting Outlet Centre Forward",
       "harness": "Splitting Outlet Centre Forward OOP",
       "score_column": "Splitting_Outlet_Centre_Forward_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 2,
       "summary": "Waits between centre-back and full-back to break on the counter."
@@ -719,7 +655,6 @@
       "name": "Stopping Centre-Back",
       "harness": "Stopping Centre Back OOP",
       "score_column": "Stopping_Centre_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 1,
       "summary": "Steps out aggressively to stop attackers receiving."
@@ -730,7 +665,6 @@
       "name": "Stopping Wide Centre-Back",
       "harness": "Stopping Wide Centre Back OOP",
       "score_column": "Stopping_Wide_Centre_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 1,
       "summary": "Outside centre-back who steps out to engage in the channel."
@@ -741,7 +675,6 @@
       "name": "Sweeper Keeper",
       "harness": "Sweeper Keeper OOP",
       "score_column": "Sweeper_Keeper_OOP_Score",
-      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 2,
       "summary": "Starts high and sweeps up behind the defensive line."
@@ -752,7 +685,6 @@
       "name": "Tracking Attacking Midfielder",
       "harness": "Tracking Attacking Midfielder OOP",
       "score_column": "Tracking_Attacking_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AMC"],
       "complexity": 1,
       "summary": "Follows an opposition midfielder back."
@@ -763,7 +695,6 @@
       "name": "Tracking Centre Forward",
       "harness": "Tracking Centre Forward OOP",
       "score_column": "Tracking_Centre_Forward_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ST"],
       "complexity": 1,
       "summary": "Drops back to follow an opposition midfielder."
@@ -774,7 +705,6 @@
       "name": "Tracking Wide Midfielder",
       "harness": "Tracking Wide Midfielder OOP",
       "score_column": "Tracking_Wide_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR"],
       "complexity": 1,
       "summary": "Tracks the opposition full-back's runs."
@@ -785,7 +715,6 @@
       "name": "Tracking Winger",
       "harness": "Tracking Winger OOP",
       "score_column": "Tracking_Winger_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AML", "AMR"],
       "complexity": 1,
       "summary": "Tracks back with the opposition full-back."
@@ -796,7 +725,6 @@
       "name": "Wide Centre-Back",
       "harness": "Wide Centre Back OOP",
       "score_column": "Wide_Centre_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 0,
       "summary": "Default defending for the outside centre-back of a back three."
@@ -807,7 +735,6 @@
       "name": "Wide Covering Central Midfielder",
       "harness": "Wide Covering Central Midfielder OOP",
       "score_column": "Wide_Covering_Central_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["MC"],
       "complexity": 2,
       "summary": "Shifts wide to help the flank."
@@ -818,7 +745,6 @@
       "name": "Wide Covering Defensive Midfielder",
       "harness": "Wide Covering Defensive Midfielder OOP",
       "score_column": "Wide_Covering_Defensive_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["DM"],
       "complexity": 2,
       "summary": "Shifts across to help defend the flanks."
@@ -829,7 +755,6 @@
       "name": "Wide Midfielder",
       "harness": "Wide Midfielder OOP",
       "score_column": "Wide_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR"],
       "complexity": 0,
       "summary": "Default wide midfield defending."
@@ -840,7 +765,6 @@
       "name": "Wide Outlet Wide Midfielder",
       "harness": "Wide Outlet Wide Midfielder OOP",
       "score_column": "Wide_Outlet_Wide_Midfielder_OOP_Score",
-      "in_roles_py": true,
       "positions": ["ML", "MR"],
       "complexity": 1,
       "summary": "Stays high and wide as a counter-attack outlet."
@@ -851,7 +775,6 @@
       "name": "Wide Outlet Winger",
       "harness": "Wide Outlet Winger OOP",
       "score_column": "Wide_Outlet_Winger_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AML", "AMR"],
       "complexity": 1,
       "summary": "Holds a high, wide position for the counter instead of tracking back."
@@ -862,7 +785,6 @@
       "name": "Wing-Back",
       "harness": "Wing Back OOP",
       "score_column": "Wing_Back_OOP_Score",
-      "in_roles_py": true,
       "positions": ["WBL", "WBR"],
       "complexity": 0,
       "summary": "Default wing-back defending."
@@ -873,7 +795,6 @@
       "name": "Winger",
       "harness": "Winger OOP",
       "score_column": "Winger_OOP_Score",
-      "in_roles_py": true,
       "positions": ["AML", "AMR"],
       "complexity": 0,
       "summary": "Default winger defending."

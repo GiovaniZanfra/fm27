@@ -106,7 +106,7 @@ $categories = Read-Jsb $training 'training_session_categories.jsb'
 
 $notes = Get-Content (Join-Path $PSScriptRoot 'role_notes.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 
-# Role names defined in fm27/roles.py (to flag roles the harness cannot score yet).
+# Role names defined in fm27/roles.py (the build warns about game roles missing there).
 $rolesPy = Join-Path (Split-Path $OutDir -Parent) 'fm27\roles.py'
 $harnessRoles = @{}
 if (Test-Path $rolesPy) {
@@ -126,13 +126,13 @@ foreach ($phase in @(@{ key = 'IP Role'; name = 'in_possession' }, @{ key = 'OOP
         if ($skip -contains $p.Name) { continue }
         $n = $phaseNotes.($p.Name)
         if (-not $n) { $problems += "$($phase.name) $($p.Name): no entry in role_notes.json"; continue }
+        if ($harnessRoles.Count -and -not $harnessRoles[$n.harness]) { $problems += "$($n.harness): not defined in fm27/roles.py" }
         [void]$roles.Add([ordered]@{
             id          = $p.Name
             phase       = $phase.name
             name        = $n.name
             harness     = $n.harness
             score_column = ($n.harness -replace ' ', '_') + '_Score'
-            in_roles_py = [bool]$harnessRoles[$n.harness]
             positions   = @($n.positions)
             complexity  = $p.Value
             summary     = $n.summary
@@ -149,8 +149,7 @@ Save 'roles.json' ([ordered]@{
     notes = @(
         'id and complexity come from the game (simatch.fmf, generated_tactical_complexity_constants).',
         'name, harness, positions and summary are hand-written in extract/role_notes.json.',
-        'complexity: tactical complexity cost of the role (0-3); the game caps a player at 4 including his instructions.',
-        'in_roles_py: false means fm27/roles.py has no attribute tiers for this role yet.'
+        'complexity: tactical complexity cost of the role (0-3); the game caps a player at 4 including his instructions.'
     )
     counts = [ordered]@{
         in_possession = @($roles | Where-Object { $_.phase -eq 'in_possession' }).Count

@@ -10,7 +10,7 @@ Aqui ficam só fatos extraídos (nomes, opções, números) e o código para ext
 
 | Arquivo | O que tem | De onde vem |
 |---|---|---|
-| `roles.json` | As 40 roles com bola e 39 sem bola: id do jogo, nome, nome no harness, coluna de score, posições, complexidade tática e um resumo. `in_roles_py: false` marca role que o `fm27/roles.py` ainda não pontua. | ids e complexidade: `simatch.fmf`. Nome, posições e resumo: `extract/role_notes.json` (escrito à mão) |
+| `roles.json` | As 40 roles com bola e 39 sem bola: id do jogo, nome, nome no harness, coluna de score, posições, complexidade tática e um resumo. | ids e complexidade: `simatch.fmf`. Nome, posições e resumo: `extract/role_notes.json` (escrito à mão) |
 | `instructions.json` | Todas as instruções de time e de jogador com as opções válidas e quanto cada uma soma de complexidade tática, mais os limites (time 0–49, jogador até 4). | `simatch.fmf` → `generated_tactical_complexity_constants` |
 | `stat_attributes.json` | Quais atributos o motor liga a cada estatística de partida (interceptações → Anticipation + Positioning etc.), nos dois sentidos. | `simatch.fmf` → `qme_stat_relevant_attribute_data` |
 | `training.json` | Cada sessão de treino: categoria, atributos treinados por grupo de posição, impacto (−3 a 3) em condição, fadiga, risco de lesão, felicidade e ritmo, e o limite semanal. | `training.fmf` |
