@@ -1,0 +1,101 @@
+{
+  "_about": "Hand-written annotations merged into game_data/roles.json by build.ps1. The game files give the role ids and complexity; names, positions and summaries are written here. Positions follow the in-game tactics screen as narrated for fm27/roles.py; position codes are the harness ones (configs and positions.csv). Summaries are our own one-liners, not game text.",
+  "in_possession": {
+    "GOALKEEPER":               { "name": "Goalkeeper",               "harness": "Goalkeeper",               "positions": ["GK"], "summary": "Standard keeper: stays in goal and distributes safely." },
+    "BALL_PLAYING_GOALKEEPER":  { "name": "Ball-Playing Goalkeeper",  "harness": "Ball Playing Goalkeeper",  "positions": ["GK"], "summary": "Joins the build-up, coming off the line to receive and pass." },
+    "NO_NONSENSE_GOALKEEPER":   { "name": "No-Nonsense Goalkeeper",   "harness": "No Nonsense Goalkeeper",   "positions": ["GK"], "summary": "Shot-stopper who gets rid of the ball with minimal risk." },
+
+    "CENTRE_BACK":              { "name": "Centre-Back",              "harness": "Centre Back",              "positions": ["DC"], "summary": "Balanced central defender." },
+    "ADVANCED_CENTRE_BACK":     { "name": "Advanced Centre-Back",     "harness": "Advanced Centre Back",     "positions": ["DC"], "summary": "Steps out of the back line into midfield when the team has the ball." },
+    "BALL_PLAYING_CENTRE_BACK": { "name": "Ball-Playing Centre-Back", "harness": "Ball Playing Centre Back", "positions": ["DC"], "summary": "Central defender who looks for progressive passes from the back." },
+    "NO_NONSENSE_CENTRE_BACK":  { "name": "No-Nonsense Centre-Back",  "harness": "No Nonsense Centre Back",  "positions": ["DC"], "summary": "Stays ready to defend and keeps it simple on the ball." },
+    "WIDE_CENTRE_BACK":         { "name": "Wide Centre-Back",         "harness": "Wide Centre Back",         "positions": ["DC"], "summary": "Outside centre-back of a back three; carries the ball and supports down the flank." },
+    "OVERLAPPING_CENTRE_BACK":  { "name": "Overlapping Centre-Back",  "harness": "Overlapping Centre Back",  "positions": ["DC"], "summary": "Outside centre-back of a back three who overlaps the wide player." },
+
+    "FULL_BACK":                { "name": "Full-Back",                "harness": "Full Back",                "positions": ["DL", "DR"], "summary": "Defends the flank first and supports attacks with overlaps." },
+    "INSIDE_FULL_BACK":         { "name": "Inside Full-Back",         "harness": "Inside Full Back",         "positions": ["DL", "DR"], "summary": "Tucks in beside the centre-backs to form a back three in possession." },
+    "WING_BACK":                { "name": "Wing-Back",                "harness": "Wing Back",                "positions": ["DL", "DR", "WBL", "WBR"], "summary": "Covers the whole flank and gives width in attack." },
+    "INSIDE_WING_BACK":         { "name": "Inside Wing-Back",         "harness": "Inside Wing Back",         "positions": ["DL", "DR", "WBL", "WBR"], "summary": "Moves into central midfield in build-up, adding a passing option and cover against counters." },
+    "PLAYMAKING_WING_BACK":     { "name": "Playmaking Wing-Back",     "harness": "Playmaking Wing Back",     "positions": ["DL", "DR", "WBL", "WBR"], "summary": "Wide defender who gets on the ball to create; needs high technique." },
+    "ADVANCED_WING_BACK":       { "name": "Advanced Wing-Back",       "harness": "Advanced Wing Back",       "positions": ["WBL", "WBR"], "summary": "Plays as high and wide as possible, almost a winger." },
+
+    "DEFENSIVE_MIDFIELDER":     { "name": "Defensive Midfielder",     "harness": "Defensive Midfielder",     "positions": ["DM"], "summary": "Shields the defence and recycles possession." },
+    "HALF_BACK":                { "name": "Half Back",                "harness": "Half Back",                "positions": ["DM"], "summary": "Drops between the centre-backs during build-up as an extra defender." },
+    "DEEP_LYING_PLAYMAKER":     { "name": "Deep-Lying Playmaker",     "harness": "Deep Lying Playmaker",     "positions": ["DM"], "summary": "Dictates play from in front of the defence with progressive passes." },
+    "BOX_TO_BOX_MIDFIELDER":    { "name": "Box-To-Box Midfielder",    "harness": "Box To Box Midfielder",    "positions": ["DM"], "summary": "Covers ground between both boxes, helping in attack and defence." },
+    "BOX_TO_BOX_PLAYMAKER":     { "name": "Box-To-Box Playmaker",     "harness": "Box To Box Playmaker",     "positions": ["DM"], "summary": "Box-to-box runner who is also a main passing hub." },
+
+    "CENTRAL_MIDFIELDER":       { "name": "Central Midfielder",       "harness": "Central Midfielder",       "positions": ["MC"], "summary": "Balanced central midfielder." },
+    "MIDFIELD_PLAYMAKER":       { "name": "Midfield Playmaker",       "harness": "Midfield Playmaker",       "positions": ["MC"], "summary": "Creative link between defence and attack." },
+    "WIDE_CENTRAL_MIDFIELDER":  { "name": "Wide Central Midfielder",  "harness": "Wide Central Midfielder",  "positions": ["MC"], "summary": "Side midfielder of a pair or three who drifts wide to support." },
+    "CHANNEL_MIDFIELDER":       { "name": "Channel Midfielder",       "harness": "Channel Midfielder",       "positions": ["MC", "AMC"], "summary": "Runs into the channels and wide areas to link with the wide attackers." },
+    "ADVANCED_PLAYMAKER":       { "name": "Advanced Playmaker",       "harness": "Advanced Playmaker",       "positions": ["MC", "AMC"], "summary": "Finds pockets between the lines to create chances." },
+    "ATTACKING_MIDFIELDER":     { "name": "Attacking Midfielder",     "harness": "Attacking Midfielder",     "positions": ["MC", "AMC"], "summary": "Links midfield and attack, arriving to shoot or set up chances." },
+
+    "FREE_ROLE":                { "name": "Free Role",                "harness": "Free Role",                "positions": ["AMC"], "summary": "Roams wherever space appears to create." },
+    "SECOND_STRIKER":           { "name": "Second Striker",           "harness": "Second Striker",           "positions": ["AMC"], "summary": "Attacking midfielder who plays as one of the main goal threats." },
+
+    "WIDE_MIDFIELDER":          { "name": "Wide Midfielder",          "harness": "Wide Midfielder",          "positions": ["ML", "MR"], "summary": "Balanced wide player: protects the flank and supports counters." },
+    "WINGER":                   { "name": "Winger",                   "harness": "Winger",                   "positions": ["ML", "MR", "AML", "AMR"], "summary": "Stays wide to stretch the defence and deliver crosses." },
+    "INSIDE_WINGER":            { "name": "Inside Winger",            "harness": "Inside Winger",            "positions": ["ML", "MR", "AML", "AMR"], "summary": "Drifts into the half-space to free the flank for overlaps." },
+    "PLAYMAKING_WINGER":        { "name": "Playmaking Winger",        "harness": "Playmaking Winger",        "positions": ["ML", "MR", "AML", "AMR"], "summary": "Starts wide, then drifts inside as the team's main creator." },
+    "INSIDE_FORWARD":           { "name": "Inside Forward",           "harness": "Inside Forward",           "positions": ["AML", "AMR"], "summary": "Cuts inside from the flank to shoot or combine centrally." },
+    "WIDE_FORWARD":             { "name": "Wide Forward",             "harness": "Wide Forward",             "positions": ["AML", "AMR"], "summary": "Wide attacker who stretches the back line and attacks the box." },
+
+    "CENTRE_FORWARD":           { "name": "Centre Forward",           "harness": "Centre Forward",           "positions": ["ST"], "summary": "All-round striker." },
+    "CHANNEL_FORWARD":          { "name": "Channel Forward",          "harness": "Channel Forward",          "positions": ["ST"], "summary": "High-energy striker who keeps running into the channels." },
+    "DEEP_LYING_FORWARD":       { "name": "Deep-Lying Forward",       "harness": "Deep Lying Forward",       "positions": ["ST"], "summary": "Drops off the line to link play and bring others in." },
+    "FALSE_NINE":               { "name": "False Nine",               "harness": "False Nine",               "positions": ["ST"], "summary": "Drops between the lines like a playmaker, emptying the centre." },
+    "POACHER":                  { "name": "Poacher",                  "harness": "Poacher",                  "positions": ["ST"], "summary": "Lives on the last defender's shoulder to run in behind and finish." },
+    "TARGET_FORWARD":           { "name": "Target Forward",           "harness": "Target Forward",           "positions": ["ST"], "summary": "Physical focal point for long balls and crosses." }
+  },
+  "out_of_possession": {
+    "GOALKEEPER":                            { "name": "Goalkeeper",                           "harness": "Goalkeeper OOP",                            "positions": ["GK"], "summary": "Default keeper positioning without the ball." },
+    "SWEEPER_KEEPER":                        { "name": "Sweeper Keeper",                       "harness": "Sweeper Keeper OOP",                        "positions": ["GK"], "summary": "Starts high and sweeps up behind the defensive line." },
+    "LINE_KEEPER":                           { "name": "Line-Holding Goalkeeper",              "harness": "Line Holding Goalkeeper OOP",               "positions": ["GK"], "summary": "Stays on the goal line." },
+
+    "CENTRE_BACK":                           { "name": "Centre-Back",                          "harness": "Centre Back OOP",                           "positions": ["DC"], "summary": "Default central defending, between stepping out and covering." },
+    "COVERING_CENTRE_BACK":                  { "name": "Covering Centre-Back",                 "harness": "Covering Centre Back OOP",                  "positions": ["DC"], "summary": "Drops off to cover the space behind the line." },
+    "STOPPING_CENTRE_BACK":                  { "name": "Stopping Centre-Back",                 "harness": "Stopping Centre Back OOP",                  "positions": ["DC"], "summary": "Steps out aggressively to stop attackers receiving." },
+    "WIDE_CENTRE_BACK":                      { "name": "Wide Centre-Back",                     "harness": "Wide Centre Back OOP",                      "positions": ["DC"], "summary": "Default defending for the outside centre-back of a back three." },
+    "COVERING_WIDE_CENTRE_BACK":             { "name": "Covering Wide Centre-Back",            "harness": "Covering Wide Centre Back OOP",             "positions": ["DC"], "summary": "Outside centre-back who covers space in the channel." },
+    "STOPPING_WIDE_CENTRE_BACK":             { "name": "Stopping Wide Centre-Back",            "harness": "Stopping Wide Centre Back OOP",             "positions": ["DC"], "summary": "Outside centre-back who steps out to engage in the channel." },
+
+    "FULL_BACK":                             { "name": "Full-Back",                            "harness": "Full Back OOP",                             "positions": ["DL", "DR"], "summary": "Default full-back defending." },
+    "HOLDING_FULL_BACK":                     { "name": "Holding Full-Back",                    "harness": "Holding Full Back OOP",                     "positions": ["DL", "DR"], "summary": "Stays with the back line instead of jumping out." },
+    "PRESSING_FULL_BACK":                    { "name": "Pressing Full-Back",                   "harness": "Pressing Full Back OOP",                    "positions": ["DL", "DR"], "summary": "Pushes up to press the opposition wide player." },
+    "WING_BACK":                             { "name": "Wing-Back",                            "harness": "Wing Back OOP",                             "positions": ["WBL", "WBR"], "summary": "Default wing-back defending." },
+    "HOLDING_WING_BACK":                     { "name": "Holding Wing-Back",                    "harness": "Holding Wing Back OOP",                     "positions": ["WBL", "WBR"], "summary": "Drops into the back line to defend." },
+    "PRESSING_WING_BACK":                    { "name": "Pressing Wing-Back",                   "harness": "Pressing Wing Back OOP",                    "positions": ["WBL", "WBR"], "summary": "Pushes up to press the opposition wide player." },
+
+    "DEFENSIVE_MIDFIELDER":                  { "name": "Defensive Midfielder",                 "harness": "Defensive Midfielder OOP",                  "positions": ["DM"], "summary": "Default holding midfielder defending." },
+    "DROPPING_DEFENSIVE_MIDFIELDER":         { "name": "Dropping Defensive Midfielder",        "harness": "Dropping Defensive Midfielder OOP",         "positions": ["DM"], "summary": "Drops into the back line as an extra defender." },
+    "PRESSING_DEFENSIVE_MIDFIELDER":         { "name": "Pressing Defensive Midfielder",        "harness": "Pressing Defensive Midfielder OOP",         "positions": ["DM"], "summary": "Steps out to press the ball." },
+    "SCREENING_DEFENSIVE_MIDFIELDER":        { "name": "Screening Defensive Midfielder",       "harness": "Screening Defensive Midfielder OOP",        "positions": ["DM"], "summary": "Holds in front of the defence to block passing lanes." },
+    "WIDE_COVER_DEFENSIVE_MIDFIELDER":       { "name": "Wide Covering Defensive Midfielder",   "harness": "Wide Covering Defensive Midfielder OOP",    "positions": ["DM"], "summary": "Shifts across to help defend the flanks." },
+
+    "CENTRAL_MIDFIELDER":                    { "name": "Central Midfielder",                   "harness": "Central Midfielder OOP",                    "positions": ["MC"], "summary": "Default central midfield defending." },
+    "PRESSING_CENTRAL_MIDFIELDER":           { "name": "Pressing Central Midfielder",          "harness": "Pressing Central Midfielder OOP",           "positions": ["MC"], "summary": "Jumps out to press opposition midfielders." },
+    "SCREENING_CENTRAL_MIDFIELDER":          { "name": "Screening Central Midfielder",         "harness": "Screening Central Midfielder OOP",          "positions": ["MC"], "summary": "Holds position to block passes through the middle." },
+    "WIDE_COVER_CENTRAL_MIDFIELDER":         { "name": "Wide Covering Central Midfielder",     "harness": "Wide Covering Central Midfielder OOP",      "positions": ["MC"], "summary": "Shifts wide to help the flank." },
+
+    "WIDE_MIDFIELDER":                       { "name": "Wide Midfielder",                      "harness": "Wide Midfielder OOP",                       "positions": ["ML", "MR"], "summary": "Default wide midfield defending." },
+    "TRACKING_WIDE_MIDFIELDER":              { "name": "Tracking Wide Midfielder",             "harness": "Tracking Wide Midfielder OOP",              "positions": ["ML", "MR"], "summary": "Tracks the opposition full-back's runs." },
+    "WIDE_OUTLET_WIDE_MIDFIELDER":           { "name": "Wide Outlet Wide Midfielder",          "harness": "Wide Outlet Wide Midfielder OOP",           "positions": ["ML", "MR"], "summary": "Stays high and wide as a counter-attack outlet." },
+
+    "ATTACKING_MIDFIELDER":                  { "name": "Attacking Midfielder",                 "harness": "Attacking Midfielder OOP",                  "positions": ["AMC"], "summary": "Default: screens the opposition's midfield pivot." },
+    "TRACKING_ATTACKING_MIDFIELDER":         { "name": "Tracking Attacking Midfielder",        "harness": "Tracking Attacking Midfielder OOP",         "positions": ["AMC"], "summary": "Follows an opposition midfielder back." },
+    "CENTRAL_OUTLET_ATTACKING_MIDFIELDER":   { "name": "Central Outlet Attacking Midfielder",  "harness": "Central Outlet Attacking Midfielder OOP",   "positions": ["AMC"], "summary": "Stays central and high as a counter-attack outlet." },
+    "SPLITTING_OUTLET_ATTACKING_MIDFIELDER": { "name": "Splitting Outlet Attacking Midfielder","harness": "Splitting Outlet Attacking Midfielder OOP", "positions": ["AMC"], "summary": "Waits between centre-back and full-back to break on the counter." },
+
+    "WINGER":                                { "name": "Winger",                               "harness": "Winger OOP",                                "positions": ["AML", "AMR"], "summary": "Default winger defending." },
+    "TRACKING_WINGER":                       { "name": "Tracking Winger",                      "harness": "Tracking Winger OOP",                       "positions": ["AML", "AMR"], "summary": "Tracks back with the opposition full-back." },
+    "WIDE_OUTLET_WINGER":                    { "name": "Wide Outlet Winger",                   "harness": "Wide Outlet Winger OOP",                    "positions": ["AML", "AMR"], "summary": "Holds a high, wide position for the counter instead of tracking back." },
+    "INSIDE_OUTLET_WINGER":                  { "name": "Inside Outlet Winger",                 "harness": "Inside Outlet Winger OOP",                  "positions": ["AML", "AMR"], "summary": "Holds a high position in the half-space for the counter." },
+
+    "CENTRE_FORWARD":                        { "name": "Centre Forward",                       "harness": "Centre Forward OOP",                        "positions": ["ST"], "summary": "Default striker defending." },
+    "TRACKING_CENTRE_FORWARD":               { "name": "Tracking Centre Forward",              "harness": "Tracking Centre Forward OOP",               "positions": ["ST"], "summary": "Drops back to follow an opposition midfielder." },
+    "CENTRAL_OUTLET_CENTRE_FORWARD":         { "name": "Central Outlet Centre Forward",        "harness": "Central Outlet Centre Forward OOP",         "positions": ["ST"], "summary": "Stays central and high as a counter-attack outlet." },
+    "SPLITTING_OUTLET_CENTRE_FORWARD":       { "name": "Splitting Outlet Centre Forward",      "harness": "Splitting Outlet Centre Forward OOP",       "positions": ["ST"], "summary": "Waits between centre-back and full-back to break on the counter." }
+  }
+}

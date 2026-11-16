@@ -1,0 +1,445 @@
+{
+  "source": {
+    "game": "Football Manager 27",
+    "version": "27.0.1.2503222"
+  },
+  "notes": ["Tactical styles and the formation pairs the game offers as presets (simatch.fmf, tactics/). Each pair is in-possession shape _ out-of-possession shape.", "The .tac files with the preset roles and instructions are binary and not decoded yet."],
+  "styles": [
+    {
+      "id": "CONTROL_POSSESSION",
+      "name": "Control Possession",
+      "tags": ["Aims to dictate play", "Patiently wait for openings"],
+      "formations": [
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-3 DM Wide"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-2-1 DM AM"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        }
+      ]
+    },
+    {
+      "id": "GEGENPRESS",
+      "name": "Gegenpress",
+      "tags": ["Instantly win back possession", "High-intensity running"],
+      "formations": [
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "5-3-2 DM WB"
+        }
+      ]
+    },
+    {
+      "id": "TIKI_TAKA",
+      "name": "Tiki-Taka",
+      "tags": ["Dominate possession", "Relentless pressing", "Patiently wait for openings"],
+      "formations": [
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide - tiki-taka"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM - tiki-taka"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM - tiki-taka"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-2 2DM - tiki-taka"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-1-1 2DM - tiki-taka"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-3-3 DM Wide - tiki-taka"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-3 DM Wide - tiki-taka"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-2-1 DM AM - tiki-taka"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide - tiki-taka"
+        }
+      ]
+    },
+    {
+      "id": "VERTICAL_TIKI_TAKA",
+      "name": "Vertical Tiki-Taka",
+      "tags": ["Dominate possession", "Relentless pressing", "Emphasis on moving the ball vertically rather than side-to-side"],
+      "formations": [
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-4-2 Diamond Narrow",
+          "out_of_possession": "4-4-2 Diamond Narrow - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-4-2 Diamond Narrow",
+          "out_of_possession": "4-3-3 DM Wide - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-4-2 Diamond Narrow",
+          "out_of_possession": "4-4-2 2DM - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-2 2DM - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-1-1 2DM - vertical_tiki-taka"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-3-3 DM Wide - vertical_tiki-taka"
+        }
+      ]
+    },
+    {
+      "id": "WING_PLAY",
+      "name": "Wing Play",
+      "tags": ["Looks to get quality crosses into the box", "Overloads the wide areas"],
+      "formations": [
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "5-3-2 DM WB"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        }
+      ]
+    },
+    {
+      "id": "ROUTE_ONE",
+      "name": "Route One",
+      "tags": ["Quick transitions", "Direct passing"],
+      "formations": [
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-2-4 DM Wide",
+          "out_of_possession": "5-3-2 DM WB"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM"
+        },
+        {
+          "in_possession": "5-3-2 DM WB",
+          "out_of_possession": "5-3-2 DM WB"
+        },
+        {
+          "in_possession": "5-3-2 DM WB",
+          "out_of_possession": "5-2-1-2 DM AM"
+        },
+        {
+          "in_possession": "5-3-2 DM WB",
+          "out_of_possession": "4-4-2 2DM"
+        }
+      ]
+    },
+    {
+      "id": "FLUID_COUNTER_ATTACK",
+      "name": "Fluid Counter-Attack",
+      "tags": ["Soak up pressure", "More expressive and fluid counter-attacks"],
+      "formations": [
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide - fluid_counter-attack"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM - fluid_counter-attack"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM - fluid_counter-attack"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-2 2DM - fluid_counter-attack"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-4-1-1 2DM - fluid_counter-attack"
+        },
+        {
+          "in_possession": "4-2-3-1 DM AM Wide",
+          "out_of_possession": "4-3-3 DM Wide - fluid_counter-attack"
+        },
+        {
+          "in_possession": "5-2-2-1 DM AM",
+          "out_of_possession": "5-2-2-1 DM AM - fluid_counter-attack"
+        },
+        {
+          "in_possession": "5-2-2-1 DM AM",
+          "out_of_possession": "5-2-3 DM Wide - fluid_counter-attack"
+        },
+        {
+          "in_possession": "5-2-2-1 DM AM",
+          "out_of_possession": "4-3-2-1 DM AM Narrow - fluid_counter-attack"
+        }
+      ]
+    },
+    {
+      "id": "DIRECT_COUNTER_ATTACK",
+      "name": "Direct Counter-Attack",
+      "tags": ["Soak up pressure", "Direct and structured counter-attacks"],
+      "formations": [
+        {
+          "in_possession": "4-4-2 2DM",
+          "out_of_possession": "4-4-2 2DM - direct_counter-attack"
+        },
+        {
+          "in_possession": "4-4-2 2DM",
+          "out_of_possession": "4-4-1-1 2DM - direct_counter-attack"
+        },
+        {
+          "in_possession": "4-4-2 2DM",
+          "out_of_possession": "5-3-2 DM WB - direct_counter-attack"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide - direct_counter-attack"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM - direct_counter-attack"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM - direct_counter-attack"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-3 DM Wide - direct_counter-attack"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-2-1 DM AM - direct_counter-attack"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide - direct_counter-attack"
+        }
+      ]
+    },
+    {
+      "id": "CATENACCIO",
+      "name": "Catenaccio",
+      "tags": ["Looks to nullify the opposition's attacking threat", "Highly-structured defensive approach"],
+      "formations": [
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-3 DM Wide"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-2-1 DM AM"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "5-2-1-2 DM AM",
+          "out_of_possession": "5-2-1-2 DM AM"
+        },
+        {
+          "in_possession": "5-2-1-2 DM AM",
+          "out_of_possession": "5-3-2 DM WB"
+        },
+        {
+          "in_possession": "5-2-1-2 DM AM",
+          "out_of_possession": "4-4-2 Diamond Narrow"
+        },
+        {
+          "in_possession": "5-2-2-1 DM AM",
+          "out_of_possession": "5-2-2-1 DM AM"
+        },
+        {
+          "in_possession": "5-2-2-1 DM AM",
+          "out_of_possession": "5-2-3 DM Wide"
+        },
+        {
+          "in_possession": "5-2-2-1 DM AM",
+          "out_of_possession": "4-3-2-1 DM AM Narrow"
+        }
+      ]
+    },
+    {
+      "id": "PARK_THE_BUS",
+      "name": "Park the Bus",
+      "tags": ["Low and structured defensive shape", "Restrict space in the final third"],
+      "formations": [
+        {
+          "in_possession": "4-4-2 2DM",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-4-2 2DM",
+          "out_of_possession": "4-4-1-1 2DM"
+        },
+        {
+          "in_possession": "4-4-2 2DM",
+          "out_of_possession": "5-3-2 DM WB"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-3 DM Wide"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "5-2-2-1 DM AM"
+        },
+        {
+          "in_possession": "5-2-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-3-3 DM Wide"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-4-2 2DM"
+        },
+        {
+          "in_possession": "4-3-3 DM Wide",
+          "out_of_possession": "4-1-4-1 DM"
+        }
+      ]
+    },
+    {
+      "id": null,
+      "name": "Clean Slate",
+      "tags": ["No instructions set", "Standard approach to play"],
+      "formations": []
+    }
+  ]
+}

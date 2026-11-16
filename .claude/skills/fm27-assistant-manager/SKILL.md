@@ -31,6 +31,7 @@ on what this skill summarises:
 - `context/tactics_manual.md` — optional out-of-possession instructions; each group allows one choice or none.
 - `scouting/<manager>.json` — valued attributes, gates, age rule, and the `targets` shortlist.
 - `context/clubes_por_tecnico.md` — clubs that suit each manager, for job-move questions.
+- `game_data/` — facts pulled from the FM27 game files: every role with its positions and tactical complexity (`roles.json`), every team and player instruction with valid options (`instructions.json`), stat-to-attribute links (`stat_attributes.json`), training sessions (`training.json`) and preset formation pairs per style (`tactic_presets.json`). Only suggest roles and instructions that exist there.
 
 ## The pipeline
 

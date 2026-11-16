@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 *:Zone.Identifier
 .DS_Store
+game_data/raw/

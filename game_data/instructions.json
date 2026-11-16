@@ -1,0 +1,330 @@
+{
+  "source": {
+    "game": "Football Manager 27",
+    "version": "27.0.1.2503222"
+  },
+  "notes": ["Every option is the game enum name; its number is the tactical complexity it adds (from generated_tactical_complexity_constants).", "Each group allows one option or none. phase is our annotation of where the group sits on the tactics screen.", "Team complexity is clamped to limits.team_min..team_max; a player carries role + instructions up to limits.max_complexity_per_player."],
+  "limits": {
+    "team_min": 0,
+    "team_max": 49,
+    "team_default": 1,
+    "player_default": 1,
+    "max_complexity_per_player": 4,
+    "max_players_for_opposition_complexity": 11
+  },
+  "team": {
+    "Build up Play": {
+      "phase": "in_possession",
+      "options": {
+        "PLAY_FOR_SET_PIECES": 1,
+        "WORK_BALL_INTO_BOX": 2
+      }
+    },
+    "Creative Freedom": {
+      "phase": "in_possession",
+      "options": {
+        "BE_MORE_DISCIPLINED": 3,
+        "BE_MORE_EXPRESSIVE": 2
+      }
+    },
+    "Crossing": {
+      "phase": "in_possession",
+      "options": {
+        "FLOAT_CROSSES": 1,
+        "HIT_EARLY_CROSSES": 1,
+        "LOW_CROSSES": 1,
+        "WHIPPED_CROSSES": 1
+      }
+    },
+    "Defence Transition": {
+      "phase": "in_transition",
+      "options": {
+        "COUNTER_PRESS": 3,
+        "REGROUP": 1
+      }
+    },
+    "Defending Crosses": {
+      "phase": "out_of_possession",
+      "options": {
+        "INVITE": 1,
+        "STOP": 1
+      }
+    },
+    "Defensive Line": {
+      "phase": "out_of_possession",
+      "options": {
+        "DEEPER": 1,
+        "HIGHER": 2,
+        "MUCH_DEEPER": 1,
+        "MUCH_HIGHER": 3
+      }
+    },
+    "Dribbling": {
+      "phase": "in_possession",
+      "options": {
+        "DRIBBLE_LESS": 1,
+        "RUN_AT_DEFENCE": 2
+      }
+    },
+    "Focus Play": {
+      "phase": "in_possession",
+      "options": {
+        "DOWN_BOTH_FLANKS": 1,
+        "DOWN_THE_LEFT_FLANK": 2,
+        "DOWN_THE_MIDDLE": 3,
+        "DOWN_THE_RIGHT_FLANK": 2
+      }
+    },
+    "GK Distribution": {
+      "phase": "in_transition",
+      "options": {
+        "Goal kick": {
+          "LONG": 1,
+          "SHORT": 1
+        },
+        "Method": {
+          "KICK_LONG": 0,
+          "KICK_SHORT": 0,
+          "ROLL_OUT": 0,
+          "THROW_LONG": 0
+        },
+        "Pace": {
+          "QUICK": 2,
+          "SLOW": 1
+        },
+        "Target": {
+          "CENTRE_BACKS": 1,
+          "CLEAR_OPPOSITION_DEFENCE": 1,
+          "FLANKS": 1,
+          "FULL_BACKS": 1,
+          "PLAYMAKER": 1,
+          "SPECIFIC_TEAMMATE": 2,
+          "TARGET_MAN": 1
+        }
+      }
+    },
+    "GOALKEEPER_UP_FOR_ATTACKING_SET_PIECES": {
+      "phase": "in_possession",
+      "toggle": true,
+      "complexity": 0
+    },
+    "Line": {
+      "phase": "out_of_possession",
+      "options": {
+        "DROP_OFF": 1,
+        "HOLD_LINE": 2
+      }
+    },
+    "Line of Engagement": {
+      "phase": "out_of_possession",
+      "options": {
+        "DEEPER": 0,
+        "HIGHER": 2,
+        "STANDARD": 1
+      }
+    },
+    "Look For": {
+      "phase": "in_possession",
+      "options": {
+        "OVERLAP": 1,
+        "OVERLAP_LEFT": 1,
+        "OVERLAP_RIGHT": 1,
+        "UNDERLAP": 1,
+        "UNDERLAP_LEFT": 1,
+        "UNDERLAP_RIGHT": 1
+      }
+    },
+    "Passing Strategy": {
+      "phase": "in_possession",
+      "options": {
+        "BYPASS_THE_PRESS": 0,
+        "INTO_FEET": 1,
+        "INTO_SPACE": 1,
+        "PLAY_THROUGH_THE_PRESS": 3
+      }
+    },
+    "Passing Style": {
+      "phase": "in_possession",
+      "options": {
+        "MORE_DIRECT": 1,
+        "MUCH_MORE_DIRECT": 1,
+        "MUCH_SHORTER": 3,
+        "SHORTER": 2
+      }
+    },
+    "Pressing Intensity": {
+      "phase": "out_of_possession",
+      "options": {
+        "HIGHER": 2,
+        "LOWER": 1,
+        "MUCH_HIGHER": 3,
+        "MUCH_LOWER": 2
+      }
+    },
+    "Pressing Trap": {
+      "phase": "out_of_possession",
+      "options": {
+        "IN": 0,
+        "OUT": 0
+      }
+    },
+    "PREVENT_SHORT_GOALKEEPER_DISTRIBUTION": {
+      "phase": "out_of_possession",
+      "toggle": true,
+      "complexity": 1
+    },
+    "Shooting": {
+      "phase": "in_possession",
+      "options": {
+        "DISCOURAGE_LONG_SHOTS": 1,
+        "SHOOT_ON_SIGHT": 1
+      }
+    },
+    "Tackling": {
+      "phase": "out_of_possession",
+      "options": {
+        "GET_STUCK_IN": 1,
+        "STAY_ON_FEET": 1
+      }
+    },
+    "Tempo": {
+      "phase": "in_possession",
+      "options": {
+        "HIGHER": 1,
+        "LOWER": 1,
+        "MUCH_HIGHER": 2,
+        "MUCH_LOWER": 2
+      }
+    },
+    "Transition": {
+      "phase": "in_transition",
+      "options": {
+        "COUNTER": 2,
+        "HOLD_SHAPE": 1
+      }
+    },
+    "Waste Time": {
+      "phase": "in_possession",
+      "options": {
+        "EXTREME": 2,
+        "NORMAL": 1
+      }
+    },
+    "Width": {
+      "phase": "in_possession",
+      "options": {
+        "MUCH_NARROWER": 2,
+        "MUCH_WIDER": 2,
+        "NARROWER": 1,
+        "WIDER": 1
+      }
+    }
+  },
+  "player": {
+    "Attacking Width": {
+      "phase": "in_possession",
+      "options": {
+        "MOVE_INTO_CHANNELS": 2,
+        "STAY_NARROWER": 1,
+        "STAY_WIDER": 1
+      }
+    },
+    "Creative Freedom": {
+      "phase": "in_possession",
+      "options": {
+        "BE_MORE_DISCIPLINED": 0,
+        "BE_MORE_EXPRESSIVE": 0
+      }
+    },
+    "Cross Frequency": {
+      "phase": "in_possession",
+      "options": {
+        "LESS_OFTEN": 0,
+        "MORE_OFTEN": 0
+      }
+    },
+    "Cross From": {
+      "phase": "in_possession",
+      "options": {
+        "BYLINE": 1,
+        "DEEP": 1
+      }
+    },
+    "Cross To": {
+      "phase": "in_possession",
+      "options": {
+        "CENTRE": 1,
+        "FAR_POST": 1,
+        "NEAR_POST": 1,
+        "TARGET_MAN": 2
+      }
+    },
+    "Dribble": {
+      "phase": "in_possession",
+      "options": {
+        "LESS": 1,
+        "MORE": 1
+      }
+    },
+    "Dribbling": {
+      "phase": "in_possession",
+      "options": {
+        "CUT_INSIDE_WITH_BALL": 1,
+        "HOLD_UP_BALL": 1,
+        "RUN_WIDE_WITH_BALL": 1
+      }
+    },
+    "Marking": {
+      "phase": "out_of_possession",
+      "options": {
+        "SPECIFIC_PLAYER": 3,
+        "SPECIFIC_POSITION": 2,
+        "TIGHTER": 2
+      }
+    },
+    "Pass": {
+      "phase": "in_possession",
+      "options": {
+        "MORE_DIRECT": 1,
+        "SHORTER": 2
+      }
+    },
+    "Positioning": {
+      "phase": "in_possession",
+      "options": {
+        "GET_FORWARD_OFTEN": 2,
+        "HOLD_POSITION": 1,
+        "ROAM_FROM_POSITION": 2,
+        "SWITCH_POSITION": 0
+      }
+    },
+    "Pressing Intensity": {
+      "phase": "out_of_possession",
+      "options": {
+        "HIGHER": 2,
+        "LOWER": 1
+      }
+    },
+    "Risks": {
+      "phase": "in_possession",
+      "options": {
+        "TAKE_FEWER": 1,
+        "TAKE_MORE": 3
+      }
+    },
+    "Shoot": {
+      "phase": "in_possession",
+      "options": {
+        "LESS": 1,
+        "MORE": 1
+      }
+    },
+    "Tackling": {
+      "phase": "out_of_possession",
+      "options": {
+        "GET_STUCK_IN": 1,
+        "STAY_ON_FEET": 1
+      }
+    }
+  }
+}

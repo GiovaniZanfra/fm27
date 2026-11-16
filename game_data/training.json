@@ -1,0 +1,899 @@
+{
+  "source": {
+    "game": "Football Manager 27",
+    "version": "27.0.1.2503222"
+  },
+  "notes": ["From training.fmf (training_sessions, training_session_categories).", "attributes: what the session trains, per position group (attacking, defensive, goalkeeping, midfield); sessions without attributes train tactics, condition or nothing.", "condition, fatigue, injuries, happiness, sharpness: impact on the player from -3 to 3, positive = good for him (Rest: condition 3, fatigue 1; Heavy Conditioning: fatigue -3, injuries -2 = higher injury risk)."],
+  "categories": [
+    {
+      "category": "Match Preparation",
+      "max_sessions_per_week": 9,
+      "counts_towards_match_limits": true
+    },
+    {
+      "category": "Tactical Understanding",
+      "max_sessions_per_week": 16,
+      "counts_towards_match_limits": false
+    },
+    {
+      "category": "Footballing Development",
+      "max_sessions_per_week": 21,
+      "counts_towards_match_limits": false
+    },
+    {
+      "category": "Physical & Recovery",
+      "max_sessions_per_week": 21,
+      "counts_towards_match_limits": false
+    },
+    {
+      "category": "Extra-Curricular",
+      "max_sessions_per_week": 2,
+      "counts_towards_match_limits": false
+    },
+    {
+      "category": "Match",
+      "max_sessions_per_week": 7,
+      "counts_towards_match_limits": false
+    }
+  ],
+  "sessions": [
+    {
+      "name": "Passing Style",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Build Up",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Chance Creation",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "In Possession Shape",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Line of Engagement",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Pressing Intensity",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Pressing Trap",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Out Of Possession Shape",
+      "category": "Tactical Understanding",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 1,
+      "max_sessions_per_week": 8,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Press Avoidance",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Ball Progression",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Final Third",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defensive Block",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defensive Positioning",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defensive Engagement",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Corners",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Free Kicks",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Penalties",
+      "category": "Match Preparation",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": 0,
+      "injuries": -1,
+      "happiness": 0,
+      "sharpness": 2,
+      "max_sessions_per_week": 1,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Individual Development",
+      "category": "Footballing Development",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Attacking Ball Work",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Dribbling", "Finishing", "Heading", "Long Shots", "Technique", "Aggression", "Anticipation", "Composure", "Decisions", "Flair", "Off The Ball", "Teamwork"],
+        "defensive": ["Finishing", "Long Shots", "Anticipation", "Flair", "Off The Ball"],
+        "goalkeeping": ["Technique", "Decisions", "Flair", "Vision"],
+        "midfield": ["Finishing", "Long Shots", "Anticipation", "Flair", "Off The Ball", "Dribbling", "Composure"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defensive Ball Work",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Marking", "Tackling", "Bravery", "Concentration", "Positioning"],
+        "defensive": ["Heading", "Marking", "Tackling", "Technique", "Aggression", "Bravery", "Concentration", "Decisions", "Positioning", "Teamwork"],
+        "goalkeeping": ["Anticipation", "Bravery", "Composure", "Concentration", "Positioning"],
+        "midfield": ["Marking", "Tackling", "Aggression", "Bravery", "Concentration", "Positioning"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 1,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Possession Ball Work",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["First Touch", "Crossing", "Passing", "Vision"],
+        "defensive": ["First Touch", "Crossing", "Passing", "Vision", "Dribbling"],
+        "goalkeeping": ["First Touch", "Passing", "Vision", "Teamwork"],
+        "midfield": ["Crossing", "Dribbling", "First Touch", "Heading", "Passing", "Technique", "Composure", "Decisions", "Vision", "Teamwork"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Attacking - Balanced",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Crossing", "Dribbling", "Finishing", "First Touch", "Heading", "Long Shots", "Passing", "Technique", "Composure", "Flair", "Off The Ball", "Vision"],
+        "defensive": ["Crossing", "Dribbling", "First Touch", "Heading", "Long Shots", "Passing", "Off The Ball", "Vision"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Crossing", "Dribbling", "First Touch", "Heading", "Long Shots", "Passing", "Technique", "Composure", "Off The Ball", "Vision"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Attacking - Patient",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Finishing", "First Touch", "Passing", "Technique", "Composure", "Decisions", "Flair", "Off The Ball", "Vision", "Teamwork"],
+        "defensive": ["First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Vision", "Teamwork"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Finishing", "First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Vision", "Teamwork"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Attacking - Direct",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Dribbling", "Finishing", "First Touch", "Heading", "Long Shots", "Passing", "Technique", "Anticipation", "Flair", "Off The Ball", "Vision"],
+        "defensive": ["Dribbling", "First Touch", "Long Shots", "Passing", "Technique", "Anticipation", "Off The Ball", "Vision"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Dribbling", "Finishing", "First Touch", "Long Shots", "Passing", "Technique", "Anticipation", "Off The Ball", "Vision"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Attacking - Wings",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Crossing", "Dribbling", "Finishing", "Heading", "Technique", "Anticipation", "Flair", "Off The Ball"],
+        "defensive": ["Crossing", "Dribbling", "Technique", "Anticipation", "Off The Ball"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Crossing", "Dribbling", "Heading", "Technique", "Anticipation", "Flair", "Off The Ball"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defending - Balanced",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Heading", "Marking", "Tackling", "Aggression", "Concentration", "Positioning"],
+        "defensive": ["Heading", "Marking", "Tackling", "Technique", "Aggression", "Anticipation", "Concentration", "Decisions", "Positioning"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Heading", "Marking", "Tackling", "Aggression", "Concentration", "Decisions", "Positioning"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defending - Engaged",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Tackling", "Aggression", "Bravery"],
+        "defensive": ["Tackling", "Aggression", "Bravery", "Decisions", "Positioning"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Tackling", "Aggression", "Bravery", "Decisions"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defending - Disengaged",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Marking", "Positioning", "Teamwork"],
+        "defensive": ["Marking", "Anticipation", "Concentration", "Positioning", "Teamwork"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Marking", "Anticipation", "Positioning", "Teamwork"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Defending - Wide",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Marking", "Decisions", "Positioning"],
+        "defensive": ["Heading", "Marking", "Anticipation", "Decisions", "Positioning"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Marking", "Anticipation", "Decisions", "Positioning"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Theory - Attacking Shadow Play",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Anticipation", "Composure", "Decisions", "Off The Ball", "Teamwork"],
+        "defensive": ["Anticipation", "Composure", "Decisions", "Off The Ball", "Teamwork"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Anticipation", "Composure", "Decisions", "Off The Ball", "Teamwork"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Theory - Defensive Shadow Play",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Anticipation", "Composure", "Decisions", "Positioning", "Teamwork"],
+        "defensive": ["Anticipation", "Composure", "Decisions", "Positioning", "Teamwork"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Anticipation", "Composure", "Decisions", "Positioning", "Teamwork"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Technical - Chance Creation",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Crossing", "Passing", "Technique", "Decisions", "Flair", "Off The Ball", "Vision"],
+        "defensive": ["Crossing", "Passing", "Technique", "Decisions", "Flair", "Off The Ball", "Vision"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Crossing", "Passing", "Technique", "Decisions", "Flair", "Off The Ball", "Vision"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Technical - Chance Conversion",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Finishing", "Heading", "Long Shots", "Technique", "Anticipation", "Composure"],
+        "defensive": ["Finishing", "Heading", "Long Shots", "Technique", "Anticipation", "Composure"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Finishing", "Heading", "Long Shots", "Technique", "Anticipation", "Composure"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Technical - Ball Retention",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["First Touch", "Passing", "Anticipation", "Composure", "Decisions", "Teamwork"],
+        "defensive": ["First Touch", "Passing", "Anticipation", "Composure", "Decisions", "Teamwork"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["First Touch", "Passing", "Anticipation", "Composure", "Decisions", "Teamwork"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Technical - Ground Defence",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Marking", "Tackling", "Technique", "Concentration", "Positioning"],
+        "defensive": ["Marking", "Tackling", "Technique", "Concentration", "Positioning"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Marking", "Tackling", "Technique", "Concentration", "Positioning"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Technical - Aerial Defence",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Heading", "Marking", "Technique", "Bravery", "Positioning"],
+        "defensive": ["Heading", "Marking", "Technique", "Bravery", "Positioning"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Heading", "Marking", "Technique", "Bravery", "Positioning"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Transition - Restrict",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Marking", "Concentration", "Positioning", "Teamwork", "Work Rate"],
+        "defensive": ["Marking", "Concentration", "Positioning", "Teamwork", "Work Rate"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Marking", "Concentration", "Positioning", "Teamwork", "Work Rate"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Transition - Press",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Tackling", "Aggression", "Anticipation", "Positioning", "Teamwork", "Work Rate"],
+        "defensive": ["Tackling", "Aggression", "Anticipation", "Positioning", "Teamwork", "Work Rate"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["Tackling", "Aggression", "Anticipation", "Positioning", "Teamwork", "Work Rate"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Transition - Progress",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["First Touch", "Dribbling", "Passing", "Decisions", "Teamwork", "Work Rate"],
+        "defensive": ["First Touch", "Dribbling", "Passing", "Decisions", "Teamwork", "Work Rate"],
+        "goalkeeping": ["Position/Role"],
+        "midfield": ["First Touch", "Dribbling", "Passing", "Decisions", "Teamwork", "Work Rate"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "GK - Balanced",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Position/Role"],
+        "defensive": ["Position/Role"],
+        "goalkeeping": ["Aerial Reach", "Handling", "One On Ones", "Reflexes", "Rushing Out (Tendency)", "Anticipation", "Concentration", "Decisions", "Positioning", "Agility", "Balance"],
+        "midfield": ["Position/Role"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "GK - Shot Stopping",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Position/Role"],
+        "defensive": ["Position/Role"],
+        "goalkeeping": ["Reflexes", "Anticipation", "Positioning", "Agility"],
+        "midfield": ["Position/Role"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "GK - Handling",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Position/Role"],
+        "defensive": ["Position/Role"],
+        "goalkeeping": ["Aerial Reach", "Handling", "Concentration", "Balance"],
+        "midfield": ["Position/Role"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "GK - One On Ones",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Position/Role"],
+        "defensive": ["Position/Role"],
+        "goalkeeping": ["One On Ones", "Rushing Out (Tendency)", "Anticipation", "Decisions", "Acceleration"],
+        "midfield": ["Position/Role"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "GK - Distribution",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Position/Role"],
+        "defensive": ["Position/Role"],
+        "goalkeeping": ["First Touch", "Kicking", "Passing", "Throwing", "Composure", "Vision"],
+        "midfield": ["Position/Role"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Set Pieces - Delivery",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Crossing", "Free Kick Taking", "Corners", "Long Throws", "Technique"],
+        "defensive": ["Crossing", "Free Kick Taking", "Corners", "Long Throws", "Technique"],
+        "goalkeeping": ["Command Of Area", "Handling", "Anticipation", "Concentration", "Decisions", "Positioning"],
+        "midfield": ["Crossing", "Free Kick Taking", "Corners", "Long Throws", "Technique"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Set Pieces - Penalties",
+      "category": "Footballing Development",
+      "attributes": {
+        "attacking": ["Penalty Taking", "Composure"],
+        "defensive": ["Penalty Taking", "Composure"],
+        "goalkeeping": ["Penalty Taking", "Reflexes", "Composure"],
+        "midfield": ["Penalty Taking", "Composure"]
+      },
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -1,
+      "happiness": 1,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Rest",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": 3,
+      "fatigue": 1,
+      "injuries": 0,
+      "happiness": 2,
+      "sharpness": -3,
+      "max_sessions_per_week": 21,
+      "ignores_category_limits": true
+    },
+    {
+      "name": "Recovery",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": 1,
+      "fatigue": 2,
+      "injuries": 1,
+      "happiness": 1,
+      "sharpness": -2,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Light Conditioning",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": -1,
+      "fatigue": -1,
+      "injuries": -2,
+      "happiness": -1,
+      "sharpness": -1,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Conditioning",
+      "category": "Physical & Recovery",
+      "attributes": {
+        "attacking": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate"],
+        "defensive": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate"],
+        "goalkeeping": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate", "Aerial Reach"],
+        "midfield": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate"]
+      },
+      "condition": -3,
+      "fatigue": -2,
+      "injuries": -2,
+      "happiness": -2,
+      "sharpness": -1,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Heavy Conditioning",
+      "category": "Physical & Recovery",
+      "attributes": {
+        "attacking": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate"],
+        "defensive": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate"],
+        "goalkeeping": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate", "Aerial Reach"],
+        "midfield": ["Acceleration", "Agility", "Balance", "Jumping Reach", "Pace", "Stamina", "Strength", "Work Rate"]
+      },
+      "condition": -3,
+      "fatigue": -3,
+      "injuries": -2,
+      "happiness": -3,
+      "sharpness": -1,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Rest (IM)",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": 0,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 0,
+      "sharpness": 0,
+      "max_sessions_per_week": 21,
+      "ignores_category_limits": true
+    },
+    {
+      "name": "Recovery (IM)",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": 0,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 0,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Light Conditioning (IM)",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": 0,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 0,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Team Bonding",
+      "category": "Extra-Curricular",
+      "attributes": {},
+      "condition": 1,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 3,
+      "sharpness": -3,
+      "max_sessions_per_week": 2,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Community Outreach",
+      "category": "Extra-Curricular",
+      "attributes": {},
+      "condition": 1,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 3,
+      "sharpness": -3,
+      "max_sessions_per_week": 2,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Travel",
+      "category": "Extra-Curricular",
+      "attributes": {},
+      "condition": 1,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 0,
+      "sharpness": -3,
+      "max_sessions_per_week": 21,
+      "ignores_category_limits": true
+    },
+    {
+      "name": "Match",
+      "category": "Match",
+      "attributes": {},
+      "condition": 0,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 0,
+      "sharpness": 0,
+      "max_sessions_per_week": 7,
+      "ignores_category_limits": false
+    },
+    {
+      "name": "Not Available",
+      "category": "Physical & Recovery",
+      "attributes": {},
+      "condition": 0,
+      "fatigue": 0,
+      "injuries": 0,
+      "happiness": 0,
+      "sharpness": 0,
+      "max_sessions_per_week": 21,
+      "ignores_category_limits": true
+    }
+  ]
+}
