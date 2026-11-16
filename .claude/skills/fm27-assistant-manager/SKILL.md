@@ -28,10 +28,34 @@ on what this skill summarises:
 
 - `context/managers.md` — top attributes, hard gates, formation naming rules, transfer tiers, match-log sheet format.
 - `context/managers_tactics.md` — per manager: formations with roles, the full instruction set per phase, game-state adjustments, mentality floor/ceiling, open questions.
-- `context/tactics_manual.md` — optional out-of-possession instructions; each group allows one choice or none.
+- `context/tactics_manual.md` — FM26-era list of optional out-of-possession instructions; the full FM27 set is in `game_data/instructions.json`.
 - `scouting/<manager>.json` — valued attributes, gates, age rule, and the `targets` shortlist.
 - `context/clubes_por_tecnico.md` — clubs that suit each manager, for job-move questions.
-- `game_data/` — facts pulled from the FM27 game files: every role with its positions and tactical complexity (`roles.json`), every team and player instruction with valid options (`instructions.json`), stat-to-attribute links (`stat_attributes.json`), training sessions (`training.json`) and preset formation pairs per style (`tactic_presets.json`). Only suggest roles and instructions that exist there.
+- `game_data/` — facts pulled from the FM27 game files. See "How the game works" below.
+
+## How the game works
+
+When a question is about the game itself rather than this save, check `game_data/` before
+answering from memory. FM27 changed a lot from FM24–26, and these files come from the installed
+game (version in each file's `source.version`). For example: does a role or instruction exist,
+where can it play, what does it cost, which attributes drive a stat, or what does a training
+session do.
+
+| Question | File |
+|---|---|
+| Does this role exist? In or out of possession? Which positions? | `game_data/roles.json` (`id`, `phase`, `positions`, `harness`, `score_column`) |
+| How "heavy" is a role or instruction to learn? | `complexity` in `roles.json` and `instructions.json` (role 0–3; a player holds up to 4 with his instructions; team total 0–49) |
+| Which instruction options exist, and in which phase? | `game_data/instructions.json` (`team` and `player`; one option per group or none) |
+| Which attributes make a player rack up a stat (interceptions, key passes, pressures, sprints…)? | `game_data/stat_attributes.json` |
+| What does a training session train, and its cost in fatigue, injury risk and sharpness? | `game_data/training.json` |
+| Which formation pairs does the game suggest for a style (gegenpress, tiki-taka…)? | `game_data/tactic_presets.json` |
+
+Rules that follow from it:
+- Suggest only roles and instructions that exist there, with the in-game names (`name`). Configs use `harness` with underscores.
+- `positions` of an out-of-possession role refer to the slot in the **out-of-possession shape**. When the shapes differ (e.g. AMC with the ball, MC without it), the OOP role follows the shape without the ball.
+- When a tactic piles on complexity (several roles at 3, many instructions at 2–3), say it will take longer to learn. The game weighs team complexity at 0.6, player at 0.3 and opposition instructions at 0.1 in tactical understanding.
+- To explain why a player stands out (or falls short) in a stat, use `stat_attributes.json`. These are the links the engine itself uses.
+- If the answer isn't there, `game_data/README.md` lists what has not been extracted yet (OOP role attribute weights, rating coefficients, xG). Say you are using general knowledge, not the game's data.
 
 ## The pipeline
 
@@ -84,7 +108,7 @@ are still FM26.
    - Duarte changes shape freely and is the only one who reaches very attacking; ahead, he keeps the ball rather than defending.
    - Casca never leaves the 4-4-2; only roles, mentality and instructions move, and positive is his ceiling.
 
-   Give the change as a complete, enterable set: formation name, roles in positional order, mentality, then instructions by phase (in possession, transition, out of possession), marking what changed from the previous setup. Only use instructions that exist in the manuals.
+   Give the change as a complete, enterable set: formation name, roles in positional order, mentality, then instructions by phase (in possession, transition, out of possession), marking what changed from the previous setup. Only use instructions that exist in the manuals or in `game_data/instructions.json`.
 6. **Log the segment.** A formation change mid-match closes one segment and opens another. Produce rows for the sheet described in `managers.md` (`Team | Name | Roles | Duration | XG | XGA | XG Diff | Opp | XG Diff/min`): tab-separated in a code block, decimal comma, lowercase team/formation/opponent. First row uses absolute values; later rows use cumulative minus the previous cumulative; `XG Diff/min` is computed on the delta, to 3 places. You cannot write to the sheet, so the block is for pasting.
 
 If a formation is flagged under "Pendências em aberto" in the manual, say that the sample is thin

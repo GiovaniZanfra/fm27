@@ -3,6 +3,8 @@
 Referência consolidada: perfil, atributos, formações, roles e opções táticas (com e sem bola).
  
 **Convenções:** roles na ordem posicional do campo (GK → laterais/zaga → meio → ataque). Nomes de formação em minúsculo, como vão pra planilha.
+
+**Dúvidas sobre o jogo:** quais roles e instruções existem no FM27, em que posição cada role joga, quanto cada uma pesa de complexidade tática e quais atributos o motor liga a cada estatística estão em `game_data/` (ver `game_data/README.md`). Na dúvida sobre a engine, consulte lá antes de responder de memória.
  
 ---
  

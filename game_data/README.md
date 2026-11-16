@@ -26,7 +26,9 @@ powershell -ExecutionPolicy Bypass -File game_data\extract\build.ps1
 powershell -ExecutionPolicy Bypass -File game_data\extract\build.ps1 -GameDir "E:\Games\Football Manager 27"
 ```
 
-Depois confira o `git diff`. Se o jogo ganhar ou perder uma role, o build avisa e o `extract/role_notes.json` precisa ser atualizado.
+As posições de uma role sem bola valem para o slot na **formação sem bola**. Se a formação muda (AMC com bola, MC sem bola), a role OOP segue a formação sem bola.
+
+Depois de regenerar, confira o `git diff`. Se o jogo ganhar ou perder uma role, o build avisa e o `extract/role_notes.json` precisa ser atualizado.
 
 Para explorar o resto dos dados, o `fmf.ps1` lista ou desempacota qualquer `.fmf` (e converte os `.jsb` para JSON):
 

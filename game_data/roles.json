@@ -499,7 +499,7 @@
       "name": "Centre-Back",
       "harness": "Centre Back OOP",
       "score_column": "Centre_Back_OOP_Score",
-      "in_roles_py": false,
+      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 0,
       "summary": "Default central defending, between stepping out and covering."
@@ -576,7 +576,7 @@
       "name": "Goalkeeper",
       "harness": "Goalkeeper OOP",
       "score_column": "Goalkeeper_OOP_Score",
-      "in_roles_py": false,
+      "in_roles_py": true,
       "positions": ["GK"],
       "complexity": 1,
       "summary": "Default keeper positioning without the ball."
@@ -796,7 +796,7 @@
       "name": "Wide Centre-Back",
       "harness": "Wide Centre Back OOP",
       "score_column": "Wide_Centre_Back_OOP_Score",
-      "in_roles_py": false,
+      "in_roles_py": true,
       "positions": ["DC"],
       "complexity": 0,
       "summary": "Default defending for the outside centre-back of a back three."
