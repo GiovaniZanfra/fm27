@@ -17,6 +17,26 @@ Referência consolidada: perfil, atributos, formações, roles e opções tátic
  
 **Regra de ouro:** ajusta **roles antes de trocar sistema**.
  
+### FM27 · `meunders ball` — config `configs/sporting/meunders_ball.json`
+
+| Pos | Com bola | Sem bola |
+|---|---|---|
+| GK | Ball-Playing Goalkeeper | Line-Holding Goalkeeper |
+| DR | Wing-Back | Full-Back |
+| DC | Ball-Playing Centre-Back | Centre-Back |
+| DC | No-Nonsense Centre-Back | Covering Centre-Back |
+| DL | Playmaking Wing-Back | Holding Full-Back |
+| DM | Defensive Midfielder | Defensive Midfielder |
+| MC | Box-to-Box Playmaker | Central Midfielder |
+| AML | Inside Winger | Inside Outlet Winger |
+| AMC | Advanced Playmaker | Pressing Central Midfielder |
+| AMR | Inside Winger | Winger |
+| ST | Channel Forward | Central Outlet Centre-Forward |
+
+**Mentality / instruções:** a definir.
+
+*As táticas abaixo (1.1–1.3) são do FM26 e usam os nomes de role antigos.*
+
 ### 1.1 `4222 control` — o padrão
  
 `SK, FB, BPD, BPD, FB, DM, BWM, AP, SS, TF, PF`

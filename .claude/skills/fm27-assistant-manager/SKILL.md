@@ -65,8 +65,9 @@ out-of-possession one; the slot score is `ip_weight * role + (1 - ip_weight) * r
 `_OOP`. A wrong name stops the run. The run prints `Best Role` and `Best OOP` per player.
 `callup.json` is a squad-sized config (23–25 slots) for registration and matchday squads.
 
-The FM27 configs for the four managers are still to be written from their FM27 tactics; until
-then only `configs/template.json` exists. When a manager's tactic arrives, write
+FM27 configs so far: Giovani `meunders ball` → `configs/sporting/meunders_ball.json`. The other
+managers' configs are still to be written from their FM27 tactics. The user dictates a tactic as
+one line per slot: `POS: in-possession role, out-of-possession role`. When a manager's tactic arrives, write
 `configs/<team>/<formation>.json` and update `context/managers_tactics.md`, whose role names
 are still FM26.
 
