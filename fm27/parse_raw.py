@@ -307,7 +307,13 @@ def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
             rename[col] = ATTRIBUTE_ALIASES[col]
     df = df.rename(columns=rename)
     if 'UID' not in df.columns:
-        df['UID'] = df['Name']
+        # No UID in the export: homonyms get a running number ("Vitinho (1)",
+        # "Vitinho (2)") via _append_uid_to_duplicate_names; others keep their name.
+        names = df['Name'].astype(str).str.strip()
+        dup = names.duplicated(keep=False)
+        df['UID'] = names.where(~dup, (names.groupby(names).cumcount() + 1).astype(str))
+        if dup.any():
+            print(f"Warning: no UID column; homonyms numbered: {sorted(set(names[dup]))}")
     return df
 
 def get_attribute_columns(df: pd.DataFrame):

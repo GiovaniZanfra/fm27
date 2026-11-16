@@ -53,28 +53,22 @@ Include `Best Role` when it differs from the assigned role, since that is a retr
 
 ### Configs
 
-A config is a list of `{position, role}` slots plus `age_penalty`, `age_threshold` and `multipliers`.
+A config is a list of `{position, role, role_oop}` slots plus `ip_weight`, `age_penalty`,
+`age_threshold` and `multipliers`. Start from `configs/template.json`.
 Positions are the columns of `positions.csv`: `GK DR DC DL WBR DM WBL MR MC ML AMR AMC AML ST`.
-Role names are the class names in `fm27/roles.py` with underscores (`Ball_Playing_Defender`,
-`GoalKeeper`, `Segundo_Volante`…); a wrong name stops the run. `callup.json` is a squad-sized
-config (23–25 slots) for registration and matchday squads.
 
-Manual formation → config:
+FM27 gives every slot two roles. `role` is the in-possession role and `role_oop` the
+out-of-possession one; the slot score is `ip_weight * role + (1 - ip_weight) * role_oop`
+(`ip_weight` defaults to 0.5). A slot without `role_oop` uses only `role`. Role names are the
+`ROLE_DEFINITIONS` names in `fm27/roles.py` with spaces turned into underscores
+(`Ball_Playing_Centre_Back`, `Covering_Centre_Back_OOP`); every out-of-possession role ends in
+`_OOP`. A wrong name stops the run. The run prints `Best Role` and `Best OOP` per player.
+`callup.json` is a squad-sized config (23–25 slots) for registration and matchday squads.
 
-| Manager | Formation in the manual | Config |
-|---|---|---|
-| Giovani | `4222 control` / `4222 pressure` | `4222_control.json` / `4222_pressure.json` |
-| Giovani | `diamond control v2` | none yet |
-| Keller | `blitz` / `4-2-3-1 vertical` / `emboscada` | `433_blitz.json` / `4231_vertical.json` / `4231_trap.json` |
-| Duarte | `carrossel` / `ginga` | `4231_carrossel.json` / `433_ginga.json` |
-| Duarte | `estouro` | none yet |
-| Casca | `padrão` | `442_standard.json` |
-| Casca | `rolo compressor`, `ferrolho`, `comprimido` | none yet |
-
-Several configs have drifted from the roles in the manual. Before running, compare the config's
-roles with the manual's line for that formation and mention any difference. When a formation has
-no config, create one by copying that manager's closest config (to keep the age settings and
-multipliers) and changing only the slots, then say that you did.
+The FM27 configs for the four managers are still to be written from their FM27 tactics; until
+then only `configs/template.json` exists. When a manager's tactic arrives, write
+`configs/<team>/<formation>.json` and update `context/managers_tactics.md`, whose role names
+are still FM26.
 
 ## In a match
 

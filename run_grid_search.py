@@ -14,7 +14,7 @@ os.chdir(REPO)  # optimize_teams uses relative paths
 from fm27.team_optimizer import optimize_teams
 
 TEAM = "sporting"
-BASE_CONFIG = REPO / "configs" / TEAM / "4222.json"
+BASE_CONFIG = REPO / "configs" / "template.json"
 TEMP_CONFIG = REPO / "configs" / TEAM / "_grid_temp.json"
 OUTPUT_XLSX = REPO / "data" / TEAM / "grid_search_results.xlsx"
 

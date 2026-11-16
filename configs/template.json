@@ -1,0 +1,23 @@
+{
+    "ip_weight": 0.5,
+    "age_penalty": 0.0,
+    "age_threshold": 30,
+    "multipliers": {
+        "Av Rating": 0.0,
+        "Last 5 Games": 0.0,
+        "Transfer Value": 0.0
+    },
+    "formation": [
+        {"position": "GK",  "role": "Goalkeeper",               "role_oop": "Sweeper_Keeper_OOP"},
+        {"position": "DR",  "role": "Full_Back",                "role_oop": "Pressing_Full_Back_OOP"},
+        {"position": "DC",  "role": "Ball_Playing_Centre_Back", "role_oop": "Covering_Centre_Back_OOP"},
+        {"position": "DC",  "role": "Centre_Back",              "role_oop": "Stopping_Centre_Back_OOP"},
+        {"position": "DL",  "role": "Wing_Back",                "role_oop": "Wing_Back_OOP"},
+        {"position": "DM",  "role": "Deep_Lying_Playmaker",     "role_oop": "Screening_Defensive_Midfielder_OOP"},
+        {"position": "MC",  "role": "Box_To_Box_Midfielder",    "role_oop": "Pressing_Central_Midfielder_OOP"},
+        {"position": "AMR", "role": "Inside_Forward",           "role_oop": "Tracking_Winger_OOP"},
+        {"position": "AMC", "role": "Advanced_Playmaker",       "role_oop": "Attacking_Midfielder_OOP"},
+        {"position": "AML", "role": "Winger",                   "role_oop": "Winger_OOP"},
+        {"position": "ST",  "role": "Channel_Forward",          "role_oop": "Centre_Forward_OOP"}
+    ]
+}

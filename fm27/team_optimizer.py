@@ -19,13 +19,20 @@ METRIC_COLUMN_MAP: Dict[str, str] = {
 
 @dataclass
 class PositionRequirement:
-    """Represents a required position in the formation with its role."""
-    position: str  # e.g., 'DL', 'DC', 'MC'
-    role: str     # e.g., 'fullback', 'centreback', 'widecentreback'
-    
+    """A slot in the formation: position, in-possession role and optional out-of-possession role."""
+    position: str               # e.g. 'DL', 'DC', 'MC'
+    role: str                   # in possession, e.g. 'Ball_Playing_Centre_Back'
+    role_oop: str | None = None  # out of possession, e.g. 'Covering_Centre_Back_OOP'
+
     def get_score_column(self) -> str:
-        """Get the column name for this role's score in the dataframe."""
+        """Score column of the in-possession role."""
         return f"{self.role.replace(' ', '_')}_Score"
+
+    def get_oop_score_column(self) -> str | None:
+        """Score column of the out-of-possession role, if the slot has one."""
+        if not self.role_oop:
+            return None
+        return f"{self.role_oop.replace(' ', '_')}_Score"
 
 
 class TeamOptimizer:
@@ -33,7 +40,8 @@ class TeamOptimizer:
 
     def __init__(self, scores_df: pd.DataFrame, positions_df: pd.DataFrame, exclude_players: List[str] = None,
                  age_penalty: float = 0.0, age_threshold: int = 30,
-                 multipliers: Dict[str, float] = None, arabic_penalty: float = 0.0):
+                 multipliers: Dict[str, float] = None, arabic_penalty: float = 0.0,
+                 ip_weight: float = 0.5):
         self.scores_df = scores_df
         self.positions_df = positions_df
         self.selected_players = set()
@@ -41,6 +49,10 @@ class TeamOptimizer:
         self.age_threshold = int(age_threshold or 0)
         self.multipliers = multipliers or {}
         self.arabic_penalty = float(arabic_penalty or 0.0)
+        # Weight of the in-possession role when a slot also has an OOP role.
+        self.ip_weight = float(ip_weight)
+        if not 0.0 <= self.ip_weight <= 1.0:
+            raise ValueError(f"ip_weight must be between 0 and 1, got {self.ip_weight}")
         if exclude_players:
             self.selected_players.update(exclude_players)
         
@@ -66,14 +78,19 @@ class TeamOptimizer:
         adjusted_scores = np.full((n_positions, n_players), np.nan)
         for i, req in enumerate(requirements):
             score_col = req.get_score_column()
+            oop_col = req.get_oop_score_column()
             pos_col = req.position  # e.g., 'DL', 'DR', etc.
-            if score_col not in available_scores_df.columns:
-                raise ValueError(f"Score column '{score_col}' not found in scores file.")
+            for col in (score_col, oop_col):
+                if col and col not in available_scores_df.columns:
+                    raise ValueError(f"Score column '{col}' not found in scores file (check the role name).")
             if pos_col not in available_positions_df.columns:
                 raise ValueError(f"Position column '{pos_col}' not found in positions file.")
             for j in range(n_players):
                 player_name = available_players[j]
                 score = available_scores_df.loc[available_scores_df['Name'] == player_name, score_col].values[0]
+                if oop_col:
+                    oop_score = available_scores_df.loc[available_scores_df['Name'] == player_name, oop_col].values[0]
+                    score = self.ip_weight * score + (1 - self.ip_weight) * oop_score
                 pos_val = available_positions_df.loc[available_positions_df['Name'] == player_name, pos_col].values[0]
                 if pos_val == True:
                     if self.age_penalty and 'Age' in available_scores_df.columns:
@@ -115,6 +132,7 @@ class TeamOptimizer:
                     'Name': 'No eligible player',
                     'Position': req.position,
                     'Role': req.role,
+                    'Role_OOP': req.role_oop or '',
                     'Score': None
                 })
                 continue
@@ -122,6 +140,7 @@ class TeamOptimizer:
                 'Name': player['Name'],
                 'Position': req.position,
                 'Role': req.role,
+                'Role_OOP': req.role_oop or '',
                 'Score': float(adjusted_score) if not pd.isna(adjusted_score) else None
             })
             self.selected_players.add(player['Name'])
@@ -134,8 +153,8 @@ def parse_formation(formation_data: List[Dict[str, str]]) -> List[PositionRequir
     Parse formation data into position requirements.
     
     Args:
-        formation_data: List of dicts with position and role
-            (e.g., [{"position": "DL", "role": "fullback"}, ...])
+        formation_data: List of dicts with position, role and optional role_oop
+            (e.g., [{"position": "DL", "role": "Full_Back", "role_oop": "Pressing_Full_Back_OOP"}, ...])
         
     Returns:
         List of PositionRequirement objects
@@ -145,7 +164,8 @@ def parse_formation(formation_data: List[Dict[str, str]]) -> List[PositionRequir
     for pos_data in formation_data:
         requirements.append(PositionRequirement(
             position=pos_data["position"],
-            role=pos_data["role"]
+            role=pos_data["role"],
+            role_oop=pos_data.get("role_oop"),
         ))
     
     return requirements
@@ -228,6 +248,7 @@ def optimize_teams(
     cfg_age_penalty = config.get("age_penalty")
     cfg_age_threshold = config.get("age_threshold")
     cfg_arabic_penalty = config.get("arabic_penalty")
+    ip_weight = float(config.get("ip_weight", 0.5))
 
     if age_penalty is None:
         age_penalty = float(cfg_age_penalty) if cfg_age_penalty is not None else 0.0
@@ -273,6 +294,7 @@ def optimize_teams(
             age_threshold=age_threshold,
             multipliers=resolved_multipliers,
             arabic_penalty=arabic_penalty,
+            ip_weight=ip_weight,
         )
 
         team_df = optimizer.optimize_team(requirements)

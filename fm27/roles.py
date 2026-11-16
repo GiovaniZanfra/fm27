@@ -58,426 +58,283 @@ class Role:
         if den == 0:
             return 0.0
         return num / den
-    
 
-class SweeperKeeper(Role):
-    def __init__(self):
-        super().__init__("Sweeper Keeper",
-            tier1=["Command Of Area", "Kicking", "One On Ones", "Reflexes", "Rushing Out", "Anticipation", "Composure", "Concentration", "Positioning", "Agility"],
-            tier2=["Aerial Reach", "Communication", "First Touch", "Handling", "Passing", "Throwing", "Decisions", "Vision", "Acceleration"]
-        )
+# =====================================================================
+# FM27 roles
+#
+# Each entry: (name, tier1, tier2). Score column = name with spaces -> "_"
+# plus "_Score"; configs refer to a role by that underscored name
+# (e.g. "Ball_Playing_Centre_Back", "Covering_Centre_Back_OOP").
+# In-possession roles have plain names; every out-of-possession role ends in
+# " OOP". A role listed under several positions in the game (e.g. Winger in
+# M and AM) has the same tiers everywhere, so it is defined once.
+# =====================================================================
 
-class Goalkeeper(Role):
-    def __init__(self):
-        super().__init__("GoalKeeper",
-            tier1=["Aerial Reach", "Command Of Area", "Communication", "Handling", "Kicking", "Reflexes", "Concentration", "Positioning", "Agility"],
-            tier2=["One On Ones", "Throwing", "Anticipation", "Decisions"]
-        )
+OTB = "Off The Ball"
 
-# -----------------------------
-# DEFENSIVE / WINGS ROLES
-# -----------------------------
-class WingBack(Role):
-    def __init__(self):
-        super().__init__("Wing Back",
-            tier1=["Crossing", "Marking", "Tackling", "Team Work", "Work Rate", "Acceleration", "Pace", "Stamina"],
-            tier2=["Dribbling", "First Touch", "Passing", "Technique", "Anticipation", "Concentration", "Decisions", "Off The Ball", "Positioning", "Agility", "Balance"]
-        )
+ROLE_DEFINITIONS = [
+    # ---------------- GK ----------------
+    # in possession
+    ("Goalkeeper",
+     ["Aerial Reach", "Command Of Area", "Communication", "Handling", "Reflexes", "Concentration", "Positioning", "Agility"],
+     ["Kicking", "One On Ones", "Anticipation", "Decisions"]),
+    ("No Nonsense Goalkeeper",
+     ["Aerial Reach", "Command Of Area", "Communication", "Handling", "Reflexes", "Concentration", "Positioning", "Agility"],
+     ["One On Ones", "Anticipation", "Decisions"]),
+    ("Ball Playing Goalkeeper",
+     ["Aerial Reach", "Command Of Area", "Communication", "Handling", "Kicking", "Reflexes", "Concentration", "Positioning", "Agility"],
+     ["Eccentricity", "One On Ones", "Passing", "Throwing", "Anticipation", "Composure", "Decisions"]),
+    # out of possession
+    ("Sweeper Keeper OOP",
+     ["Aerial Reach", "Command Of Area", "Communication", "Handling", "One On Ones", "Reflexes", "Rushing Out", "Anticipation", "Decisions", "Agility"],
+     ["Eccentricity", "Concentration", "Positioning", "Acceleration"]),
+    ("Line Holding Goalkeeper OOP",
+     ["Aerial Reach", "Command Of Area", "Communication", "Handling", "Reflexes", "Concentration", "Positioning", "Agility"],
+     ["One On Ones", "Anticipation", "Decisions"]),
 
-class PlaymakingWingBack(Role):
-    def __init__(self):
-        super().__init__("Playmaking Wing Back",
-            tier1=["First Touch", "Passing", "Tackling", "Technique", "Composure", "Decisions", "Team Work", "Vision", "Acceleration"],
-            tier2=["Crossing", "Dribbling", "Marking", "Anticipation", "Concentration", "Off The Ball", "Positioning", "Work Rate", "Agility", "Pace", "Stamina"]
-        )
+    # ---------------- D(C) ----------------
+    ("Ball Playing Centre Back",
+     ["Heading", "Marking", "Passing", "Tackling", "Anticipation", "Composure", "Positioning", "Jumping Reach", "Strength"],
+     ["First Touch", "Technique", "Aggression", "Bravery", "Concentration", "Decisions", "Vision", "Pace"]),
+    ("Advanced Centre Back",
+     ["Heading", "Marking", "Passing", "Tackling", "Technique", "Anticipation", "Composure", "Decisions", "Positioning", "Team Work", "Jumping Reach", "Strength"],
+     ["Dribbling", "First Touch", "Aggression", "Bravery", "Concentration", "Vision", "Pace", "Stamina"]),
+    ("Overlapping Centre Back",
+     ["Crossing", "Heading", "Marking", "Tackling", "Anticipation", "Work Rate", "Jumping Reach", "Pace", "Stamina", "Strength"],
+     ["Dribbling", "Technique", "Aggression", "Bravery", "Composure", "Concentration", "Decisions", OTB, "Positioning", "Acceleration", "Agility"]),
+    ("No Nonsense Centre Back",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
+     ["Aggression", "Bravery", "Concentration", "Pace"]),
+    ("Centre Back",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
+     ["Aggression", "Bravery", "Composure", "Concentration", "Decisions", "Pace"]),
+    ("Wide Centre Back",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
+     ["Dribbling", "Aggression", "Bravery", "Composure", "Concentration", "Decisions", "Work Rate", "Acceleration", "Agility", "Pace", "Stamina"]),
+    ("Stopping Wide Centre Back OOP",
+     ["Heading", "Marking", "Tackling", "Aggression", "Anticipation", "Bravery", "Positioning", "Jumping Reach", "Strength"],
+     ["Concentration", "Decisions", "Acceleration", "Agility", "Pace"]),
+    ("Stopping Centre Back OOP",
+     ["Heading", "Marking", "Tackling", "Aggression", "Anticipation", "Bravery", "Positioning", "Jumping Reach", "Strength"],
+     ["Concentration", "Decisions", "Pace"]),
+    ("Covering Wide Centre Back OOP",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning", "Jumping Reach", "Pace", "Strength"],
+     ["Bravery", "Acceleration", "Agility"]),
+    ("Covering Centre Back OOP",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning", "Jumping Reach", "Pace", "Strength"],
+     ["Bravery", "Acceleration"]),
 
-class InvertedWingBack(Role):
-    def __init__(self):
-        super().__init__("Inverted Wing Back",
-            tier1=["First Touch", "Passing", "Tackling", "Technique", "Composure", "Decisions", "Team Work"],
-            tier2=["Marking", "Technique", "Anticipation", "Concentration", "Off The Ball", "Positioning", "Vision", "Work Rate", "Acceleration", "Agility", "Stamina"]
-        )
+    # ---------------- D(R/L) ----------------
+    ("Inside Full Back",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Strength"],
+     ["Dribbling", "Aggression", "Bravery", "Composure", "Concentration", "Decisions", "Work Rate", "Acceleration", "Agility", "Jumping Reach", "Pace", "Stamina"]),
+    ("Full Back",
+     ["Marking", "Tackling", "Anticipation", "Concentration", "Positioning", "Team Work", "Acceleration"],
+     ["Crossing", "Dribbling", "Passing", "Technique", "Decisions", "Work Rate", "Agility", "Pace", "Stamina"]),
+    ("Holding Full Back OOP",
+     ["Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning", "Acceleration"],
+     ["Team Work", "Agility", "Pace"]),
+    ("Pressing Full Back OOP",
+     ["Marking", "Tackling", "Aggression", "Anticipation", "Positioning", "Team Work", "Work Rate", "Acceleration"],
+     ["Bravery", "Concentration", "Decisions", "Agility", "Pace", "Stamina"]),
+    ("Full Back OOP",
+     ["Marking", "Tackling", "Anticipation", "Positioning", "Team Work", "Acceleration"],
+     ["Aggression", "Concentration", "Decisions", "Work Rate", "Agility", "Pace", "Stamina"]),
 
-class SegundoVolante(Role):
-    def __init__(self):
-        super().__init__("Segundo Volante",
-            tier1=["Marking", "Passing", "Tackling", "Off The Ball", "Positioning", "Work Rate", "Pace", "Stamina"],
-            tier2=["Finishing", "First Touch", "Long Shots", "Anticipation", "Composure", "Concentration", "Decisions", "Acceleration", "Balance", "Strength"]
-        )
+    # ---------------- D(R/L) and WB(R/L) ----------------
+    ("Inside Wing Back",
+     ["Passing", "Tackling", "Anticipation", "Composure", "Decisions", "Positioning", "Team Work", "Acceleration"],
+     ["First Touch", "Marking", "Technique", "Concentration", "Work Rate", "Agility", "Pace", "Stamina"]),
+    ("Playmaking Wing Back",
+     ["First Touch", "Passing", "Tackling", "Technique", "Composure", "Decisions", "Team Work", "Vision", "Acceleration"],
+     ["Crossing", "Dribbling", "Marking", "Anticipation", "Concentration", OTB, "Positioning", "Work Rate", "Agility", "Pace", "Stamina"]),
+    ("Wing Back",
+     ["Crossing", "Marking", "Tackling", "Team Work", "Work Rate", "Acceleration", "Pace", "Stamina"],
+     ["Dribbling", "First Touch", "Passing", "Technique", "Anticipation", "Concentration", "Decisions", OTB, "Positioning", "Agility", "Balance"]),
 
-class InsideWingBack(Role):
-    def __init__(self):
-        super().__init__("Inside Wing Back",
-            tier1=["Passing", "Tackling", "Anticipation", "Composure", "Decisions", "Positioning", "Team Work", "Acceleration"],
-            tier2=["First Touch", "Marking", "Technique", "Concentration", "Work Rate", "Agility", "Pace", "Stamina"]
-        )
+    # ---------------- WB(R/L) ----------------
+    ("Advanced Wing Back",
+     ["Crossing", "Dribbling", "Technique", OTB, "Team Work", "Work Rate", "Acceleration", "Agility", "Pace", "Stamina"],
+     ["First Touch", "Marking", "Passing", "Tackling", "Anticipation", "Decisions", "Flair", "Positioning", "Balance"]),
+    ("Pressing Wing Back OOP",
+     ["Marking", "Tackling", "Aggression", "Anticipation", "Positioning", "Team Work", "Work Rate", "Acceleration", "Stamina"],
+     ["Bravery", "Concentration", "Decisions", "Agility", "Pace"]),
+    ("Wing Back OOP",
+     ["Marking", "Tackling", "Anticipation", "Positioning", "Team Work", "Acceleration", "Stamina"],
+     ["Aggression", "Concentration", "Decisions", "Work Rate", "Agility", "Pace"]),
+    ("Holding Wing Back OOP",
+     ["Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning", "Acceleration"],
+     ["Team Work", "Agility", "Pace", "Stamina"]),
 
-class FullBack(Role):
-    def __init__(self):
-        super().__init__("Full Back",
-            tier1=["Marking", "Tackling", "Anticipation", "Concentration", "Positioning", "Team Work", "Acceleration"],
-            tier2=["Crossing", "Dribbling", "Passing", "Technique", "Decisions", "Work Rate", "Agility", "Pace", "Stamina"]
-        )
+    # ---------------- DM ----------------
+    ("Box To Box Midfielder",
+     ["Passing", "Tackling", OTB, "Team Work", "Work Rate", "Stamina"],
+     ["Dribbling", "Finishing", "First Touch", "Long Shots", "Technique", "Aggression", "Anticipation", "Composure", "Decisions", "Positioning", "Acceleration", "Balance", "Pace", "Strength"]),
+    ("Deep Lying Playmaker",
+     ["First Touch", "Passing", "Technique", "Composure", "Decisions", "Team Work", "Vision"],
+     ["Marking", "Tackling", "Anticipation", "Concentration", OTB, "Positioning", "Work Rate", "Balance", "Stamina"]),
+    ("Defensive Midfielder",
+     ["Tackling", "Anticipation", "Concentration", "Positioning", "Team Work"],
+     ["First Touch", "Marking", "Passing", "Aggression", "Composure", "Decisions", "Work Rate", "Stamina", "Strength"]),
+    ("Half Back",
+     ["Heading", "Marking", "Tackling", "Anticipation", "Concentration", "Positioning", "Team Work", "Jumping Reach", "Strength"],
+     ["First Touch", "Passing", "Aggression", "Bravery", "Composure", "Decisions", "Work Rate", "Stamina"]),
+    ("Box To Box Playmaker",
+     ["First Touch", "Passing", "Technique", "Composure", "Decisions", OTB, "Team Work", "Vision", "Work Rate", "Stamina"],
+     ["Dribbling", "Long Shots", "Marking", "Tackling", "Anticipation", "Positioning", "Acceleration", "Agility", "Balance", "Pace"]),
+    ("Defensive Midfielder OOP",
+     ["Tackling", "Anticipation", "Decisions", "Positioning", "Team Work", "Work Rate"],
+     ["Marking", "Aggression", "Concentration", "Stamina", "Strength"]),
+    ("Wide Covering Defensive Midfielder OOP",
+     ["Marking", "Tackling", "Anticipation", "Decisions", "Positioning", "Team Work", "Work Rate", "Agility", "Stamina"],
+     ["Aggression", "Concentration", "Pace", "Strength"]),
+    ("Pressing Defensive Midfielder OOP",
+     ["Tackling", "Aggression", "Anticipation", "Decisions", "Positioning", "Team Work", "Work Rate", "Stamina"],
+     ["Marking", "Concentration", "Pace", "Strength"]),
+    ("Screening Defensive Midfielder OOP",
+     ["Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning"],
+     ["Team Work", "Work Rate", "Stamina", "Strength"]),
+    ("Dropping Defensive Midfielder OOP",
+     ["Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning", "Team Work", "Work Rate", "Jumping Reach", "Strength"],
+     ["Aggression", "Stamina"]),
 
+    # ---------------- M(R/L) and AM(R/L) ----------------
+    ("Playmaking Winger",
+     ["Crossing", "Dribbling", "First Touch", "Passing", "Technique", "Composure", "Decisions", OTB, "Team Work", "Vision", "Acceleration"],
+     ["Anticipation", "Flair", "Work Rate", "Agility", "Pace", "Stamina"]),
+    ("Inside Winger",
+     ["Dribbling", "First Touch", "Technique", "Composure", "Team Work", "Acceleration", "Agility"],
+     ["Crossing", "Long Shots", "Passing", "Anticipation", "Flair", OTB, "Vision", "Work Rate", "Balance", "Pace", "Stamina"]),
+    ("Winger",
+     ["Crossing", "Dribbling", "Technique", "Team Work", "Acceleration", "Agility", "Pace"],
+     ["First Touch", "Passing", "Anticipation", "Flair", OTB, "Work Rate", "Balance", "Stamina"]),
 
-class InvertedFullBack(Role):
-    def __init__(self):
-        super().__init__("Inverted Full Back",
-            tier1=["Heading", "Marking", "Tackling", "Positioning", "Strength"],
-            tier2=["Dribbling", "First Touch", "Passing", "Technique", "Agression", "Anticipation", "Bravery", "Composure", "Concentration", "Decisions", "Work Rate", "Agility", "Jumping Reach", "Pace"]
-        )
+    # ---------------- M(R/L) ----------------
+    ("Wide Midfielder",
+     ["Crossing", "Passing", "Technique", "Decisions", "Team Work", "Work Rate", "Pace", "Stamina"],
+     ["Dribbling", "First Touch", "Anticipation", "Composure", OTB, "Vision", "Acceleration", "Agility"]),
+    ("Wide Midfielder OOP",
+     ["Decisions", "Team Work", "Work Rate", "Acceleration"],
+     ["Marking", "Aggression", "Anticipation", OTB, "Agility", "Pace", "Stamina"]),
+    ("Wide Outlet Wide Midfielder OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Pace"],
+     ["Dribbling", "First Touch", "Marking", "Composure", "Acceleration", "Agility"]),
+    ("Tracking Wide Midfielder OOP",
+     ["Aggression", "Anticipation", "Decisions", "Team Work", "Work Rate", "Acceleration", "Stamina"],
+     ["Marking", "Tackling", OTB, "Positioning", "Agility", "Pace"]),
 
-class InsideFullBack(Role):
-    def __init__(self):
-        super().__init__("Inside Full Back",
-            tier1=["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Strength"],
-            tier2=["Dribbling", "Aggression", "Bravery", "Composure", "Concentration", "Decisions", "Work Rate", "Acceleration", "Agility", "Jumping Reach", "Pace", "Stamina"]
-        )
+    # ---------------- M(C) and AM(C) ----------------
+    ("Advanced Playmaker",
+     ["First Touch", "Passing", "Technique", "Composure", "Decisions", OTB, "Team Work", "Vision"],
+     ["Crossing", "Dribbling", "Anticipation", "Flair", "Acceleration", "Agility"]),
+    ("Attacking Midfielder",
+     ["First Touch", "Long Shots", "Passing", "Technique", "Composure", "Flair", OTB],
+     ["Crossing", "Dribbling", "Finishing", "Anticipation", "Decisions", "Vision", "Acceleration", "Agility"]),
+    ("Channel Midfielder",
+     ["Crossing", "First Touch", "Passing", "Technique", "Composure", OTB, "Work Rate", "Acceleration"],
+     ["Dribbling", "Long Shots", "Anticipation", "Decisions", "Flair", "Vision", "Agility", "Pace", "Stamina"]),
 
-# -----------------------------
-# WIDE ATTACKERS / WINGERS
-# -----------------------------
-class Winger(Role):
-    def __init__(self):
-        super().__init__("Winger",
-            tier1=["Crossing", "Dribbling", "Technique", "Team Work", "Acceleration", "Agility", "Pace"],
-            tier2=["First Touch", "Passing", "Anticipation", "Flair", "Off The Ball", "Work Rate", "Balance", "Stamina"]
-        )
+    # ---------------- M(C) ----------------
+    ("Midfield Playmaker",
+     ["First Touch", "Passing", "Technique", "Composure", "Decisions", OTB, "Team Work", "Vision"],
+     ["Dribbling", "Tackling", "Anticipation", "Flair", "Positioning", "Work Rate", "Agility", "Stamina"]),
+    ("Central Midfielder",
+     ["First Touch", "Passing", "Tackling", "Decisions", "Team Work"],
+     ["Technique", "Anticipation", "Composure", "Concentration", OTB, "Positioning", "Vision", "Work Rate", "Stamina"]),
+    ("Wide Central Midfielder",
+     ["First Touch", "Passing", "Tackling", "Decisions", "Team Work"],
+     ["Crossing", "Dribbling", "Technique", "Anticipation", "Composure", "Concentration", OTB, "Positioning", "Vision", "Work Rate", "Agility", "Stamina"]),
+    ("Pressing Central Midfielder OOP",
+     ["Tackling", "Aggression", "Anticipation", "Decisions", "Team Work", "Work Rate", "Stamina"],
+     ["Marking", "Concentration", "Positioning", "Pace", "Strength"]),
+    ("Central Midfielder OOP",
+     ["Tackling", "Decisions", "Team Work", "Work Rate"],
+     ["Marking", "Aggression", "Anticipation", "Concentration", "Positioning", "Stamina"]),
+    ("Wide Covering Central Midfielder OOP",
+     ["Marking", "Tackling", "Decisions", "Team Work", "Work Rate", "Agility", "Stamina"],
+     ["Aggression", "Anticipation", "Concentration", "Positioning", "Pace"]),
+    ("Screening Central Midfielder OOP",
+     ["Marking", "Tackling", "Concentration", "Decisions", "Positioning"],
+     ["Anticipation", "Team Work", "Work Rate", "Stamina"]),
 
-class WideMidfielder(Role):
-    def __init__(self):
-        super().__init__("Wide Midfielder",
-            tier1=["Crossing", "Passing", "Technique", "Decisions", "Team Work", "Work Rate", "Pace", "Stamina"],
-            tier2=["Dribbling", "First Touch", "Anticipation", "Composure", "Off The Ball", "Vision", "Acceleration", "Agility"]
-        )
+    # ---------------- AM(R/L) ----------------
+    ("Inside Forward",
+     ["Dribbling", "First Touch", "Technique", "Anticipation", "Composure", OTB, "Acceleration", "Agility"],
+     ["Crossing", "Finishing", "Long Shots", "Passing", "Flair", "Vision", "Work Rate", "Balance", "Pace", "Stamina"]),
+    ("Wide Forward",
+     ["Dribbling", "First Touch", "Technique", "Anticipation", OTB, "Acceleration", "Agility", "Pace"],
+     ["Crossing", "Finishing", "Passing", "Composure", "Flair", "Work Rate", "Balance", "Stamina"]),
+    ("Inside Outlet Winger OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Balance"],
+     ["Dribbling", "First Touch", "Marking", "Composure", "Acceleration", "Strength"]),
+    ("Winger OOP",
+     ["Anticipation", "Decisions", "Team Work", "Work Rate", "Acceleration"],
+     ["Marking", "Aggression", OTB, "Agility", "Pace", "Stamina"]),
+    ("Wide Outlet Winger OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Pace"],
+     ["Dribbling", "First Touch", "Marking", "Composure", "Acceleration", "Agility"]),
+    ("Tracking Winger OOP",
+     ["Aggression", "Anticipation", "Decisions", "Team Work", "Work Rate", "Acceleration", "Stamina"],
+     ["Marking", "Tackling", OTB, "Positioning", "Agility", "Pace"]),
 
-class InsideWinger(Role):
-    def __init__(self):
-        super().__init__("Inside Winger",
-            tier1=["Dribbling", "First Touch", "Technique", "Composure", "Team Work", "Acceleration", "Agility"],
-            tier2=["Crossing", "Long Shots", "Passing", "Anticipation", "Flair", "Off The Ball", "Vision", "Work Rate", "Balance", "Pace", "Stamina"]
-        )
+    # ---------------- AM(C) ----------------
+    ("Free Role",
+     ["Dribbling", "First Touch", "Long Shots", "Passing", "Technique", "Composure", "Flair", OTB, "Vision"],
+     ["Crossing", "Finishing", "Anticipation", "Decisions", "Acceleration", "Agility"]),
+    ("Second Striker",
+     ["Finishing", "First Touch", "Anticipation", "Composure", OTB, "Acceleration"],
+     ["Dribbling", "Long Shots", "Passing", "Technique", "Concentration", "Decisions", "Work Rate", "Agility", "Pace", "Stamina"]),
+    ("Tracking Attacking Midfielder OOP",
+     ["Aggression", "Anticipation", "Decisions", "Team Work", "Work Rate", "Stamina"],
+     ["Marking", OTB]),
+    ("Central Outlet Attacking Midfielder OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Balance"],
+     ["First Touch", "Marking", "Composure", "Strength"]),
+    ("Attacking Midfielder OOP",
+     ["Anticipation", "Decisions", "Work Rate"],
+     ["Marking", "Aggression", OTB, "Team Work", "Stamina"]),
+    ("Splitting Outlet Attacking Midfielder OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Pace"],
+     ["First Touch", "Marking", "Composure", "Acceleration"]),
 
-class InvertedWinger(Role):
-    def __init__(self):
-        super().__init__("Inverted Winger",
-            tier1=["Crossing", "Dribbling", "Passing", "Technique", "Acceleration", "Agility"],
-            tier2=["First Touch", "Long Shots", "Anticipation", "Composure", "Decisions", "Flair", "Off The Ball", "Vision", "Work Rate", "Balance", "Pace", "Stamina"]
-        )
-
-class PlaymakingWinger(Role):
-    def __init__(self):
-        super().__init__("Playmaking Winger",
-            tier1=["Crossing", "Dribbling", "First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Team Work", "Vision", "Acceleration"],
-            tier2=["Anticipation", "Flair", "Work Rate", "Agility", "Pace", "Stamina"]
-        )
-
-class WideForward(Role):
-    def __init__(self):
-        super().__init__("Wide Forward",
-            tier1=["Dribbling", "First Touch", "Technique", "Anticipation", "Off The Ball", "Acceleration", "Agility", "Pace"],
-            tier2=["Crossing", "Finishing", "Passing", "Composure", "Flair", "Work Rate", "Balance", "Stamina"]
-        )
-
-# -----------------------------
-# INSIDE / FORWARDS / STRIKERS
-# -----------------------------
-class InsideForward(Role):
-    def __init__(self):
-        super().__init__("Inside Forward",
-            tier1=["Dribbling", "First Touch", "Technique", "Anticipation", "Composure", "Off The Ball", "Acceleration", "Agility"],
-            tier2=["Crossing", "Finishing", "Long Shots", "Passing", "Flair", "Vision", "Work Rate", "Balance", "Pace", "Stamina"]
-        )
-
-class FalseNine(Role):
-    def __init__(self):
-        super().__init__("False Nine",
-            tier1=["Dribbling", "First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Team Work", "Vision", "Acceleration"],
-            tier2=["Finishing", "Anticipation", "Flair", "Agility", "Balance"]
-        )
-
-class ChannelForward(Role):
-    def __init__(self):
-        super().__init__("Channel Forward",
-            tier1=["Dribbling", "Finishing", "First Touch", "Technique", "Off The Ball", "Composure", "Work Rate", "Acceleration"],
-            tier2=["Crossing", "Heading", "Passing", "Anticipation", "Decisions", "Agility", "Balance", "Pace", "Stamina"]
-        )
-
-class DeepLyingForward(Role):
-    def __init__(self):
-        super().__init__("Deep Lying Forward",
-            tier1=["Finishing", "First Touch", "Technique", "Composure", "Off The Ball", "Strength"],
-            tier2=["Dribbling", "Passing", "Anticipation", "Decisions", "Team Work", "Vision", "Balance"]
-        )
-
-class CentreForward(Role):
-    def __init__(self):
-        super().__init__("Centre Forward",
-            tier1=["Finishing", "First Touch", "Heading", "Technique", "Composure", "Off The Ball", "Acceleration", "Strength"],
-            tier2=["Dribbling", "Passing", "Anticipation", "Decisions", "Agility", "Balance", "Jumping Reach", "Pace"]
-        )
-
-class CompleteForward(Role):
-    def __init__(self):
-        super().__init__("Complete Forward",
-            tier1=["Dribbling", "Finishing", "First Touch", "Heading", "Technique", "Anticipation", "Composure", "Off The Ball", "Acceleration", "Agility", "Strength"],
-            tier2=["Long Shots", "Passing", "Decisions", "Team Work", "Vision", "Work Rate", "Balance", "Jumping Reach", "Pace", "Stamina"]
-        )
-
-class CompleteWingBack(Role):
-    def __init__(self):
-        super().__init__("Complete Wing Back",
-            tier1=["Dribbling", "Crossing", "Technique", "Work Rate", "Team Work", "Off The Ball", "Acceleration", "Stamina"],
-            tier2=["First Touch", "Marking", "Passing", "Tackling", "Decisions", "Anticipation", "Flair", "Positioning", "Balance", "Agility", "Pace"]
-        )
-
-class Poacher(Role):
-    def __init__(self):
-        super().__init__("Poacher",
-            tier1=["Finishing", "Heading", "Anticipation", "Composure", "Concentration", "Off The Ball", "Acceleration"],
-            tier2=["First Touch", "Technique", "Decisions", "Agility", "Balance"]
-        )
-
-class TargetForward(Role):
-    def __init__(self):
-        super().__init__("Target Forward",
-            tier1=["Finishing", "Heading", "Aggression", "Bravery", "Composure", "Off The Ball", "Balance", "Jumping Reach", "Strength"],
-            tier2=["First Touch", "Anticipation", "Decisions", "Team Work"]
-        )
-
-class AdvancedForward(Role):
-    def __init__(self):
-        super().__init__("Advanced Forward",
-            tier1=["Dribbling", "Finishing", "First Touch", "Technique", "Composure", "Off The Ball", "Acceleration"],
-            tier2=["Passing", "Anticipation", "Decisions", "Work Rate", "Agility", "Balance", "Pace", "Stamina"]
-        )
-
-class FreeRole(Role):
-    def __init__(self):
-        super().__init__("Free Role",
-            tier1=["Dribbling", "First Touch", "Long Shots", "Passing", "Technique", "Composure", "Flair", "Off The Ball", "Vision"],
-            tier2=["Crossing", "Finishing", "Anticipation", "Decisions", "Acceleration", "Agility"]
-        )
-
-class SecondStriker(Role):
-    def __init__(self):
-        super().__init__("Second Striker",
-            tier1=["Finishing", "First Touch", "Anticipation", "Composure", "Off The Ball", "Acceleration"],
-            tier2=["Dribbling", "Long Shots", "Passing", "Technique", "Concentration", "Decisions", "Work Rate", "Agility", "Pace", "Stamina"]
-        )
-
-class PressingForward(Role):
-    def __init__(self):
-        super().__init__("Pressing Forward",
-            tier1=["Aggression", "Anticipation", "Bravery", "Off The Ball", "Team Work", "Work Rate", "Acceleration", "Pace", "Stamina"],
-            tier2=["Finishing", "First Touch", "Composure", "Concentration", "Decisions", "Agility", "Balance", "Strength"]
-        )
-
-# -----------------------------
-# CREATORS / PLAYMAKERS / MIDFIELD
-# -----------------------------
-class AttackingMidfielder(Role):
-    def __init__(self):
-        super().__init__("Attacking Midfielder",
-            tier1=["First Touch", "Long Shots", "Passing", "Technique", "Composure", "Flair", "Off The Ball"],
-            tier2=["Crossing", "Dribbling", "Finishing", "Anticipation", "Decisions", "Vision", "Acceleration", "Agility"]
-        )
-
-class ChannelMidfielder(Role):
-    def __init__(self):
-        super().__init__("Channel Midfielder",
-            tier1=["Crossing", "First Touch", "Passing", "Technique", "Composure", "Off The Ball", "Work Rate", "Acceleration"],
-            tier2=["Dribbling", "Long Shots", "Anticipation", "Decisions", "Flair", "Vision", "Agility", "Pace", "Stamina"]
-        )
-
-class AdvancedPlaymaker(Role):
-    def __init__(self):
-        super().__init__("Advanced Playmaker",
-            tier1=["First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Team Work", "Vision"],
-            tier2=["Crossing", "Dribbling", "Anticipation", "Flair", "Acceleration", "Agility"]
-        )
-
-class MidfieldPlaymaker(Role):
-    def __init__(self):
-        super().__init__("Midfield Playmaker",
-            tier1=["First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Team Work", "Vision"],
-            tier2=["Dribbling", "Tackling", "Anticipation", "Flair", "Positioning", "Work Rate", "Agility", "Stamina"]
-        )
-
-
-class Regista(Role):
-    def __init__(self):
-        super().__init__("Regista",
-            tier1=["First Touch", "Passing", "Technique", "Composure", "Decisions", "Flair", "Off The Ball", "Team Work", "Vision"],
-            tier2=["Dribbling", "Long Shots", "Anticipation", "Balance"]
-        )
-    
-class WideCentralMidfielder(Role):
-    def __init__(self):
-        super().__init__("Wide Central Midfielder",
-            tier1=["First Touch", "Passing", "Tackling", "Decisions", "Team Work"],
-            tier2=["Crossing", "Dribbling", "Technique", "Anticipation", "Composure", "Concentration", "Off The Ball", "Positioning", "Vision", "Work Rate", "Agility", "Stamina"]
-        )
-
-class CentralMidfielder(Role):
-    def __init__(self):
-        super().__init__("Central Midfielder",
-            tier1=["First Touch", "Passing", "Tackling", "Decisions", "Team Work"],
-            tier2=["Technique", "Anticipation", "Composure", "Concentration", "Off The Ball", "Positioning", "Vision", "Work Rate", "Stamina"]
-        )
-
-class DeepLyingPlaymaker(Role):
-    def __init__(self):
-        super().__init__("Deep Lying Playmaker",
-            tier1=["First Touch", "Passing", "Technique", "Composure", "Decisions", "Team Work", "Vision"],
-            tier2=["Marking", "Tackling", "Anticipation", "Concentration", "Off The Ball", "Positioning", "Work Rate", "Balance", "Stamina"]
-        )
-
-class BoxToBoxPlaymaker(Role):
-    def __init__(self):
-        super().__init__("Box To Box Playmaker",
-            tier1=["First Touch", "Passing", "Technique", "Composure", "Decisions", "Off The Ball", "Team Work", "Vision", "Work Rate", "Stamina"],
-            tier2=["Dribbling", "Long Shots", "Marking", "Tackling", "Anticipation", "Positioning", "Acceleration", "Agility", "Balance", "Pace"]
-        )
-
-class RoamingPlaymaker(Role):
-    def __init__(self):
-        super().__init__("Roaming Playmaker",
-            tier1=["First Touch", "Passing", "Technique", "Anticipation", "Composure", "Decisions", "Off The Ball", "Team Work", "Vision", "Work Rate", "Acceleration", "Stamina"],
-            tier2=["Dribbling", "Long Shots", "Concentration", "Positioning", "Agility", "Balance", "Pace"]
-        )
+    # ---------------- ST ----------------
+    ("Target Forward",
+     ["Finishing", "Heading", "Aggression", "Bravery", "Composure", OTB, "Balance", "Jumping Reach", "Strength"],
+     ["First Touch", "Anticipation", "Decisions", "Team Work"]),
+    ("Centre Forward",
+     ["Finishing", "First Touch", "Heading", "Technique", "Composure", OTB, "Acceleration", "Strength"],
+     ["Dribbling", "Passing", "Anticipation", "Decisions", "Agility", "Balance", "Jumping Reach", "Pace"]),
+    ("Deep Lying Forward",
+     ["Finishing", "First Touch", "Technique", "Composure", OTB, "Strength"],
+     ["Dribbling", "Passing", "Anticipation", "Decisions", "Team Work", "Vision", "Balance"]),
+    ("Poacher",
+     ["Finishing", "Heading", "Anticipation", "Composure", "Concentration", OTB, "Acceleration"],
+     ["First Touch", "Technique", "Decisions", "Balance"]),
+    ("Channel Forward",
+     ["Dribbling", "Finishing", "First Touch", "Technique", "Composure", OTB, "Work Rate", "Acceleration"],
+     ["Crossing", "Heading", "Passing", "Anticipation", "Decisions", "Agility", "Balance", "Pace", "Stamina"]),
+    ("False Nine",
+     ["Dribbling", "First Touch", "Passing", "Technique", "Composure", "Decisions", OTB, "Team Work", "Vision", "Acceleration"],
+     ["Finishing", "Anticipation", "Flair", "Agility", "Balance"]),
+    ("Centre Forward OOP",
+     ["Anticipation", "Decisions", "Work Rate"],
+     ["Marking", "Aggression", OTB, "Team Work", "Stamina"]),
+    ("Tracking Centre Forward OOP",
+     ["Aggression", "Anticipation", "Decisions", "Team Work", "Work Rate", "Stamina"],
+     ["Marking", OTB, "Positioning"]),
+    ("Central Outlet Centre Forward OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Balance"],
+     ["First Touch", "Marking", "Composure", "Strength"]),
+    ("Splitting Outlet Centre Forward OOP",
+     ["Anticipation", "Concentration", "Decisions", OTB, "Team Work", "Pace"],
+     ["First Touch", "Marking", "Composure", "Acceleration"]),
+]
 
 
-class Mezzala(Role):
-    def __init__(self):
-        super().__init__("Mezzala",
-            tier1=["Passing", "Technique", "Decisions", "Off The Ball", "Work Rate", "Acceleration"],
-            tier2=["Dribbling", "First Touch", "Long Shots", "Tackling", "Anticipation", "Composure", "Vision", "Balance", "Stamina"]
-        )
-
-class Anchor(Role):
-    def __init__(self):
-        super().__init__("Anchor",
-            tier1=["Marking", "Tackling", "Anticipation", "Concentration", "Decisions", "Positioning"],
-            tier2=["Composure", "Team Work", "Strength"]
-        )
-
-class BoxToBoxMidfielder(Role):
-    def __init__(self):
-        super().__init__("Box To Box Midfielder",
-            tier1=["Passing", "Tackling", "Off The Ball", "Team Work", "Work Rate", "Stamina"],
-            tier2=["Dribbling", "Finishing", "First Touch", "Long Shots", "Technique", "Aggression", "Anticipation", "Composure", "Decisions", "Positioning", "Acceleration", "Balance", "Pace", "Strength"]
-        )
-
-class DefensiveMidfielder(Role):
-    def __init__(self):
-        # user gave two DM variants; create standard DM (first) and one with heading as DM_H
-        super().__init__("Defensive Midfielder",
-            tier1=["Tackling", "Anticipation", "Concentration", "Positioning", "Team Work"],
-            tier2=["First Touch", "Marking", "Passing", "Aggression", "Composure", "Decisions", "Work Rate", "Stamina", "Strength"]
-        )
-
-class BallWinningMidfielder(Role):
-    def __init__(self):
-        # user gave two DM variants; create standard DM (first) and one with heading as DM_H
-        super().__init__("Ball Winning Midfielder",
-            tier1=["Tackling", "Agression", "Anticipation", "Team Work", "Work Rate", "Stamina"],
-            tier2=["Marking", "Bravery", "Concentration", "Positioning", "Agility", "Pace", "Strength"]
-        )
-
-# -----------------------------
-# CENTRE BACK VARIANTS
-# -----------------------------
-class BallPlayingCentreBack(Role):
-    def __init__(self):
-        super().__init__("Ball Playing Centre Back",
-            tier1=["Heading", "Marking", "Passing", "Tackling", "Anticipation", "Composure", "Positioning", "Jumping Reach", "Strength"],
-            tier2=["First Touch", "Technique", "Aggression", "Bravery", "Concentration", "Decisions", "Vision", "Pace"]
-        )
-
-class BallPlayingDefender(Role):
-    def __init__(self):
-        super().__init__("Ball Playing Defender",
-            tier1=["Heading", "Marking", "Passing", "Tackling", "Anticipation", "Composure", "Positioning", "Jumping Reach", "Strength"],
-            tier2=["First Touch", "Technique", "Aggression", "Bravery", "Concentration", "Decisions", "Vision", "Pace"]
-        )
-
-class AdvancedCentreBack(Role):
-    def __init__(self):
-        super().__init__("Advanced Centre Back",
-            tier1=["Technique", "Heading", "Marking", "Passing", "Tackling", "Anticipation", "Composure", "Positioning", "Jumping Reach", "Strength", "Team Work"],
-            tier2=["First Touch", "Dribbling", "Aggression", "Bravery", "Concentration", "Decisions", "Vision", "Pace", "Stamina"]
-        )
-
-class NoNonsenseCentreBack(Role):
-    def __init__(self):
-        super().__init__("No Nonsense Centre Back",
-            tier1=["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
-            tier2=["Aggression", "Bravery", "Concentration", "Pace"]
-        )
-
-class CentreBack(Role):
-    def __init__(self):
-        super().__init__("Centre Back",
-            tier1=["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
-            tier2=["Aggression", "Bravery", "Concentration", "Pace", "Composure", "Decisions"]
-        )
-
-class CentralDefender(Role):
-    def __init__(self):
-        super().__init__("Central Defender",
-            tier1=["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
-            tier2=["Aggression", "Bravery", "Concentration", "Pace", "Composure", "Decisions"]
-        )
-
-class WideCentreBack(Role):
-    def __init__(self):
-        super().__init__("Wide Centre Back",
-            tier1=["Heading", "Marking", "Tackling", "Anticipation", "Positioning", "Jumping Reach", "Strength"],
-            tier2=["Aggression", "Bravery", "Concentration", "Pace", "Composure", "Decisions", "Dribbling", "Work Rate", "Acceleration", "Agility", "Stamina"]
-        )
-
-class OverlappingCentreBack(Role):
-    def __init__(self):
-        super().__init__("Overlapping Centre Back",
-            tier1=["Crossing", "Heading", "Marking", "Tackling", "Anticipation", "Work Rate", "Jumping Reach", "Pace", "Stamina", "Strength"],
-            tier2=["Dribbling", "Technique", "Aggression", "Bravery", "Composure", "Concentration", "Decisions", "Off The Ball", "Positioning", "Acceleration", "Agility"]
-        )
-
-class Carrilero(Role):
-    def __init__(self):
-        super().__init__("Carrilero",
-            tier1=["First Touch", "Passing", "Tackling", "Decisions", "Positioning", "Team Work", "Stamina"],
-            tier2=["Technique", "Antecipation", "Composure", "Concentration", "Off The Ball", "Vision", "Work Rate", "Agility"]
-        )
-
-class WideTargetForward(Role):
-    def __init__(self):
-        super().__init__("Wide Target Forward",
-            tier1=["Heading", "Bravery", "Team Work", "Jumping Reach", "Strength"],
-            tier2=["Crossing", "First Touch", "Anticipation", "Off The Ball", "Work Rate", "Balance", "Stamina"]
-        )
-
-class ShadowStriker(Role):
-    def __init__(self):
-        super().__init__("Shadow Striker",
-            tier1=["Dribbling", "Finishing", "First Touch", "Anticipation", "Composure", "Off The Ball", "Acceleration"],
-            tier2=["Passing", "Technique", "Concentration", "Decisions", "Work Rate", "Agility", "Balance", "Pace", "Stamina"]
-        )
-
-# -----------------------------
-# UTIL: build list of roles easily
-# -----------------------------
 def build_all_roles():
-    """Return a list of instantiated role objects (all classes above)."""
-    return [
-        SweeperKeeper(), Goalkeeper(), WingBack(), PlaymakingWingBack(), InvertedWingBack(), InsideWingBack(), FullBack(), InsideFullBack(), InvertedFullBack(),
-        Winger(), WideMidfielder(), InsideWinger(), PlaymakingWinger(), WideForward(),
-        InsideForward(), FalseNine(), ChannelForward(), DeepLyingForward(), CentreForward(),
-        Poacher(), TargetForward(), FreeRole(), SecondStriker(), Regista(), SegundoVolante(),
-        AttackingMidfielder(), ChannelMidfielder(), AdvancedPlaymaker(), MidfieldPlaymaker(), WideTargetForward(),
-        WideCentralMidfielder(), CentralMidfielder(), DeepLyingPlaymaker(), BoxToBoxPlaymaker(), ShadowStriker(),
-        BoxToBoxMidfielder(), DefensiveMidfielder(), BallWinningMidfielder(), PressingForward(),
-        BallPlayingCentreBack(), AdvancedCentreBack(), NoNonsenseCentreBack(), CentreBack(), CompleteWingBack(),
-        WideCentreBack(), OverlappingCentreBack(), Carrilero(), CentralDefender(), BallPlayingDefender(), InvertedWinger(), Mezzala(), CompleteForward(), RoamingPlaymaker(), Anchor(), AdvancedForward()
-    ]
+    """Return one Role per entry in ROLE_DEFINITIONS."""
+    names = [n for n, _, _ in ROLE_DEFINITIONS]
+    dupes = {n for n in names if names.count(n) > 1}
+    if dupes:
+        raise ValueError(f"Duplicate role names: {sorted(dupes)}")
+    return [Role(name, t1, t2) for name, t1, t2 in ROLE_DEFINITIONS]

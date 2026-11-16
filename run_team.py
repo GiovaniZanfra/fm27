@@ -66,47 +66,41 @@ def print_teams(repo: Path, team: str, formation: str = None):
 
     # compute best role & score per player from scores CSV
     scores_path = repo / 'data' / team / 'scores' / f"{team}_scores.csv"
+    # best in-possession and best out-of-possession role per player
     best_map = {}
     if scores_path.exists():
         try:
             with scores_path.open(newline='', encoding='utf-8') as sf:
-                sreader = csv.DictReader(sf)
-                for r in sreader:
+                for r in csv.DictReader(sf):
                     name = r.get('Name') or ''
-                    best_role = None
-                    best_score = None
+                    best = {'ip': (None, None), 'oop': (None, None)}
                     for k, v in r.items():
-                        if not k:
+                        if not k or not k.endswith('_Score'):
                             continue
-                        if k.endswith('_Score'):
-                            try:
-                                val = float(v) if v not in (None, '') else None
-                            except Exception:
-                                val = None
-                            if val is None:
-                                continue
-                            role_name = k[:-6].replace('_', ' ').strip()
-                            if best_score is None or val > best_score:
-                                best_score = val
-                                best_role = role_name
+                        try:
+                            val = float(v) if v not in (None, '') else None
+                        except Exception:
+                            val = None
+                        if val is None:
+                            continue
+                        role_name = k[:-6].replace('_', ' ').strip()
+                        kind = 'oop' if role_name.endswith(' OOP') else 'ip'
+                        if best[kind][1] is None or val > best[kind][1]:
+                            best[kind] = (role_name, val)
                     if name:
-                        best_map[name] = (best_role, best_score)
+                        best_map[name] = best
         except Exception:
             pass
 
-    # attach best role/score to rows
     def attach_best(rows):
         out = []
         for r in rows:
             r2 = dict(r)
-            name = r2.get('Name') or ''
-            br = best_map.get(name)
-            if br:
-                r2['Best Role'] = br[0]
-                r2['Best Score'] = f"{br[1]:.6g}" if br[1] is not None else ''
-            else:
-                r2['Best Role'] = ''
-                r2['Best Score'] = ''
+            best = best_map.get(r2.get('Name') or '')
+            for kind, label in (('ip', 'Best Role'), ('oop', 'Best OOP')):
+                role, score = best[kind] if best else (None, None)
+                r2[label] = role or ''
+                r2[f'{label} Score'] = f"{score:.4g}" if score is not None else ''
             out.append(r2)
         return out
 
