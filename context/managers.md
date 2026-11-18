@@ -24,12 +24,12 @@ Escolhas feitas na tela de criação do técnico (Head Coach Creation) e a hist�
 
 ### Experiência fora de campo
 
-| Técnico | Função | Quão conhecido | História |
-|---|---|---|---|
-| Giovani | Recruitment & Soccer Operations | médio | Passou por planejamento e estratégia de clube; pensa o time como sistema e em sequências. |
-| Bruno Keller | Medical | médio a alto | Trabalhou em preparação física; daí a obsessão por intensidade, resistência e rodízio do elenco. |
-| Rafael Duarte | Punditry & Media | alto | Ídolo que virou comentarista de TV; explica o lado emocional e a boa relação com a imprensa. |
-| Luiz "Casca" Ferreira | Coaching | baixo a médio | Virou auxiliar nas divisões de acesso; aprendeu o 4-4-2 tradicional na prática. |
+| Técnico | Função | Quão conhecido | Licença | História |
+|---|---|---|---|---|
+| Giovani | Recruitment & Soccer Operations | médio | Continental Pro | Passou por planejamento e estratégia de clube; pensa o time como sistema e em sequências. Estudou o jogo de forma metódica e foi até a licença máxima. |
+| Bruno Keller | Medical | médio a alto | Continental A | Trabalhou em preparação física; daí a obsessão por intensidade, resistência e rodízio do elenco. Tirou a licença em paralelo ao departamento físico e parou um degrau abaixo da Pro. |
+| Rafael Duarte | Punditry & Media | alto | Continental B | Ídolo que virou comentarista de TV; explica o lado emocional e a boa relação com a imprensa. Passou anos na TV em vez do curso: chega com fama e pouca licença. |
+| Luiz "Casca" Ferreira | Coaching | baixo a médio | National A | Virou auxiliar nas divisões de acesso; aprendeu o 4-4-2 tradicional na prática. Licença da federação nacional, tirada aos poucos nas divisões de acesso. |
 
 ### Estilo e personalidade
 
