@@ -102,7 +102,7 @@ Pares coerentes: `DLF` + `CF` ou `TF` + `CHF` na dupla do diamante (um vem, outr
 Ordem fixa: **roles → instruções → mentality → forma**.
 
 - **Segurando vitória** — *controla, não recua*.
-  - Roles: 2º MC `CM/SCM`; AMC `AP/TAM`; laterais `FB/HFB`.
+  - Roles: o volante que organiza vira contenção (`DLP/SDM` → `DM/SDM`; nas formas com MC, o 2º MC vira `CM/SCM`); AMC `AP/TAM`; laterais `FB/HFB` (o `IFB` também).
   - Instruções: Passing Directness: Much Shorter (3), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1). A linha **não** desce (Defensive Line fica Standard).
   - Mentality: **cautious**.
 - **Empate travado / perdendo** — *aumenta a intensidade sem perder a estrutura*.
@@ -293,7 +293,8 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
   - Mentality: **positive** (teto).
 - **Segurando vantagem (ferrolho)**
   - Roles: ST2 `DLF/TCF`; meias `WM/TWM`; os dois MC sem bola `SCM`.
-  - Instruções: Attacking Width: Narrower (1), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1), GK Distribution Speed: Slow Pace Down (1), Defensive Line: Lower (1), Defensive Line Behaviour: Drop Off More (1), Trigger Press: Less Often mantido.
+  - Instruções: Attacking Width: Narrower (1), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1), GK Distribution Speed: Slow Pace Down (1), Line of Engagement: Low Block (0), Defensive Line: Lower (1), Defensive Line Behaviour: Drop Off More (1), Trigger Press: Less Often mantido.
+  - Aqui a linha desce **junto com o bloco inteiro** (Low Block). O que a seção 4.4 proíbe é baixar só a linha com o bloco no meio: aí as linhas se separam e o buraco abre.
   - Mentality: **cautious**; **defensive** nos últimos 10.
 - **Sofrendo entre as linhas:** aplicar a seção 4.4 antes de mexer em mentality.
 
