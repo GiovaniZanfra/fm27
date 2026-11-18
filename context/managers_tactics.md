@@ -95,7 +95,7 @@ Pares coerentes: `DLF` + `CF` ou `TF` + `CHF` na dupla do diamante (um vem, outr
 - **Pressing Trap: Trap Inside (0)** com o diamante sem bola: fecha o meio, onde o losango tem gente sobrando.
 - Tempo, Width e Time Wasting ficam em Standard: controle vem do passe curto e da disciplina, não de acelerar ou esticar.
 
-**Instruções de jogador típicas:** AP com Risks: Take More (3) só se a role custar ≤1, senão nada · DM com Positioning: Hold Position (1) · laterais com Cross From: Deep (1) ou nada.
+**Instruções de jogador típicas:** AP com Risks: Take More (3) só se a role custar ≤1, senão nada · DM com Positioning: Hold Position (1) · laterais com Cross From: Deep (1) ou nada (no diamante, o lateral que é a única largura do lado vai até o fundo sem instrução).
 
 ### 1.4 Ajuste por estado de jogo
 
@@ -107,7 +107,7 @@ Ordem fixa: **roles → instruções → mentality → forma**.
   - Mentality: **cautious**.
 - **Empate travado / perdendo** — *aumenta a intensidade sem perder a estrutura*.
   - Roles primeiro: AMC `AP` → `SS`; um lateral `IFB` → `WB`; 2º MC sem bola `SCM` → `PRCM`; ST sem bola `CF` + Pressing Intensity: Higher (2) como instrução de jogador.
-  - Instruções: Line of Engagement: High Press (2), Trigger Press: More Often (2), Defensive Transition: Counter-Press (3), Tempo: Higher (1).
+  - Instruções: Line of Engagement: High Press (2), Trigger Press: More Often (2), Defensive Transition: Counter-Press (3), Tempo: Higher (1), Defensive Line: Higher (2) (pressão alta com linha no padrão abre espaço entre a zaga e o meio; é também o que justifica o `SWK`). A partir dos 75': Shots From Distance: Encourage (1).
   - Mentality: positive → **attacking** (teto).
   - Forma: só no fim e só dentro das preferidas (diamante → `4-2-3-1 DM AM Wide`).
 
@@ -151,7 +151,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| **Com bola** | Passing Directness: More Direct (1) · Pass Reception: Pass Into Space (1) · Build-up Strategy: Bypass Press (0) · Tempo: Higher (1) · Attacking Width: Wider (1) · Dribbling: Encourage (2) · Patience: Hit Early Crosses (1) · Crossing Style: Low Crosses (1) · Supporting Runs: Overlap Both Flanks (1) · Attacking Transition: Counter-Attack (2) · GK Distribution Speed: Distribute Quickly (2) · GK Distribution Target: Flanks (1) | 14 |
+| **Com bola** | Passing Directness: More Direct (1) · Pass Reception: Pass Into Space (1) · Build-up Strategy: Bypass Press (0) · Tempo: Higher (1) · Attacking Width: Wider (1) · Dribbling: Encourage (2) · Patience: Hit Early Crosses (1) · Crossing Style: Low Crosses (1) · Supporting Runs: Overlap Both Flanks (1) (ou só do lado do lateral que sobe, quando o outro fica) · Attacking Transition: Counter-Attack (2) · GK Distribution Speed: Distribute Quickly (2) · GK Distribution Target: Flanks (1) | 14 |
 | **Sem bola** | Line of Engagement: High Press (2) · Defensive Line: Higher (2) · Defensive Line Behaviour: Step Up More (2) · Trigger Press: Much More Often (3) · Defensive Transition: Counter-Press (3) · Pressing Trap: Trap Outside (0) · Tackling: Get Stuck In (1) · Prevent Short GK Distribution: Yes (1) | 14 |
 | **Total** | | **28** |
 
@@ -220,14 +220,15 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 - **Vencendo** — *ele não defende, ele guarda a bola*.
   - Forma com bola `4-3-3 DM Wide`, sem bola `4-1-4-1 DM`.
-  - Instruções: Passing Directness: Much Shorter (3), Tempo: Lower (1), Time Wasting: More Often, Attacking Transition: Hold Shape (1), Creative Freedom: More Expressive → Balanced.
+  - Instruções: Passing Directness: Much Shorter (3), Pass Reception: Pass to Feet (1), Tempo: Lower (1), Attacking Width: Wider → Standard, Time Wasting: More Often, Attacking Transition: Hold Shape (1), Creative Freedom: More Expressive → Balanced.
+  - Vencendo cedo (antes da metade do 2º tempo): fica na base, só com Creative Freedom → Balanced.
   - Pontas sem bola `TW`.
   - Mentality: **balanced** ou **cautious** (piso).
-- **Empate / perdendo cedo** — fica na base e sobe pra **attacking**. Defensive Transition: Counter-Press (3).
+- **Empate travado (60'+) / perdendo cedo** — fica na base e sobe pra **attacking**. Defensive Transition: Counter-Press (3).
 - **Perdendo tarde (estouro)** — *sabe que pode se estourar*.
   - Forma com bola `4-2-4 DM Wide`.
   - Roles: ST2 `PO/CF`; pontas `IF/WOW`; DM `BBP`.
-  - Instruções: Patience: Work Ball Into Box → **Hit Early Crosses** (1), Dribbling: Encourage (2), Shots From Distance: Encourage (1), Supporting Runs: Overlap Both Flanks (1), Defensive Transition: Counter-Press (3), Line of Engagement: High Press (2), Defensive Line: Much Higher (3), Trigger Press: Much More Often (3), Tackling: Get Stuck In (1).
+  - Instruções: Passing Directness: Shorter → Standard (a bola vai na distância que o lance pedir), Patience: Work Ball Into Box → **Hit Early Crosses** (1), Dribbling: Encourage (2), Shots From Distance: Encourage (1), Supporting Runs: Overlap Both Flanks (1), Defensive Transition: Counter-Press (3), Line of Engagement: High Press (2), Defensive Line: Much Higher (3), Trigger Press: Much More Often (3), Tackling: Get Stuck In (1).
   - Mentality: **very attacking**.
 
 ---
@@ -264,7 +265,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 | **ML/MR** | `WM/TWM` (0+1) · `W/TWM` (0+1), o ponta que cruza | `WM/WOWM` (0+1), perseguindo | `IW`, `PW` (cortar pra dentro não é o jogo dele) |
 | **ST** | `TF/CF` (1+0) + `CHF/CF` (1+0) | `TF/COCF` (1+1) · `PO/CF` (1+0) · `DLF/TCF` (2+1), segurando | `F9`, `FR` |
 
-**Pares de ataque:** sempre um `TF` (alvo de bola longa e cruzamento) + um que ataca espaço (`CHF` ou `PO`). Dois alvos não.
+**Pares de ataque:** sempre um `TF` (alvo de bola longa e cruzamento) + um que ataca espaço (`CHF` ou `PO`). Dois alvos não. Exceção: segurando vantagem, o segundo vira `DLF/TCF`, que recua pra prender a bola e acompanhar o volante (4.5).
 
 ### 4.3 Instruções-base
 

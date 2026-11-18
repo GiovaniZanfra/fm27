@@ -58,9 +58,9 @@ Complexidade das roles: 10 com bola, 7 sem bola.
 
 **Player instructions**
 
-- DM (DLP): Positioning: Hold Position (1) — o DLP não sobe, fica de base da saída
+- DM (DM): Positioning: Hold Position (1) — o DM é a proteção fixa: não acompanha o ataque
 
-**Quando usar.** É o padrão: em casa ou fora, contra adversário do mesmo nível ou mais fraco. Segurando vitória, fica nela e troca roles e instruções: `DLP/SDM` → `DM/SDM`, `IFB/FB` → `FB/HFB`, Passing Directness: Much Shorter, Tempo: Lower, Time Wasting: More Often, Attacking Transition: Hold Shape, mentality cautious (manual 1.4). Contra time que pressiona alto e com zagueiros que têm passe, acrescentar Build-up Strategy: Play Through Press (+3).
+**Quando usar.** É o padrão: em casa ou fora, contra adversário do mesmo nível ou mais fraco. Segurando vitória, fica nela e troca roles e instruções: `DLP/SDM` → `DM/SDM`, `IFB/FB` e `WB/HFB` → `FB/HFB`, Passing Directness: Much Shorter, Tempo: Lower, Time Wasting: More Often, Attacking Transition: Hold Shape, mentality cautious (manual 1.4). Contra time que pressiona alto e com zagueiros que têm passe, acrescentar Build-up Strategy: Play Through Press (+3).
 
 ### 1.2 `xadrez`
 
@@ -101,9 +101,9 @@ Complexidade das roles: 12 com bola, 9 sem bola.
 
 **Player instructions**
 
-- DL (WB): Cross From: Byline (1) — é a única largura da esquerda: vai até o fundo
+- Nenhuma.
 
-**Quando usar.** Contra time com um volante só ou 4-4-2 reto, quando dominar o meio decide o jogo. Evitar contra dois pontas rápidos: o lado esquerdo fica exposto (correção: lateral esquerdo `WB/HFB`).
+**Quando usar.** Contra time com um volante só ou 4-4-2 reto, quando dominar o meio decide o jogo. Evitar contra dois pontas rápidos: o lado esquerdo fica exposto (correção: lateral esquerdo `FB/HFB`, que não sobe com a bola). Vencendo: lateral esquerdo `FB/HFB`, Passing Directness: Much Shorter, Tempo: Lower, Time Wasting: More Often, Attacking Transition: Hold Shape, mentality cautious; o meio (`CM/SCM`, `AP/TAM`) já é o de segurar. Perdendo: primeiro roles (`CM/SCM` → `CM/PRCM`, `AP` → `SS`, `CF` com Pressing Intensity: Higher) e mentality positive; só no fim troca de forma pra `engrenagem` (diamante → 4-2-3-1, a única troca de forma que o manual 1.4 prevê).
 
 ### 1.3 `engrenagem`
 
@@ -112,7 +112,7 @@ Complexidade das roles: 12 com bola, 9 sem bola.
 - **Forma com bola:** `4-2-3-1 DM AM Wide`
 - **Forma sem bola:** `4-4-1-1 2DM`
 - **Mentality:** positive (attacking a partir dos 75', perdendo)
-- **Linha de roles:** `BPGK/SWK, WB/FB, BPCB/CB, CB/CCB, FB/PRFB, DM/SDM, DM/PRDM, IW/TWM, SS/AM, IF/TWM, CF/CF`
+- **Linha de roles:** `BPGK/SWK, WB/FB, BPCB/CB, CB/CCB, WB/PRFB, DM/SDM, DM/PRDM, IW/TWM, SS/AM, IF/TWM, CF/CF`
 
 | Slot | Com bola | Sem bola | Cx |
 |---|---|---|---|
@@ -120,7 +120,7 @@ Complexidade das roles: 12 com bola, 9 sem bola.
 | DL | Wing-Back | Full-Back | 0+0 |
 | DC | Ball-Playing Centre-Back | Centre-Back | 2+0 |
 | DC | Centre-Back | Covering Centre-Back | 1+1 |
-| DR | Full-Back | Pressing Full-Back | 0+2 |
+| DR | Wing-Back | Pressing Full-Back | 0+2 |
 | DM | Defensive Midfielder | Screening Defensive Midfielder | 0+1 |
 | DM | Defensive Midfielder | Pressing Defensive Midfielder | 0+2 |
 | AML → ML | Inside Winger | Tracking Wide Midfielder | 1+1 |
@@ -130,7 +130,7 @@ Complexidade das roles: 12 com bola, 9 sem bola.
 
 Complexidade das roles: 9 com bola, 10 sem bola.
 
-**Com bola.** As mesmas duas formas do `relógio`, com mais gente na área (as trocas de role do manual 1.4). O AP vira Second Striker e chega como segundo atacante; o lateral esquerdo deixa de fechar por dentro e vira Wing-Back, com o Inside Winger entrando no meio-espaço à frente dele; à direita, o Inside Forward corta pra dentro e o Full-Back passa por fora. Os dois volantes continuam atrás da bola com os zagueiros.
+**Com bola.** As mesmas duas formas do `relógio`, com mais gente na área (as trocas de role do manual 1.4). O AP vira Second Striker e chega como segundo atacante; o lateral esquerdo deixa de fechar por dentro e vira Wing-Back, com o Inside Winger entrando no meio-espaço à frente dele; à direita, o Inside Forward corta pra dentro e o Wing-Back passa por fora. Os dois volantes continuam atrás da bola com os zagueiros.
 
 **Sem bola.** Sobe a pressão sem mudar a forma: continua 4-4-1-1, mas o Second Striker e o centroavante pressionam a saída por instrução individual. Na dupla de volantes um salta (Pressing DM) e o outro segura (Screening DM): nunca os dois. O lateral direito pressiona o ponta adversário, e a linha sobe com o goleiro varrendo atrás.
 
@@ -147,9 +147,9 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 - AMC (SS): Pressing Intensity: Higher (2) — segundo homem da primeira linha de pressão
 - ST (CF): Pressing Intensity: Higher (2) — faz o papel do antigo Pressing Forward
 
-**Quando usar.** Empate travado ou placar contra, depois que os ajustes de role no `relógio` não resolveram. É o passo de "aumentar a intensidade sem perder a estrutura" do manual. A forma com bola e a sem bola são as mesmas do `relógio`, então a troca é só de roles e instruções, como manda a regra de ouro. A partir dos 75', perdendo: mentality attacking e Shots From Distance: Encourage.
+**Quando usar.** Empate travado ou placar contra. É o `relógio` com os ajustes de "aumentar a intensidade sem perder a estrutura" do manual 1.4 já aplicados (roles e instruções), salvo como tática própria pra entrar de uma vez. Antes dela, o único passo é subir a mentality do `relógio` pra positive. A forma com bola e a sem bola são as mesmas do `relógio`, então a troca é só de roles e instruções, como manda a regra de ouro. A partir dos 75', perdendo: mentality attacking e Shots From Distance: Encourage.
 
-**Atenção.** Defensive Line: Higher não está na lista do manual pra perseguição; entrou porque pressão alta com linha no padrão deixa espaço entre a zaga e o meio, e porque o Sweeper Keeper só faz sentido com a linha alta. A linha alta expõe zagueiro lento: o `CCB` precisa de velocidade.
+**Atenção.** Defensive Line: Higher acompanha a pressão alta (manual 1.4) e é o que justifica o Sweeper Keeper. A linha alta expõe zagueiro lento: o `CCB` precisa de velocidade.
 
 
 ---
@@ -203,7 +203,7 @@ Complexidade das roles: 10 com bola, 11 sem bola.
 
 **Quando usar.** A assinatura, em casa e fora contra quem é do mesmo nível ou mais fraco. Segurando vitória fica nela, com os ajustes do manual (2.4): Trigger Press desce pra More Often, Tempo e Dribbling voltam ao neutro, mentality positive. Com o time cansado, rodar o elenco antes de abrir mão da tática.
 
-**Atenção.** Junto com a `vertigem` e o `incendio`, é das mais caras de aprender (28). O DM e o `CCB` precisam de velocidade pra cobrir quando a pressão é furada. Depende de o AMC subir pra dupla de ataque sem bola (ligação de slot a confirmar na tela).
+**Atenção.** Custo 28, a segunda mais cara das doze (só a `vertigem` passa). O DM e o `CCB` precisam de velocidade pra cobrir quando a pressão é furada. Depende de o AMC subir pra dupla de ataque sem bola (ligação de slot a confirmar na tela).
 
 ### 2.2 `vertigem`
 
@@ -246,19 +246,20 @@ Complexidade das roles: 10 com bola, 11 sem bola.
 
 - ST (CHF): Pressing Intensity: Higher (2) — primeira linha de pressão
 - ST (PO): Pressing Intensity: Higher (2) — idem
+- DM (DM): Positioning: Hold Position (1) — o único que fica com quatro na frente e dois laterais subindo
 
 **Quando usar.** Perdendo, mesmo contra time grande: a identidade manda subir a pressão, não recuar (manual 2.4). Saindo da `avalanche`, muda só a forma com bola (4-2-3-1 → 4-2-4); a forma sem bola continua `4-4-2 2DM`, como o manual pede.
 
-**Atenção.** A mais cara das doze junto com o `incendio` do Duarte. Com os dois laterais subindo e a linha muito alta, o contra-ataque adversário pega a zaga sozinha.
+**Atenção.** A mais cara das doze. Com os dois laterais subindo e a linha muito alta, o contra-ataque adversário pega a zaga sozinha.
 
 ### 2.3 `tocaia`
 
 > *Espera o passe errado e sai em quatro segundos.*
 
 - **Forma com bola:** `4-2-3-1 DM AM Wide`
-- **Forma sem bola:** `4-4-1-1 2DM`
+- **Forma sem bola:** `4-4-2 2DM`
 - **Mentality:** positive
-- **Linha de roles:** `GK/SWK, FB/PRFB, BPCB/SCB, CB/CCB, FB/PRFB, DM/SDM, BBM/DM, W/TWM, SS/AM, IF/TWM, PO/CF`
+- **Linha de roles:** `GK/SWK, FB/PRFB, BPCB/SCB, CB/CCB, FB/PRFB, DM/SDM, BBM/DM, W/TWM, SS/CF, IF/TWM, PO/CF`
 
 | Slot | Com bola | Sem bola | Cx |
 |---|---|---|---|
@@ -270,7 +271,7 @@ Complexidade das roles: 10 com bola, 11 sem bola.
 | DM | Defensive Midfielder | Screening Defensive Midfielder | 0+1 |
 | DM | Box-To-Box Midfielder | Defensive Midfielder | 1+0 |
 | AML → ML | Winger | Tracking Wide Midfielder | 0+1 |
-| AMC | Second Striker | Attacking Midfielder | 1+0 |
+| AMC → ST | Second Striker | Centre Forward | 1+0 |
 | AMR → MR | Inside Forward | Tracking Wide Midfielder | 2+1 |
 | ST | Poacher | Centre Forward | 1+0 |
 
@@ -278,22 +279,22 @@ Complexidade das roles: 9 com bola, 11 sem bola.
 
 **Com bola.** Pouca posse e muito espaço. Na roubada, o Poacher já está na linha do último zagueiro e o Second Striker chega de trás; a bola sai direta e rápida pras costas. Os pontas atacam em velocidade e o Box-to-Box acompanha; os laterais ficam.
 
-**Sem bola.** Um degrau abaixo da identidade, sem largá-la: bloco médio e linha no padrão, com pressão acima da média. O Poacher pressiona os zagueiros e o Second Striker fecha o volante e salta nele (os dois com Pressing Intensity: Higher). Os pontas acompanham os laterais adversários e a armadilha manda o jogo pros lados, onde os dois laterais saltam no ponta.
+**Sem bola.** Um degrau abaixo da identidade, sem largá-la: bloco médio e linha no padrão, com pressão acima da média. O Second Striker sobe e forma a dupla da primeira linha com o Poacher, os dois pressionando os zagueiros (Pressing Intensity: Higher). É a mesma forma sem bola das outras duas, então entrar e sair dela é só troca de roles e instruções. Os pontas acompanham os laterais adversários e a armadilha manda o jogo pros lados, onde os dois laterais saltam no ponta.
 
 **Team instructions**
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| Com bola | Passing Directness: More Direct (1) · Pass Reception: Pass Into Space (1) · Build-up Strategy: Bypass Press (0) · Tempo: Higher (1) · Dribbling: Encourage (2) · Patience: Hit Early Crosses (1) · Crossing Style: Low Crosses (1) · Attacking Transition: Counter-Attack (2) · GK Distribution Speed: Distribute Quickly (2) · GK Distribution Target: Flanks (1) | 12 |
-| Sem bola | Line of Engagement: Mid Block (1) · Trigger Press: More Often (2) · Defensive Transition: Counter-Press (3) · Pressing Trap: Trap Outside (0) · Tackling: Get Stuck In (1) | 7 |
-| **Total** | | **19** |
+| Com bola | Passing Directness: More Direct (1) · Pass Reception: Pass Into Space (1) · Build-up Strategy: Bypass Press (0) · Tempo: Higher (1) · Attacking Width: Wider (1) · Dribbling: Encourage (2) · Patience: Hit Early Crosses (1) · Crossing Style: Low Crosses (1) · Attacking Transition: Counter-Attack (2) · GK Distribution Speed: Distribute Quickly (2) · GK Distribution Target: Flanks (1) | 13 |
+| Sem bola | Line of Engagement: Mid Block (1) · Trigger Press: More Often (2) · Defensive Transition: Counter-Press (3) · Pressing Trap: Trap Outside (0) · Tackling: Get Stuck In (1) · Prevent Short GK Distribution: Yes (1) | 8 |
+| **Total** | | **21** |
 
 **Player instructions**
 
 - AMC (SS): Pressing Intensity: Higher (2) — primeira linha de pressão, com o PO
 - ST (PO): Pressing Intensity: Higher (2) — idem
 
-**Quando usar.** Contra time grande, principalmente fora de casa (a "emboscada" do manual 2.4). Saiu na frente: volta pra `avalanche` com o ajuste de vitória (prende o adversário em vez de esperar). Saiu atrás: vai pra `vertigem`.
+**Quando usar.** Contra time grande, principalmente fora de casa (a "emboscada" do manual 2.4). É a tática de início contra grande. Saiu na frente: vai pra `avalanche` com o ajuste de vitória (prende o adversário em vez de esperar); a forma é a mesma, só mudam roles e instruções. Saiu atrás: vai pra `vertigem` (muda só a forma com bola).
 
 
 ---
@@ -344,7 +345,7 @@ Complexidade das roles: 14 com bola, 5 sem bola.
 - AML (IF): Positioning: Switch Position (0) — o carrossel: troca com o ponta da direita
 - AMR (IW): Positioning: Switch Position (0) — idem
 
-**Quando usar.** A assinatura, a base de qualquer jogo. Empate travado depois dos 60' ou perdendo cedo: fica nela, sobe pra attacking e troca Defensive Transition pra Counter-Press. Vencendo: `milonga`. Perdendo na reta final: `incendio`. As três usam formas com bola diferentes (4-2-3-1, 4-3-3, 4-2-4), e é assim que ele troca de forma durante o jogo.
+**Quando usar.** A assinatura, a base de qualquer jogo. Empate travado depois dos 60' ou perdendo cedo: fica nela, sobe pra attacking e troca Defensive Transition pra Counter-Press. Vencendo cedo: fica nela, só com Creative Freedom → Balanced; a partir da metade do 2º tempo, `milonga`. Perdendo na reta final: `incendio`. As três usam formas com bola diferentes (4-2-3-1, 4-3-3, 4-2-4), e é assim que ele troca de forma durante o jogo.
 
 ### 3.2 `milonga`
 
@@ -353,7 +354,7 @@ Complexidade das roles: 14 com bola, 5 sem bola.
 - **Forma com bola:** `4-3-3 DM Wide`
 - **Forma sem bola:** `4-1-4-1 DM`
 - **Mentality:** balanced (cautious nos minutos finais)
-- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, FB/FB, DLP/SDM, AP/SCM, MP/CM, IW/TWM, PW/TWM, DLF/CF`
+- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, FB/FB, DLP/SDM, AP/SCM, MP/CM, IW/TWM, W/TWM, DLF/CF`
 
 | Slot | Com bola | Sem bola | Cx |
 |---|---|---|---|
@@ -366,14 +367,14 @@ Complexidade das roles: 14 com bola, 5 sem bola.
 | MC | Advanced Playmaker | Screening Central Midfielder | 2+1 |
 | MC | Midfield Playmaker | Central Midfielder | 2+0 |
 | AML → ML | Inside Winger | Tracking Wide Midfielder | 1+1 |
-| AMR → MR | Playmaking Winger | Tracking Wide Midfielder | 2+1 |
+| AMR → MR | Winger | Tracking Wide Midfielder | 0+1 |
 | ST | Deep-Lying Forward | Centre Forward | 2+0 |
 
-Complexidade das roles: 15 com bola, 6 sem bola.
+Complexidade das roles: 13 com bola, 6 sem bola.
 
-**Com bola.** Posse pra matar o tempo, não pra acelerar. Bola muito curta e no pé, com o DLP, os dois playmakers do meio e o Playmaking Winger formando triângulos; o DLF desce pra dar mais um apoio. Só o Wing-Back esquerdo sobe; o lateral direito fica. O time só ataca a área quando o espaço aparece sozinho.
+**Com bola.** Posse pra matar o tempo, não pra acelerar. Bola muito curta e no pé, com o DLP e os dois playmakers do meio formando triângulos e o DLF descendo pra dar mais um apoio. A largura é do Wing-Back pela esquerda (com o Inside Winger por dentro) e do Winger pela direita, onde o lateral fica. O time só ataca a área quando o espaço aparece sozinho.
 
-**Sem bola.** 4-1-4-1 compacto: os pontas descem acompanhando os laterais, o AP fica de Screening ao lado do DLP, então a área tem sempre dois na frente da zaga, e o Midfield Playmaker é o meia que sobe.
+**Sem bola.** 4-1-4-1 compacto: os pontas descem acompanhando os laterais, o AP fica de Screening uma linha à frente do DLP, então a área tem sempre dois na frente da zaga, e o Midfield Playmaker é o meia que sobe.
 
 **Team instructions**
 
@@ -387,7 +388,7 @@ Complexidade das roles: 15 com bola, 6 sem bola.
 
 - Nenhuma.
 
-**Quando usar.** Vencendo, a partir da metade do segundo tempo (manual 3.4). Nunca pra buscar resultado nem desde o início do jogo.
+**Quando usar.** Vencendo (manual 3.4), a partir da metade do segundo tempo. Nunca pra buscar resultado nem desde o início do jogo.
 
 ### 3.3 `incendio`
 
@@ -422,9 +423,9 @@ Complexidade das roles: 16 com bola, 5 sem bola.
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| Com bola | Creative Freedom: More Expressive (2) · Pass Reception: Pass Into Space (1) · Tempo: Higher (1) · Attacking Width: Wider (1) · Patience: Hit Early Crosses (1) · Dribbling: Encourage (2) · Shots From Distance: Encourage (1) · Supporting Runs: Overlap Both Flanks (1) · Attacking Transition: Counter-Attack (2) | 12 |
+| Com bola | Creative Freedom: More Expressive (2) · Pass Reception: Pass Into Space (1) · Tempo: Higher (1) · Attacking Width: Wider (1) · Patience: Hit Early Crosses (1) · Dribbling: Encourage (2) · Shots From Distance: Encourage (1) · Supporting Runs: Overlap Both Flanks (1) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Short (1) · GK Distribution Target: Playmaker (1) | 14 |
 | Sem bola | Line of Engagement: High Press (2) · Defensive Line: Much Higher (3) · Trigger Press: Much More Often (3) · Defensive Transition: Counter-Press (3) · Tackling: Get Stuck In (1) | 12 |
-| **Total** | | **24** |
+| **Total** | | **26** |
 
 **Player instructions**
 
@@ -569,9 +570,9 @@ Complexidade das roles: 4 com bola, 10 sem bola.
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| Com bola | Passing Directness: More Direct (1) · Build-up Strategy: Bypass Press (0) · Attacking Width: Narrower (1) · Tempo: Lower (1) · Time Wasting: More Often (?) · Crossing Style: Floated Crosses (1) · Set Pieces: Play for Set Pieces (1) · Creative Freedom: More Disciplined (3) · Attacking Transition: Hold Shape (1) · Goal Kicks: Long (1) · GK Distribution Speed: Slow Pace Down (1) · GK Distribution Target: Target Forward (1) | 12+? |
+| Com bola | Passing Directness: More Direct (1) · Build-up Strategy: Bypass Press (0) · Attacking Width: Narrower (1) · Progress Through: Both Flanks (1) · Tempo: Lower (1) · Time Wasting: More Often (?) · Crossing Style: Floated Crosses (1) · Set Pieces: Play for Set Pieces (1) · Creative Freedom: More Disciplined (3) · Attacking Transition: Hold Shape (1) · Goal Kicks: Long (1) · GK Distribution Speed: Slow Pace Down (1) · GK Distribution Target: Target Forward (1) | 13+? |
 | Sem bola | Line of Engagement: Low Block (0) · Defensive Line: Lower (1) · Defensive Line Behaviour: Drop Off More (1) · Trigger Press: Less Often (1) · Defensive Transition: Regroup (1) · Tackling: Stay on Feet (1) · Cross Engagement: Stop Crosses (1) | 6 |
-| **Total** | | **18+?** |
+| **Total** | | **19+?** |
 
 **Player instructions**
 
@@ -579,4 +580,4 @@ Complexidade das roles: 4 com bola, 10 sem bola.
 - DL (FB): Positioning: Hold Position (1) — lateral não passa do meio-campo
 - DR (FB): Positioning: Hold Position (1) — idem
 
-**Quando usar.** Segurando vantagem a partir dos 70'. Cautious até os 80'; defensive nos últimos 10. O `TCF` e os dois Screening já são parte do remédio da seção 4.4 do manual. O bloco desce inteiro (Low Block + linha Lower), então as linhas não se separam. Se mesmo assim o adversário achar o espaço entre as linhas, aplicar o resto da 4.4: acrescentar Pressing Trap: Trap Outside e, só se não resolver, subir a linha.
+**Quando usar.** Segurando vantagem a partir dos 70'. Cautious até os 80'; defensive nos últimos 10. O `TCF` e os dois Screening já são parte do remédio da seção 4.4 do manual. O bloco desce inteiro (Low Block + linha Lower), então as linhas não se separam. Se mesmo assim o adversário achar o espaço entre as linhas, aplicar o resto da 4.4: acrescentar Pressing Trap: Trap Outside e, só se não resolver, subir a linha até Standard (Defensive Line Behaviour: Balanced). Nunca Higher: com goleiro de linha (`LHGK`) e zagueiro No-Nonsense, linha alta é bola nas costas.
