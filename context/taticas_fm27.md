@@ -153,12 +153,12 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 
 ### 1.4 `pêndulo`
 
-> *Dois que pensam, dois que chegam, dois que finalizam.*
+> *DLP e AP pensam, SS e o lateral chegam, TF e CHF finalizam.*
 
 - **Forma com bola:** `4-2-2-2 DM AM Narrow`
 - **Forma sem bola:** `4-4-2 2DM`
 - **Mentality:** balanced
-- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, WB/HFB, HB/SDM, DLP/DM, AP/TWM, SS/TWM, TF/TCF, CHF/CF`
+- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, FB/HFB, HB/SDM, DLP/DM, AP/WM, SS/WM, TF/CF, CHF/TCF`
 
 | Slot | Com bola | Sem bola | Cx |
 |---|---|---|---|
@@ -166,37 +166,35 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 | DL | Wing-Back | Full-Back | 0+0 |
 | DC | Ball-Playing Centre-Back | Centre-Back | 2+0 |
 | DC | Centre-Back | Covering Centre-Back | 1+1 |
-| DR | Wing-Back | Holding Full-Back | 0+1 |
+| DR | Full-Back | Holding Full-Back | 0+1 |
 | DM | Half Back | Screening Defensive Midfielder | 2+1 |
 | DM | Deep-Lying Playmaker | Defensive Midfielder | 1+0 |
-| AMC → ML | Advanced Playmaker | Tracking Wide Midfielder | 2+1 |
-| AMC → MR | Second Striker | Tracking Wide Midfielder | 1+1 |
-| ST | Target Forward | Tracking Centre Forward | 1+1 |
-| ST | Channel Forward | Centre Forward | 1+0 |
+| AMC → ML | Advanced Playmaker | Wide Midfielder | 2+0 |
+| AMC → MR | Second Striker | Wide Midfielder | 1+0 |
+| ST | Target Forward | Centre Forward | 1+0 |
+| ST | Channel Forward | Tracking Centre Forward | 1+1 |
 
-Complexidade das roles: 13 com bola, 7 sem bola.
+Complexidade das roles: 13 com bola, 5 sem bola.
 
-**Com bola.** O 4-2-2-2 estreito: tudo acontece no corredor central. O Half Back desce entre os zagueiros e forma a saída com três; o DLP organiza na frente deles. Os dois laterais são toda a largura do time e sobem juntos. Na frente do DLP, o AP recebe entre as linhas e o Second Striker chega na área ao lado da dupla: o Target Forward segura e escora, o Channel Forward ataca o corredor e o espaço que o TF abre.
+**Com bola.** O 4-2-2-2 estreito: o jogo passa pelo corredor central. O Half Back desce entre os zagueiros e forma a saída com três; o DLP organiza na frente deles. O AP (AMC esquerdo) recebe entre as linhas e o Second Striker (AMC direito) chega na área ao lado da dupla de ataque: o Target Forward é a referência e escora, o Channel Forward cai no canal e é a largura móvel. A largura fixa é só do Wing-Back esquerdo; o lateral direito fica atrás do SS, que é quem mais demora a voltar.
 
-**Sem bola.** Sem bola vira 4-4-2: os dois meias da AMC abrem pra linha do meio e acompanham os laterais adversários, os dois volantes fecham a frente da área (um de Screening, o outro no padrão) e o TF volta acompanhando o volante adversário. Bloco médio e paciente.
+**Sem bola.** Sem bola vira 4-4-2: os dois meias da AMC abrem pra linha do meio, sem a obrigação de acompanhar o lateral adversário até o fundo (Wide Midfielder). Os dois volantes fecham a frente da área (um de Screening), o TF fica de referência e o CHF volta acompanhando o volante adversário. Bloco médio e paciente.
 
 **Team instructions**
 
 | Fase | Instruções | Custo |
 |---|---|---|
-| Com bola | Passing Directness: Shorter (2) · Pass Reception: Pass to Feet (1) · Patience: Work Ball Into Box (2) · Creative Freedom: More Disciplined (3) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Short (1) · GK Distribution Target: Centre-Backs (1) · Supporting Runs: Overlap Both Flanks (1) | 13 |
+| Com bola | Passing Directness: Shorter (2) · Pass Reception: Pass to Feet (1) · Patience: Work Ball Into Box (2) · Creative Freedom: More Disciplined (3) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Short (1) · GK Distribution Target: Centre-Backs (1) | 12 |
 | Sem bola | Line of Engagement: Mid Block (1) · Defensive Transition: Regroup (1) · Tackling: Stay on Feet (1) | 3 |
-| **Total** | | **16** |
+| **Total** | | **15** |
 
 **Player instructions**
 
-- DL (WB): Cross From: Deep (1) — cruza antes de chegar à linha de fundo, com a área cheia
-- DR (WB): Cross From: Deep (1) — idem
-- ST (TF): Dribbling: Hold Up Ball (1) — segura de costas pros dois meias chegarem
+- Nenhuma.
 
-**Quando usar.** Quando os melhores jogadores do elenco são meias centrais e atacantes, não pontas. Bom contra time de três zagueiros (dois atacantes contra três, dois meias nos meio-espaços) e contra 4-4-2 reto, onde o meio fica 4 contra 2. É alternativa ao `xadrez` quando falta lateral pra um dos lados ou um volante de corredor (WCM).
+**Quando usar.** Quando os melhores jogadores do elenco são meias centrais e atacantes, não pontas, e contra 4-4-2 reto, onde o meio fica 4 contra 2 e ele tem um centroavante fixo a mais que no `relógio`. Vencendo: SS → `AM/WM`, DLP → `DM/SDM`, lateral esquerdo `FB/FB`, Passing Directness: Much Shorter, Tempo: Lower, Attacking Transition: Hold Shape, mentality cautious. Perdendo: primeiro roles e instruções na mesma forma (CHF e TF com Pressing Intensity: Higher, DLP sem bola `DM` → `PRDM`; High Press, Trigger Press: More Often, Defensive Transition: Counter-Press, Defensive Line: Higher; mentality positive e depois attacking). Só no fim troca de forma pra `engrenagem`, que muda também a forma sem bola (4-4-2 → 4-4-1-1): é o último passo.
 
-**Atenção.** A forma não é uma das formas prontas do jogo, e a ligação AMC → ML/MR sem bola é suposição. Confirmar as duas coisas na tela antes de virar config.
+**Atenção.** A forma não é uma das formas prontas do jogo, e a ligação AMC → ML/MR sem bola é suposição. Confirmar as duas na tela antes de virar config. Se a ligação não sair limpa, usar `4-4-2 Diamond Narrow` sem bola (aceitável no manual), com o AP de `TAM` e o SS caindo pro MC.
 
 
 ---
