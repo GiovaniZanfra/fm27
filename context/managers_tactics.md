@@ -189,7 +189,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 | | Preferidas | Aceitáveis | Nunca |
 |---|---|---|---|
 | **Com bola** | `4-2-3-1 DM AM Wide` · `4-3-3 DM Wide` | `4-2-4 DM Wide` (perdendo tarde) · `4-4-2 Diamond Narrow` | Linha de 5 |
-| **Sem bola** | `4-4-1-1 2DM` (o 10 fica de outlet) · `4-1-4-1 DM` | `4-3-3 DM Wide` | `5-3-2`, `5-2-3` como base |
+| **Sem bola** | `4-4-1-1 2DM` (o 10 fica de outlet) · `4-1-4-1 DM` | `4-3-3 DM Wide` · `4-4-2 2DM` (perdendo tarde, com `4-2-4` com bola) | `5-3-2`, `5-2-3` como base |
 
 **Princípio:** com bola, **três criadores** em zonas diferentes (DM, meia, ponta ou 9 que recua). Sem bola, ele não engessa: forma simples, poucas instruções e alguém sempre pronto pro contra-ataque.
 
