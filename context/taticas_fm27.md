@@ -158,7 +158,7 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 - **Forma com bola:** `4-2-2-2 DM AM Narrow`
 - **Forma sem bola:** `4-4-2 2DM`
 - **Mentality:** balanced
-- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, FB/HFB, HB/SDM, DLP/DM, AP/WM, SS/WM, TF/CF, CHF/TCF`
+- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, FB/HFB, HB/SDM, DLP/DM, AP/WM, SS/TWM, TF/CF, CHF/TCF`
 
 | Slot | Com bola | Sem bola | Cx |
 |---|---|---|---|
@@ -170,15 +170,15 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 | DM | Half Back | Screening Defensive Midfielder | 2+1 |
 | DM | Deep-Lying Playmaker | Defensive Midfielder | 1+0 |
 | AMC → ML | Advanced Playmaker | Wide Midfielder | 2+0 |
-| AMC → MR | Second Striker | Wide Midfielder | 1+0 |
+| AMC → MR | Second Striker | Tracking Wide Midfielder | 1+1 |
 | ST | Target Forward | Centre Forward | 1+0 |
 | ST | Channel Forward | Tracking Centre Forward | 1+1 |
 
-Complexidade das roles: 13 com bola, 5 sem bola.
+Complexidade das roles: 13 com bola, 6 sem bola.
 
-**Com bola.** O 4-2-2-2 estreito: o jogo passa pelo corredor central. O Half Back desce entre os zagueiros e forma a saída com três; o DLP organiza na frente deles. O AP (AMC esquerdo) recebe entre as linhas e o Second Striker (AMC direito) chega na área ao lado da dupla de ataque: o Target Forward é a referência e escora, o Channel Forward cai no canal e é a largura móvel. A largura fixa é só do Wing-Back esquerdo; o lateral direito fica atrás do SS, que é quem mais demora a voltar.
+**Com bola.** O 4-2-2-2 estreito: o jogo passa pelo corredor central. O Half Back desce entre os zagueiros e forma a saída com três; o DLP organiza na frente deles. O AP (AMC esquerdo) recebe entre as linhas e o Second Striker (AMC direito) chega na área ao lado da dupla de ataque: o Target Forward (ST esquerdo) é a referência de costas e escora de primeira pros dois meias que chegam de frente; o Channel Forward (ST direito) cai no canal direito e é a largura móvel desse lado. A largura fixa é só do Wing-Back esquerdo; o lateral direito fica atrás do SS, que é quem mais demora a voltar.
 
-**Sem bola.** Sem bola vira 4-4-2: os dois meias da AMC abrem pra linha do meio, sem a obrigação de acompanhar o lateral adversário até o fundo (Wide Midfielder). Os dois volantes fecham a frente da área (um de Screening), o TF fica de referência e o CHF volta acompanhando o volante adversário. Bloco médio e paciente.
+**Sem bola.** Sem bola vira 4-4-2: os dois meias da AMC abrem pra linha do meio. O AP fica como Wide Midfielder, na frente do lateral esquerdo; o SS acompanha o lateral adversário até o fundo (Tracking Wide Midfielder), porque atrás dele o lateral direito segura a linha. Os dois volantes fecham a frente da área (um de Screening), o TF fica de referência e o CHF volta acompanhando o volante adversário. Bloco médio e paciente.
 
 **Team instructions**
 
@@ -192,9 +192,9 @@ Complexidade das roles: 13 com bola, 5 sem bola.
 
 - Nenhuma.
 
-**Quando usar.** Quando os melhores jogadores do elenco são meias centrais e atacantes, não pontas, e contra 4-4-2 reto, onde o meio fica 4 contra 2 e ele tem um centroavante fixo a mais que no `relógio`. Vencendo: SS → `AM/WM`, DLP → `DM/SDM`, lateral esquerdo `FB/FB`, Passing Directness: Much Shorter, Tempo: Lower, Attacking Transition: Hold Shape, mentality cautious. Perdendo: primeiro roles e instruções na mesma forma (CHF e TF com Pressing Intensity: Higher, DLP sem bola `DM` → `PRDM`; High Press, Trigger Press: More Often, Defensive Transition: Counter-Press, Defensive Line: Higher; mentality positive e depois attacking). Só no fim troca de forma pra `engrenagem`, que muda também a forma sem bola (4-4-2 → 4-4-1-1): é o último passo.
+**Quando usar.** Quando os melhores jogadores do elenco são meias centrais e atacantes, não pontas, e contra 4-4-2 reto, onde o meio fica 4 contra 2 e ele tem um centroavante fixo a mais que no `relógio`. Em vez do `xadrez` quando o adversário tem pontas rápidos: o 4-4-2 sem bola cobre os lados que o losango deixa abertos. Vencendo: AP sem bola `WM` → `TWM`, DLP → `DM/SDM`, lateral esquerdo `FB/HFB`, Passing Directness: Much Shorter, Tempo: Lower, Time Wasting: More Often, Attacking Transition: Hold Shape, mentality cautious. Perdendo: roles e instruções na mesma forma (CHF e TF com Pressing Intensity: Higher, DLP sem bola `DM` → `PRDM`, goleiro `BPGK/SWK`; High Press, Trigger Press: More Often, Defensive Transition: Counter-Press, Defensive Line: Higher, Tempo: Higher; mentality positive e depois attacking; a partir dos 75', Shots From Distance: Encourage). Trocar pra `engrenagem` só se houver pontas no banco, e como último passo (muda também a forma sem bola, 4-4-2 → 4-4-1-1). Sem pontas, fica na forma e esgota mentality e instruções.
 
-**Atenção.** A forma não é uma das formas prontas do jogo, e a ligação AMC → ML/MR sem bola é suposição. Confirmar as duas na tela antes de virar config. Se a ligação não sair limpa, usar `4-4-2 Diamond Narrow` sem bola (aceitável no manual), com o AP de `TAM` e o SS caindo pro MC.
+**Atenção.** A forma não é uma das formas prontas do jogo, e a ligação AMC → ML/MR sem bola é suposição. Confirmar as duas na tela antes de virar config. Se a ligação não sair limpa, usar `4-4-2 Diamond Narrow` sem bola (aceitável no manual): HB `HB/SDM` no DM, DLP `DLP/SCM` e SS `SS/SCM` no MC, AP `AP/TAM` no AMC. Isso devolve a fraqueza de lado do `xadrez`, que é justamente o que o `pêndulo` resolve. O TF é escolha pelo jogo de costas e pela escora curta, não por bola longa: se o elenco não tiver esse perfil, `CF/CF` no lugar.
 
 
 ---
