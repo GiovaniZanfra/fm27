@@ -63,7 +63,7 @@ Cada grupo da tela aceita **uma** opção. Os pares abaixo confundem e valem con
 
 | | Preferidas | Aceitáveis | Nunca |
 |---|---|---|---|
-| **Com bola** | `4-2-3-1 DM AM Wide` · `4-4-2 Diamond Narrow` (o 4-3-1-2/4-2-2-2 dele) | `4-3-3 DM Wide` | `4-2-4`, qualquer coisa com 2 atacantes abertos e um meio só |
+| **Com bola** | `4-2-3-1 DM AM Wide` · `4-4-2 Diamond Narrow` (o 4-3-1-2 dele) | `4-3-3 DM Wide` · `4-2-2-2 DM AM Narrow` (dois DM, dois AMC, dois ST; não é forma pronta do jogo, confirmar se dá pra montar) | `4-2-4`, qualquer coisa com 2 atacantes abertos e um meio só |
 | **Sem bola** | `4-4-2 2DM` · `4-4-1-1 2DM` | `4-1-4-1 DM` · `4-4-2 Diamond Narrow` | Linha de 5 como forma-base |
 
 **Princípio:** sem bola, sempre **duas camadas de proteção** no meio (dois DM, ou DM + MC de contenção). Com bola, sempre pelo menos **3 jogadores atrás da linha da bola** na saída (2 zagueiros + DM, ou zaga + lateral invertido).

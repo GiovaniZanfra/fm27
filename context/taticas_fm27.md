@@ -1,6 +1,6 @@
-# Táticas FM27 — três por técnico
+# Táticas FM27
 
-Doze táticas (três por técnico), montadas dentro das regras de `managers_tactics.md` e da identidade de `managers.md`. Roles, posições e custos conferidos contra `game_data/roles.json`, `game_data/instructions_ui.json` e `game_data/instructions.json`.
+Treze táticas (três por técnico, mais uma extra do Giovani), montadas dentro das regras de `managers_tactics.md` e da identidade de `managers.md`. Roles, posições e custos conferidos contra `game_data/roles.json`, `game_data/instructions_ui.json` e `game_data/instructions.json`.
 
 **Status:** propostas, ainda sem jogo no save. Viram config (`configs/<time>/<nome>.json`) quando aprovadas.
 
@@ -150,6 +150,53 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 **Quando usar.** Empate travado ou placar contra. É o `relógio` com os ajustes de "aumentar a intensidade sem perder a estrutura" do manual 1.4 já aplicados (roles e instruções), salvo como tática própria pra entrar de uma vez. Antes dela, o único passo é subir a mentality do `relógio` pra positive. A forma com bola e a sem bola são as mesmas do `relógio`, então a troca é só de roles e instruções, como manda a regra de ouro. A partir dos 75', perdendo: mentality attacking e Shots From Distance: Encourage.
 
 **Atenção.** Defensive Line: Higher acompanha a pressão alta (manual 1.4) e é o que justifica o Sweeper Keeper. A linha alta expõe zagueiro lento: o `CCB` precisa de velocidade.
+
+### 1.4 `pêndulo`
+
+> *Dois que pensam, dois que chegam, dois que finalizam.*
+
+- **Forma com bola:** `4-2-2-2 DM AM Narrow`
+- **Forma sem bola:** `4-4-2 2DM`
+- **Mentality:** balanced
+- **Linha de roles:** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, WB/HFB, HB/SDM, DLP/DM, AP/TWM, SS/TWM, TF/TCF, CHF/CF`
+
+| Slot | Com bola | Sem bola | Cx |
+|---|---|---|---|
+| GK | Ball-Playing Goalkeeper | Goalkeeper | 2+1 |
+| DL | Wing-Back | Full-Back | 0+0 |
+| DC | Ball-Playing Centre-Back | Centre-Back | 2+0 |
+| DC | Centre-Back | Covering Centre-Back | 1+1 |
+| DR | Wing-Back | Holding Full-Back | 0+1 |
+| DM | Half Back | Screening Defensive Midfielder | 2+1 |
+| DM | Deep-Lying Playmaker | Defensive Midfielder | 1+0 |
+| AMC → ML | Advanced Playmaker | Tracking Wide Midfielder | 2+1 |
+| AMC → MR | Second Striker | Tracking Wide Midfielder | 1+1 |
+| ST | Target Forward | Tracking Centre Forward | 1+1 |
+| ST | Channel Forward | Centre Forward | 1+0 |
+
+Complexidade das roles: 13 com bola, 7 sem bola.
+
+**Com bola.** O 4-2-2-2 estreito: tudo acontece no corredor central. O Half Back desce entre os zagueiros e forma a saída com três; o DLP organiza na frente deles. Os dois laterais são toda a largura do time e sobem juntos. Na frente do DLP, o AP recebe entre as linhas e o Second Striker chega na área ao lado da dupla: o Target Forward segura e escora, o Channel Forward ataca o corredor e o espaço que o TF abre.
+
+**Sem bola.** Sem bola vira 4-4-2: os dois meias da AMC abrem pra linha do meio e acompanham os laterais adversários, os dois volantes fecham a frente da área (um de Screening, o outro no padrão) e o TF volta acompanhando o volante adversário. Bloco médio e paciente.
+
+**Team instructions**
+
+| Fase | Instruções | Custo |
+|---|---|---|
+| Com bola | Passing Directness: Shorter (2) · Pass Reception: Pass to Feet (1) · Patience: Work Ball Into Box (2) · Creative Freedom: More Disciplined (3) · Attacking Transition: Counter-Attack (2) · Goal Kicks: Short (1) · GK Distribution Target: Centre-Backs (1) · Supporting Runs: Overlap Both Flanks (1) | 13 |
+| Sem bola | Line of Engagement: Mid Block (1) · Defensive Transition: Regroup (1) · Tackling: Stay on Feet (1) | 3 |
+| **Total** | | **16** |
+
+**Player instructions**
+
+- DL (WB): Cross From: Deep (1) — cruza antes de chegar à linha de fundo, com a área cheia
+- DR (WB): Cross From: Deep (1) — idem
+- ST (TF): Dribbling: Hold Up Ball (1) — segura de costas pros dois meias chegarem
+
+**Quando usar.** Quando os melhores jogadores do elenco são meias centrais e atacantes, não pontas. Bom contra time de três zagueiros (dois atacantes contra três, dois meias nos meio-espaços) e contra 4-4-2 reto, onde o meio fica 4 contra 2. É alternativa ao `xadrez` quando falta lateral pra um dos lados ou um volante de corredor (WCM).
+
+**Atenção.** A forma não é uma das formas prontas do jogo, e a ligação AMC → ML/MR sem bola é suposição. Confirmar as duas coisas na tela antes de virar config.
 
 
 ---
