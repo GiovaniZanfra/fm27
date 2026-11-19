@@ -699,6 +699,30 @@ def _detect_weight_column(df: pd.DataFrame):
     return None
 
 
+def _check_club(df: pd.DataFrame, team_name: str, html_file) -> None:
+    """Refuse a squad export of another club (e.g. a Bahia file in data/palmeiras/raw).
+
+    Only applies when the view has a Club column and one club holds >=85% of the rows;
+    mixed lists (scouting pools, national teams) and *_scout folders pass.
+    """
+    if 'Club' not in df.columns or team_name.endswith('_scout'):
+        return
+    clubs = df['Club'].dropna().astype(str).str.strip()
+    clubs = clubs[clubs != '']
+    if clubs.empty:
+        return
+    counts = clubs.value_counts()
+    club, share = counts.index[0], counts.iloc[0] / len(clubs)
+    if share < 0.85:
+        return
+    import unicodedata
+    tokens = set(unicodedata.normalize('NFKD', club).encode('ascii', 'ignore').decode()
+                 .lower().replace('-', ' ').split())
+    if not set(team_name.lower().split('_')) <= tokens:
+        raise ValueError(f"{html_file} is a {club} export ({share:.0%} of rows) but sits in "
+                         f"data/{team_name}/raw; move it to that club's folder.")
+
+
 def parse_raw_data(team_name: str, date: str = None):
     """Parse raw HTML data and save interim CSV files.
 
@@ -726,6 +750,7 @@ def parse_raw_data(team_name: str, date: str = None):
     df_agg = pd.read_html(str(html_file), encoding="utf-8")
     merged_df = pd.concat(df_agg, axis=0, ignore_index=True)
     merged_df = normalize_columns(merged_df)
+    _check_club(merged_df, team_name, html_file)
     merged_df = _append_uid_to_duplicate_names(merged_df)
 
     # Extract attributes (already full names after normalize_columns)

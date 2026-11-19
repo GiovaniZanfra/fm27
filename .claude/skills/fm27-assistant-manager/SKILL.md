@@ -17,8 +17,20 @@ names stay lowercase; roles use the `IP/OOP` abbreviations from the glossary in 
 | Rafael Duarte | `river_plate` | technique: vision, flair, dribbling | `duarte` |
 | Luiz "Casca" Ferreira | `watford` | solidity: aerial, teamwork, concentration | `casca` |
 
-`data/` starts empty in this FM27 save: drop the first export at `data/<team>/raw/<mmmYYYY>.html`
-and the pipeline creates the rest. Any other folder the user adds (a scouting pool, a national
+**Getting exports in:** the FM plugin always writes to
+`/mnt/c/Users/giova/OneDrive/Documentos/Sports Interactive/Football Manager 27/exports/`
+as `Squad YYYY-MM-DD HH-MM-SS.html`. The user runs several saves and never moves files. Before
+any run on squad data, run `python ingest_export.py` (~0.1 s): it copies **every** export not yet
+in `data/` into its own club's folder (`data/<team>/raw/YYYY-MM-DD_HH-MM-SS.html`, club from the
+`Club` column), then prints the latest raw file per team. It never guesses: an export with no
+`Club` column, mixed clubs (scouting list) or a club with no `data/` folder is reported as
+`SKIPPED` with the fix — tell the user, don't force it. `--team`/`--scout` need `--file` and
+`--team` is refused if it contradicts the `Club` column. The parser also refuses a squad file of
+another club sitting in the wrong folder. It does not parse: pass that team's latest label to
+`run_team.py --date <label>`. Raw files are named by export timestamp; never ask for a month.
+
+`data/` starts empty in this FM27 save: the first ingest creates `data/<team>/raw/` and the
+pipeline creates the rest. Any other folder the user adds (a scouting pool, a national
 team for callups) works the same way, but has no manager profile unless the user assigns one.
 
 ## Read before advising
@@ -117,7 +129,7 @@ when recommending it.
 
 ## Between matches
 
-- **New export:** when the user drops a new `raw/<month><year>.html`, rerun with `--date` and no `--no-parse`. Point out who moved between first and second team since the last run if you have it.
+- **New export:** run `python ingest_export.py` (see *Getting exports in*), then rerun with `--date <that team's latest label>`. Point out who moved between first and second team since the last run if you have it.
 - **Depth chart:** run each of the manager's main formations with no exclusions and read teams 1..N. A slot where the second team's score falls far below the first is a depth gap; a position with fewer than two eligible players is a hole.
 - **Rotation:** Keller rotates hard to keep physical output; Casca keeps a stable XI and rotates only when forced; Giovani plans in sequences of matches; Duarte reacts to form. The `Last 5 Games` multiplier is what makes form move a selection, so check its weight in the config before reading much into a change.
 - **Fit tier list:** run the helper below on the squad. Write lists to `data/<team>/analysis/tier_list_<manager>.csv|html`.
@@ -147,7 +159,9 @@ real-world knowledge of a player; if a target has not been exported, ask for the
 1. **Find the need first.** From the depth chart: holes, depth gaps, starters past the manager's age rule, starters failing gates. A target should answer one of these.
 2. **Load the pool.** Scouted players go in their own folder so they never mix into team selection: `data/<team>_scout/raw/<date>.html`, exported with the same FM view as the squad. Then:
    ```bash
-   python parse_raw_data.py <team>_scout <date>
+   python ingest_export.py --list                                  # find the export's file name
+   python ingest_export.py --scout <team> --file '<Squad ....html>' # copies it, prints the label
+   python parse_raw_data.py <team>_scout <label>
    python calculate_scores.py <team>_scout
    ```
 3. **Judge each target on three things.**
