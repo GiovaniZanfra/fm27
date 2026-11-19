@@ -85,8 +85,10 @@ python run_team.py <team> --config <file>.json --by-formation [--date sep2023] [
 - The `Score` column is the role score *after* the config's adjustments (age penalty, multipliers on z-scores such as `Last 5 Games`, `Transfer Value`, or any attribute name). It is not comparable across configs or with a raw `<Role>_Score`.
 - A multiplier key that matches no column only prints a warning and is skipped. `Av Rat`, `Last 5 Games`, `Transfer Value`, `Trn Rating` and plain attribute names resolve; `Trn Rat` and `Av. Rating` do not.
 
-Reporting a run: first team in formation order; **second team always sorted by score, descending**.
-Include `Best Role` when it differs from the assigned role, since that is a retraining or role-swap hint.
+Reporting a run: both teams in position order, each line right to left:
+`GK DR DC DL WBR DM WBL MR MC ML AMR AMC AML ST` (the run prints them this way). Show the role as
+`IP/OOP` siglas. Include `Best` (best IP/OOP role overall) when it differs from the assigned role,
+since that is a retraining or role-swap hint.
 
 ### Configs
 
@@ -99,7 +101,7 @@ out-of-possession one; the slot score is `ip_weight * role + (1 - ip_weight) * r
 (`ip_weight` defaults to 0.5). A slot without `role_oop` uses only `role`. Role names are the
 `ROLE_DEFINITIONS` names in `fm27/roles.py` with spaces turned into underscores
 (`Ball_Playing_Centre_Back`, `Covering_Centre_Back_OOP`); every out-of-possession role ends in
-`_OOP`. A wrong name stops the run. The run prints `Best Role` and `Best OOP` per player.
+`_OOP`. A wrong name stops the run. The run prints `Pos | Name | Role | Score | Best`, roles as `IP/OOP` siglas from the glossary.
 `callup.json` is a squad-sized config (23–25 slots) for registration and matchday squads.
 
 No manager has an FM27 tactic yet, so there are no configs besides `configs/template.json`. The
@@ -113,7 +115,7 @@ plus instructions by phase.
 
 1. **Know the state.** Team, formation in use, score, minute, who is unavailable. Ask only for what you can't infer.
 2. **Exclusions accumulate.** Every "tira X" adds to the current `-r` list, including injuries, suspensions and players removed by a draw. Reset only when the user says it is a new match ("jogo novo"). Restate the full exclusion list with each result so it can be corrected.
-3. **Lineup and bench.** Run the formation's config with the exclusions. The second team, sorted by score, is the bench order.
+3. **Lineup and bench.** Run the formation's config with the exclusions. The second team, in position order, is the bench.
 4. **Substitutions.** To replace a starter, rerun with that player added to `-r` and report who takes the slot and what else shifts; the optimizer may reshuffle several slots, and a like-for-like swap is often not its answer. When the role changes too, switch config rather than guessing.
 5. **Tactical changes follow the character.** Take the manager's game-state section from `managers_tactics.md` and stay inside it:
    - Giovani changes roles before shape, never goes very defensive or very attacking, and holds a lead through control rather than retreat.

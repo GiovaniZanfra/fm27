@@ -3,6 +3,7 @@
 
 import argparse
 import csv
+import re
 import shlex
 import subprocess
 import sys
@@ -45,6 +46,51 @@ def _pretty_print_table(rows, title=None):
     for r in rows:
         line = ' | '.join((str(r.get(c, ''))[:60]).ljust(widths[c]) for c in cols)
         print(line)
+
+
+# Display order: GK, then each line right to left.
+POSITION_ORDER = ['GK', 'DR', 'DC', 'DL', 'WBR', 'DM', 'WBL', 'MR', 'MC', 'ML', 'AMR', 'AMC', 'AML', 'ST']
+
+
+def _pos_rank(pos):
+    return POSITION_ORDER.index(pos) if pos in POSITION_ORDER else len(POSITION_ORDER)
+
+
+def _norm_role(name):
+    name = re.sub(r'[_\s]+OOP$', '', str(name).strip())
+    return re.sub(r'[^a-z0-9]', '', name.lower())
+
+
+def _role_abbreviations(repo: Path):
+    """{'ip'|'oop': {normalized role name: sigla}} from the glossary (section 6) of managers_tactics.md."""
+    out = {'ip': {}, 'oop': {}}
+    path = repo / 'context' / 'managers_tactics.md'
+    if not path.exists():
+        return out
+    kind = None
+    for line in path.read_text(encoding='utf-8').splitlines():
+        if line.startswith('### 6.1'):
+            kind = 'ip'
+        elif line.startswith('### 6.2'):
+            kind = 'oop'
+        elif line.startswith('## ') or (line.startswith('### ') and kind and not line.startswith('### 6.')):
+            kind = None
+        elif kind:
+            m = re.match(r'\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|', line)
+            if m:
+                out[kind][_norm_role(m.group(2))] = m.group(1)
+    return out
+
+
+def _abbr(abbr, role, kind):
+    """Sigla for a role name ('Ball_Playing_Centre_Back' -> 'BPCB'); initials if not in the glossary."""
+    if not role:
+        return ''
+    key = _norm_role(role)
+    if key in abbr.get(kind, {}):
+        return abbr[kind][key]
+    words = re.sub(r'[_\s]+OOP$', '', str(role)).replace('_', ' ').replace('-', ' ').split()
+    return ''.join(w[0].upper() for w in words)
 
 
 def print_teams(repo: Path, team: str, formation: str = None):
@@ -92,23 +138,29 @@ def print_teams(repo: Path, team: str, formation: str = None):
         except Exception:
             pass
 
-    def attach_best(rows):
+    abbr = _role_abbreviations(repo)
+
+    def display(rows):
         out = []
-        for r in rows:
-            r2 = dict(r)
-            best = best_map.get(r2.get('Name') or '')
-            for kind, label in (('ip', 'Best Role'), ('oop', 'Best OOP')):
-                role, score = best[kind] if best else (None, None)
-                r2[label] = role or ''
-                r2[f'{label} Score'] = f"{score:.4g}" if score is not None else ''
-            out.append(r2)
+        for r in sorted(rows, key=lambda r: _pos_rank(r.get('Position'))):
+            ip, oop = r.get('Role') or '', r.get('Role_OOP') or ''
+            role = _abbr(abbr, ip, 'ip') + (f"/{_abbr(abbr, oop, 'oop')}" if oop else '')
+            best = best_map.get(r.get('Name') or '')
+            best_role = ''
+            if best and best['ip'][0]:
+                best_role = _abbr(abbr, best['ip'][0], 'ip')
+                if best['oop'][0]:
+                    best_role += f"/{_abbr(abbr, best['oop'][0], 'oop')}"
+            try:
+                score = f"{float(r.get('Score')):.2f}"
+            except (TypeError, ValueError):
+                score = r.get('Score') or ''
+            out.append({'Pos': r.get('Position') or '', 'Name': r.get('Name') or '',
+                        'Role': role, 'Score': score, 'Best': best_role})
         return out
 
-    frows = attach_best(frows)
-    srows = attach_best(srows)
-
-    _pretty_print_table(frows, title='First Team')
-    _pretty_print_table(srows, title='Second Team')
+    _pretty_print_table(display(frows), title='First Team')
+    _pretty_print_table(display(srows), title='Second Team')
 
 
 def main():
