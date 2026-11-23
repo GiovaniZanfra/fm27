@@ -1,13 +1,6 @@
 # Managers
 
-Save atual: 4 técnicos, 1 clube cada.
-
-| Técnico | Clube |
-|---|---|
-| Giovani | Corinthians |
-| Bruno Keller | Palmeiras |
-| Rafael Duarte | Roma |
-| Luiz "Casca" Ferreira | Bahia |
+Save atual: 4 técnicos — Giovani, Bruno Keller, Rafael Duarte e Luiz "Casca" Ferreira.
 
 ## Background (criação do técnico)
 
@@ -65,29 +58,13 @@ Escolhas feitas na tela de criação do técnico (Head Coach Creation) e a hist�
 
 **Tiers de transferência:** Tier 1 = Evito vender · Tier 2 = Negocio · Tier 3 = Vejo ofertas · Tier 4 = Procuro vender.
 
-## Registro de partidas (planilha)
-
-Planilha no Google Drive, ID `1EcM-yiCCyVDM0f_wkq-m3jHKIohZKelsxr7ELKSm0IY`. Colunas, nessa ordem: `Team | Name | Roles | Duration | XG | XGA | XG Diff | Opp | XG Diff/min`.
-
-- **Team** — time em minúsculo (corinthians, palmeiras, roma, bahia)
-- **Name** — formação em minúsculo
-- **Roles** — um par `IP/OOP` por slot (role com bola / role sem bola, siglas do glossário em `managers_tactics.md`), separados por vírgula e espaço, em ordem posicional (ex: BPGK/GK, FB/HFB, BPCB/CB, CB/CCB, IFB/FB, DM/SDM, CM/SCM, AP/AM, IW/TW, W/TW, CF/CF)
-- **Duration** — minutos do segmento; troca de formação no jogo = nova linha
-- **XG / XGA / XG Diff** — do segmento
-- **Opp** — adversário em minúsculo
-- **XG Diff/min** — XG Diff ÷ duração, 3 casas
-
-**Regra do delta:** com mais de um segmento, a 1ª linha usa valores absolutos; as seguintes usam acumulado − segmento anterior (XG, XGA, XG Diff). XG Diff/min é sobre o delta.
-
-**Formato:** separado por tab pra colar direto no Sheets; decimal com vírgula (0,83).
-
 Ao sugerir roles ou mudança de formação, ler o perfil do técnico (abaixo) e `managers_tactics.md`.
 
 ## Perfis
 
 *Textos de personagem escritos na era FM24: os nomes de role citados aqui (BallWinningMidfielder, ShadowStriker, PressingForward…) são do FM24. A tradução para roles FM27 está em `managers_tactics.md`, seção 7.*
 
-Giovani (Corinthians)
+Giovani
  
 Giovani is a structured, adaptive, and system-driven manager. He builds his teams around balance: controlled possession, organized pressing, and clear roles. Typically using shapes like 4-2-2-2 or 4-3-1-2, he ensures there’s always defensive protection (e.g., DefensiveMidfielder + BallWinningMidfielder) and attacking coordination (AdvancedPlaymaker + ShadowStriker + a balanced striker duo like TargetForward + PressingForward).
  
@@ -103,7 +80,7 @@ increases intensity when losing but keeps structure intact
 manages leads through control, not retreat
  
  
-Rafael Duarte (Roma)
+Rafael Duarte
  
 Rafael is a fluid, emotional, and momentum-driven manager. His teams are less about structure and more about expression, using flexible systems like 4-2-3-1 or 4-3-3 that allow players to move freely between lines. He relies heavily on technical players (AdvancedPlaymaker, Mezzala, ShadowStriker, SecondStriker) to create solutions in real time.
  
@@ -118,7 +95,7 @@ changes shape and roles more freely
 when losing → increases risk fast, sometimes destabilizing the team
 when winning → slows down and leans on technical control
  
-Bruno Keller (Palmeiras)
+Bruno Keller
  
 Bruno Keller is an intense, proactive, and physically demanding manager. He builds his teams around aggression, verticality, and relentless pressing. Usually deploying a 4-3-3 or 4-2-3-1, he prioritizes athletic players capable of sustaining a high tempo for the full 90 minutes. Every role is selected to maximize intensity, with PressingForwards, BoxToBoxMidfielders, WingBacks, and BallPlayingCentreBacks forming the backbone of his system.
  
@@ -133,7 +110,7 @@ rotates the squad aggressively to maintain physical output
 reacts quickly to changes in the match through substitutions
 increases pressing when losing and rarely compromises his attacking identity
 protects leads by keeping the opponent pinned back rather than sitting deep
-Luiz "Casca" Ferreira (Bahia)
+Luiz "Casca" Ferreira
  
 Luiz "Casca" Ferreira is a pragmatic, disciplined, and traditional manager. He believes consistency and organization win championships, preferring proven systems over tactical experimentation. Most often lining up in a classic 4-4-2, his teams are physically competitive, defensively solid, and built around clear positional responsibilities. He values experienced players, aerial strength, and tactical discipline above individual flair.
  

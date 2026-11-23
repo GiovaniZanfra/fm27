@@ -25,7 +25,7 @@ Como cada técnico joga, escrito nas mecânicas do FM27: forma com bola e forma 
 ### 0.2 Convenções
 
 - **Roles escritas como `IP/OOP`**: role com bola / role sem bola, em sigla (glossário na seção 6). Ex.: `BPCB/CCB` = Ball-Playing Centre-Back com bola, Covering Centre-Back sem bola.
-- **Linha de roles** (manual e coluna `Roles` da planilha): os 11 slots em ordem posicional (GK → laterais/zaga → meio → ataque), separados por vírgula e espaço. Ex.: `BPGK/GK, FB/HFB, BPCB/CB, CB/CCB, IFB/FB, DM/SDM, …`
+- **Linha de roles**: os 11 slots em ordem posicional (GK → laterais/zaga → meio → ataque), separados por vírgula e espaço. Ex.: `BPGK/GK, FB/HFB, BPCB/CB, CB/CCB, IFB/FB, DM/SDM, …`
 - **Nome de formação** sempre em minúsculo.
 - **Instruções** escritas como `Grupo: Opção`, com os nomes da tela do jogo (`instructions_ui.json`). O número entre parênteses é o custo de complexidade.
 - **Instrução não listada** = opção neutra do grupo (Standard / Balanced / Mixed / No / Keep Ball in Play), custo 0. A única exceção é **Line of Engagement**, que não tem neutra: toda tática escolhe Low Block (0), Mid Block (1) ou High Press (2).
@@ -49,7 +49,7 @@ Cada grupo da tela aceita **uma** opção. Os pares abaixo confundem e valem con
 
 ---
 
-## 1. GIOVANI — Corinthians
+## 1. GIOVANI
 
 **Identidade:** estruturado, adaptativo, orientado a sistema. Posse controlada, pressão organizada, funções claras. Estrutura acima de improviso, caos mínimo. Pensa em sequências, não só no jogo atual.
 
@@ -113,7 +113,7 @@ Ordem fixa: **roles → instruções → mentality → forma**.
 
 ---
 
-## 2. BRUNO KELLER — Palmeiras
+## 2. BRUNO KELLER
 
 **Identidade:** intenso, proativo, fisicamente exigente. Verticalidade, pressão implacável, atacar antes do adversário se organizar. Intensidade acima de posse.
 
@@ -174,7 +174,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 ---
 
-## 3. RAFAEL DUARTE — Roma
+## 3. RAFAEL DUARTE
 
 **Identidade:** fluido, emocional, movido a momentum. Expressão acima de estrutura. Jogadores trocando de linha livremente, resolvendo em tempo real. Sem bola: mid-block reativo.
 
@@ -233,7 +233,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 ---
 
-## 4. LUIZ "CASCA" FERREIRA — Bahia
+## 4. LUIZ "CASCA" FERREIRA
 
 **Identidade:** pragmático, disciplinado, tradicional. **Um único sistema: 4-4-2.** Direto, sólido, cruzamento pro centroavante. Valoriza experiência, força aérea e disciplina acima do talento individual.
 
@@ -305,7 +305,6 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
 
 | | Giovani | Bruno Keller | Rafael Duarte | Luiz Casca |
 |---|---|---|---|---|
-| **Time** | Corinthians | Palmeiras | Roma | Bahia |
 | **Eixo** | Cérebro | Corpo | Técnica | Solidez |
 | **Atributos** | Posicionamento, Decisões, Teamwork | Pace, Work Rate, Stamina | Técnica, Visão, Drible | Cabeceio, Impulsão, Teamwork, Concentração |
 | **Mentality casa** | balanced | attacking | positive | balanced |
