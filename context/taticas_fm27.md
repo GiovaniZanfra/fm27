@@ -15,7 +15,7 @@ Treze táticas (três por técnico, mais uma extra do Giovani), montadas dentro 
 
 ---
 
-## 1. Giovani — Sporting
+## 1. Giovani — Corinthians
 
 Mentality entre cautious e attacking. Roles antes da forma; duas camadas de proteção no meio sem bola; três atrás da bola na saída.
 
@@ -199,7 +199,7 @@ Complexidade das roles: 13 com bola, 6 sem bola.
 
 ---
 
-## 2. Bruno Keller — Internacional
+## 2. Bruno Keller — Palmeiras
 
 Mentality entre positive e attacking. Pressão alta, linha alta, dois na primeira linha de pressão. Protege vantagem prendendo o adversário, não sentando.
 
@@ -344,7 +344,7 @@ Complexidade das roles: 9 com bola, 11 sem bola.
 
 ---
 
-## 3. Rafael Duarte — River Plate
+## 3. Rafael Duarte — Roma
 
 Mentality entre cautious e very attacking. Três criadores em zonas diferentes; sem bola não engessa. Troca de forma livremente durante o jogo.
 
@@ -484,7 +484,7 @@ Complexidade das roles: 16 com bola, 5 sem bola.
 
 ---
 
-## 4. Luiz "Casca" Ferreira — Watford
+## 4. Luiz "Casca" Ferreira — Bahia
 
 Mentality entre defensive (só nos últimos 10) e positive. 4-4-2 com e sem bola, sempre. Muda roles, mentality e instruções; nunca a forma.
 

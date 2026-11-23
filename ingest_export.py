@@ -46,7 +46,7 @@ def slug(name: str) -> str:
 
 
 def club_matches(club: str, folder: str) -> bool:
-    """'Sporting CP' matches folder 'sporting'; 'River Plate' matches 'river_plate'."""
+    """'SC Corinthians Paulista' matches folder 'corinthians'; 'AS Roma' matches 'roma'."""
     return set(folder.split("_")) <= set(slug(club).split("_"))
 
 

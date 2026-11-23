@@ -49,7 +49,7 @@ Cada grupo da tela aceita **uma** opção. Os pares abaixo confundem e valem con
 
 ---
 
-## 1. GIOVANI — Sporting
+## 1. GIOVANI — Corinthians
 
 **Identidade:** estruturado, adaptativo, orientado a sistema. Posse controlada, pressão organizada, funções claras. Estrutura acima de improviso, caos mínimo. Pensa em sequências, não só no jogo atual.
 
@@ -113,7 +113,7 @@ Ordem fixa: **roles → instruções → mentality → forma**.
 
 ---
 
-## 2. BRUNO KELLER — Internacional
+## 2. BRUNO KELLER — Palmeiras
 
 **Identidade:** intenso, proativo, fisicamente exigente. Verticalidade, pressão implacável, atacar antes do adversário se organizar. Intensidade acima de posse.
 
@@ -174,7 +174,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 ---
 
-## 3. RAFAEL DUARTE — River Plate
+## 3. RAFAEL DUARTE — Roma
 
 **Identidade:** fluido, emocional, movido a momentum. Expressão acima de estrutura. Jogadores trocando de linha livremente, resolvendo em tempo real. Sem bola: mid-block reativo.
 
@@ -233,7 +233,7 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
 
 ---
 
-## 4. LUIZ "CASCA" FERREIRA — Watford
+## 4. LUIZ "CASCA" FERREIRA — Bahia
 
 **Identidade:** pragmático, disciplinado, tradicional. **Um único sistema: 4-4-2.** Direto, sólido, cruzamento pro centroavante. Valoriza experiência, força aérea e disciplina acima do talento individual.
 
@@ -305,7 +305,7 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
 
 | | Giovani | Bruno Keller | Rafael Duarte | Luiz Casca |
 |---|---|---|---|---|
-| **Time** | Sporting | Internacional | River Plate | Watford |
+| **Time** | Corinthians | Palmeiras | Roma | Bahia |
 | **Eixo** | Cérebro | Corpo | Técnica | Solidez |
 | **Atributos** | Posicionamento, Decisões, Teamwork | Pace, Work Rate, Stamina | Técnica, Visão, Drible | Cabeceio, Impulsão, Teamwork, Concentração |
 | **Mentality casa** | balanced | attacking | positive | balanced |

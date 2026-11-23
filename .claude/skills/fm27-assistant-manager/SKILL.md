@@ -1,6 +1,6 @@
 ---
 name: fm27-assistant-manager
-description: Assistant manager for the FM27 save in this workspace (Giovani/Sporting, Bruno Keller/Internacional, Rafael Duarte/River Plate, Casca/Watford). Use for anything about running a team — picking the XI or a callup, "roda a formação", "tira X", in-match changes (subs, roles, mentality, instructions, chasing or holding a result), logging match segments for the xG sheet, squad depth and tier lists, scouting targets, transfer suggestions, and who to sell.
+description: Assistant manager for the FM27 save in this workspace (Giovani/Corinthians, Bruno Keller/Palmeiras, Rafael Duarte/Roma, Casca/Bahia). Use for anything about running a team — picking the XI or a callup, "roda a formação", "tira X", in-match changes (subs, roles, mentality, instructions, chasing or holding a result), logging match segments for the xG sheet, squad depth and tier lists, scouting targets, transfer suggestions, and who to sell.
 ---
 
 # FM27 assistant manager
@@ -12,10 +12,10 @@ names stay lowercase; roles use the `IP/OOP` abbreviations from the glossary in 
 
 | Manager | Team folder | Axis | Fit profile |
 |---|---|---|---|
-| Giovani | `sporting` | brain: positioning, decisions, teamwork | `giovani` |
-| Bruno Keller | `internacional` | body: pace, work rate, stamina | `keller` |
-| Rafael Duarte | `river_plate` | technique: vision, flair, dribbling | `duarte` |
-| Luiz "Casca" Ferreira | `watford` | solidity: aerial, teamwork, concentration | `casca` |
+| Giovani | `corinthians` | brain: positioning, decisions, teamwork | `giovani` |
+| Bruno Keller | `palmeiras` | body: pace, work rate, stamina | `keller` |
+| Rafael Duarte | `roma` | technique: vision, flair, dribbling | `duarte` |
+| Luiz "Casca" Ferreira | `bahia` | solidity: aerial, teamwork, concentration | `casca` |
 
 **Getting exports in:** the FM plugin always writes to
 `/mnt/c/Users/giova/OneDrive/Documentos/Sports Interactive/Football Manager 27/exports/`

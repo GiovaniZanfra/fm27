@@ -5,8 +5,8 @@ Reads data/<team>/interim/*.csv (run the parse step first) and scores every
 player against one manager's identity, using the same formulas as the tier
 lists in data/<team>/analysis/.
 
-    python .claude/skills/fm27-assistant-manager/scripts/manager_fit.py giovani sporting
-    python .claude/skills/fm27-assistant-manager/scripts/manager_fit.py keller inter_scout --vs internacional --top 20
+    python .claude/skills/fm27-assistant-manager/scripts/manager_fit.py giovani corinthians
+    python .claude/skills/fm27-assistant-manager/scripts/manager_fit.py keller palmeiras_scout --vs palmeiras --top 20
 """
 
 import argparse

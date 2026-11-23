@@ -4,10 +4,10 @@ Save atual: 4 técnicos, 1 clube cada.
 
 | Técnico | Clube |
 |---|---|
-| Giovani | Sporting |
-| Bruno Keller | Internacional |
-| Rafael Duarte | River Plate |
-| Luiz "Casca" Ferreira | Watford |
+| Giovani | Corinthians |
+| Bruno Keller | Palmeiras |
+| Rafael Duarte | Roma |
+| Luiz "Casca" Ferreira | Bahia |
 
 ## Background (criação do técnico)
 
@@ -69,7 +69,7 @@ Escolhas feitas na tela de criação do técnico (Head Coach Creation) e a hist�
 
 Planilha no Google Drive, ID `1EcM-yiCCyVDM0f_wkq-m3jHKIohZKelsxr7ELKSm0IY`. Colunas, nessa ordem: `Team | Name | Roles | Duration | XG | XGA | XG Diff | Opp | XG Diff/min`.
 
-- **Team** — time em minúsculo (sporting, internacional, river_plate, watford)
+- **Team** — time em minúsculo (corinthians, palmeiras, roma, bahia)
 - **Name** — formação em minúsculo
 - **Roles** — um par `IP/OOP` por slot (role com bola / role sem bola, siglas do glossário em `managers_tactics.md`), separados por vírgula e espaço, em ordem posicional (ex: BPGK/GK, FB/HFB, BPCB/CB, CB/CCB, IFB/FB, DM/SDM, CM/SCM, AP/AM, IW/TW, W/TW, CF/CF)
 - **Duration** — minutos do segmento; troca de formação no jogo = nova linha
@@ -87,7 +87,7 @@ Ao sugerir roles ou mudança de formação, ler o perfil do técnico (abaixo) e 
 
 *Textos de personagem escritos na era FM24: os nomes de role citados aqui (BallWinningMidfielder, ShadowStriker, PressingForward…) são do FM24. A tradução para roles FM27 está em `managers_tactics.md`, seção 7.*
 
-Giovani (Sporting)
+Giovani (Corinthians)
  
 Giovani is a structured, adaptive, and system-driven manager. He builds his teams around balance: controlled possession, organized pressing, and clear roles. Typically using shapes like 4-2-2-2 or 4-3-1-2, he ensures there’s always defensive protection (e.g., DefensiveMidfielder + BallWinningMidfielder) and attacking coordination (AdvancedPlaymaker + ShadowStriker + a balanced striker duo like TargetForward + PressingForward).
  
@@ -103,7 +103,7 @@ increases intensity when losing but keeps structure intact
 manages leads through control, not retreat
  
  
-Rafael Duarte (River Plate)
+Rafael Duarte (Roma)
  
 Rafael is a fluid, emotional, and momentum-driven manager. His teams are less about structure and more about expression, using flexible systems like 4-2-3-1 or 4-3-3 that allow players to move freely between lines. He relies heavily on technical players (AdvancedPlaymaker, Mezzala, ShadowStriker, SecondStriker) to create solutions in real time.
  
@@ -118,7 +118,7 @@ changes shape and roles more freely
 when losing → increases risk fast, sometimes destabilizing the team
 when winning → slows down and leans on technical control
  
-Bruno Keller (Internacional)
+Bruno Keller (Palmeiras)
  
 Bruno Keller is an intense, proactive, and physically demanding manager. He builds his teams around aggression, verticality, and relentless pressing. Usually deploying a 4-3-3 or 4-2-3-1, he prioritizes athletic players capable of sustaining a high tempo for the full 90 minutes. Every role is selected to maximize intensity, with PressingForwards, BoxToBoxMidfielders, WingBacks, and BallPlayingCentreBacks forming the backbone of his system.
  
@@ -133,7 +133,7 @@ rotates the squad aggressively to maintain physical output
 reacts quickly to changes in the match through substitutions
 increases pressing when losing and rarely compromises his attacking identity
 protects leads by keeping the opponent pinned back rather than sitting deep
-Luiz "Casca" Ferreira (Watford)
+Luiz "Casca" Ferreira (Bahia)
  
 Luiz "Casca" Ferreira is a pragmatic, disciplined, and traditional manager. He believes consistency and organization win championships, preferring proven systems over tactical experimentation. Most often lining up in a classic 4-4-2, his teams are physically competitive, defensively solid, and built around clear positional responsibilities. He values experienced players, aerial strength, and tactical discipline above individual flair.
  
