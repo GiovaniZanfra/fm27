@@ -29,7 +29,7 @@ from pathlib import Path
 
 EXPORTS_DIR = Path(os.environ.get(
     "FM_EXPORTS_DIR",
-    "/mnt/c/Users/giova/OneDrive/Documentos/Sports Interactive/Football Manager 27/exports",
+    "/mnt/c/Users/giova/Documents/Sports Interactive/Football Manager 27/exports",
 ))
 REPO = Path(__file__).resolve().parent
 DATA = REPO / "data"

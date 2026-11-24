@@ -18,7 +18,7 @@ names stay lowercase; roles use the `IP/OOP` abbreviations from the glossary in 
 | Luiz "Casca" Ferreira | `bahia` | solidity: aerial, teamwork, concentration | `casca` |
 
 **Getting exports in:** the FM plugin always writes to
-`/mnt/c/Users/giova/OneDrive/Documentos/Sports Interactive/Football Manager 27/exports/`
+`/mnt/c/Users/giova/Documents/Sports Interactive/Football Manager 27/exports/`
 as `Squad YYYY-MM-DD HH-MM-SS.html`. The user runs several saves and never moves files. Before
 any run on squad data, run `python ingest_export.py` (~0.1 s): it copies **every** export not yet
 in `data/` into its own club's folder (`data/<team>/raw/YYYY-MM-DD_HH-MM-SS.html`, club from the
