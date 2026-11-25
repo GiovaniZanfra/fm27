@@ -170,6 +170,8 @@ def main():
     p.add_argument('--no-calc', action='store_true')
     p.add_argument('--config', help='Path to optimizer config file (formation JSON)')
     p.add_argument('-r', '--raw', nargs='+', help='Names to exclude')
+    p.add_argument('--inf', nargs='+', metavar='CODE',
+                   help='Exclude players by Inf status code (e.g. Inj Unr Ine Int Sus)')
     p.add_argument('--date', help='Date string for raw HTML file (e.g. jan2025, oct2024)')
     p.add_argument('--by-formation', action='store_true', help='Save teams in a subfolder named after the formation')
     args = p.parse_args()
@@ -196,6 +198,8 @@ def main():
     raw_args = ''
     if args.raw:
         raw_args = '--exclude ' + ' '.join(shlex.quote(n) for n in args.raw)
+    if args.inf:
+        raw_args += ' --inf ' + ' '.join(shlex.quote(c) for c in args.inf)
     by_formation_arg = '--by-formation' if args.by_formation else ''
     print(formation_q)
     steps.append(f"python optimize_teams.py {team} {formation_q} {raw_args} {by_formation_arg}".rstrip())

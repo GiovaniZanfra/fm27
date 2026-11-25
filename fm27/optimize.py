@@ -2,7 +2,28 @@
 import argparse
 from pathlib import Path
 
+import pandas as pd
+
 from .team_optimizer import optimize_teams
+
+
+def players_with_inf(team_name, codes):
+    """Names whose Inf status is one of `codes` (case-insensitive), from player_demographics.csv."""
+    path = Path("data") / team_name / "interim" / "player_demographics.csv"
+    demo = pd.read_csv(path) if path.exists() else pd.DataFrame()
+    if 'Inf' not in demo.columns:
+        print(f"Error: no Inf column in {path}. Rerun the parse step (without --no-parse) "
+              "on an export that has the Inf column.")
+        exit(1)
+    wanted = {c.strip().casefold() for c in codes}
+    inf = demo['Inf'].fillna('').astype(str).str.strip()
+    hit = demo[inf.str.casefold().isin(wanted)]
+    if hit.empty:
+        print(f"--inf {' '.join(codes)}: nobody excluded")
+    else:
+        listed = ', '.join(f"{n} ({i})" for n, i in zip(hit['Name'], inf[hit.index]))
+        print(f"--inf {' '.join(codes)}: excluded {len(hit)}: {listed}")
+    return hit['Name'].astype(str).tolist()
 
 
 def main():
@@ -13,6 +34,8 @@ def main():
     p.add_argument('--age-penalty', type=float)
     p.add_argument('--age-threshold', type=int)
     p.add_argument('--exclude', nargs='+')
+    p.add_argument('--inf', nargs='+', metavar='CODE',
+                   help='Exclude players whose Inf column has any of these codes (e.g. Inj Unr Sus); case-insensitive')
     p.add_argument('--by-formation', action='store_true')
 
     args = p.parse_args()
@@ -35,6 +58,8 @@ def main():
             exit(1)
 
     excluded = [n.casefold() for n in (args.exclude or [])]
+    if args.inf:
+        excluded += [n.casefold() for n in players_with_inf(team_name, args.inf)]
 
     optimize_teams(
         team_name,

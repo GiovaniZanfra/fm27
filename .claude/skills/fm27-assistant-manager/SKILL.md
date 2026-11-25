@@ -74,13 +74,14 @@ Rules that follow from it:
 Run from the repo root with `python` (the `fm24` conda env also works).
 
 ```bash
-python run_team.py <team> --config <file>.json --by-formation [--date sep2023] [--no-parse --no-calc] [-r 'Full Name' 'Other Name']
+python run_team.py <team> --config <file>.json --by-formation [--date sep2023] [--no-parse --no-calc] [-r 'Full Name' 'Other Name'] [--inf Inj Unr Ine Int Sus]
 ```
 
 - `--config` is a bare filename inside `configs/<team>/`. There is no usable default, so always pass it.
 - Stages: parse `data/<team>/raw/<date>.html` → `interim/*.csv`, score every role → `scores/<team>_scores.csv`, then assign players to slots (Hungarian algorithm) → `teams/<config stem>/first_team.csv`, `second_team.csv`, `team_3.csv`…
 - Without `--date` the parser takes the most recently *modified* HTML, which is not always the newest month. Pass `--date` whenever a new export arrives; pass `--no-parse --no-calc` when only the config or exclusions changed.
 - `-r` excludes players. Names must match the data exactly, accents included (case is ignored). A misspelled name is silently ignored, so check the excluded player is really gone from the output.
+- `--inf` excludes every player whose `Inf` status (the export's status-icon column) is one of the given codes, case-insensitive; it adds to `-r`. The run prints who it removed. For a match, use `--inf Inj Unr Ine Int Sus`. `Loa` (listed for loan) is not unavailable, so don't pass it. The status comes from the parsed export, so after a new export don't pass `--no-parse`; an interim file without `Inf` stops the run.
 - Each further team is built from whoever is left, so team files are a depth chart. Files from older runs with more teams are not deleted; trust only the count the run reports ("Salvei N times").
 - The `Score` column is the role score *after* the config's adjustments (age penalty, multipliers on z-scores such as `Last 5 Games`, `Transfer Value`, or any attribute name). It is not comparable across configs or with a raw `<Role>_Score`.
 - A multiplier key that matches no column only prints a warning and is skipped. `Av Rat`, `Last 5 Games`, `Transfer Value`, `Trn Rating` and plain attribute names resolve; `Trn Rat` and `Av. Rating` do not.

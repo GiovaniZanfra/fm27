@@ -856,6 +856,8 @@ def parse_raw_data(team_name: str, date: str = None):
     dem['TransferValue_Normalized'] = dem['TransferValue_Normalized'].fillna(0.0)
     dem['Club'] = merged_df[club_col] if (club_col and club_col in merged_df.columns) else pd.NA
     dem['MediaHandling'] = merged_df[media_col] if (media_col and media_col in merged_df.columns) else pd.NA
+    # Inf: the status icon column (Inj, Unr, Sus, Loa...); read by the optimizer's --inf filter.
+    dem['Inf'] = merged_df['Inf'] if 'Inf' in merged_df.columns else pd.NA
 
     dem_file = team_interim_dir / "player_demographics.csv"
     dem.to_csv(dem_file, index=False)
