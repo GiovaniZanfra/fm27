@@ -47,6 +47,38 @@ Cada grupo da tela aceita **uma** opção. Os pares abaixo confundem e valem con
 - Jogador: até 4 com role e instruções individuais. Uma role de custo 3 (ex.: `F9`, `FR`, `PWB`, `ACB`, `BBP`, `DDM`) deixa espaço para no máximo uma instrução barata.
 - Cada técnico tem uma faixa de custo das instruções de time abaixo. Casca é o mais barato de propósito (simples, aprende rápido); Keller é o mais caro (pressão alta custa).
 
+### 0.5 Tweaks (ordens de beira de campo)
+
+O FM27 tem 15 tweaks que dá pra dar durante o jogo, por cima da tática. São atalhos: mudam o comportamento do time sem mexer nas instruções salvas.
+
+| Tweak | O que faz |
+|---|---|
+| **Swap Wings** | Os pontas trocam de lado |
+| **Go Long** | Evita perder a bola perto da própria área: vai direto, pula a pressão |
+| **Play Out from the Back** | Sai jogando com calma, tenta passar pela pressão |
+| **Play with More Urgency** | Mais risco com a bola: tempo mais alto, força a jogada |
+| **Play with More Patience** | Mais paciência: calma, espera a chance boa abrir |
+| **Get Physical** | Jogo mais físico: mais combativo, joga por bola parada |
+| **Take a Breather** | Desacelera o jogo e defende mais passivo pra poupar energia |
+| **Exploit the Width** | Estica a defesa adversária usando o campo todo e combinações pelos lados |
+| **Go Narrower** | Joga mais por dentro, combinações centrais, time mais junto |
+| **Disrupt** | Quebra de propósito o ritmo e o fluxo do jogo |
+| **Press Aggressively** | Recupera a bola o mais rápido possível, pressiona mais alto e com mais agressividade |
+| **Press Less Aggressively** | Senta e mantém a forma defensiva, sem ser puxado pra pressão |
+| **Goalkeeper Up for Set Pieces** | O goleiro sobe pra área nas bolas paradas |
+| **Throw the Kitchen Sink** | Ataque total, desespero pra fazer gol |
+| **Shut Up Shop** | Defesa total, não sofrer gol a qualquer custo |
+
+**Como usar aqui:**
+
+- **Tweak é ajuste de momento, não de identidade.** Se um tweak fica ligado o jogo inteiro, é porque a tática deveria ter aquela instrução. Ajustar a tática (ou trocar pela tática vizinha) é melhor.
+- **No máximo dois tweaks ao mesmo tempo.** Quando um terceiro entra, um sai: cada técnico tem a linha **Prioridade** dizendo qual tweak substitui qual.
+- **Pares que nunca ficam juntos:** Urgency × Patience · Exploit the Width × Go Narrower · Go Long × Play Out from the Back · Press Aggressively × Press Less Aggressively · Press Aggressively × Take a Breather · Kitchen Sink × Patience / Take a Breather / Shut Up Shop · Shut Up Shop × Urgency / Press Aggressively.
+- **Tweak redundante não entra.** Se a tática já tem a instrução equivalente, o tweak não acrescenta nada. Equivalências: Go Long ≈ Build-up Strategy: Bypass Press + Goal Kicks: Long · Play Out from the Back ≈ Play Through Press + Goal Kicks: Short · Urgency ≈ Tempo Higher/Much Higher · Patience ≈ Much Shorter + Tempo Lower · Exploit the Width ≈ Attacking Width: Much Wider · Go Narrower ≈ Narrower · Press Aggressively ≈ High Press + Trigger Press: Much More Often · Take a Breather ≈ Tempo Lower + Time Wasting + Low Block · Swap Wings ≈ Positioning: Switch Position nos dois pontas.
+- **Kitchen Sink e Shut Up Shop são extremos.** Tratar como se empurrassem a mentality pro extremo (very attacking / very defensive). Só entram para quem tem esse teto/piso ou numa exceção escrita na seção do técnico.
+- **Cartão:** Get Physical e Press Aggressively desligam quando um zagueiro ou volante já tem amarelo.
+- Cada técnico tem uma tabela com **assinatura** (o tweak mais a cara dele), **situações** (quando entra), **com 10 / contra 10 / vantagem de 2+**, a **prioridade** e o **nunca** (tweaks que quebram o personagem).
+
 ---
 
 ## 1. GIOVANI
@@ -111,6 +143,31 @@ Ordem fixa: **roles → instruções → mentality → forma**.
   - Mentality: positive → **attacking** (teto).
   - Forma: só no fim e só dentro das preferidas (diamante → `4-2-3-1 DM AM Wide`).
 
+### 1.5 Tweaks
+
+Para ele, tweak é o passo mais barato da ordem da 1.4: entra junto com o degrau de **instruções/mentality**, nunca no lugar de role. Usa pouco e tira assim que o problema some.
+
+| Situação | Tweak | Por quê |
+|---|---|---|
+| **Assinatura:** adversário pressiona alto e a zaga tem passe | **Play Out from the Back** | Teste nos primeiros 15': se funcionar e a pressão continuar, salvar Build-up Strategy: Play Through Press na tática e desligar o tweak |
+| Play Out from the Back falhando (perdeu a bola no próprio terço 2–3 vezes) | **Go Long** no lugar dele | Sequência, não par: desliga um, liga o outro por 10–15'. Volta pro curto quando a pressão adversária cair |
+| Time forçando passe e perdendo a bola no último terço | **Play with More Patience** | É o "controle" dele: espera o espaço abrir |
+| Vencendo, já com o ajuste da 1.4 aplicado, e o time ainda forçando | **Play with More Patience** | O ajuste da 1.4 (Much Shorter, Tempo Lower) já é paciência; o tweak só entra se não bastar |
+| Vencendo depois dos 80', time cansado e **sem substituições** | **Take a Breather** | Último recurso: ele controla, não recua. Antes disso, troca jogador |
+| Bloco médio sendo furado com facilidade | **Press Less Aggressively** | Fecha a forma em vez de correr atrás. Não com `engrenagem` |
+| Empate travado ou perdendo (60'+) | **Play with More Urgency** | Sequência única: `relógio` em positive **+ Urgency** → se não resolver, `engrenagem` mantendo Urgency → 75' attacking |
+| Já na `engrenagem`, adversário saindo jogando com calma | **Press Aggressively** | Só com a `engrenagem` (High Press + linha Higher). Com Mid Block abre espaço entre zaga e meio |
+| Adversário com bloco estreito, `relógio` | **Exploit the Width** | O `relógio` tem um aberto de cada lado |
+| Adversário fechando os lados, `xadrez`/`pêndulo`/`compasso` | **Go Narrower** | As formas estreitas dele vivem do meio |
+| Lateral adversário fraco do outro lado | **Swap Wings** | Só no `relógio`/`engrenagem`, onde há dois pontas |
+| **Com 10** | **Press Less Aggressively** + **Play with More Patience** | Forma antes de tudo; a bola descansa no pé |
+| **Contra 10** | **Exploit the Width** + **Play with More Patience** | Roda a bola de lado a lado até o buraco abrir; nada de forçar |
+| **Vantagem de 2+** | Patience (se ainda forçar) | Nada de Breather nem Press Less: controla |
+
+**Prioridade:** Urgency e Patience mandam (definem o jogo); Width/Narrower e Play Out/Go Long são secundários e saem primeiro. Press Aggressively só existe junto com Urgency, na `engrenagem`.
+
+**Nunca:** **Throw the Kitchen Sink** (passa do teto attacking e quebra a estrutura) · **Shut Up Shop** (ele controla, não recua) · **Disrupt** (caos é o contrário do jogo dele) · **Get Physical** (não é o eixo dele; ganha no posicionamento, não no choque) · **Goalkeeper Up for Set Pieces** (o goleiro fora deixa o time sem a última linha).
+
 ---
 
 ## 2. BRUNO KELLER
@@ -172,6 +229,27 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
   - Pivô `DM/SDM` no lugar de `BBM/PRDM`.
 - **Rotação:** sprints e distância vêm de Work Rate + Stamina. Jogador com condição baixa rende menos exatamente nos números que a tática dele cobra. Trocas cedo (60') são parte do plano, não sinal de crise.
 
+### 2.5 Tweaks
+
+As táticas dele já vêm no máximo de pressão e velocidade (`vertigem` com tudo em Much), então tweak de pressão quase sempre é redundante. O que sobra pra ele é **choque** e **largura**.
+
+| Situação | Tweak | Por quê |
+|---|---|---|
+| **Assinatura:** contra time técnico que gosta de ter a bola (qualquer tática, principalmente a `tocaia`) | **Get Physical** | Tira o adversário do conforto com choque, segunda bola e bola parada. Atributos dele: Agressividade e Bravura. Desliga se um zagueiro/volante levar amarelo (a tática já tem Get Stuck In) |
+| Perdendo ou empate em casa depois dos 60', ainda na `avalanche`/`tocaia` | **Play with More Urgency** | Passo antes da `vertigem` (que já tem Tempo Much Higher; lá o tweak é redundante) |
+| `avalanche` com o ajuste de vitória (Trigger Press More Often) e o adversário começando a sair jogando | **Press Aggressively** por 10' | É a única tática com margem pra apertar. Na `vertigem` é redundante; na `tocaia` (Mid Block, linha padrão) abre o buraco: lá, apertar = trocar pra `avalanche` |
+| Adversário fechado por dentro | **Exploit the Width** | Pontas abertos e lateral passando |
+| Lateral adversário fraco do outro lado | **Swap Wings** | `avalanche`/`tocaia`: W de um lado, IF do outro |
+| **Com 10** | **Take a Breather** | A única exceção: com um a menos, a pressão de 90 minutos não se sustenta. Linha e tática mudam só se o adversário achar as costas |
+| **Contra 10** | **Exploit the Width** | Estica o time que tem um a menos; a pressão já é a base |
+| **Vantagem de 2+** | nenhum | Gira o elenco (trocas no 60') em vez de tweak |
+
+**Fora dos tweaks — bola nas costas.** Se o adversário passa a lançar nas costas da linha (Higher / Much Higher), a resposta não é Press Less (proibido): desce Defensive Line um degrau (Much Higher → Higher, Higher → Standard) e confere se o goleiro é `SWK`.
+
+**Prioridade:** Get Physical fica; Urgency e Press Aggressively entram e saem por janela; Width/Swap Wings saem primeiro.
+
+**Nunca:** **Go Long** (redundante: as três táticas já têm Bypass Press, More Direct e Distribute Quickly; se o time ainda sai curto, o problema é de role ou de Goal Kicks: Long na tática) · **Take a Breather** fora do "com 10" (ele prende, não senta; cansaço se resolve com rodízio) · **Press Less Aggressively** · **Shut Up Shop** (piso positive) · **Throw the Kitchen Sink** (teto attacking; perdendo ele aperta, não se desmancha) · **Play with More Patience** (intensidade acima de posse) · **Play Out from the Back** (o jogo dele pula a pressão) · **Go Narrower** (largura é parte do plano) · **Disrupt** (ele quer ritmo alto) · **Goalkeeper Up for Set Pieces** (com linha alta e SWK, o contra-ataque fica livre).
+
 ---
 
 ## 3. RAFAEL DUARTE
@@ -230,6 +308,30 @@ São as formas que o jogo sugere para **Gegenpress** (`tactic_presets.json`). **
   - Roles: ST2 `PO/CF`; pontas `IF/WOW`; DM `BBP`.
   - Instruções: Passing Directness: Shorter → Standard (a bola vai na distância que o lance pedir), Patience: Work Ball Into Box → **Hit Early Crosses** (1), Dribbling: Encourage (2), Shots From Distance: Encourage (1), Supporting Runs: Overlap Both Flanks (1), Defensive Transition: Counter-Press (3), Line of Engagement: High Press (2), Defensive Line: Much Higher (3), Trigger Press: Much More Often (3), Tackling: Get Stuck In (1).
   - Mentality: **very attacking**.
+
+### 3.5 Tweaks
+
+É quem mais usa tweak e quem mais troca: segue o momento do jogo. O risco de se estourar é parte do personagem, então ele é o único com Kitchen Sink e goleiro na área.
+
+| Situação | Tweak | Por quê |
+|---|---|---|
+| **Assinatura:** empate travado (60'+), perdendo cedo, ou o jogo "esfriou" | **Play with More Urgency** | Ele reage ao momento e aumenta o risco rápido. Junto com o `tango` em attacking. No `incendio` é redundante |
+| Pontas sumidos na `milonga` | **Swap Wings** | No `tango` os pontas já têm Switch Position (o carrossel); aqui o tweak faz o mesmo papel |
+| Adversário pressionando a saída | **Play Out from the Back** | Chutão é contra a ideia dele. Na `milonga` já há Much Shorter + Short: redundante |
+| Vencendo cedo (`tango` com Creative Freedom Balanced) | **Play with More Patience** por 10–15' | Esfria sem trocar de tática |
+| Na `milonga`, só se o time ainda estiver forçando | **Play with More Patience** | A tática já tem Much Shorter e Tempo Lower |
+| Adversário em bloco baixo e estreito | **Exploit the Width** | Abre espaço pros pontas no 1 contra 1 |
+| Adversário com laterais fortes, meio frouxo | **Go Narrower** | Joga pelo AP, F9 e as tabelas por dentro |
+| Vencendo a partir dos 80', time cansado | **Take a Breather** | Só com a `milonga` |
+| Perdendo por 1 ou 2 depois dos 80', já no `incendio` | **Throw the Kitchen Sink** | O estouro do personagem. O `incendio` já tem toda a pressão e o tempo: o tweak entra sozinho |
+| Perdendo nos acréscimos, escanteio/falta perto da área | **Goalkeeper Up for Set Pieces** | O momento emocional; desliga no lance seguinte |
+| **Com 10** | **Play with More Patience** | Ele guarda a bola em vez de correr atrás dela |
+| **Contra 10** | **Exploit the Width** + **Urgency** | Aproveita o momento e o campo |
+| **Vantagem de 2+** | `milonga` + Patience | Guarda a bola; nada de recuar |
+
+**Prioridade:** o tweak de momento (Urgency / Patience / Kitchen Sink) manda; Width, Narrower, Swap Wings e Play Out saem primeiro.
+
+**Nunca:** **Go Long** (chutão é contra a ideia) · **Get Physical** (o jogo dele é técnica, não choque) · **Disrupt** (o Entertainer quer o jogo fluindo) · **Shut Up Shop** (vencendo, ele guarda a bola, não fecha a casa) · **Press Less Aggressively** (ele não defende, guarda a bola; sem bola já é reativo, menos pressão vira passividade) · **Press Aggressively** como tweak (quando ele quer pressão, é o `incendio`, que já tem tudo).
 
 ---
 
@@ -299,6 +401,28 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
   - Mentality: **cautious**; **defensive** nos últimos 10.
 - **Sofrendo entre as linhas:** aplicar a seção 4.4 antes de mexer em mentality.
 
+### 4.6 Tweaks
+
+Como ele não troca sistema, os tweaks são a ferramenta principal dele durante o jogo, junto com roles e mentality. Prefere os que deixam o jogo mais simples e mais físico.
+
+| Situação | Tweak | Por quê |
+|---|---|---|
+| **Assinatura:** contra time mais técnico, ou quando o jogo está "bonito" demais pro adversário | **Get Physical** | Choque e segunda bola: é o 4-4-2 dele (a bola parada a tática já tem). Desliga se um zagueiro/volante levar amarelo |
+| Adversário dominando a bola e criando, mesmo com o Get Physical | **Disrupt** | Pragmatismo: quebra o ritmo de quem joga melhor |
+| Adversário fechado por dentro, com a `muralha`, e os cruzamentos não saem | **Exploit the Width** | Só se Wider + Both Flanks ainda não resolverem. No `trator` é redundante (Much Wider) |
+| Perdendo ou empatando quando precisa ganhar, no `trator`, e o tempo do time ainda está baixo | **Play with More Urgency** | O `trator` já tem Tempo Higher e Hit Early Crosses: só se não bastar |
+| Perdendo nos acréscimos, escanteio/falta perto da área | **Goalkeeper Up for Set Pieces** | O jogo aéreo é a arma dele; desliga no lance seguinte |
+| Vencendo, com o `cadeado`, adversário começando a rodar a bola na entrada da área | **Disrupt** | O `cadeado` já tem Tempo Lower, Time Wasting e Low Block: Take a Breather seria redundante |
+| Vencendo por um gol depois dos 85' | **Shut Up Shop** no lugar do Disrupt | Exceção ao piso, dentro da janela em que ele já usa defensive (últimos 10) |
+| Time cansado no `cadeado` | **Take a Breather** no lugar do Disrupt | Só por cansaço, não como regra |
+| **Com 10** | **Get Physical** | Continua 4-4-2 (vira 4-4-1 tirando o 2º atacante); o choque compensa o homem a menos |
+| **Contra 10** | **Exploit the Width** | Cruzamento dos dois lados pro TF; o `trator` já faz isso por conta |
+| **Vantagem de 2+** | **Disrupt** | `cadeado` sem Shut Up Shop: com dois de vantagem não precisa do extremo |
+
+**Prioridade:** Get Physical é o primeiro a entrar e o último a sair; Disrupt, Take a Breather e Shut Up Shop se substituem (só um por vez).
+
+**Nunca:** **Throw the Kitchen Sink** (o teto é positive; perdendo ele aumenta o ataque sem largar o equilíbrio) · **Go Long** (redundante: as três táticas já têm Bypass Press, Goal Kicks: Long e goleiro no Target Forward) · **Swap Wings** (os meias abertos cruzam com o pé natural; trocados, cortam pra dentro, e `IW`/`PW` estão fora do perfil) · **Play Out from the Back** (sai direto) · **Press Aggressively** (salta e abre o buraco entre as linhas da 4.4) · **Go Narrower** (o ataque é pelos lados; no `cadeado` já tem Narrower) · **Play with More Patience** (direto e objetivo) · **Press Less Aggressively** (com o bloco no meio, recuar só a pressão separa as linhas, 4.4; no `cadeado` o Low Block já faz isso).
+
 ---
 
 ## 5. Quadro comparativo
@@ -320,6 +444,8 @@ O 4-4-2 tem duas linhas paralelas e **ninguém mora** entre a zaga e o meio. Um 
 | **Defensive Transition** | Regroup | Counter-Press | Regroup | Regroup |
 | **Complexidade das instruções de time** | 15 | 28 | 15 | 17 |
 | **Troca forma?** | Roles antes da forma | Só com bola, perdendo | **Livremente** | **Nunca** |
+| **Tweak assinatura** | Play Out from the Back | Get Physical | Play with More Urgency | Get Physical |
+| **Tweaks que nunca usa** | Kitchen Sink, Shut Up Shop, Disrupt, Get Physical, GK Up | Go Long, Press Less, Shut Up Shop, Kitchen Sink, Patience, Play Out, Narrower, Disrupt, GK Up · Take a Breather só com 10 | Go Long, Get Physical, Disrupt, Shut Up Shop, Press Less, Press Aggressively (tweak) | Kitchen Sink, Go Long, Swap Wings, Play Out, Press Aggressively, Narrower, Patience, Press Less |
 
 ---
 
@@ -488,3 +614,4 @@ Só o que mudou de nome ou de lugar. O resto (Tempo, Width, Creative Freedom, Cr
 - **Limite de 4 por jogador**: não está confirmado se soma a role com bola **e** a sem bola, ou só uma delas. Até confirmar, tratar como role com bola + instruções.
 - **Posições das roles** em `roles.json` foram escritas à mão a partir da tela (`extract/role_notes.json`). Algumas surpreendem (`BBM` e `DLP` só no DM, `CHM` também no AMC). Se o jogo deixar usar em outro slot, corrigir lá.
 - **Custos das tabelas de instruções-base** não contam instruções de jogador nem as roles.
+- **Tweaks (0.5)**: não sabemos quanto tempo duram, se custam alguma coisa no entendimento tático, nem se Kitchen Sink / Shut Up Shop mexem de fato na mentality. As regras das seções x.5/4.6 assumem que é um ajuste temporário por cima da tática. Conferir no jogo.

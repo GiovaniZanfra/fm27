@@ -39,7 +39,7 @@ These files are the source of truth and change between sessions, so read them in
 on what this skill summarises:
 
 - `context/managers.md` — top attributes, hard gates, formation naming rules, transfer tiers, match-log sheet format.
-- `context/managers_tactics.md` — per manager, in FM27 mechanics: allowed in/out-of-possession shapes, role pool per zone (`IP/OOP` pairs), base team instructions per phase with complexity cost, game-state adjustments, mentality floor/ceiling. Also the role abbreviation glossary, the FM24 → FM27 translation table and open questions.
+- `context/managers_tactics.md` — per manager, in FM27 mechanics: allowed in/out-of-possession shapes, role pool per zone (`IP/OOP` pairs), base team instructions per phase with complexity cost, game-state adjustments, in-match tweaks (touchline orders: which one each manager uses when, and which he never uses), mentality floor/ceiling. Also the role abbreviation glossary, the FM24 → FM27 translation table and open questions.
 - `context/taticas_fm27.md` — three proposed FM27 tactics per manager (roles IP/OOP per slot, team and player instructions, mentality, when to use and how they hand over to each other). Proposals: not yet tested in the save and no configs yet.
 - `scouting/<manager>.json` — valued attributes, gates, age rule, and the `targets` shortlist.
 - `context/clubes_por_tecnico.md` — clubs that suit each manager, for job-move questions.

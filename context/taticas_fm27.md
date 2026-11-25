@@ -1,6 +1,6 @@
 # Táticas FM27
 
-Treze táticas (três por técnico, mais uma extra do Giovani), montadas dentro das regras de `managers_tactics.md` e da identidade de `managers.md`. Roles, posições e custos conferidos contra `game_data/roles.json`, `game_data/instructions_ui.json` e `game_data/instructions.json`.
+Catorze táticas (três por técnico, mais duas extras do Giovani), montadas dentro das regras de `managers_tactics.md` e da identidade de `managers.md`. Roles, posições e custos conferidos contra `game_data/roles.json`, `game_data/instructions_ui.json` e `game_data/instructions.json`.
 
 **Status:** propostas, ainda sem jogo no save. Viram config (`configs/<time>/<nome>.json`) quando aprovadas.
 
@@ -11,6 +11,7 @@ Treze táticas (três por técnico, mais uma extra do Giovani), montadas dentro 
 - **Cx**: complexidade da role com bola + da role sem bola.
 - **Team instructions**: só as escolhidas; tudo o que não aparece fica na opção neutra (Standard / Balanced / Mixed / No / Keep Ball in Play). Custo entre parênteses; `?` = Time Wasting, cujo custo não está confirmado.
 - **Player instructions**: role com bola + instruções do jogador nunca passam de 4.
+- **Tweaks**: ordens de beira de campo durante o jogo (lista e regras em `managers_tactics.md` 0.5 e na seção de tweaks de cada técnico). No máximo dois ligados ao mesmo tempo.
 
 
 ---
@@ -62,6 +63,8 @@ Complexidade das roles: 10 com bola, 7 sem bola.
 
 **Quando usar.** É o padrão: em casa ou fora, contra adversário do mesmo nível ou mais fraco. Segurando vitória, fica nela e troca roles e instruções: `DLP/SDM` → `DM/SDM`, `IFB/FB` e `WB/HFB` → `FB/HFB`, Passing Directness: Much Shorter, Tempo: Lower, Time Wasting: More Often, Attacking Transition: Hold Shape, mentality cautious (manual 1.4). Contra time que pressiona alto e com zagueiros que têm passe, acrescentar Build-up Strategy: Play Through Press (+3).
 
+**Tweaks.** Play Out from the Back contra pressão alta nos primeiros 15' (se funcionar e a pressão continuar, salvar Build-up Strategy: Play Through Press); se perder a bola 2–3 vezes na saída, troca por Go Long. Exploit the Width contra bloco estreito; Swap Wings pra pôr o ponta melhor contra o lateral mais fraco. Vencendo: primeiro o ajuste de roles/instruções acima; Play with More Patience só se o time ainda forçar; Take a Breather só depois dos 80' e sem substituições. Empate travado: mentality positive + Play with More Urgency; se não resolver, `engrenagem` mantendo Urgency. Press Aggressively não entra aqui: com Mid Block e linha padrão abre espaço entre zaga e meio.
+
 ### 1.2 `xadrez`
 
 > *Mais gente no meio, menos jogo pro adversário.*
@@ -105,6 +108,8 @@ Complexidade das roles: 12 com bola, 9 sem bola.
 
 **Quando usar.** Contra time com um volante só ou 4-4-2 reto, quando dominar o meio decide o jogo. Evitar contra dois pontas rápidos: o lado esquerdo fica exposto (correção: lateral esquerdo `FB/HFB`, que não sobe com a bola). Vencendo: lateral esquerdo `FB/HFB`, Passing Directness: Much Shorter, Tempo: Lower, Time Wasting: More Often, Attacking Transition: Hold Shape, mentality cautious; o meio (`CM/SCM`, `AP/TAM`) já é o de segurar. Perdendo: primeiro roles (`CM/SCM` → `CM/PRCM`, `AP` → `SS`, `CF` com Pressing Intensity: Higher) e mentality positive; só no fim troca de forma pra `engrenagem` (diamante → 4-2-3-1, a única troca de forma que o manual 1.4 prevê).
 
+**Tweaks.** Go Narrower quando o adversário fecha os lados; Play Out from the Back contra pressão (o HB vira o 3º homem). Vencendo: Play with More Patience só se o time ainda forçar depois do ajuste. Perdendo: Play with More Urgency junto com a mentality positive, antes de trocar de forma. Nunca Exploit the Width: sem pontas, quem abre são os laterais, e o lado esquerdo fica exposto.
+
 ### 1.3 `engrenagem`
 
 > *A mesma máquina, girando mais rápido.*
@@ -147,9 +152,11 @@ Complexidade das roles: 9 com bola, 10 sem bola.
 - AMC (SS): Pressing Intensity: Higher (2) — segundo homem da primeira linha de pressão
 - ST (CF): Pressing Intensity: Higher (2) — faz o papel do antigo Pressing Forward
 
-**Quando usar.** Empate travado ou placar contra. É o `relógio` com os ajustes de "aumentar a intensidade sem perder a estrutura" do manual 1.4 já aplicados (roles e instruções), salvo como tática própria pra entrar de uma vez. Antes dela, o único passo é subir a mentality do `relógio` pra positive. A forma com bola e a sem bola são as mesmas do `relógio`, então a troca é só de roles e instruções, como manda a regra de ouro. A partir dos 75', perdendo: mentality attacking e Shots From Distance: Encourage.
+**Quando usar.** Empate travado ou placar contra. É o `relógio` com os ajustes de "aumentar a intensidade sem perder a estrutura" do manual 1.4 já aplicados (roles e instruções), salvo como tática própria pra entrar de uma vez. Antes dela, o único passo é subir a mentality do `relógio` pra positive, com o tweak Play with More Urgency (que continua ligado quando ela entra). A forma com bola e a sem bola são as mesmas do `relógio`, então a troca é só de roles e instruções, como manda a regra de ouro. A partir dos 75', perdendo: mentality attacking e Shots From Distance: Encourage.
 
 **Atenção.** Defensive Line: Higher acompanha a pressão alta (manual 1.4) e é o que justifica o Sweeper Keeper. A linha alta expõe zagueiro lento: o `CCB` precisa de velocidade.
+
+**Tweaks.** Entra com Play with More Urgency já ligado (vem do `relógio`). Press Aggressively se o adversário ainda sair jogando com calma (aqui a linha alta e o High Press sustentam). Swap Wings entre IW e IF só se um dos dois tiver de sair (máximo de dois tweaks). Se empatar ou virar: desliga os dois e volta pro `relógio`.
 
 ### 1.4 `pêndulo`
 
@@ -196,6 +203,75 @@ Complexidade das roles: 13 com bola, 6 sem bola.
 
 **Atenção.** A forma não é uma das formas prontas do jogo, e a ligação AMC → ML/MR sem bola é suposição. Confirmar as duas na tela antes de virar config. Se a ligação não sair limpa, usar `4-4-2 Diamond Narrow` sem bola (aceitável no manual): HB `HB/SDM` no DM, DLP `DLP/SCM` e AP `AP/SCM` no MC, SS `SS/TAM` no AMC. Isso devolve a fraqueza de lado do `xadrez`, que é justamente o que o `pêndulo` resolve.
 
+**Tweaks.** Go Narrower contra quem fecha os lados; Play Out from the Back contra pressão. Vencendo: Play with More Patience só se o time ainda forçar. Perdendo: Play with More Urgency junto com a mentality positive; Press Aggressively só depois de ligar a pressão (High Press, linha Higher), nunca com o bloco médio.
+
+### 1.5 `compasso`
+
+> *Duas pernas firmes atrás, duas pontas na frente, e tudo medido.*
+
+Do save do Corinthians. Configs: `configs/corinthians/compasso.json` (versão A, 2 DM) e `configs/corinthians/compasso_mc.json` (versão B, DM + MC). Mesmos pesos do `relogio.json`, exceto o `compasso.json`, que usa `ip_weight` 0.75 (a role com bola pesa 75%).
+
+- **Forma com bola:** `4-2-2-2 DM AM Narrow`
+- **Forma sem bola:** `4-4-2 2DM`
+- **Mentality:** balanced
+- **Linha de roles (A):** `BPGK/GK, WB/FB, BPCB/CB, CB/CCB, WB/FB, HB/SDM, DLP/DM, AP/WM, AM/TWM, DLF/TCF, CHF/CF`
+- **Linha de roles (B):** `BPGK/GK, IFB/FB, BPCB/CB, CB/CCB, WB/HFB, DM/SDM, MP/DM, AP/WM, AM/TWM, DLF/TCF, CHF/CF`
+
+**Ideia.** Com bola, um quadrado no meio (2 volantes + 2 meias ofensivos) sobrecarrega o centro, e a largura vem só dos laterais. Sem bola, os dois meias ofensivos abrem para a linha de 4 do meio como ML e MR e fecham os corredores, deixando dois volantes à frente da zaga. O time ataca estreito e defende com largura, sem precisar de pontas. Sempre ficam 3 atrás da bola na saída e 2 volantes protegendo sem bola.
+
+**Versão A — 2 DM** (contra quem pressiona com dois atacantes: o Half Back dá superioridade na saída)
+
+| Slot | Com bola | Sem bola | Cx |
+|---|---|---|---|
+| GK | Ball-Playing Goalkeeper | Goalkeeper | 2+1 |
+| DL | Wing-Back | Full-Back | 0+0 |
+| DC | Ball-Playing Centre-Back | Centre-Back | 2+0 |
+| DC | Centre-Back | Covering Centre-Back | 1+1 |
+| DR | Wing-Back | Full-Back | 0+0 |
+| DM | Half Back | Screening Defensive Midfielder | 2+1 |
+| DM | Deep-Lying Playmaker | Defensive Midfielder | 1+0 |
+| AMC → ML | Advanced Playmaker | Wide Midfielder | 2+0 |
+| AMC → MR | Attacking Midfielder | Tracking Wide Midfielder | 0+1 |
+| ST | Deep-Lying Forward | Tracking Centre Forward | 2+1 |
+| ST | Channel Forward | Centre Forward | 1+0 |
+
+Complexidade das roles: 13 com bola, 5 sem bola.
+
+- O meia que cria (AP) fica com a tarefa defensiva mais leve, só fechar o corredor; o que chega na área (AM) é quem acompanha o lateral adversário.
+- Na frente, um vem (DLF) e o outro vai (CHF). Sem bola, o DLF marca o volante adversário.
+
+**Versão B — DM + MC** (contra bloco baixo: um jogador a mais entre as linhas). Igual à A, exceto:
+
+| Slot | Com bola | Sem bola | Cx |
+|---|---|---|---|
+| DL | Inside Full-Back | Full-Back | 1+0 |
+| DR | Wing-Back | Holding Full-Back | 0+1 |
+| DM | Defensive Midfielder | Screening Defensive Midfielder | 0+1 |
+| MC | Midfield Playmaker | Defensive Midfielder | 2+0 |
+
+Complexidade das roles: 13 com bola, 6 sem bola. A linha de 3 da saída é feita pelo lateral esquerdo (como no `relógio`), não pelo Half Back. Sem bola, o MP desce para a dupla de volantes.
+
+**Team instructions**
+
+| Fase | Instruções | Custo |
+|---|---|---|
+| Com bola | Passing Directness: Shorter (2) · Pass Reception: Pass to Feet (1) · Patience: Work Ball Into Box (2) · Creative Freedom: More Disciplined (3) · Attacking Transition: Counter-Attack (2) · Supporting Runs: Overlap Both Flanks (1) · Goal Kicks: Short (1) · GK Distribution Target: Centre-Backs (1) | 13 |
+| Sem bola | Line of Engagement: Mid Block (1) · Defensive Transition: Regroup (1) · Tackling: Stay on Feet (1) · Pressing Trap: Trap Outside (0) | 3 |
+| **Total** | | **16** |
+
+- **Overlap Both Flanks** é obrigatório: os laterais são a única largura. Na versão B, troque por **Right Overlap** (1), porque o lateral esquerdo fica por dentro.
+- **Trap Outside** é o oposto do `xadrez`: sem bola o compasso é um 4-4-2 com meias pelos lados, então empurra o adversário para o corredor, onde meia e lateral dobram a marcação, e o meio continua fechado pelos dois volantes.
+- Tempo, largura e Progress Through ficam em Standard. **Progress Through: Middle** (3) combina com o quadrado, mas é ajuste de jogo, não base.
+
+**Player instructions**
+
+- Wing-Backs com Cross From: Deep (+1). Na versão de pressão, Channel Forward com Pressing Intensity: Higher (+2).
+
+**Elenco (Corinthians, export `aug2026.html`, sem exclusões, com os pesos do relógio).** Média dos titulares 13,76 (A) e 13,74 (B), o mesmo nível do `relógio`. O Garro como AP no quadrado faz 14,61, a melhor nota dele em qualquer tática. O Kaio César fica sem lugar, porque só joga aberto. O ponto fraco é o segundo atacante: sem um parceiro de nível para o Yuri, a dupla da frente cai para perto de 11,5.
+
+**Atenção.** Sem amostra. Conferir no jogo (1) se a forma `4-2-2-2 DM AM Narrow` existe com esse nome (não está entre as formas sugeridas nos dados extraídos) e (2) se o jogo leva o AMC da esquerda para ML e o da direita para MR na forma sem bola. Se o mapeamento for outro, as roles sem bola desses dois slots mudam. Mesmas formas do `pêndulo` (1.4): os dois diferem nas roles da frente e no Trap Outside.
+
+**Tweaks.** Go Narrower combina com o quadrado; Exploit the Width só contra bloco baixo e fechado, e só se os laterais tiverem perna. Play Out from the Back contra pressão (versão A, com o HB). Vencendo: Play with More Patience só se o time ainda forçar. Perdendo: Play with More Urgency junto com a mentality positive.
 
 ---
 
@@ -250,6 +326,8 @@ Complexidade das roles: 10 com bola, 11 sem bola.
 
 **Atenção.** Custo 28, a segunda mais cara das doze (só a `vertigem` passa). O DM e o `CCB` precisam de velocidade pra cobrir quando a pressão é furada. Depende de o AMC subir pra dupla de ataque sem bola (ligação de slot a confirmar na tela).
 
+**Tweaks.** Get Physical contra time técnico (desliga com zagueiro/volante amarelado). Exploit the Width contra bloco fechado; Swap Wings entre W e IF. Press Aggressively só com o ajuste de vitória (Trigger Press More Often), por 10', quando o adversário começa a sair jogando: na base o gatilho já está no máximo. Perdendo depois dos 60': Play with More Urgency antes de ir pra `vertigem`.
+
 ### 2.2 `vertigem`
 
 > *Quatro na frente e a linha no meio-campo.*
@@ -297,6 +375,8 @@ Complexidade das roles: 10 com bola, 11 sem bola.
 
 **Atenção.** A mais cara das doze. Com os dois laterais subindo e a linha muito alta, o contra-ataque adversário pega a zaga sozinha.
 
+**Tweaks.** Press Aggressively e Urgency são redundantes aqui (High Press, Much More Often, Tempo Much Higher). Os dois espaços ficam pra Get Physical (contra time técnico) e Exploit the Width (contra bloco fechado). Se o adversário lançar nas costas da linha Much Higher: desce pra Higher, não é tweak.
+
 ### 2.3 `tocaia`
 
 > *Espera o passe errado e sai em quatro segundos.*
@@ -341,6 +421,7 @@ Complexidade das roles: 9 com bola, 11 sem bola.
 
 **Quando usar.** Contra time grande, principalmente fora de casa (a "emboscada" do manual 2.4). É a tática de início contra grande. Saiu na frente: vai pra `avalanche` com o ajuste de vitória (prende o adversário em vez de esperar); a forma é a mesma, só mudam roles e instruções. Saiu atrás: vai pra `vertigem` (muda só a forma com bola).
 
+**Tweaks.** Get Physical desde o início contra time técnico (é a assinatura dele). Press Aggressively não entra: com Mid Block e linha padrão abre o buraco; se é hora de apertar, troca pra `avalanche`. Saiu na frente ou atrás: troca de tática (`avalanche` / `vertigem`), não tweak.
 
 ---
 
@@ -392,6 +473,8 @@ Complexidade das roles: 14 com bola, 5 sem bola.
 
 **Quando usar.** A assinatura, a base de qualquer jogo. Empate travado depois dos 60' ou perdendo cedo: fica nela, sobe pra attacking e troca Defensive Transition pra Counter-Press. Vencendo cedo: fica nela, só com Creative Freedom → Balanced; a partir da metade do 2º tempo, `milonga`. Perdendo na reta final: `incendio`. As três usam formas com bola diferentes (4-2-3-1, 4-3-3, 4-2-4), e é assim que ele troca de forma durante o jogo.
 
+**Tweaks.** Sem Swap Wings: os pontas já têm Switch Position. Empate travado depois dos 60' ou perdendo cedo: Play with More Urgency junto com o attacking (a assinatura). Vencendo cedo: Play with More Patience por 10–15'. Play Out from the Back contra pressão. Exploit the Width contra bloco baixo; Go Narrower contra laterais fortes.
+
 ### 3.2 `milonga`
 
 > *Ele não defende o placar: esconde a bola.*
@@ -434,6 +517,8 @@ Complexidade das roles: 13 com bola, 6 sem bola.
 - Nenhuma.
 
 **Quando usar.** Vencendo (manual 3.4), a partir da metade do segundo tempo. Nunca pra buscar resultado nem desde o início do jogo.
+
+**Tweaks.** Swap Wings se os pontas sumirem (aqui não há Switch Position). Play with More Patience só se o time ainda estiver forçando (a tática já tem Much Shorter e Tempo Lower). Depois dos 80', cansado: Take a Breather. Nunca Press Less Aggressively: ele guarda a bola, não recua.
 
 ### 3.3 `incendio`
 
@@ -481,6 +566,7 @@ Complexidade das roles: 16 com bola, 5 sem bola.
 
 **Atenção.** Com os dois pontas de outlet e a linha muito alta, o contra-ataque adversário pega a zaga em dois contra dois.
 
+**Tweaks.** Sem Press Aggressively nem Urgency: a tática já tem tudo (High Press, Much Higher, Much More Often, Counter-Press, Tempo Higher). Swap Wings se os pontas sumirem. Depois dos 80', perdendo por 1 ou 2: Throw the Kitchen Sink. Acréscimos, escanteio ou falta perto da área: Goalkeeper Up for Set Pieces, desligando no lance seguinte.
 
 ---
 
@@ -535,6 +621,8 @@ Complexidade das roles: 5 com bola, 7 sem bola.
 
 **Quando usar.** O padrão, em qualquer campo e contra qualquer adversário, com o XI estável que ele gosta. Se o adversário achar o espaço entre as linhas, aplicar a seção 4.4 do manual (linha Higher, Trap Outside, ST2 sem bola `TCF`).
 
+**Tweaks.** Get Physical contra time técnico (desliga com zagueiro/volante amarelado). Disrupt se o adversário continuar dominando a bola mesmo assim. Exploit the Width só se Wider + Both Flanks não estiverem gerando cruzamento. Sem Go Long (já tem Bypass Press, Goal Kicks: Long e goleiro no TF) e sem Swap Wings (os meias cruzam com o pé natural).
+
 ### 4.2 `trator`
 
 > *Mesmo 4-4-2, mais gente na área.*
@@ -582,6 +670,8 @@ Complexidade das roles: 5 com bola, 6 sem bola.
 
 **Atenção.** Com o ponta esquerdo alto (Wide Outlet) e o lateral subindo, a transição defensiva pela esquerda fica com o lateral sozinho contra dois. É o risco aceito pra perseguir o placar. Custo 25: é a mais cara do Casca, mas só fica em campo enquanto ele precisa do gol.
 
+**Tweaks.** Get Physical se o jogo estiver truncado. Play with More Urgency só se o Tempo Higher não bastar. Acréscimos, perdendo, escanteio ou falta perto da área: Goalkeeper Up for Set Pieces. Exploit the Width é redundante aqui (Much Wider).
+
 ### 4.3 `cadeado`
 
 > *Fecha a porta e joga a chave pra frente.*
@@ -626,3 +716,5 @@ Complexidade das roles: 4 com bola, 10 sem bola.
 - DR (FB): Positioning: Hold Position (1) — idem
 
 **Quando usar.** Segurando vantagem a partir dos 70'. Cautious até os 80'; defensive nos últimos 10. O `TCF` e os dois Screening já são parte do remédio da seção 4.4 do manual. O bloco desce inteiro (Low Block + linha Lower), então as linhas não se separam. Se mesmo assim o adversário achar o espaço entre as linhas, aplicar o resto da 4.4: acrescentar Pressing Trap: Trap Outside e, só se não resolver, subir a linha até Standard (Defensive Line Behaviour: Balanced). Nunca Higher: com goleiro de linha (`LHGK`) e zagueiro No-Nonsense, linha alta é bola nas costas.
+
+**Tweaks.** Disrupt quando o adversário começa a rodar a bola na entrada da área. Depois dos 85', vencendo por um gol: Shut Up Shop no lugar do Disrupt. Take a Breather só por cansaço, também no lugar do Disrupt (a tática já tem Tempo Lower, Time Wasting e Low Block). Vencendo por 2+: só Disrupt, sem Shut Up Shop. Nunca Press Aggressively: o bloco é baixo e o goleiro é de linha.
