@@ -3,3 +3,5 @@ __pycache__/
 *:Zone.Identifier
 .DS_Store
 game_data/raw/
+/data/
+/configs/
