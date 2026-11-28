@@ -66,7 +66,7 @@ Pesos de forma nas configs (`configs/<time>/*.json`, chave `multipliers`). Decid
 
 | Técnico | `Av Rat` | `Last 5 Games` | Por quê |
 |---|---|---|---|
-| Giovani | 0.3 | 0 (`relogio_jogo`: 0.1) | Planeja em sequência, não reage a fase. A temporada vale, os 5 últimos não. |
+| Giovani | 0.3 | 0 (num jogo pontual: `--mult 'Last 5 Games=0.1'`) | Planeja em sequência, não reage a fase. A temporada vale, os 5 últimos não. |
 | Bruno Keller | 0.15 | 0.1 | O rodízio dele é físico (condição/carga), não nota. A forma pesa pouco. |
 | Rafael Duarte | 0.2 | 0.4 | É o único que reage à forma recente, mas sem o 0.7 antigo, que deixava 5 jogos decidirem o XI. |
 | Luiz "Casca" Ferreira | 0.3 | 0 | XI estável. A temporada desempata, a fase não. |
