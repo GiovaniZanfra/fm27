@@ -178,6 +178,15 @@ def _resolve_multiplier_col(key: str, available_cols: set) -> str | None:
     for candidate in (f"{key}_Normalized", f"{key.replace(' ', '_')}_Normalized"):
         if candidate in available_cols:
             return candidate
+    # case-insensitive fallback ('av rat' -> 'Av Rat', 'last 5 games' -> 'Last 5 Games')
+    folded = key.casefold()
+    for name, col in METRIC_COLUMN_MAP.items():
+        if name.casefold() == folded and col in available_cols:
+            return col
+    by_fold = {c.casefold(): c for c in available_cols}
+    for candidate in (f"{key}_Normalized", f"{key.replace(' ', '_')}_Normalized"):
+        if candidate.casefold() in by_fold:
+            return by_fold[candidate.casefold()]
     return None
 
 
@@ -185,12 +194,17 @@ def optimize_teams(
     team_name: str,
     formation_file: str,
     max_teams: int = None,
-    age_penalty: float = 0.0,
-    age_threshold: int = 30,
+    age_penalty: float = None,
+    age_threshold: int = None,
     excluded_players: list[str] = None,
     by_formation: bool = False,
     arabic_penalty: float = None,
+    config: dict = None,
+    strict_mult_keys=(),
 ) -> List[pd.DataFrame]:
+    """Optimize teams. `config` is the effective config dict (defaults to loading `formation_file`,
+    which is still used for the output folder name). Multiplier keys in `strict_mult_keys` that
+    match no column are an error instead of a warning."""
 
     data_dir = Path("data")
     scores_path = data_dir / team_name / "scores" / f"{team_name}_scores.csv"
@@ -240,8 +254,9 @@ def optimize_teams(
             print(f"Warning: failed to read performance data from {performance_path}")
 
     # config
-    with open(formation_file, "r") as f:
-        config = json.load(f)
+    if config is None:
+        with open(formation_file, "r") as f:
+            config = json.load(f)
 
     formation_data = config["formation"]
 
@@ -265,6 +280,12 @@ def optimize_teams(
         col = _resolve_multiplier_col(key, available_cols)
         if col:
             resolved_multipliers[col] = weight
+        elif key in strict_mult_keys:
+            usable = sorted(k[:-len("_Normalized")].replace("_", " ") for k in available_cols
+                            if k.endswith("_Normalized"))
+            print(f"Error: --mult '{key}' matches no column. Available keys: "
+                  f"{', '.join(list(METRIC_COLUMN_MAP) + usable)}")
+            exit(1)
         else:
             print(f"Warning: multiplier key '{key}' has no matching column, skipping.")
 

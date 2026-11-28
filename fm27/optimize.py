@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import difflib
+import json
 import random
 import re
 import unicodedata
@@ -8,6 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from .overrides import SCALAR_KEYS, build_overrides, describe_overrides, effective_config, has_overrides
 from .team_optimizer import optimize_teams
 
 
@@ -141,6 +143,11 @@ def main():
     p.add_argument('formation')
     p.add_argument('--age-penalty', type=float)
     p.add_argument('--age-threshold', type=int)
+    p.add_argument('--set', nargs='+', metavar='KEY=VALUE', dest='set_items',
+                   help=f"Override config scalars for this run ({', '.join(SCALAR_KEYS)})")
+    p.add_argument('--mult', nargs='+', metavar='NAME=WEIGHT',
+                   help="Set/override multipliers for this run (weight 0 removes; e.g. 'Last 5 Games=0.1')")
+    p.add_argument('--no-mult', action='store_true', help='Clear all config multipliers before applying --mult')
     p.add_argument('--exclude', nargs='+')
     p.add_argument('--inf', nargs='+', metavar='CODE',
                    help='Exclude players whose Inf column has any of these codes (e.g. Inj Unr Sus); case-insensitive')
@@ -196,12 +203,24 @@ def main():
         excluded += [n.casefold() for n in players_by_load(
             demo, args.load, excluded, args.keep, args.keep_gk, args.sample, random.Random(seed))]
 
+    try:
+        overrides = build_overrides(args.set_items, args.mult, args.no_mult, args.age_penalty, args.age_threshold)
+    except ValueError as e:
+        p.error(str(e))
+    with open(formation_file, "r") as f:
+        base_config = json.load(f)
+    config = effective_config(base_config, overrides)  # in memory only; the file is never rewritten
+    if has_overrides(overrides):
+        line = describe_overrides(base_config, config)
+        if line:
+            print(line)
+
     def run(excl):
         return optimize_teams(
             team_name,
             formation_file,
-            age_penalty=args.age_penalty,
-            age_threshold=args.age_threshold,
+            config=config,
+            strict_mult_keys=set(overrides['mult']),
             excluded_players=excl,
             by_formation=args.by_formation,
         )

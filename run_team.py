@@ -9,6 +9,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from fm27.overrides import build_overrides
+
 
 def run_cmd(cmd):
     print(f"Running: {cmd}")
@@ -169,6 +171,11 @@ def main():
     p.add_argument('--no-parse', action='store_true')
     p.add_argument('--no-calc', action='store_true')
     p.add_argument('--config', help='Path to optimizer config file (formation JSON)')
+    p.add_argument('--set', nargs='+', metavar='KEY=VALUE', dest='set_items',
+                   help='Override config scalars for this run (ip_weight age_penalty age_threshold arabic_penalty)')
+    p.add_argument('--mult', nargs='+', metavar='NAME=WEIGHT',
+                   help="Set/override multipliers for this run (weight 0 removes; e.g. 'Last 5 Games=0.1')")
+    p.add_argument('--no-mult', action='store_true', help='Clear all config multipliers before applying --mult')
     p.add_argument('-r', '--raw', nargs='+', help='Names to exclude')
     p.add_argument('--inf', nargs='+', metavar='CODE',
                    help='Exclude players by Inf status code (e.g. Inj Unr Ine Int Sus)')
@@ -183,6 +190,10 @@ def main():
     p.add_argument('--date', help='Date string for raw HTML file (e.g. jan2025, oct2024)')
     p.add_argument('--by-formation', action='store_true', help='Save teams in a subfolder named after the formation')
     args = p.parse_args()
+    try:
+        build_overrides(args.set_items, args.mult, args.no_mult)  # fail before parse/calc on a bad flag
+    except ValueError as e:
+        p.error(str(e))
 
     team = args.team
     repo = Path(__file__).resolve().parent
@@ -220,6 +231,12 @@ def main():
         raw_args += f' --seed {args.seed}'
     if args.top_load:
         raw_args += f' --top-load {args.top_load} --of {args.of}'
+    if args.set_items:
+        raw_args += ' --set ' + ' '.join(shlex.quote(i) for i in args.set_items)
+    if args.mult:
+        raw_args += ' --mult ' + ' '.join(shlex.quote(i) for i in args.mult)
+    if args.no_mult:
+        raw_args += ' --no-mult'
     by_formation_arg = '--by-formation' if args.by_formation else ''
     steps.append(f"python optimize_teams.py {team} {formation_q} {raw_args} {by_formation_arg}".rstrip())
 
