@@ -90,7 +90,7 @@ Examples use Corinthians; swap team and config for the others. Tactic configs ar
 
 ## The pipeline
 
-Run from the repo root with `python` (the `fm24` conda env also works).
+Run from the repo root with `python` (the `fm24` conda env also works). `python run_team.py --help` lists every flag with examples.
 
 ```bash
 python run_team.py <team> --config <file>.json --by-formation [--no-parse --no-calc] [-r NAME...] [--inf CODE...] [--load LEVEL...] [--keep NAME...] [--keep-gk] [--sample F --seed N] [--top-load N] [--set K=V...] [--mult 'Name=W'...] [--no-mult] [--date LABEL] [--no-ingest]
@@ -102,7 +102,7 @@ python run_team.py <team> --config <file>.json --by-formation [--no-parse --no-c
 - `--inf CODE...` excludes by the export's `Inf` status, case-insensitive. For a match, always `--inf Inj Unr Ine Int Sus`. `Loa`, `Wnt`, `Wtg`, `Rst`, `FtT` and `Fgn` are informational (the player is available): never exclude them. After a new export don't pass `--no-parse`; an interim file without `Inf` stops the run.
 - Load filters work on the parsed `Match Load` (the parser writes `MatchLoad`, games and minutes in the 14-day window and `IsGK` to `interim/player_demographics.csv`). Never read Match Load from the HTML/CSV by hand.
   - `--load heavy very-heavy` excludes those levels; `--keep-gk` and `--keep NAME...` exempt players.
-  - `--sample F` excludes a random fraction F of the players the load filter would remove. The seed is always printed; report it (`--seed N` reproduces the draw).
+  - `--sample F` excludes a random fraction F of the players the load filter would remove. Every `--sample` run prints its seed; report it (`--seed N` reproduces the draw).
   - `--top-load N` excludes the N first-team players with the most minutes in the window and reruns; combine with `--keep-gk`.
 - Per-run config tweaks, in memory only (the file is never rewritten; the run prints an `overrides:` line). Never copy a config with sed for a one-off tweak.
   - `--set ip_weight=0.7 age_penalty=0.3` (also `age_threshold`, `arabic_penalty`).

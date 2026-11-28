@@ -185,32 +185,75 @@ def print_teams(repo: Path, team: str, formation: str = None):
     _pretty_print_table(display(srows), title='Second Team')
 
 
+HELP_EXAMPLES = """\
+examples:
+  # match: unavailable players out, half of the heavy-load ones drawn out (not goalkeepers or Gio)
+  python run_team.py corinthians --config relogio.json --by-formation --inf Inj Unr Ine Int Sus \\
+      --load heavy very-heavy --keep-gk --keep Gio --sample 0.5
+
+  # same lineup, now without two more players (no re-parse; same export)
+  python run_team.py corinthians --config relogio.json --by-formation --no-parse --no-calc \\
+      --inf Inj Unr Ine Int Sus -r garro 'yuri alberto'
+
+  # rest the 4 first-team players with most minutes in the last 14 days
+  python run_team.py corinthians --config relogio.json --by-formation --inf Inj Unr Ine Int Sus \\
+      --top-load 4 --keep-gk
+
+  # one-off tweaks for this match only (the config file is not changed)
+  python run_team.py corinthians --config relogio.json --by-formation \\
+      --set ip_weight=0.75 age_penalty=0.2 --mult 'Last 5 Games=0.1'
+
+  # attributes only, no form or age adjustments
+  python run_team.py corinthians --config relogio.json --by-formation --no-mult --set age_penalty=0
+
+Each run prints the export it used and writes data/<team>/teams/<config>/run.json
+(export, effective config, every exclusion with its reason, seed, command).
+"""
+
+
 def main():
     sys.stdout.reconfigure(line_buffering=True)  # keep our lines ordered with the subprocesses' when piped
-    p = argparse.ArgumentParser()
-    p.add_argument('team')
-    p.add_argument('--no-parse', action='store_true')
-    p.add_argument('--no-calc', action='store_true')
-    p.add_argument('--no-ingest', action='store_true', help='Do not pull new exports from the FM exports folder first')
-    p.add_argument('--config', help='Path to optimizer config file (formation JSON)')
-    p.add_argument('--set', nargs='+', metavar='KEY=VALUE', dest='set_items',
-                   help='Override config scalars for this run (ip_weight age_penalty age_threshold arabic_penalty)')
-    p.add_argument('--mult', nargs='+', metavar='NAME=WEIGHT',
-                   help="Set/override multipliers for this run (weight 0 removes; e.g. 'Last 5 Games=0.1')")
-    p.add_argument('--no-mult', action='store_true', help='Clear all config multipliers before applying --mult')
-    p.add_argument('-r', '--raw', nargs='+', help='Names to exclude')
-    p.add_argument('--inf', nargs='+', metavar='CODE',
-                   help='Exclude players by Inf status code (e.g. Inj Unr Ine Int Sus)')
-    p.add_argument('--load', nargs='+', metavar='LEVEL',
-                   help='Exclude players by match load level (e.g. heavy very-heavy)')
-    p.add_argument('--keep', nargs='+', metavar='NAME', help='Never excluded by load filters')
-    p.add_argument('--keep-gk', action='store_true', help='Goalkeepers are never excluded by load filters')
-    p.add_argument('--sample', type=float, metavar='FRACTION', help='Randomly exclude this fraction of the --load pool')
-    p.add_argument('--seed', type=int, help='Seed for --sample (printed if omitted)')
-    p.add_argument('--top-load', type=int, metavar='N', help='Exclude the N highest-load first-team players and re-run')
-    p.add_argument('--of', choices=['first'], default='first', help='Team --top-load ranks')
-    p.add_argument('--date', help='Date string for raw HTML file (e.g. jan2025, oct2024)')
-    p.add_argument('--by-formation', action='store_true', help='Save teams in a subfolder named after the formation')
+    p = argparse.ArgumentParser(
+        description='Ingest new FM exports, parse the newest one, score every role and pick teams 1..N '
+                    'for a formation config. Prints the first and second team in position order.',
+        epilog=HELP_EXAMPLES, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument('team', help='team folder in data/ and configs/ (e.g. corinthians, palmeiras, roma, bahia)')
+
+    g = p.add_argument_group('data')
+    g.add_argument('--date', metavar='LABEL',
+                   help='parse data/<team>/raw/<LABEL>.html (e.g. 2026-11-27_21-19-10) instead of the newest export')
+    g.add_argument('--no-ingest', action='store_true', help='do not pull new exports from the FM exports folder first')
+    g.add_argument('--no-parse', action='store_true',
+                   help='reuse the last parsed export (no ingest either); use when only flags or config changed')
+    g.add_argument('--no-calc', action='store_true', help='reuse the last role scores (pair with --no-parse)')
+
+    g = p.add_argument_group('config')
+    g.add_argument('--config', help='formation config, a file name in configs/<team>/ (e.g. relogio.json); required')
+    g.add_argument('--by-formation', action='store_true',
+                   help='save teams in data/<team>/teams/<config name>/ (always pass it)')
+    g.add_argument('--set', nargs='+', metavar='KEY=VALUE', dest='set_items',
+                   help='override a config value for this run only: ip_weight, age_penalty, age_threshold, arabic_penalty')
+    g.add_argument('--mult', nargs='+', metavar='NAME=WEIGHT',
+                   help="set a multiplier for this run only, e.g. 'Last 5 Games=0.1' 'Flair=0' (0 removes it)")
+    g.add_argument('--no-mult', action='store_true',
+                   help='drop all config multipliers (attributes only), then apply any --mult')
+
+    g = p.add_argument_group('exclusions')
+    g.add_argument('-r', '--raw', nargs='+', metavar='NAME',
+                   help="players to leave out; accents/case ignored, full name or one whole word ('kaio cesar', paulista)")
+    g.add_argument('--inf', nargs='+', metavar='CODE',
+                   help='leave out players with these Inf statuses; for a match: Inj Unr Ine Int Sus '
+                        '(Loa Wnt Wtg Rst FtT Fgn are informational)')
+    g.add_argument('--load', nargs='+', metavar='LEVEL',
+                   help='leave out players at these match load levels: light medium heavy very-heavy')
+    g.add_argument('--sample', type=float, metavar='FRACTION',
+                   help='with --load, leave out only a random fraction (0-1) of them; the seed is printed')
+    g.add_argument('--seed', type=int, help='repeat an earlier --sample draw')
+    g.add_argument('--top-load', type=int, metavar='N',
+                   help='rerun without the N first-team players with most minutes in the last 14 days')
+    g.add_argument('--of', choices=['first'], default='first', help=argparse.SUPPRESS)
+    g.add_argument('--keep', nargs='+', metavar='NAME', help='never left out by --load/--sample/--top-load')
+    g.add_argument('--keep-gk', action='store_true', help='goalkeepers are never left out by --load/--sample/--top-load')
     args = p.parse_args()
     try:
         build_overrides(args.set_items, args.mult, args.no_mult)  # fail before parse/calc on a bad flag
