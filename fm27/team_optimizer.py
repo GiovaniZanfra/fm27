@@ -1,3 +1,4 @@
+import re
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -190,6 +191,24 @@ def _resolve_multiplier_col(key: str, available_cols: set) -> str | None:
     return None
 
 
+def teams_output_dir(team_name: str, formation_file, by_formation: bool = False) -> Path:
+    """Folder the team CSVs of a run are saved in."""
+    out = Path("data") / team_name / "teams"
+    return out / Path(formation_file).stem if by_formation else out
+
+
+def remove_stale_teams(output_dir: Path, saved: int) -> List[str]:
+    """Delete team files numbered above `saved` (first_team=1, second_team=2, team_K=K) left by older runs."""
+    removed = []
+    for path in sorted(output_dir.glob("*.csv")):
+        m = re.fullmatch(r"team_(\d+)", path.stem)
+        idx = {"first_team": 1, "second_team": 2}.get(path.stem) or (int(m.group(1)) if m else None)
+        if idx and idx > saved:
+            path.unlink()
+            removed.append(path.name)
+    return removed
+
+
 def optimize_teams(
     team_name: str,
     formation_file: str,
@@ -208,9 +227,7 @@ def optimize_teams(
 
     data_dir = Path("data")
     scores_path = data_dir / team_name / "scores" / f"{team_name}_scores.csv"
-    output_dir = data_dir / team_name / "teams"
-    if by_formation:
-        output_dir = output_dir / Path(formation_file).stem
+    output_dir = teams_output_dir(team_name, formation_file, by_formation)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     scores_df = pd.read_csv(scores_path)
@@ -345,6 +362,9 @@ def optimize_teams(
 
     if teams:
         print(f"Salvei {len(teams)} times em: {output_dir}")
+        removed = remove_stale_teams(output_dir, len(teams))
+        if removed:
+            print(f"Removed stale files from older runs: {', '.join(removed)}")
     else:
         print("Não foi possível formar nenhum time completo.")
 

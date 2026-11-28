@@ -3,6 +3,7 @@
 
 import argparse
 import csv
+import os
 import re
 import shlex
 import subprocess
@@ -10,6 +11,7 @@ import sys
 from pathlib import Path
 
 from fm27.overrides import build_overrides
+from fm27.source import export_label
 
 
 def run_cmd(cmd):
@@ -19,6 +21,24 @@ def run_cmd(cmd):
         print(f"Command failed: {cmd} (exit {res.returncode})")
         return False
     return True
+
+
+def ingest_new_exports(team):
+    """Copy new FM exports into data/ (one summary line). Never fatal: warns and carries on with what is in data/."""
+    try:
+        import ingest_export
+        copied, skipped = ingest_export.ingest_pending()
+    except (Exception, SystemExit) as e:
+        print(f"ingest: WARNING {e}; continuing with what is in data/")
+        return
+    mine = [dst for _, dst in copied if dst.parent.parent.name == team]
+    others = len(copied) - len(mine)
+    msg = f"{len(mine)} new for {team}" + (f" (latest {mine[-1].stem})" if mine else "")
+    if others:
+        msg += f", {others} for other teams"
+    if skipped:
+        msg += f", {len(skipped)} skipped (python ingest_export.py shows why)"
+    print(f"ingest: {msg}")
 
 
 def _pretty_print_table(rows, title=None):
@@ -166,10 +186,12 @@ def print_teams(repo: Path, team: str, formation: str = None):
 
 
 def main():
+    sys.stdout.reconfigure(line_buffering=True)  # keep our lines ordered with the subprocesses' when piped
     p = argparse.ArgumentParser()
     p.add_argument('team')
     p.add_argument('--no-parse', action='store_true')
     p.add_argument('--no-calc', action='store_true')
+    p.add_argument('--no-ingest', action='store_true', help='Do not pull new exports from the FM exports folder first')
     p.add_argument('--config', help='Path to optimizer config file (formation JSON)')
     p.add_argument('--set', nargs='+', metavar='KEY=VALUE', dest='set_items',
                    help='Override config scalars for this run (ip_weight age_penalty age_threshold arabic_penalty)')
@@ -200,10 +222,17 @@ def main():
 
     print(f"team is {team}. repo is {repo}")
 
+    os.environ['FM27_RUN_CMD'] = shlex.join(sys.argv)  # recorded in run.json by the optimizer
+
+    if not args.no_parse and not args.no_ingest:
+        ingest_new_exports(team)
+
     # Steps
     steps = []
 
-    if not args.no_parse:
+    if args.no_parse:
+        print(f"export: {export_label(team)}")
+    else:
         date_arg = f" {shlex.quote(args.date)}" if args.date else ""
         steps.append(f"python parse_raw_data.py {team}{date_arg}")
 

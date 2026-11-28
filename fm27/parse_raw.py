@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
+from .source import latest_raw, write_source
+
 
 def parse_positions(position_str: str) -> set:
     """Parse position string into set of standardized positions.
@@ -802,7 +804,7 @@ def parse_raw_data(team_name: str, date: str = None):
 
     Args:
         team_name: Name of the team (lowercase)
-        date: Date string for the raw file (e.g. 'jan2025'). If omitted, uses the most recently modified HTML file.
+        date: Date string for the raw file (e.g. 'jan2025'). If omitted, uses the newest YYYY-MM-DD_HH-MM-SS.html by name (else the most recently modified HTML).
     """
     data_dir = Path("data")
     team_raw_dir = data_dir / team_name / "raw"
@@ -815,12 +817,11 @@ def parse_raw_data(team_name: str, date: str = None):
     if date:
         html_file = team_raw_dir / f"{date}.html"
     else:
-        html_files = sorted(team_raw_dir.glob("*.html"), key=lambda p: p.stat().st_mtime, reverse=True)
-        if not html_files:
+        html_file = latest_raw(team_raw_dir)
+        if html_file is None:
             raise FileNotFoundError(f"No HTML files found in {team_raw_dir}")
-        html_file = html_files[0]
-        print(f"No date specified, using latest: {html_file.name}")
 
+    print(f"export: {html_file.stem}")
     df_agg = pd.read_html(str(html_file), encoding="utf-8")
     merged_df = pd.concat(df_agg, axis=0, ignore_index=True)
     merged_df = normalize_columns(merged_df)
@@ -944,6 +945,7 @@ def parse_raw_data(team_name: str, date: str = None):
     dem_file = team_interim_dir / "player_demographics.csv"
     dem.to_csv(dem_file, index=False)
     _save_performance_data(merged_df, team_interim_dir, value_col=value_col, attr_df=attr_mapped)
+    write_source(team_name, html_file)
     print(f"Saved interim files in {team_interim_dir}")
 
 _MATCH_LOAD_RE = re.compile(

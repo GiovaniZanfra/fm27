@@ -27,6 +27,8 @@ import unicodedata
 from collections import Counter
 from pathlib import Path
 
+from fm27.source import latest_raw
+
 EXPORTS_DIR = Path(os.environ.get(
     "FM_EXPORTS_DIR",
     "/mnt/c/Users/giova/Documents/Sports Interactive/Football Manager 27/exports",
@@ -112,6 +114,27 @@ def ingest(src: Path, team: str) -> Path:
     return dst
 
 
+def ingest_sources(sources, team=None, scout=None):
+    """Ingest each export; returns ([(src, dst)], [(src, reason)]). Never guesses: unresolvable exports are skipped."""
+    copied, skipped = [], []
+    for src in sources:
+        try:
+            dest_team = resolve_team(src, team, scout)
+        except ValueError as e:
+            skipped.append((src, str(e)))
+            continue
+        copied.append((src, ingest(src, dest_team)))
+    return copied, skipped
+
+
+def ingest_pending():
+    """Ingest every export not yet in data/. Raises FileNotFoundError if the exports folder is missing."""
+    if not EXPORTS_DIR.is_dir():
+        raise FileNotFoundError(f"Exports folder not found: {EXPORTS_DIR} (set FM_EXPORTS_DIR)")
+    return ingest_sources([p for p in sorted(EXPORTS_DIR.glob("*.html"), key=lambda p: p.name)
+                           if not already_ingested(label_of(p))])
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--team", help="team folder for --file (checked against the Club column)")
@@ -140,23 +163,19 @@ def main():
         sources = [p for p in sorted(EXPORTS_DIR.glob("*.html"), key=lambda p: p.name)
                    if not already_ingested(label_of(p))]
 
-    failed = 0
-    for src in sources:
-        try:
-            team = resolve_team(src, args.team, args.scout)
-        except ValueError as e:
-            print(f"SKIPPED {src.name}: {e}")
-            failed += 1
-            continue
-        dst = ingest(src, team)
+    copied, skipped = ingest_sources(sources, args.team, args.scout)
+    for src, dst in copied:
         print(f"{src.name} -> {dst.relative_to(REPO)}")
+    for src, why in skipped:
+        print(f"SKIPPED {src.name}: {why}")
+    failed = len(skipped)
 
     # Latest raw file per team, so the caller knows what --date to use.
     print("latest per team:")
     for raw in sorted(DATA.glob("*/raw")):
-        files = sorted(raw.glob("*.html"), key=lambda p: p.stat().st_mtime)
-        if files:
-            print(f"  {raw.parent.name}: {files[-1].stem}")
+        newest = latest_raw(raw)
+        if newest:
+            print(f"  {raw.parent.name}: {newest.stem}")
     if failed:
         sys.exit(1)
 

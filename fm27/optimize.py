@@ -2,19 +2,23 @@
 import argparse
 import difflib
 import json
+import os
 import random
 import re
+import sys
 import unicodedata
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
 
 from .overrides import SCALAR_KEYS, build_overrides, describe_overrides, effective_config, has_overrides
-from .team_optimizer import optimize_teams
+from .source import read_source
+from .team_optimizer import optimize_teams, teams_output_dir
 
 
 def players_with_inf(team_name, codes):
-    """Names whose Inf status is one of `codes` (case-insensitive), from player_demographics.csv."""
+    """[(name, 'inf:<code>')] for players whose Inf status is one of `codes` (case-insensitive), from player_demographics.csv."""
     path = Path("data") / team_name / "interim" / "player_demographics.csv"
     demo = pd.read_csv(path) if path.exists() else pd.DataFrame()
     if 'Inf' not in demo.columns:
@@ -29,7 +33,7 @@ def players_with_inf(team_name, codes):
     else:
         listed = ', '.join(f"{n} ({i})" for n, i in zip(hit['Name'], inf[hit.index]))
         print(f"--inf {' '.join(codes)}: excluded {len(hit)}: {listed}")
-    return hit['Name'].astype(str).tolist()
+    return [(str(n), f"inf:{i}") for n, i in zip(hit['Name'], inf[hit.index])]
 
 
 def _fold(name):
@@ -109,7 +113,8 @@ def protected(row, keep, keep_gk):
 
 
 def players_by_load(demo, levels, already, keep, keep_gk, fraction, rng):
-    """Names to exclude: players at `levels`, minus protected/already-excluded, optionally a random fraction."""
+    """[(name, reason)] to exclude: players at `levels`, minus protected/already-excluded, optionally a random
+    fraction. Reason is 'load:<level> <min>/<max>', prefixed with 'sample ' when a fraction was drawn."""
     wanted = {_norm_level(l) for l in levels}
     done = {_fold(n) for n in already}
     pool = [r for _, r in demo.iterrows()
@@ -120,7 +125,9 @@ def players_by_load(demo, levels, already, keep, keep_gk, fraction, rng):
         pool = rng.sample(pool, round(fraction * len(pool)))
         label += f" (sample {fraction:g})"
     print(f"{label}: excluded {len(pool)}" + (": " + ', '.join(_fmt_load(r) for r in pool) if pool else ""))
-    return [r['Name'] for r in pool]
+    prefix = 'sample ' if fraction is not None else ''
+    return [(r['Name'], f"{prefix}load:{r['MatchLoad']} {r['MatchLoadMinutes']}/{r['MatchLoadMinutesMax']}")
+            for r in pool]
 
 
 def players_by_top_load(demo, first_team_names, n, already, keep, keep_gk):
@@ -133,7 +140,35 @@ def players_by_top_load(demo, first_team_names, n, already, keep, keep_gk):
                              -(r['MatchLoadGames'] if pd.notna(r['MatchLoadGames']) else -1)))
     top = cand[:n]
     print(f"--top-load {n} (first team): excluded {len(top)}" + (": " + ', '.join(_fmt_load(r) for r in top) if top else ""))
-    return [r['Name'] for r in top]
+    return [(r['Name'], 'top-load') for r in top]
+
+
+def write_manifest(team_name, formation_file, args, overrides, config, exclusions, seed, teams_saved):
+    """data/<team>/teams/[<formation>/]run.json: what this run used, next to the CSVs it produced."""
+    source = read_source(team_name)
+    cwd = Path.cwd()
+    try:
+        config_file = str(Path(formation_file).resolve().relative_to(cwd))
+    except ValueError:
+        config_file = str(formation_file)
+    manifest = {
+        'run_at': datetime.now().astimezone().isoformat(timespec='seconds'),
+        'team': team_name,
+        'export': source.get('label', 'unknown') if source else 'unknown',
+        'config_file': config_file,
+        'overrides': overrides,
+        'effective_config': {k: v for k, v in config.items() if k != 'formation'},
+        'exclusions': exclusions,
+        'keep': args.keep or [],
+        'keep_gk': bool(args.keep_gk),
+        'seed': seed if args.sample is not None else None,
+        'teams_saved': teams_saved,
+        'argv': sys.argv,
+    }
+    if os.environ.get('FM27_RUN_CMD'):
+        manifest['run_team_cmd'] = os.environ['FM27_RUN_CMD']
+    out = teams_output_dir(team_name, formation_file, args.by_formation) / 'run.json'
+    out.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
 
 
 def main():
@@ -186,9 +221,18 @@ def main():
         args.exclude = resolve_names(team_name, args.exclude, '--exclude')
     if args.keep:
         args.keep = resolve_names(team_name, args.keep, '--keep')
-    excluded = [n.casefold() for n in (args.exclude or [])]
+    exclusions = []  # [{'name', 'reason'}] in the order applied; first reason wins for a repeated name
+    excluded = []  # casefolded names, what the optimizer receives
+
+    def exclude(pairs):
+        for name, reason in pairs:
+            if name.casefold() not in excluded:
+                excluded.append(name.casefold())
+                exclusions.append({'name': name, 'reason': reason})
+
+    exclude((n, '-r') for n in (args.exclude or []))
     if args.inf:
-        excluded += [n.casefold() for n in players_with_inf(team_name, args.inf)]
+        exclude(players_with_inf(team_name, args.inf))
 
     if args.sample is not None and not 0 <= args.sample <= 1:
         p.error('--sample must be between 0 and 1')
@@ -196,12 +240,13 @@ def main():
         p.error('--sample needs --load')
 
     demo = load_table(team_name) if (args.load or args.top_load) else None
+    seed = None
     if args.load:
         seed = args.seed if args.seed is not None else random.SystemRandom().randrange(2**31)
         if args.sample is not None:
             print(f"--sample seed: {seed}")
-        excluded += [n.casefold() for n in players_by_load(
-            demo, args.load, excluded, args.keep, args.keep_gk, args.sample, random.Random(seed))]
+        exclude(players_by_load(
+            demo, args.load, excluded, args.keep, args.keep_gk, args.sample, random.Random(seed)))
 
     try:
         overrides = build_overrides(args.set_items, args.mult, args.no_mult, args.age_penalty, args.age_threshold)
@@ -227,9 +272,11 @@ def main():
 
     teams = run(excluded)
     if args.top_load and teams:
-        excluded += [n.casefold() for n in players_by_top_load(
-            demo, teams[0]['Name'].tolist(), args.top_load, excluded, args.keep, args.keep_gk)]
-        run(excluded)
+        exclude(players_by_top_load(
+            demo, teams[0]['Name'].tolist(), args.top_load, excluded, args.keep, args.keep_gk))
+        teams = run(excluded)
+    if teams:
+        write_manifest(team_name, formation_file, args, overrides, config, exclusions, seed, len(teams))
 
 
 if __name__ == "__main__":
