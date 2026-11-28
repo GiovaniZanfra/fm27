@@ -80,7 +80,7 @@ Pesos de forma nas configs (`configs/<time>/*.json`, chave `multipliers`). Decid
 
 **Pendências:**
 - Os exports atuais de Palmeiras, Roma e Bahia ainda não têm `Av Rat` nem `Apps`, então hoje só o `Last 5` conta lá. Na Roma, só 31 dos 76 jogadores têm `Last 5`.
-- O eixo real de rodízio do Keller é carga física (`Match Load`, "Heavy 5 matches (350/450 minutes)"), que ainda não é parseada. `Fatigue` vem vazia no export.
+- O eixo real de rodízio do Keller é carga física (`Match Load`, "Heavy 5 matches (350/450 minutes)"), que o parser já lê (`--load`, `--top-load` no `run_team.py`). `Fatigue` vem vazia no export.
 
 ## Perfis
 

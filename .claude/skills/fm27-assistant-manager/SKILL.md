@@ -19,15 +19,17 @@ names stay lowercase; roles use the `IP/OOP` abbreviations from the glossary in 
 
 **Getting exports in:** the FM plugin always writes to
 `/mnt/c/Users/giova/Documents/Sports Interactive/Football Manager 27/exports/`
-as `Squad YYYY-MM-DD HH-MM-SS.html`. The user runs several saves and never moves files. Before
-any run on squad data, run `python ingest_export.py` (~0.1 s): it copies **every** export not yet
-in `data/` into its own club's folder (`data/<team>/raw/YYYY-MM-DD_HH-MM-SS.html`, club from the
-`Club` column), then prints the latest raw file per team. It never guesses: an export with no
-`Club` column, mixed clubs (scouting list) or a club with no `data/` folder is reported as
-`SKIPPED` with the fix — tell the user, don't force it. `--team`/`--scout` need `--file` and
-`--team` is refused if it contradicts the `Club` column. The parser also refuses a squad file of
-another club sitting in the wrong folder. It does not parse: pass that team's latest label to
-`run_team.py --date <label>`. Raw files are named by export timestamp; never ask for a month.
+as `Squad YYYY-MM-DD HH-MM-SS.html`. The user runs several saves and never moves files.
+`run_team.py` ingests automatically before parsing (one `ingest:` line): it copies **every**
+export not yet in `data/` into its own club's folder (`data/<team>/raw/YYYY-MM-DD_HH-MM-SS.html`,
+club from the `Club` column). Without `--date` it parses the newest timestamp-named file for the
+team and prints `export: <label>` on every run (also with `--no-parse`). `--no-ingest` or
+`--no-parse` skips the ingest. Never ask for a month or pass `--date` for the newest export.
+`python ingest_export.py` is still the tool for `--list`, `--scout` and `--team`, or to ingest
+without running. Ingest never guesses: an export with no `Club` column, mixed clubs (scouting
+list) or a club with no `data/` folder is reported as `SKIPPED` with the fix; tell the user, don't
+force it. `--team` is refused if it contradicts the `Club` column, and the parser refuses a squad
+file of another club sitting in the wrong folder.
 
 `data/` starts empty in this FM27 save: the first ingest creates `data/<team>/raw/` and the
 pipeline creates the rest. Any other folder the user adds (a scouting pool, a national
@@ -69,22 +71,45 @@ Rules that follow from it:
 - To explain why a player stands out (or falls short) in a stat, use `stat_attributes.json`. These are the links the engine itself uses.
 - If the answer isn't there, `game_data/README.md` lists what has not been extracted yet (OOP role attribute weights, rating coefficients, xG). Say you are using general knowledge, not the game's data.
 
+## Pedidos frequentes → comando
+
+Examples use Corinthians; swap team and config for the others. Tactic configs are in `configs/<team>/`.
+
+| Pedido | Comando |
+|---|---|
+| "export novo do corinthians, roda relogio com os hiperparâmetros do giovani e exclui unr, ine, sus, inj ou int; tira os heavy/very heavy exceto goleiro e gio; sorteia 50% deles; mostra time 1 e 2" | `python run_team.py corinthians --config relogio.json --by-formation --inf Inj Unr Ine Int Sus --load heavy very-heavy --keep-gk --keep Gio --sample 0.5` (ingest and newest export are automatic; report the printed seed and the `export:` label; show teams 1 and 2) |
+| "tira X Y" / "jogo novo" | Add to `-r X Y`, accumulating; "jogo novo" resets the list |
+| "volta com gio" | Rerun with Gio dropped from `-r` |
+| "tira os 4 com maior match load do primeiro time fora o goleiro" | `... --top-load 4 --keep-gk` |
+| "roda compasso ao invés" | Same flags, `--config compasso.json` |
+| "pra esse jogo tira peso do l5g" | `--mult 'Last 5 Games=0'` |
+| "roda com ip_weight 0.7" | `--set ip_weight=0.7` |
+| "aumenta o pênalti de idade só pra essa partida" | `--set age_penalty=0.3` (ask the value if he gave none) |
+| "roda sem hiperparâmetros, só atributos" | `--no-mult` |
+| "qual export você usou?" | The `export:` line of the run, or `export` in `teams/<config>/run.json` |
+
 ## The pipeline
 
 Run from the repo root with `python` (the `fm24` conda env also works).
 
 ```bash
-python run_team.py <team> --config <file>.json --by-formation [--date sep2023] [--no-parse --no-calc] [-r 'Full Name' 'Other Name'] [--inf Inj Unr Ine Int Sus]
+python run_team.py <team> --config <file>.json --by-formation [--no-parse --no-calc] [-r NAME...] [--inf CODE...] [--load LEVEL...] [--keep NAME...] [--keep-gk] [--sample F --seed N] [--top-load N] [--set K=V...] [--mult 'Name=W'...] [--no-mult] [--date LABEL] [--no-ingest]
 ```
 
 - `--config` is a bare filename inside `configs/<team>/`. There is no usable default, so always pass it.
-- Stages: parse `data/<team>/raw/<date>.html` → `interim/*.csv`, score every role → `scores/<team>_scores.csv`, then assign players to slots (Hungarian algorithm) → `teams/<config stem>/first_team.csv`, `second_team.csv`, `team_3.csv`…
-- Without `--date` the parser takes the most recently *modified* HTML, which is not always the newest month. Pass `--date` whenever a new export arrives; pass `--no-parse --no-calc` when only the config or exclusions changed.
-- `-r` excludes players. Names must match the data exactly, accents included (case is ignored). A misspelled name is silently ignored, so check the excluded player is really gone from the output.
-- `--inf` excludes every player whose `Inf` status (the export's status-icon column) is one of the given codes, case-insensitive; it adds to `-r`. The run prints who it removed. For a match, use `--inf Inj Unr Ine Int Sus`. `Loa` (listed for loan) is not unavailable, so don't pass it. The status comes from the parsed export, so after a new export don't pass `--no-parse`; an interim file without `Inf` stops the run.
-- Each further team is built from whoever is left, so team files are a depth chart. Files from older runs with more teams are not deleted; trust only the count the run reports ("Salvei N times").
-- The `Score` column is the role score *after* the config's adjustments (age penalty, multipliers on z-scores such as `Last 5 Games`, `Transfer Value`, or any attribute name). It is not comparable across configs or with a raw `<Role>_Score`.
-- A multiplier key that matches no column only prints a warning and is skipped. `Av Rat`, `Last 5 Games`, `Transfer Value`, `Trn Rating` and plain attribute names resolve; `Trn Rat` and `Av. Rating` do not.
+- Stages: ingest new exports → parse `data/<team>/raw/<export>.html` → `interim/*.csv`, score every role → `scores/<team>_scores.csv`, then assign players to slots (Hungarian algorithm) → `teams/<config stem>/first_team.csv`, `second_team.csv`, `team_3.csv`… Pass `--no-parse --no-calc` when only the config or exclusions changed (the `export:` line is still printed).
+- `-r` excludes players; `--keep` protects them from the load filters. Names are matched without accents or case, as a full name or a whole-word part (`'kaio cesar'`, `paulista`). An unknown or ambiguous name stops the run and lists the candidates; use the full name then. The run prints the rewritten names.
+- `--inf CODE...` excludes by the export's `Inf` status, case-insensitive. For a match, always `--inf Inj Unr Ine Int Sus`. `Loa`, `Wnt`, `Wtg`, `Rst`, `FtT` and `Fgn` are informational (the player is available): never exclude them. After a new export don't pass `--no-parse`; an interim file without `Inf` stops the run.
+- Load filters work on the parsed `Match Load` (the parser writes `MatchLoad`, games and minutes in the 14-day window and `IsGK` to `interim/player_demographics.csv`). Never read Match Load from the HTML/CSV by hand.
+  - `--load heavy very-heavy` excludes those levels; `--keep-gk` and `--keep NAME...` exempt players.
+  - `--sample F` excludes a random fraction F of the players the load filter would remove. The seed is always printed; report it (`--seed N` reproduces the draw).
+  - `--top-load N` excludes the N first-team players with the most minutes in the window and reruns; combine with `--keep-gk`.
+- Per-run config tweaks, in memory only (the file is never rewritten; the run prints an `overrides:` line). Never copy a config with sed for a one-off tweak.
+  - `--set ip_weight=0.7 age_penalty=0.3` (also `age_threshold`, `arabic_penalty`).
+  - `--mult 'Last 5 Games=0.1' 'Flair=0'` sets a multiplier; 0 removes it. A name matching no column stops the run.
+  - `--no-mult` clears the config's multipliers first (attributes only), then applies any `--mult`.
+- Every run writes `teams/<config>/run.json`: export, config file, overrides and effective config, each exclusion with its reason, seed and the command. Team files above the count saved are removed, so the folder matches the last run; the run reports "Salvei N times". Each further team is built from whoever is left, so team files are a depth chart.
+- The `Score` column is the role score *after* the config's adjustments (age penalty, multipliers on z-scores such as `Last 5 Games`, `Transfer Value`, or any attribute name). It is not comparable across configs or with a raw `<Role>_Score`. Multiplier names `Av Rat`, `Last 5 Games`, `Transfer Value`, `Trn Rating` and plain attribute names resolve; `Trn Rat` and `Av. Rating` do not. In a config file a bad key only warns.
 
 Reporting a run: both teams in position order, each line right to left:
 `GK DR DC DL WBR DM WBL MR MC ML AMR AMC AML ST` (the run prints them this way). Show the role as
@@ -103,10 +128,11 @@ out-of-possession one; the slot score is `ip_weight * role + (1 - ip_weight) * r
 `ROLE_DEFINITIONS` names in `fm27/roles.py` with spaces turned into underscores
 (`Ball_Playing_Centre_Back`, `Covering_Centre_Back_OOP`); every out-of-possession role ends in
 `_OOP`. A wrong name stops the run. The run prints `Pos | Name | Role | Score | Best`, roles as `IP/OOP` siglas from the glossary.
+The tactic's own config (`relogio.json`, `compasso.json`…) is the one with the agreed hyperparameters; "os hiperparâmetros do giovani" means that file as is. Per-match tweaks go through `--set`/`--mult`, not new config files.
 `callup.json` is a squad-sized config (23–25 slots) for registration and matchday squads.
 
-No manager has an FM27 tactic yet, so there are no configs besides `configs/template.json`. The
-user dictates a tactic as one line per slot: `POS: in-possession role, out-of-possession role`.
+For a new tactic, the
+user dictates it as one line per slot: `POS: in-possession role, out-of-possession role`.
 When a manager's tactic arrives, check it against that manager's section in
 `context/managers_tactics.md` (shapes, role pool, instructions) and flag anything outside it, then
 write `configs/<team>/<formation>.json` and add the tactic to the manual as an `IP/OOP` role line
@@ -115,7 +141,7 @@ plus instructions by phase.
 ## In a match
 
 1. **Know the state.** Team, formation in use, score, minute, who is unavailable. Ask only for what you can't infer.
-2. **Exclusions accumulate.** Every "tira X" adds to the current `-r` list, including injuries, suspensions and players removed by a draw. Reset only when the user says it is a new match ("jogo novo"). Restate the full exclusion list with each result so it can be corrected.
+2. **Exclusions accumulate.** Every "tira X" adds to the current `-r` list, including injuries, suspensions and players removed by a draw; "volta com X" drops him. Reset only on "jogo novo". Map the habitual phrases: unavailable (unr, ine, sus, inj, int) → `--inf Inj Unr Ine Int Sus`; "heavy/very heavy" → `--load heavy very-heavy`; "exceto goleiro" → `--keep-gk`; "exceto gio" → `--keep Gio`; "sorteia N%" → `--sample 0.N`; "os N com maior match load" → `--top-load N`. Restate the full exclusion list (and the seed, if sampled) with each result so it can be corrected; `run.json` has it too.
 3. **Lineup and bench.** Run the formation's config with the exclusions. The second team, in position order, is the bench.
 4. **Substitutions.** To replace a starter, rerun with that player added to `-r` and report who takes the slot and what else shifts; the optimizer may reshuffle several slots, and a like-for-like swap is often not its answer. When the role changes too, switch config rather than guessing.
 5. **Tactical changes follow the character.** Take the manager's game-state section from `managers_tactics.md` and stay inside it:
@@ -132,7 +158,7 @@ when recommending it.
 
 ## Between matches
 
-- **New export:** run `python ingest_export.py` (see *Getting exports in*), then rerun with `--date <that team's latest label>`. Point out who moved between first and second team since the last run if you have it.
+- **New export:** just rerun `run_team.py` (ingest and newest export are automatic; see *Getting exports in*). Point out who moved between first and second team since the last run if you have it.
 - **Depth chart:** run each of the manager's main formations with no exclusions and read teams 1..N. A slot where the second team's score falls far below the first is a depth gap; a position with fewer than two eligible players is a hole.
 - **Rotation:** Keller rotates hard to keep physical output; Casca keeps a stable XI and rotates only when forced; Giovani plans in sequences of matches; Duarte reacts to form. The `Av Rat` and `Last 5 Games` multipliers are what make form move a selection, so check their weights in the config before reading much into a change.
 - **Form weights:** the agreed per-manager `Av Rat` / `Last 5 Games` weights and the reasons are in `context/managers.md` ("Hiperparâmetros de forma"). Season average is the base and Last 5 only a tiebreaker, because Last 5 counts youth and reserve games. When the export has `Apps`, the parser shrinks `Av Rat` by sample size and blanks `Last 5` for players with no senior games. Ask for `Average Rating Club` and `Apps` in every squad export. After changing a form weight, check the undisputed first-choice goalkeeper still starts; if he drops, the weight is too high.
@@ -198,6 +224,6 @@ and form (`Av Rat`, `Last 5`). Then start from this and adjust with judgment:
 
 ## Working habits
 
-- Show the command you ran and the snapshot date the data came from.
+- Show the command you ran and the export it used (the `export:` line; for an earlier run, `teams/<config>/run.json`).
 - When the manual and a config disagree, or when a recommendation breaks the manager's character, say so rather than quietly choosing.
 - If the user corrects a standing preference (how results are shown, when exclusions reset), save it to memory.
