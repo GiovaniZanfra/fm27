@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import difflib
 import random
 import re
 import unicodedata
@@ -37,6 +38,45 @@ def _fold(name):
 
 def names_match(a, b):
     return _fold(a) == _fold(b)
+
+
+def _norm_words(name):
+    """Accent-free, casefolded, whitespace-collapsed form of a name."""
+    return ' '.join(_fold(name).split())
+
+
+def resolve_names(team_name, queries, flag):
+    """Map user-typed names to canonical squad names; exits listing every unknown/ambiguous name."""
+    path = Path("data") / team_name / "interim" / "player_demographics.csv"
+    if not path.exists():
+        print(f"Error: {path} not found; cannot resolve {flag} names. Run the parse step first.")
+        exit(1)
+    squad = list(dict.fromkeys(pd.read_csv(path)['Name'].astype(str)))
+    normed = {n: _norm_words(n) for n in squad}
+    resolved, changed, errors = [], [], []
+    for q in queries:
+        nq = _norm_words(q)
+        hits = [n for n in squad if normed[n] == nq]
+        if not hits and nq:
+            hits = [n for n in squad if f" {nq} " in f" {normed[n]} "]
+        if len(hits) == 1:
+            if hits[0] not in resolved:
+                resolved.append(hits[0])
+            if hits[0].casefold() != q.strip().casefold():
+                changed.append(f"'{q}' -> {hits[0]}")
+        elif hits:
+            errors.append(f"{flag}: '{q}' is ambiguous, pass the full name: {', '.join(hits)}")
+        else:
+            close = difflib.get_close_matches(nq, list(normed.values()), n=3, cutoff=0.5)
+            sugg = [n for c in close for n in squad if normed[n] == c]
+            hint = f" Closest: {', '.join(sugg)}" if sugg else ""
+            errors.append(f"{flag}: no player matches '{q}'.{hint}")
+    if errors:
+        print('\n'.join(f"Error: {e}" for e in errors))
+        exit(1)
+    if changed:
+        print(f"{flag}: {', '.join(changed)}")
+    return resolved
 
 
 def _norm_level(level):
@@ -135,6 +175,10 @@ def main():
             print(f"Tried: {formation_file} and {alt}")
             exit(1)
 
+    if args.exclude:
+        args.exclude = resolve_names(team_name, args.exclude, '--exclude')
+    if args.keep:
+        args.keep = resolve_names(team_name, args.keep, '--keep')
     excluded = [n.casefold() for n in (args.exclude or [])]
     if args.inf:
         excluded += [n.casefold() for n in players_with_inf(team_name, args.inf)]
