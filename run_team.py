@@ -4,19 +4,30 @@
 import argparse
 import csv
 import os
-import re
 import shlex
 import subprocess
 import sys
 from pathlib import Path
 
+from fm27.display import abbr as _abbr, pos_rank as _pos_rank, role_abbreviations as _role_abbreviations
 from fm27.overrides import build_overrides
 from fm27.source import export_label
 
 
-def run_cmd(cmd):
-    print(f"Running: {cmd}")
-    res = subprocess.run(cmd, shell=True)
+# With --brief, only these lines of the parse/score steps are shown (everything is shown if a step fails).
+BRIEF_KEEP = ('export:', 'error', 'traceback')
+
+
+def run_cmd(cmd, brief=False, echo=True):
+    if not brief:
+        if echo:
+            print(f"Running: {cmd}")
+        res = subprocess.run(cmd, shell=True)
+    else:
+        res = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        lines = (res.stdout + res.stderr).splitlines()
+        for line in lines if res.returncode else [l for l in lines if l.strip().casefold().startswith(BRIEF_KEEP)]:
+            print(line)
     if res.returncode != 0:
         print(f"Command failed: {cmd} (exit {res.returncode})")
         return False
@@ -70,52 +81,7 @@ def _pretty_print_table(rows, title=None):
         print(line)
 
 
-# Display order: GK, then each line right to left.
-POSITION_ORDER = ['GK', 'DR', 'DC', 'DL', 'WBR', 'DM', 'WBL', 'MR', 'MC', 'ML', 'AMR', 'AMC', 'AML', 'ST']
-
-
-def _pos_rank(pos):
-    return POSITION_ORDER.index(pos) if pos in POSITION_ORDER else len(POSITION_ORDER)
-
-
-def _norm_role(name):
-    name = re.sub(r'[_\s]+OOP$', '', str(name).strip())
-    return re.sub(r'[^a-z0-9]', '', name.lower())
-
-
-def _role_abbreviations(repo: Path):
-    """{'ip'|'oop': {normalized role name: sigla}} from the glossary (section 6) of managers_tactics.md."""
-    out = {'ip': {}, 'oop': {}}
-    path = repo / 'context' / 'managers_tactics.md'
-    if not path.exists():
-        return out
-    kind = None
-    for line in path.read_text(encoding='utf-8').splitlines():
-        if line.startswith('### 6.1'):
-            kind = 'ip'
-        elif line.startswith('### 6.2'):
-            kind = 'oop'
-        elif line.startswith('## ') or (line.startswith('### ') and kind and not line.startswith('### 6.')):
-            kind = None
-        elif kind:
-            m = re.match(r'\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|', line)
-            if m:
-                out[kind][_norm_role(m.group(2))] = m.group(1)
-    return out
-
-
-def _abbr(abbr, role, kind):
-    """Sigla for a role name ('Ball_Playing_Centre_Back' -> 'BPCB'); initials if not in the glossary."""
-    if not role:
-        return ''
-    key = _norm_role(role)
-    if key in abbr.get(kind, {}):
-        return abbr[kind][key]
-    words = re.sub(r'[_\s]+OOP$', '', str(role)).replace('_', ' ').replace('-', ' ').split()
-    return ''.join(w[0].upper() for w in words)
-
-
-def print_teams(repo: Path, team: str, formation: str = None):
+def print_teams(repo: Path, team: str, formation: str = None, brief: bool = False):
     base = repo / 'data' / team / 'teams'
     if formation:
         base = base / formation
@@ -181,8 +147,20 @@ def print_teams(repo: Path, team: str, formation: str = None):
                         'Role': role, 'Score': score, 'Best': best_role})
         return out
 
-    _pretty_print_table(display(frows), title='First Team')
-    _pretty_print_table(display(srows), title='Second Team')
+    if not brief:
+        _pretty_print_table(display(frows), title='First Team')
+        _pretty_print_table(display(srows), title='Second Team')
+        return
+    # one table: slot, then team 1 and team 2 side by side (rows are in config order in both files)
+    pairs = sorted(zip(frows, srows + [{}] * (len(frows) - len(srows))), key=lambda fs: _pos_rank(fs[0].get('Position')))
+    rows = []
+    for f, s2 in pairs:
+        a = display([f])[0]
+        b = display([s2])[0] if s2 else {'Name': '', 'Score': '', 'Best': ''}
+        rows.append({'Pos': a['Pos'], 'Role': a['Role'],
+                     'Time 1': a['Name'], 'Sc1': a['Score'], 'Best1': a['Best'] if a['Best'] != a['Role'] else '',
+                     'Time 2': b['Name'], 'Sc2': b['Score'], 'Best2': b['Best'] if b['Best'] != a['Role'] else ''})
+    _pretty_print_table(rows)
 
 
 HELP_EXAMPLES = """\
@@ -206,8 +184,19 @@ examples:
   # attributes only, no form or age adjustments
   python run_team.py corinthians --config relogio.json --by-formation --no-mult --set age_penalty=0
 
-Each run prints the export it used and writes data/<team>/teams/<config>/run.json
-(export, effective config, every exclusion with its reason, seed, command).
+  # short output for a match: export, exclusions, weights used, teams 1 and 2 side by side
+  python run_team.py corinthians --config relogio.json --by-formation --brief --inf Inj Unr Ine Int Sus
+
+  # why Lingard and not Dieguinho, and who else fights for the AMC (same flags as the lineup asked about)
+  python run_team.py corinthians --config relogio.json --by-formation --no-parse --no-calc \\
+      --inf Inj Unr Ine Int Sus --explain lingard dieguinho --top AMC
+
+  # tilt close calls towards rested players: 0.3 points off per 90 min played in the last 14 days
+  python run_team.py corinthians --config relogio.json --by-formation --set fatigue_penalty=0.3
+
+Each run prints the export it used and a `pesos:` line with the hyperparameters it applied, and writes
+data/<team>/teams/<config>/run.json (export, effective config, every exclusion with its reason, seed,
+command, and each slot score of teams 1-2 split into its parts).
 """
 
 
@@ -232,7 +221,8 @@ def main():
     g.add_argument('--by-formation', action='store_true',
                    help='save teams in data/<team>/teams/<config name>/ (always pass it)')
     g.add_argument('--set', nargs='+', metavar='KEY=VALUE', dest='set_items',
-                   help='override a config value for this run only: ip_weight, age_penalty, age_threshold, arabic_penalty')
+                   help='override a config value for this run only: ip_weight, age_penalty, age_threshold, arabic_penalty, '
+                        'fatigue_penalty (points off per 90 min in the last 14 days; goalkeepers exempt)')
     g.add_argument('--mult', nargs='+', metavar='NAME=WEIGHT',
                    help="set a multiplier for this run only, e.g. 'Last 5 Games=0.1' 'Flair=0' (0 removes it)")
     g.add_argument('--no-mult', action='store_true',
@@ -254,6 +244,15 @@ def main():
     g.add_argument('--of', choices=['first'], default='first', help=argparse.SUPPRESS)
     g.add_argument('--keep', nargs='+', metavar='NAME', help='never left out by --load/--sample/--top-load')
     g.add_argument('--keep-gk', action='store_true', help='goalkeepers are never left out by --load/--sample/--top-load')
+
+    g = p.add_argument_group('output')
+    g.add_argument('--brief', action='store_true',
+                   help='short output: export, weights, exclusions and one table with teams 1 and 2 side by side')
+    g.add_argument('--explain', nargs='+', metavar='NAME',
+                   help="break down these players' slot scores (role IP/OOP, blend, age, fatigue, each multiplier); "
+                        "2 names = head-to-head. Repeat the previous run's flags (and --seed) so the lineup is the same")
+    g.add_argument('--top', nargs='+', metavar='POS',
+                   help='rank the candidates for these positions, e.g. --top AMC ST 3 (N defaults to 5)')
     args = p.parse_args()
     try:
         build_overrides(args.set_items, args.mult, args.no_mult)  # fail before parse/calc on a bad flag
@@ -263,9 +262,11 @@ def main():
     team = args.team
     repo = Path(__file__).resolve().parent
 
-    print(f"team is {team}. repo is {repo}")
+    if not args.brief:
+        print(f"team is {team}. repo is {repo}")
 
     os.environ['FM27_RUN_CMD'] = shlex.join(sys.argv)  # recorded in run.json by the optimizer
+    os.environ.setdefault('PYTHONWARNINGS', 'ignore::FutureWarning')  # pandas deprecation noise in the steps
 
     if not args.no_parse and not args.no_ingest:
         ingest_new_exports(team)
@@ -309,23 +310,36 @@ def main():
         raw_args += ' --mult ' + ' '.join(shlex.quote(i) for i in args.mult)
     if args.no_mult:
         raw_args += ' --no-mult'
+    if args.explain:
+        raw_args += ' --explain ' + ' '.join(shlex.quote(n) for n in args.explain)
+    if args.top:
+        raw_args += ' --top ' + ' '.join(shlex.quote(t) for t in args.top)
+    if args.brief:
+        raw_args += ' --brief'
     by_formation_arg = '--by-formation' if args.by_formation else ''
     steps.append(f"python optimize_teams.py {team} {formation_q} {raw_args} {by_formation_arg}".rstrip())
 
     # Run pipeline
-    for cmd in steps:
-        ok = run_cmd(cmd)
+    for i, cmd in enumerate(steps):
+        # the optimizer's own lines (exclusions, weights) always show; parse/score are filtered with --brief
+        ok = run_cmd(cmd, brief=args.brief and i < len(steps) - 1, echo=not args.brief)
         if not ok:
             print("Pipeline stopped due to error.")
             sys.exit(1)
 
-    print("Pipeline completed successfully.")
+    if not args.brief:
+        print("Pipeline completed successfully.")
 
     formation_stem = Path(formation).stem if args.by_formation else None
     try:
-        print_teams(repo, team, formation=formation_stem)
+        print_teams(repo, team, formation=formation_stem, brief=args.brief)
     except Exception as e:
         print(f"Could not print teams: {e}")
+    if args.explain or args.top:
+        explain = repo / 'data' / team / 'teams' / (formation_stem or '') / 'explain.txt'
+        if explain.exists():
+            print()
+            print(explain.read_text(encoding='utf-8').rstrip())
 
 
 if __name__ == '__main__':

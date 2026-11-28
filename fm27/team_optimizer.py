@@ -36,13 +36,22 @@ class PositionRequirement:
         return f"{self.role_oop.replace(' ', '_')}_Score"
 
 
+def _num(raw):
+    """float(raw), or None for NaN / non-numeric."""
+    try:
+        val = float(raw)
+    except (TypeError, ValueError):
+        return None
+    return None if pd.isna(val) else val
+
+
 class TeamOptimizer:
     """Optimizes team selection based on player scores and required positions."""
 
     def __init__(self, scores_df: pd.DataFrame, positions_df: pd.DataFrame, exclude_players: List[str] = None,
                  age_penalty: float = 0.0, age_threshold: int = 30,
                  multipliers: Dict[str, float] = None, arabic_penalty: float = 0.0,
-                 ip_weight: float = 0.5):
+                 ip_weight: float = 0.5, fatigue_penalty: float = 0.0):
         self.scores_df = scores_df
         self.positions_df = positions_df
         self.selected_players = set()
@@ -50,26 +59,79 @@ class TeamOptimizer:
         self.age_threshold = int(age_threshold or 0)
         self.multipliers = multipliers or {}
         self.arabic_penalty = float(arabic_penalty or 0.0)
+        # Points off per 90 minutes played in the Match Load window (last 14 days); goalkeepers exempt.
+        self.fatigue_penalty = float(fatigue_penalty or 0.0)
         # Weight of the in-possession role when a slot also has an OOP role.
         self.ip_weight = float(ip_weight)
         if not 0.0 <= self.ip_weight <= 1.0:
             raise ValueError(f"ip_weight must be between 0 and 1, got {self.ip_weight}")
         if exclude_players:
             self.selected_players.update(exclude_players)
-        
+        # Row lookup by name (names are unique: the parser numbers homonyms).
+        self._rows = scores_df.drop_duplicates('Name').set_index('Name', drop=False)
+        self._pos = positions_df.drop_duplicates('Name').set_index('Name')
+
+    def check_requirements(self, requirements: List[PositionRequirement]):
+        for req in requirements:
+            for col in (req.get_score_column(), req.get_oop_score_column()):
+                if col and col not in self.scores_df.columns:
+                    raise ValueError(f"Score column '{col}' not found in scores file (check the role name).")
+            if req.position not in self.positions_df.columns:
+                raise ValueError(f"Position column '{req.position}' not found in positions file.")
+
+    def components(self, name: str, req: PositionRequirement) -> dict | None:
+        """The slot score of `name` in `req`, split into its parts; None if he can't play that position.
+
+        This is the only place a slot score is computed: optimize_team ranks on `total`, and
+        --explain / --top print these same parts. Keys: ip, oop (None without an OOP role),
+        blend, age, arabic, fatigue, mult {column: weight * z}, total."""
+        if name not in self._rows.index or name not in self._pos.index:
+            return None
+        if self._pos.at[name, req.position] != True:  # noqa: E712 (column may hold numpy bools)
+            return None
+        row = self._rows.loc[name]
+        ip = row[req.get_score_column()]
+        oop_col = req.get_oop_score_column()
+        oop = row[oop_col] if oop_col else None
+        blend = self.ip_weight * ip + (1 - self.ip_weight) * oop if oop_col else ip
+        total = blend
+        age = arabic = fatigue = 0.0
+        if self.age_penalty and 'Age' in row.index:
+            age_val = _num(row['Age'])
+            if age_val is not None:
+                age = -self.age_penalty * max(0, age_val - self.age_threshold) + 0.0  # + 0.0: no '-0.00'
+                total = total + age
+        if self.arabic_penalty and 'Club' in row.index:
+            club_val = row['Club']
+            if isinstance(club_val, str) and club_val.lower().startswith('al-'):
+                arabic = -self.arabic_penalty
+                total = total + arabic
+        if self.fatigue_penalty and 'MatchLoadMinutes' in row.index and str(row.get('IsGK')).casefold() != 'true':
+            minutes = _num(row['MatchLoadMinutes'])
+            if minutes:
+                fatigue = -self.fatigue_penalty * minutes / 90
+                total = total + fatigue
+        mult = {}
+        for col, weight in self.multipliers.items():
+            if not weight or col not in row.index:
+                continue
+            mult[col] = weight * (_num(row[col]) or 0.0)
+            total = total + mult[col]
+        return {'ip': float(ip), 'oop': None if oop is None else float(oop), 'blend': float(blend),
+                'age': age, 'arabic': arabic, 'fatigue': fatigue, 'mult': mult, 'total': float(total)}
+
     def optimize_team(self, requirements: List[PositionRequirement]) -> pd.DataFrame:
         """
         Globally optimize team selection to maximize total score using Hungarian algorithm.
         Args:
             requirements: List of position requirements
         Returns:
-            DataFrame with selected players and their scores
+            DataFrame with selected players and their scores. A slot nobody can fill gets
+            'No eligible player' (the caller stops building teams there).
         """
-        # Filter out excluded players
-        available_scores_df = self.scores_df[
-            ~self.scores_df['Name'].str.lower().isin([p.lower() for p in self.selected_players])
-        ].copy()
-        available_positions_df = self.positions_df[self.positions_df['Name'].isin(available_scores_df['Name'])].copy()
+        self.check_requirements(requirements)
+        excluded = {p.lower() for p in self.selected_players}
+        available_scores_df = self.scores_df[~self.scores_df['Name'].str.lower().isin(excluded)]
         available_players = available_scores_df['Name'].tolist()
         n_positions = len(requirements)
         n_players = len(available_players)
@@ -78,45 +140,11 @@ class TeamOptimizer:
         cost_matrix = np.full((n_positions, n_players), 1e9)  # Default to ineligible
         adjusted_scores = np.full((n_positions, n_players), np.nan)
         for i, req in enumerate(requirements):
-            score_col = req.get_score_column()
-            oop_col = req.get_oop_score_column()
-            pos_col = req.position  # e.g., 'DL', 'DR', etc.
-            for col in (score_col, oop_col):
-                if col and col not in available_scores_df.columns:
-                    raise ValueError(f"Score column '{col}' not found in scores file (check the role name).")
-            if pos_col not in available_positions_df.columns:
-                raise ValueError(f"Position column '{pos_col}' not found in positions file.")
-            for j in range(n_players):
-                player_name = available_players[j]
-                score = available_scores_df.loc[available_scores_df['Name'] == player_name, score_col].values[0]
-                if oop_col:
-                    oop_score = available_scores_df.loc[available_scores_df['Name'] == player_name, oop_col].values[0]
-                    score = self.ip_weight * score + (1 - self.ip_weight) * oop_score
-                pos_val = available_positions_df.loc[available_positions_df['Name'] == player_name, pos_col].values[0]
-                if pos_val == True:
-                    if self.age_penalty and 'Age' in available_scores_df.columns:
-                        age_val = available_scores_df.loc[available_scores_df['Name'] == player_name, 'Age'].values[0]
-                        try:
-                            age_val = float(age_val) if not pd.isna(age_val) else None
-                        except Exception:
-                            age_val = None
-                        if age_val is not None:
-                            score = score - self.age_penalty * max(0, age_val - self.age_threshold)
-                    if self.arabic_penalty and 'Club' in available_scores_df.columns:
-                        club_val = available_scores_df.loc[available_scores_df['Name'] == player_name, 'Club'].values[0]
-                        if isinstance(club_val, str) and club_val.lower().startswith('al-'):
-                            score = score - self.arabic_penalty
-                    for col, weight in self.multipliers.items():
-                        if not weight or col not in available_scores_df.columns:
-                            continue
-                        raw = available_scores_df.loc[available_scores_df['Name'] == player_name, col].values[0]
-                        try:
-                            val = float(raw) if not pd.isna(raw) else 0.0
-                        except Exception:
-                            val = 0.0
-                        score = score + weight * val
-                    cost_matrix[i, j] = -score
-                    adjusted_scores[i, j] = score
+            for j, player_name in enumerate(available_players):
+                parts = self.components(player_name, req)
+                if parts is not None:
+                    cost_matrix[i, j] = -parts['total']
+                    adjusted_scores[i, j] = parts['total']
         # Solve assignment problem
         row_ind, col_ind = linear_sum_assignment(cost_matrix)
 
@@ -128,7 +156,6 @@ class TeamOptimizer:
             adjusted_score = adjusted_scores[pos_idx, player_idx]
             # Only assign if cost is not the ineligible sentinel
             if cost >= 1e8:
-                print(f"WARNING: No eligible player for position {req.position} ({req.role})!")
                 selected.append({
                     'Name': 'No eligible player',
                     'Position': req.position,
@@ -209,47 +236,27 @@ def remove_stale_teams(output_dir: Path, saved: int) -> List[str]:
     return removed
 
 
-def optimize_teams(
-    team_name: str,
-    formation_file: str,
-    max_teams: int = None,
-    age_penalty: float = None,
-    age_threshold: int = None,
-    excluded_players: list[str] = None,
-    by_formation: bool = False,
-    arabic_penalty: float = None,
-    config: dict = None,
-    strict_mult_keys=(),
-) -> List[pd.DataFrame]:
-    """Optimize teams. `config` is the effective config dict (defaults to loading `formation_file`,
-    which is still used for the output folder name). Multiplier keys in `strict_mult_keys` that
-    match no column are an error instead of a warning."""
+def load_scoring(team_name: str, config: dict, strict_mult_keys=(), warn: bool = True):
+    """Scores + positions of a parsed team and the TeamOptimizer settings of `config`.
 
+    Returns (scores_df, positions_df, settings, requirements); `settings` are TeamOptimizer kwargs.
+    Multiplier keys in `strict_mult_keys` that match no column are an error instead of a warning."""
     data_dir = Path("data")
-    scores_path = data_dir / team_name / "scores" / f"{team_name}_scores.csv"
-    output_dir = teams_output_dir(team_name, formation_file, by_formation)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    scores_df = pd.read_csv(data_dir / team_name / "scores" / f"{team_name}_scores.csv")
+    positions_df = pd.read_csv(data_dir / team_name / "interim" / "positions.csv")
 
-    scores_df = pd.read_csv(scores_path)
-    positions_path = data_dir / team_name / "interim" / "positions.csv"
-    positions_df = pd.read_csv(positions_path)
-
-    # demographics (age, club)
+    # demographics (age, club, match load)
     demographics_path = data_dir / team_name / "interim" / "player_demographics.csv"
     if demographics_path.exists():
         try:
             demo_df = pd.read_csv(demographics_path)
-            age_col = next((c for c in demo_df.columns if c.lower() == "age"), None)
-            club_col = next((c for c in demo_df.columns if c.lower() == "club"), None)
-            demo_cols = ["Name"]
             rename_map = {}
-            if age_col:
-                demo_cols.append(age_col)
-                rename_map[age_col] = "Age"
-            if club_col:
-                demo_cols.append(club_col)
-                rename_map[club_col] = "Club"
-            demo_subset = demo_df[demo_cols].rename(columns=rename_map)
+            for want in ("Age", "Club"):
+                col = next((c for c in demo_df.columns if c.lower() == want.lower()), None)
+                if col:
+                    rename_map[col] = want
+            extra = [c for c in ("MatchLoadMinutes", "IsGK") if c in demo_df.columns]
+            demo_subset = demo_df[["Name", *rename_map, *extra]].rename(columns=rename_map)
             scores_df = scores_df.merge(demo_subset, on="Name", how="left")
         except Exception:
             print(f"Warning: failed to read demographics from {demographics_path}")
@@ -270,30 +277,19 @@ def optimize_teams(
         except Exception:
             print(f"Warning: failed to read performance data from {performance_path}")
 
-    # config
-    if config is None:
-        with open(formation_file, "r") as f:
-            config = json.load(f)
-
-    formation_data = config["formation"]
-
-    cfg_age_penalty = config.get("age_penalty")
     cfg_age_threshold = config.get("age_threshold")
-    cfg_arabic_penalty = config.get("arabic_penalty")
-    ip_weight = float(config.get("ip_weight", 0.5))
-
-    if age_penalty is None:
-        age_penalty = float(cfg_age_penalty) if cfg_age_penalty is not None else 0.0
-    if age_threshold is None:
-        age_threshold = int(cfg_age_threshold) if cfg_age_threshold is not None else 30
-    if arabic_penalty is None:
-        arabic_penalty = float(cfg_arabic_penalty) if cfg_arabic_penalty is not None else 0.0
+    settings = {
+        "age_penalty": float(config.get("age_penalty") or 0.0),
+        "age_threshold": int(cfg_age_threshold) if cfg_age_threshold is not None else 30,
+        "arabic_penalty": float(config.get("arabic_penalty") or 0.0),
+        "fatigue_penalty": float(config.get("fatigue_penalty") or 0.0),
+        "ip_weight": float(config.get("ip_weight", 0.5)),
+    }
 
     # resolve multiplier keys → actual column names
-    raw_multipliers = config.get("multipliers", {})
     available_cols = set(scores_df.columns)
     resolved_multipliers: Dict[str, float] = {}
-    for key, weight in raw_multipliers.items():
+    for key, weight in (config.get("multipliers") or {}).items():
         col = _resolve_multiplier_col(key, available_cols)
         if col:
             resolved_multipliers[col] = weight
@@ -303,18 +299,36 @@ def optimize_teams(
             print(f"Error: --mult '{key}' matches no column. Available keys: "
                   f"{', '.join(list(METRIC_COLUMN_MAP) + usable)}")
             exit(1)
-        else:
+        elif warn:
             print(f"Warning: multiplier key '{key}' has no matching column, skipping.")
+    settings["multipliers"] = resolved_multipliers
 
-    requirements = parse_formation(formation_data)
+    return scores_df, positions_df, settings, parse_formation(config["formation"])
+
+
+def optimize_teams(
+    team_name: str,
+    formation_file: str,
+    max_teams: int = None,
+    excluded_players: list[str] = None,
+    by_formation: bool = False,
+    config: dict = None,
+    strict_mult_keys=(),
+    quiet: bool = False,
+) -> List[pd.DataFrame]:
+    """Build teams 1..N for a formation and save them as CSVs. `config` is the effective config dict
+    (defaults to loading `formation_file`, which is still used for the output folder name).
+    Each further team is picked from whoever is left; it stops at the first slot nobody can fill."""
+    output_dir = teams_output_dir(team_name, formation_file, by_formation)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    if config is None:
+        with open(formation_file, "r") as f:
+            config = json.load(f)
+    scores_df, positions_df, settings, requirements = load_scoring(team_name, config, strict_mult_keys)
 
     teams: List[pd.DataFrame] = []
-
-    excluded = set()
-    if excluded_players:
-        excluded.update(n.casefold() for n in excluded_players)
-
-    team_idx = 1
+    excluded = {n.casefold() for n in (excluded_players or [])}
 
     def filename_for_index(i: int) -> Path:
         if i == 1:
@@ -323,49 +337,29 @@ def optimize_teams(
             return output_dir / "second_team.csv"
         return output_dir / f"team_{i}.csv"
 
-    while True:
-        optimizer = TeamOptimizer(
-            scores_df,
-            positions_df,
-            list(excluded),
-            age_penalty=age_penalty,
-            age_threshold=age_threshold,
-            multipliers=resolved_multipliers,
-            arabic_penalty=arabic_penalty,
-            ip_weight=ip_weight,
-        )
-
+    stop = None
+    while max_teams is None or len(teams) < max_teams:
+        optimizer = TeamOptimizer(scores_df, positions_df, list(excluded), **settings)
         team_df = optimizer.optimize_team(requirements)
+        if team_df is None or team_df.empty or "Name" not in team_df.columns:
+            break
+        missing = team_df[team_df["Name"].eq("No eligible player")]
+        if not missing.empty:
+            stop = ', '.join(missing["Position"].tolist())
+            break
 
-        if team_df is None or team_df.empty:
-            break
-        if "Name" not in team_df.columns:
-            break
-        if team_df["Name"].eq("No eligible player").any():
-            break
-
-        out_path = filename_for_index(team_idx)
-        team_df.to_csv(out_path, index=False)
+        team_df.to_csv(filename_for_index(len(teams) + 1), index=False)
         teams.append(team_df)
-
-        # adiciona jogadores usados ao exclude
-        selected_names = [
-            n.casefold()
-            for n in team_df["Name"].tolist()
-            if isinstance(n, str)
-        ]
-        excluded.update(selected_names)
-
-        team_idx += 1
-        if max_teams is not None and team_idx > max_teams:
-            break
+        excluded.update(n.casefold() for n in team_df["Name"].tolist() if isinstance(n, str))
 
     if teams:
-        print(f"Salvei {len(teams)} times em: {output_dir}")
+        if not quiet:
+            tail = f" (time {len(teams) + 1} sem jogador para {stop})" if stop else ""
+            print(f"Salvei {len(teams)} times em: {output_dir}{tail}")
         removed = remove_stale_teams(output_dir, len(teams))
-        if removed:
+        if removed and not quiet:
             print(f"Removed stale files from older runs: {', '.join(removed)}")
     else:
-        print("Não foi possível formar nenhum time completo.")
+        print("Não foi possível formar nenhum time completo." + (f" Sem jogador para {stop}." if stop else ""))
 
     return teams

@@ -14,6 +14,7 @@ import pandas as pd
 
 from .overrides import SCALAR_KEYS, build_overrides, describe_overrides, effective_config, has_overrides
 from .source import read_source
+from .explain import Explainer, knobs_line, parse_top
 from .team_optimizer import optimize_teams, teams_output_dir
 
 
@@ -143,7 +144,7 @@ def players_by_top_load(demo, first_team_names, n, already, keep, keep_gk):
     return [(r['Name'], 'top-load') for r in top]
 
 
-def write_manifest(team_name, formation_file, args, overrides, config, exclusions, seed, teams_saved):
+def write_manifest(team_name, formation_file, args, overrides, config, exclusions, seed, teams_saved, teams_detail=None):
     """data/<team>/teams/[<formation>/]run.json: what this run used, next to the CSVs it produced."""
     source = read_source(team_name)
     cwd = Path.cwd()
@@ -163,6 +164,8 @@ def write_manifest(team_name, formation_file, args, overrides, config, exclusion
         'keep_gk': bool(args.keep_gk),
         'seed': seed if args.sample is not None else None,
         'teams_saved': teams_saved,
+        # slot score of each player in teams 1-2, split into its parts (same numbers as --explain)
+        'teams_detail': teams_detail or [],
         'argv': sys.argv,
     }
     if os.environ.get('FM27_RUN_CMD'):
@@ -197,6 +200,11 @@ def main():
     p.add_argument('--top-load', type=int, metavar='N',
                    help='Re-run excluding the N highest-minutes players of the first team')
     p.add_argument('--of', choices=['first'], default='first', help='Team --top-load ranks (only first)')
+    p.add_argument('--explain', nargs='+', metavar='NAME',
+                   help='After picking the teams, break down the slot score of these players (2 names = head-to-head)')
+    p.add_argument('--top', nargs='+', metavar='POS',
+                   help='After picking the teams, rank the candidates for these positions (e.g. AMC ST 5; N defaults to 5)')
+    p.add_argument('--brief', action='store_true', help='Only the lines that matter (no "Salvei" line)')
 
     args = p.parse_args()
 
@@ -221,6 +229,8 @@ def main():
         args.exclude = resolve_names(team_name, args.exclude, '--exclude')
     if args.keep:
         args.keep = resolve_names(team_name, args.keep, '--keep')
+    if args.explain:
+        args.explain = resolve_names(team_name, args.explain, '--explain')
     exclusions = []  # [{'name', 'reason'}] in the order applied; first reason wins for a repeated name
     excluded = []  # casefolded names, what the optimizer receives
 
@@ -259,6 +269,7 @@ def main():
         line = describe_overrides(base_config, config)
         if line:
             print(line)
+    print(knobs_line(Path(formation_file).name, config))
 
     def run(excl):
         return optimize_teams(
@@ -268,6 +279,7 @@ def main():
             strict_mult_keys=set(overrides['mult']),
             excluded_players=excl,
             by_formation=args.by_formation,
+            quiet=args.brief,
         )
 
     teams = run(excluded)
@@ -275,8 +287,25 @@ def main():
         exclude(players_by_top_load(
             demo, teams[0]['Name'].tolist(), args.top_load, excluded, args.keep, args.keep_gk))
         teams = run(excluded)
-    if teams:
-        write_manifest(team_name, formation_file, args, overrides, config, exclusions, seed, len(teams))
+    if not teams:
+        return
+    explainer = Explainer(team_name, config, teams, exclusions, set(overrides['mult']))
+    write_manifest(team_name, formation_file, args, overrides, config, exclusions, seed, len(teams),
+                   explainer.team_detail(teams))
+    # --explain/--top: run_team.py prints explain.txt after the teams table; run directly, print it here
+    out = []
+    if args.explain:
+        out.append(explainer.explain(args.explain))
+    if args.top:
+        positions, n = parse_top(args.top)
+        out.append(explainer.top(positions, n))
+    if out:
+        path = teams_output_dir(team_name, formation_file, args.by_formation) / 'explain.txt'
+        path.write_text('\n\n'.join(out) + '\n', encoding='utf-8')
+        if not os.environ.get('FM27_RUN_CMD'):
+            print('\n\n'.join(out))
+    else:
+        (teams_output_dir(team_name, formation_file, args.by_formation) / 'explain.txt').unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

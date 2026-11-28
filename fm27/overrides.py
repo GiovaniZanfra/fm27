@@ -6,6 +6,7 @@ SCALAR_KEYS = {
     'age_penalty': float,
     'age_threshold': int,
     'arabic_penalty': float,
+    'fatigue_penalty': float,  # points off per 90 min played in the last 14 days (Match Load); GKs exempt
 }
 
 

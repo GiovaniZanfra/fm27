@@ -77,7 +77,7 @@ Examples use Corinthians; swap team and config for the others. Tactic configs ar
 
 | Pedido | Comando |
 |---|---|
-| "export novo do corinthians, roda relogio com os hiperparâmetros do giovani e exclui unr, ine, sus, inj ou int; tira os heavy/very heavy exceto goleiro e gio; sorteia 50% deles; mostra time 1 e 2" | `python run_team.py corinthians --config relogio.json --by-formation --inf Inj Unr Ine Int Sus --load heavy very-heavy --keep-gk --keep Gio --sample 0.5` (ingest and newest export are automatic; report the printed seed and the `export:` label; show teams 1 and 2) |
+| "export novo do corinthians, roda relogio com os hiperparâmetros do giovani e exclui unr, ine, sus, inj ou int; tira os heavy/very heavy exceto goleiro e gio; sorteia 50% deles; mostra time 1 e 2" | `python run_team.py corinthians --config relogio.json --by-formation --brief --inf Inj Unr Ine Int Sus --load heavy very-heavy --keep-gk --keep Gio --sample 0.5` (ingest and newest export are automatic; report the printed seed and the `export:` label; show teams 1 and 2) |
 | "tira X Y" / "jogo novo" | Add to `-r X Y`, accumulating; "jogo novo" resets the list |
 | "volta com gio" | Rerun with Gio dropped from `-r` |
 | "tira os 4 com maior match load do primeiro time fora o goleiro" | `... --top-load 4 --keep-gk` |
@@ -87,13 +87,17 @@ Examples use Corinthians; swap team and config for the others. Tactic configs ar
 | "aumenta o pênalti de idade só pra essa partida" | `--set age_penalty=0.3` (ask the value if he gave none) |
 | "roda sem hiperparâmetros, só atributos" | `--no-mult` |
 | "qual export você usou?" | The `export:` line of the run, or `export` in `teams/<config>/run.json` |
+| "tá com pênalti de idade?" / "rodou sem hiperparâmetros?" | The `pesos:` line of the run (no extra command) |
+| "pq X ganha de Y?" / "quanto o flair tira do X?" / "atributo ou peso?" | Same flags as the last run (plus its `--seed` if it sampled) `--no-parse --no-calc --explain X Y` |
+| "quem disputa o AMC?" / "qual reserva é quase titular?" | `... --no-parse --no-calc --top AMC` (or `--top DC DM 3`) |
+| "desconta o cansaço" / "pesa a carga sem tirar ninguém" | `--set fatigue_penalty=0.3` (ask the value if he gave none) |
 
 ## The pipeline
 
 Run from the repo root with `python` (the `fm24` conda env also works). `python run_team.py --help` lists every flag with examples.
 
 ```bash
-python run_team.py <team> --config <file>.json --by-formation [--no-parse --no-calc] [-r NAME...] [--inf CODE...] [--load LEVEL...] [--keep NAME...] [--keep-gk] [--sample F --seed N] [--top-load N] [--set K=V...] [--mult 'Name=W'...] [--no-mult] [--date LABEL] [--no-ingest]
+python run_team.py <team> --config <file>.json --by-formation [--no-parse --no-calc] [-r NAME...] [--inf CODE...] [--load LEVEL...] [--keep NAME...] [--keep-gk] [--sample F --seed N] [--top-load N] [--set K=V...] [--mult 'Name=W'...] [--no-mult] [--date LABEL] [--no-ingest] [--brief] [--explain NAME...] [--top POS... [N]]
 ```
 
 - `--config` is a bare filename inside `configs/<team>/`. There is no usable default, so always pass it.
@@ -105,11 +109,15 @@ python run_team.py <team> --config <file>.json --by-formation [--no-parse --no-c
   - `--sample F` excludes a random fraction F of the players the load filter would remove. Every `--sample` run prints its seed; report it (`--seed N` reproduces the draw).
   - `--top-load N` excludes the N first-team players with the most minutes in the window and reruns; combine with `--keep-gk`.
 - Per-run config tweaks, in memory only (the file is never rewritten; the run prints an `overrides:` line). Never copy a config with sed for a one-off tweak.
-  - `--set ip_weight=0.7 age_penalty=0.3` (also `age_threshold`, `arabic_penalty`).
+  - `--set ip_weight=0.7 age_penalty=0.3` (also `age_threshold`, `arabic_penalty`, `fatigue_penalty`).
+  - `fatigue_penalty=k` takes k points off per 90 minutes played in the Match Load window (last 14 days); goalkeepers are exempt (FM rates their load lower: 360 min is Medium for a keeper). Default 0. It tilts close calls towards rested players and never excludes anyone, so it complements `--load`/`--sample`/`--top-load`, which stay the way to rest players.
   - `--mult 'Last 5 Games=0.1' 'Flair=0'` sets a multiplier; 0 removes it. A name matching no column stops the run.
   - `--no-mult` clears the config's multipliers first (attributes only), then applies any `--mult`.
-- Every run writes `teams/<config>/run.json`: export, config file, overrides and effective config, each exclusion with its reason, seed and the command. Team files above the count saved are removed, so the folder matches the last run; the run reports "Salvei N times". Each further team is built from whoever is left, so team files are a depth chart.
-- The `Score` column is the role score *after* the config's adjustments (age penalty, multipliers on z-scores such as `Last 5 Games`, `Transfer Value`, or any attribute name). It is not comparable across configs or with a raw `<Role>_Score`. Multiplier names `Av Rat`, `Last 5 Games`, `Transfer Value`, `Trn Rating` and plain attribute names resolve; `Trn Rat` and `Av. Rating` do not. In a config file a bad key only warns.
+- Every run prints a `pesos:` line with the hyperparameters it actually used (config file, `ip_weight`, age penalty and threshold, fatigue, every multiplier including the zeros). Read it instead of opening the config.
+- Every run writes `teams/<config>/run.json`: export, config file, overrides and effective config, each exclusion with its reason, seed, the command, and `teams_detail` (each slot score of teams 1–2 split into its parts). Team files above the count saved are removed, so the folder matches the last run; the run reports "Salvei N times". Each further team is built from whoever is left, so team files are a depth chart.
+- `--brief` keeps only the `export:` line, the exclusion lines, the `pesos:` line and one table with teams 1 and 2 side by side (`Best1`/`Best2` only when they differ from the slot's role). Use it for every match run.
+- **Why questions: never recompute scores by hand in pandas.** `--explain X Y` prints, after the teams, the parts of each player's slot score: once the adjustments that are the same in every slot (age, fatigue, each multiplier as points with its z), then per slot of the formation the in- and out-of-possession role scores, their blend, `+ ajustes` and the total, with the current T1/T2 holder in the slot title. Two names add a `diferença` column. One name shows every slot he can play. Excluded players are still explained (marked with the reason). `--top POS [N]` ranks the N best available candidates per slot of that position: total, gap to the first (`Δ1º`), blend, age, fatigue, attribute and form multipliers, and where each one is playing. Both are computed by the same function the optimizer ranks on, and the text is also saved in `teams/<config>/explain.txt`. Rerun with the flags of the lineup being discussed (the `run_team_cmd` in `run.json`, with its `--seed`), or the explanation is about a different lineup.
+- The `Score` column is the role score *after* the config's adjustments (age penalty, fatigue penalty, multipliers on z-scores such as `Last 5 Games`, `Transfer Value`, or any attribute name). It is not comparable across configs or with a raw `<Role>_Score`. Multiplier names `Av Rat`, `Last 5 Games`, `Transfer Value`, `Trn Rating` and plain attribute names resolve; `Trn Rat` and `Av. Rating` do not. In a config file a bad key only warns.
 
 Reporting a run: both teams in position order, each line right to left:
 `GK DR DC DL WBR DM WBL MR MC ML AMR AMC AML ST` (the run prints them this way). Show the role as

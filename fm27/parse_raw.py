@@ -928,7 +928,7 @@ def parse_raw_data(team_name: str, date: str = None):
     if value_mask.any():
         scaled_values = StandardScaler().fit_transform(dem.loc[value_mask, ['TransferValue']].astype(float))
         dem.loc[value_mask, 'TransferValue_Normalized'] = scaled_values.flatten()
-    dem['TransferValue_Normalized'] = dem['TransferValue_Normalized'].fillna(0.0)
+    dem['TransferValue_Normalized'] = pd.to_numeric(dem['TransferValue_Normalized'], errors='coerce').fillna(0.0)
     dem['Club'] = merged_df[club_col] if (club_col and club_col in merged_df.columns) else pd.NA
     dem['MediaHandling'] = merged_df[media_col] if (media_col and media_col in merged_df.columns) else pd.NA
     # Inf: the status icon column (Inj, Unr, Sus, Loa...); read by the optimizer's --inf filter.
