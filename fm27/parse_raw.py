@@ -932,11 +932,42 @@ def parse_raw_data(team_name: str, date: str = None):
     dem['MediaHandling'] = merged_df[media_col] if (media_col and media_col in merged_df.columns) else pd.NA
     # Inf: the status icon column (Inj, Unr, Sus, Loa...); read by the optimizer's --inf filter.
     dem['Inf'] = merged_df['Inf'] if 'Inf' in merged_df.columns else pd.NA
+    load = _parse_match_load_series(merged_df['Match Load']) if 'Match Load' in merged_df.columns else None
+    for col in ('MatchLoad', 'MatchLoadGames', 'MatchLoadMinutes', 'MatchLoadMinutesMax'):
+        dem[col] = load[col] if load is not None else pd.NA
+        if col != 'MatchLoad':
+            dem[col] = dem[col].astype('Int64')
+    dem['IsGK'] = [_is_gk(a, b) for a, b in zip(
+        merged_df['Position'] if 'Position' in merged_df.columns else [None] * len(dem),
+        merged_df['Best Pos'] if 'Best Pos' in merged_df.columns else [None] * len(dem))]
 
     dem_file = team_interim_dir / "player_demographics.csv"
     dem.to_csv(dem_file, index=False)
     _save_performance_data(merged_df, team_interim_dir, value_col=value_col, attr_df=attr_mapped)
     print(f"Saved interim files in {team_interim_dir}")
+
+_MATCH_LOAD_RE = re.compile(
+    r'^\s*(?P<level>[A-Za-z][A-Za-z ]*?)\s+(?P<games>\d+)\s+match(?:es)?\s*\(\s*(?P<min>\d+)\s*/\s*(?P<max>\d+)', re.I)
+
+
+def _parse_match_load_series(series):
+    """'Heavy 4 matches (296/360 minutes) in last 14 days' -> MatchLoad/Games/Minutes/MinutesMax columns."""
+    rows = []
+    for v in series:
+        m = _MATCH_LOAD_RE.match(str(v)) if pd.notna(v) else None
+        if m:
+            rows.append({'MatchLoad': ' '.join(m['level'].split()).title(), 'MatchLoadGames': int(m['games']),
+                         'MatchLoadMinutes': int(m['min']), 'MatchLoadMinutesMax': int(m['max'])})
+        else:
+            rows.append({'MatchLoad': pd.NA, 'MatchLoadGames': pd.NA,
+                         'MatchLoadMinutes': pd.NA, 'MatchLoadMinutesMax': pd.NA})
+    return pd.DataFrame(rows, index=series.index)
+
+
+def _is_gk(*positions):
+    """True if any of the Position / Best Pos strings lists GK."""
+    return any(pd.notna(p) and re.search(r'\bGK\b', str(p)) is not None for p in positions)
+
 
 def main():
     import sys
