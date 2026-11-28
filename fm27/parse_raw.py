@@ -1,4 +1,5 @@
 import os
+import re
 from pathlib import Path
 
 import numpy as np
@@ -18,7 +19,10 @@ def parse_positions(position_str: str) -> set:
     if pd.isna(position_str):
         return set()
     pos_list = set()
-    split_ = str(position_str).split(", ")
+    # Shortlist exports append the best role after the last side group,
+    # e.g. "AM (RL), ST (C) Wide Forward"; drop it.
+    position_str = re.sub(r"\)\s+[^(),]+$", ")", str(position_str).strip())
+    split_ = position_str.split(", ")
     for pos in split_:
         if pos == "AM (R)":
             pos_list.add("AMR")
@@ -226,8 +230,41 @@ def parse_positions(position_str: str) -> set:
             pos_list.add("DR")
             pos_list.add("MR")
         else:
-            print(f"Unknown position format: {pos}")
+            generic = _parse_position_group(pos)
+            if generic:
+                pos_list |= generic
+            else:
+                print(f"Unknown position format: {pos}")
     return pos_list
+
+
+_SIDE_CODES = {
+    "D": {"R": "DR", "C": "DC", "L": "DL"},
+    "WB": {"R": "WBR", "L": "WBL"},
+    "M": {"R": "MR", "C": "MC", "L": "ML"},
+    "AM": {"R": "AMR", "C": "AMC", "L": "AML"},
+    "ST": {"C": "ST"},
+}
+
+
+def _parse_position_group(pos: str) -> set:
+    """Generic parse of one FM position group such as "D/WB/M (RL)" or "DM"."""
+    pos = pos.strip()
+    if pos in ("GK", "DM"):
+        return {pos}
+    m = re.fullmatch(r"([A-Z/]+)\s*\(([RLC]+)\)", pos)
+    if not m:
+        return set()
+    out = set()
+    for line in m.group(1).split("/"):
+        if line in ("GK", "DM"):
+            out.add(line)
+            continue
+        sides = _SIDE_CODES.get(line)
+        if sides is None:
+            return set()
+        out |= {sides[c] for c in m.group(2) if c in sides}
+    return out
 
 
 def get_attribute_mapping():
@@ -429,6 +466,34 @@ def _normalize_col(series: pd.Series) -> 'np.ndarray':
     return result
 
 
+AV_RAT_SHRINK_K = 10  # pseudo-games pulling a season average towards the squad mean
+
+
+def _parse_apps(value):
+    """Senior appearances from FM's "starts (subs)" cell, e.g. "57 (4)" -> 61; "-" -> 0."""
+    nums = re.findall(r"\d+", str(value))
+    return float(sum(int(n) for n in nums[:2])) if nums else 0.0
+
+
+def _shrink_form(performance: pd.DataFrame) -> None:
+    """Make form columns sample-aware, in place, when the export has Apps.
+
+    Av_Rat is shrunk towards the apps-weighted squad mean with AV_RAT_SHRINK_K
+    pseudo-games, so a 7.40 in one match no longer outranks a regular starter.
+    Last 5 Games Club also counts youth/reserve matches, so it is dropped (NaN,
+    i.e. neutral z) for players with no senior appearances.
+    """
+    apps = performance['Apps'].fillna(0.0)
+    avr = performance['Av_Rat']
+    played = avr.notna() & (apps > 0)
+    if played.any():
+        mean = np.average(avr[played], weights=apps[played])
+        k = AV_RAT_SHRINK_K
+        performance.loc[played, 'Av_Rat'] = (apps[played] * avr[played] + k * mean) / (apps[played] + k)
+    performance.loc[~played, 'Av_Rat'] = np.nan
+    performance.loc[apps <= 0, 'Last_5_Games_Rating'] = np.nan
+
+
 def _save_performance_data(merged_df, interim_dir, value_col=None, attr_df=None):
     cols = merged_df.columns.tolist()
     training_col, last5_col = _find_performance_columns(cols)
@@ -464,6 +529,15 @@ def _save_performance_data(merged_df, interim_dir, value_col=None, attr_df=None)
         if value_col and value_col in merged_df.columns
         else np.nan
     )
+
+    apps_col = _find_column(cols, ['apps'])
+    performance['Apps'] = (
+        merged_df[apps_col].apply(_parse_apps).values
+        if apps_col and apps_col in merged_df.columns
+        else np.nan
+    )
+    if apps_col:
+        _shrink_form(performance)
 
     for col in ['Training_Rate', 'Last_5_Games_Rating', 'Av_Rat', 'TransferValue']:
         performance[f"{col}_Normalized"] = _normalize_col(performance[col])

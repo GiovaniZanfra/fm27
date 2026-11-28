@@ -60,6 +60,28 @@ Escolhas feitas na tela de criação do técnico (Head Coach Creation) e a hist�
 
 Ao sugerir roles ou mudança de formação, ler o perfil do técnico (abaixo) e `managers_tactics.md`.
 
+### Hiperparâmetros de forma (multipliers)
+
+Pesos de forma nas configs (`configs/<time>/*.json`, chave `multipliers`). Decididos em 27/11/2026, depois de um debate com auditor sobre o export do Corinthians de 27/11 21:08.
+
+| Técnico | `Av Rat` | `Last 5 Games` | Por quê |
+|---|---|---|---|
+| Giovani | 0.3 | 0 (`relogio_jogo`: 0.1) | Planeja em sequência, não reage a fase. A temporada vale, os 5 últimos não. |
+| Bruno Keller | 0.15 | 0.1 | O rodízio dele é físico (condição/carga), não nota. A forma pesa pouco. |
+| Rafael Duarte | 0.2 | 0.4 | É o único que reage à forma recente, mas sem o 0.7 antigo, que deixava 5 jogos decidirem o XI. |
+| Luiz "Casca" Ferreira | 0.3 | 0 | XI estável. A temporada desempata, a fase não. |
+
+**Regras:**
+- **Av Rat é a base, Last 5 só desempata.** `Last 5 Games Club` conta jogo de base e reserva: no export de 27/11, 19 dos 24 jogadores sem jogo no profissional tinham nota (Matheus Corrêa, 0 apps, 7.50, a maior do elenco).
+- **O parser corrige pela amostra quando o export tem `Apps`.** O `Av Rat` é encolhido para a média do elenco ponderada por jogos, com k = 10 jogos fictícios (`AV_RAT_SHRINK_K` em `fm27/parse_raw.py`): um 7.40 em 1 jogo vira 6.90. O `Last 5` de quem tem 0 apps vira vazio. Valor vazio vira z = 0, ou seja, a média de quem jogou: neutro, não punição.
+- **Peso de forma ≥ 0.25 em `Last 5` é alto demais.** Na `compasso`, `Last 5` a 0.25 já trocava o Hugo Souza (55 jogos) pelo Renan Ribeiro (goleiro de copa, 5 jogos). Isso é um degrau, não um ajuste fino.
+- **Teste de sanidade ao mexer em peso de forma:** o goleiro titular absoluto não pode cair por causa de forma. Se cair, o peso está alto.
+- **Coluna obrigatória no export:** `Average Rating Club` e `Apps`, junto com `Last 5 Games Club`. Sem `Av Rat`, o peso dele vale zero na prática (todo mundo z = 0). Sem `Apps`, não há encolhimento.
+
+**Pendências:**
+- Os exports atuais de Palmeiras, Roma e Bahia ainda não têm `Av Rat` nem `Apps`, então hoje só o `Last 5` conta lá. Na Roma, só 31 dos 76 jogadores têm `Last 5`.
+- O eixo real de rodízio do Keller é carga física (`Match Load`, "Heavy 5 matches (350/450 minutes)"), que ainda não é parseada. `Fatigue` vem vazia no export.
+
 ## Perfis
 
 *Textos de personagem escritos na era FM24: os nomes de role citados aqui (BallWinningMidfielder, ShadowStriker, PressingForward…) são do FM24. A tradução para roles FM27 está em `managers_tactics.md`, seção 7.*

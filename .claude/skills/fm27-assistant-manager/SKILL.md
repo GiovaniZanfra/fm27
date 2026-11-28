@@ -134,7 +134,8 @@ when recommending it.
 
 - **New export:** run `python ingest_export.py` (see *Getting exports in*), then rerun with `--date <that team's latest label>`. Point out who moved between first and second team since the last run if you have it.
 - **Depth chart:** run each of the manager's main formations with no exclusions and read teams 1..N. A slot where the second team's score falls far below the first is a depth gap; a position with fewer than two eligible players is a hole.
-- **Rotation:** Keller rotates hard to keep physical output; Casca keeps a stable XI and rotates only when forced; Giovani plans in sequences of matches; Duarte reacts to form. The `Last 5 Games` multiplier is what makes form move a selection, so check its weight in the config before reading much into a change.
+- **Rotation:** Keller rotates hard to keep physical output; Casca keeps a stable XI and rotates only when forced; Giovani plans in sequences of matches; Duarte reacts to form. The `Av Rat` and `Last 5 Games` multipliers are what make form move a selection, so check their weights in the config before reading much into a change.
+- **Form weights:** the agreed per-manager `Av Rat` / `Last 5 Games` weights and the reasons are in `context/managers.md` ("Hiperparâmetros de forma"). Season average is the base and Last 5 only a tiebreaker, because Last 5 counts youth and reserve games. When the export has `Apps`, the parser shrinks `Av Rat` by sample size and blanks `Last 5` for players with no senior games. Ask for `Average Rating Club` and `Apps` in every squad export. After changing a form weight, check the undisputed first-choice goalkeeper still starts; if he drops, the weight is too high.
 - **Fit tier list:** run the helper below on the squad. Write lists to `data/<team>/analysis/tier_list_<manager>.csv|html`.
 - **Callups:** `callup.json` picks the registered or matchday squad in one run.
 
